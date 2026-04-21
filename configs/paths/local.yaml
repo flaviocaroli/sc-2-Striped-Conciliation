@@ -1,0 +1,4 @@
+data_root: "C:/Users/hp/Desktop/tesi_Msc/sc2_local_data"
+output_root: "C:/Users/hp/Desktop/tesi_Msc/sc2_local_outputs"
+log_root: "C:/Users/hp/Desktop/tesi_Msc/sc2_local_outputs/logs"
+artifact_root: "C:/Users/hp/Desktop/tesi_Msc/sc2_local_outputs/artifacts"

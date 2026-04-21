@@ -1,0 +1,4 @@
+data_root: "/home/3159436/sc2/data"
+output_root: "/home/3159436/sc2/outputs"
+log_root: "/home/3159436/sc2/logs"
+artifact_root: "/home/3159436/sc2/data/artifacts"

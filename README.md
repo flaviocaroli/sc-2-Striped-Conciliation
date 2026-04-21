@@ -1,0 +1,48 @@
+# SC2
+
+Starter repository for the SC² project:
+- local development in VS Code
+- reproducible configs
+- SLURM-based HPC runs
+- data stored on HPC, not in git
+
+## 1. Repo principles
+
+We keep:
+- code
+- configs
+- SLURM scripts
+- small manifests
+- tests
+
+We do **not** keep in git:
+- raw data
+- processed data
+- checkpoints
+- logs
+- large artifacts
+
+## 2. Suggested paths
+
+### Local
+- code repo: this folder
+- data root: `C:/Users/hp/sc2_local_data`
+- output root: `C:/Users/hp/sc2_local_outputs`
+
+### HPC
+- code repo: `/home/3159436/sc2/code`
+- data root: `/home/3159436/sc2/data`
+- output root: `/home/3159436/sc2/outputs`
+
+These can be overridden with environment variables:
+- `SC2_DATA_ROOT`
+- `SC2_OUTPUT_ROOT`
+
+## 3. Environment
+
+### Local
+```bash
+conda env create -f environment.yml
+conda activate sc2
+pip install torch --index-url https://download.pytorch.org/whl/cpu
+pip install -e .
