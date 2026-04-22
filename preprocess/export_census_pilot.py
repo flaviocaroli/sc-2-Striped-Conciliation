@@ -12,7 +12,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "census_pilot.h5ad"
 
-    census = cxg.open_soma(census_version="stable")
+    census = cxg.open_soma(census_version="2025-11-08")
 
     adata = cxg.get_anndata(
         census,
