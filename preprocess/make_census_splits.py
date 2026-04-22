@@ -10,7 +10,7 @@ import pandas as pd
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Create deterministic dataset-level splits for Census pilot.")
+    parser = argparse.ArgumentParser(description="Create deterministic cell-level splits for the Census pilot.")
     parser.add_argument(
         "--manifest",
         default=None,
@@ -30,49 +30,29 @@ def main() -> None:
     summary_path = output_path.with_suffix(".summary.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_parquet(manifest_path)
+    df = pd.read_parquet(manifest_path).copy()
 
-    if "dataset_id" not in df.columns:
-        raise ValueError("Manifest must contain a dataset_id column for dataset-level splitting.")
-
-    dataset_ids = sorted(df["dataset_id"].astype(str).unique().tolist())
     rng = np.random.default_rng(args.seed)
-    rng.shuffle(dataset_ids)
+    perm = rng.permutation(len(df))
 
-    n = len(dataset_ids)
-    n_train = max(1, int(round(n * 0.8)))
-    n_val = max(1, int(round(n * 0.1)))
-    n_test = max(1, n - n_train - n_val)
+    n = len(df)
+    n_train = int(round(n * 0.8))
+    n_val = int(round(n * 0.1))
+    n_test = n - n_train - n_val
 
-    if n_train + n_val + n_test > n:
-        n_test = n - n_train - n_val
+    split = np.empty(n, dtype=object)
+    split[perm[:n_train]] = "train"
+    split[perm[n_train:n_train + n_val]] = "val"
+    split[perm[n_train + n_val:]] = "test"
 
-    train_ids = set(dataset_ids[:n_train])
-    val_ids = set(dataset_ids[n_train:n_train + n_val])
-    test_ids = set(dataset_ids[n_train + n_val:])
-
-    def assign_split(dataset_id: str) -> str:
-        if dataset_id in train_ids:
-            return "train"
-        if dataset_id in val_ids:
-            return "val"
-        return "test"
-
-    df["dataset_id"] = df["dataset_id"].astype(str)
-    df["split"] = df["dataset_id"].apply(assign_split)
-
+    df["split"] = split
     df.to_parquet(output_path, index=False)
 
     summary = {
         "seed": args.seed,
         "n_rows": int(len(df)),
-        "n_dataset_ids": int(len(dataset_ids)),
         "split_counts_rows": {k: int(v) for k, v in df["split"].value_counts().to_dict().items()},
-        "split_counts_dataset_ids": {
-            "train": len(train_ids),
-            "val": len(val_ids),
-            "test": len(test_ids),
-        },
+        "note": "Temporary cell-level split for pilot engineering only. Not for final scientific evaluation."
     }
 
     with summary_path.open("w", encoding="utf-8") as f:
