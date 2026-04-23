@@ -1,0 +1,19 @@
+run_name: "census_autoencoder_multids_lung"
+seed: 42
+device: "auto"
+
+data:
+  n_genes: 2048
+  log1p_input: true
+  batch_size: 64
+  num_workers: 0
+
+model:
+  hidden_dims: [512, 128]
+  dropout: 0.1
+
+train:
+  epochs: 10
+  lr: 0.001
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
