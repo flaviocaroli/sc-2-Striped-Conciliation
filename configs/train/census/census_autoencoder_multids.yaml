@@ -3,6 +3,8 @@ seed: 42
 device: "auto"
 
 data:
+  h5ad_path: "raw/census/census_multi_dataset_lung_5ds_1000cpd.h5ad"
+  split_manifest_path: "processed/splits/census_multi_dataset_lung_5ds_1000cpd_manifest_with_splits.parquet"
   n_genes: 2048
   log1p_input: true
   batch_size: 64

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
 import torch
 from torch.utils.data import Dataset
@@ -16,24 +18,23 @@ def _to_dense_1d(x) -> np.ndarray:
 
 class CensusPilotDataset(Dataset):
     """
-    Small in-memory dataset for the current pilot export.
+    In-memory Dataset for a Census pilot h5ad + split-manifest pair.
 
-    This dataset is designed for the first engineering training run.
-    It uses the split manifest and returns:
-    - x: expression vector
-    - metadata fields for later debugging
+    This is still intentionally simple and suitable for pilot-scale work.
     """
 
     def __init__(
         self,
         split: str,
+        h5ad_path: str | Path | None = None,
+        split_manifest_path: str | Path | None = None,
         n_genes: int = 2048,
         log1p_input: bool = True,
     ) -> None:
         if split not in {"train", "val", "test"}:
             raise ValueError(f"Invalid split: {split}")
 
-        manifest = load_census_split_manifest().copy()
+        manifest = load_census_split_manifest(split_manifest_path).copy()
         manifest["cell_id"] = manifest["cell_id"].astype(str)
 
         self.manifest = manifest[manifest["split"] == split].reset_index(drop=True)
@@ -41,12 +42,11 @@ class CensusPilotDataset(Dataset):
         self.n_genes = int(n_genes)
         self.log1p_input = bool(log1p_input)
 
-        adata = load_census_h5ad(backed=None)
+        adata = load_census_h5ad(path=h5ad_path, backed=None)
 
-        # In this pilot build, cell_id is the row number of the exported adata.
+        # In these pilot exports, cell_id is the row number in the exported AnnData.
         row_indices = self.manifest["cell_id"].astype(int).tolist()
-        X = adata.X[row_indices, : self.n_genes]
-        self.X = X
+        self.X = adata.X[row_indices, : self.n_genes]
         self.n_features = self.n_genes
 
     def __len__(self) -> int:

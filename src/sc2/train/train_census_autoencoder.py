@@ -18,7 +18,7 @@ from sc2.utils.paths import ensure_dir
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train a first autoencoder on the Census pilot.")
+    parser = argparse.ArgumentParser(description="Train an autoencoder on a Census pilot.")
     parser.add_argument("--config", required=True, help="Path to training config yaml")
     parser.add_argument("--paths", required=True, help="Path to path config yaml")
     return parser.parse_args()
@@ -38,6 +38,15 @@ def get_device(cfg_device: str) -> torch.device:
     if cfg_device == "cuda":
         return torch.device("cuda" if torch.cuda.is_available() else "cpu")
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def resolve_data_path(base_data_root: Path, path_str: str | None) -> Path | None:
+    if path_str is None:
+        return None
+    path = Path(path_str)
+    if path.is_absolute():
+        return path
+    return base_data_root / path
 
 
 def run_epoch(
@@ -86,6 +95,7 @@ def main() -> None:
     seed_everything(seed)
 
     output_root = Path(cfg["paths"]["output_root"])
+    data_root = Path(cfg["paths"]["data_root"])
     run_dir = output_root / cfg["run_name"]
     ckpt_dir = run_dir / "checkpoints"
     ensure_dir(run_dir)
@@ -101,18 +111,30 @@ def main() -> None:
     model_cfg = cfg["model"]
     train_section = cfg["train"]
 
+    h5ad_path = resolve_data_path(data_root, data_cfg.get("h5ad_path"))
+    split_manifest_path = resolve_data_path(data_root, data_cfg.get("split_manifest_path"))
+
+    print(f"h5ad_path={h5ad_path}")
+    print(f"split_manifest_path={split_manifest_path}")
+
     train_ds = CensusPilotDataset(
         split="train",
+        h5ad_path=h5ad_path,
+        split_manifest_path=split_manifest_path,
         n_genes=int(data_cfg["n_genes"]),
         log1p_input=bool(data_cfg["log1p_input"]),
     )
     val_ds = CensusPilotDataset(
         split="val",
+        h5ad_path=h5ad_path,
+        split_manifest_path=split_manifest_path,
         n_genes=int(data_cfg["n_genes"]),
         log1p_input=bool(data_cfg["log1p_input"]),
     )
     test_ds = CensusPilotDataset(
         split="test",
+        h5ad_path=h5ad_path,
+        split_manifest_path=split_manifest_path,
         n_genes=int(data_cfg["n_genes"]),
         log1p_input=bool(data_cfg["log1p_input"]),
     )
