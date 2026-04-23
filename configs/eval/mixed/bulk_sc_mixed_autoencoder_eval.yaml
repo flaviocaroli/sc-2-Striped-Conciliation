@@ -1,0 +1,26 @@
+eval_name: "bulk_sc_mixed_autoencoder_pilot_eval"
+seed: 42
+device: "auto"
+
+data:
+  bulk_h5_path: "raw/archs4/human_gene_v2.5.h5"
+  bulk_manifest_path: "processed/manifests/archs4_pilot_manifest.parquet"
+  sc_h5ad_path: "raw/census/census_multi_dataset_lung_5ds_1000cpd.h5ad"
+  sc_split_manifest_path: "processed/splits/census_multi_dataset_lung_5ds_1000cpd_manifest_with_splits.parquet"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 2048
+  log1p_input: true
+  bulk_mask_prob: 0.15
+  bulk_noise_std: 0.0
+  sc_mask_prob: 0.15
+  sc_noise_std: 0.0
+  bulk_batch_size: 64
+  sc_batch_size: 128
+  num_workers: 0
+
+model:
+  hidden_dims: [512, 128]
+  dropout: 0.1
+
+eval:
+  checkpoint_path: "bulk_sc_mixed_autoencoder_pilot/checkpoints/best.pt"
