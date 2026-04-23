@@ -55,7 +55,10 @@ class CensusSharedDataset(Dataset):
         adata = load_census_h5ad(path=h5ad_path, backed=None)
         row_indices = self.manifest["cell_id"].astype(int).tolist()
 
-        self.X = adata.X[row_indices, self.census_gene_indices]
+        # Important: scipy sparse matrices need row/col slicing in two steps
+        self.X = adata.X[row_indices]
+        self.X = self.X[:, self.census_gene_indices]
+
         self.n_features = len(self.census_gene_indices)
         self.split = split
         self.log1p_input = bool(log1p_input)
