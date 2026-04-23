@@ -19,7 +19,7 @@ Thumbs.db
 venv/
 conda-meta/
 
-data/
+
 outputs/
 logs/
 wandb/
