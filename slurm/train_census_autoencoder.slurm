@@ -8,10 +8,10 @@
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
 #SBATCH --error=/home/3159436/sc2/logs/%x_%j.err
 
-set -euo pipefail
-
+set -eo pipefail
 source ~/.bashrc
 conda activate sc2
+set -u
 
 export SC2_DATA_ROOT=/home/3159436/sc2/data
 export SC2_OUTPUT_ROOT=/home/3159436/sc2/outputs
