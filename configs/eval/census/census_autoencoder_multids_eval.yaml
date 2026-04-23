@@ -1,0 +1,20 @@
+cat > /home/3159436/sc2/code/configs/eval/census/census_autoencoder_multids_eval.yaml <<'YAML'
+eval_name: "census_autoencoder_multids_lung_best_eval"
+seed: 42
+device: "auto"
+
+data:
+  h5ad_path: "raw/census/census_multi_dataset_lung_5ds_1000cpd.h5ad"
+  split_manifest_path: "processed/splits/census_multi_dataset_lung_5ds_1000cpd_manifest_with_splits.parquet"
+  n_genes: 2048
+  log1p_input: true
+  batch_size: 128
+  num_workers: 0
+
+model:
+  hidden_dims: [512, 128]
+  dropout: 0.1
+
+eval:
+  checkpoint_path: "census_autoencoder_multids_lung/checkpoints/best.pt"
+YAML
