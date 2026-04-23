@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import argparse
-from email import parser
-from html import parser
 import os
 from pathlib import Path
 
@@ -61,15 +59,11 @@ def main() -> None:
         chosen_dataset_ids = dataset_counts.head(args.max_datasets).index.tolist()
 
         filtered = obs_df[obs_df["dataset_id"].isin(chosen_dataset_ids)].copy()
+        filtered = filtered.sample(frac=1.0, random_state=args.seed).reset_index(drop=True)
 
         sampled = (
             filtered.groupby("dataset_id", group_keys=False)
-            .apply(
-                lambda g: g.sample(
-                    n=min(len(g), args.cells_per_dataset),
-                    random_state=args.seed,
-                )
-            )
+            .head(args.cells_per_dataset)
             .reset_index(drop=True)
         )
 
