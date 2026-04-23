@@ -16,6 +16,11 @@ class ARCHS4SubsetDataset(Dataset):
     Uses:
     - a sample manifest with train/val/test split labels
     - a shared gene table defining which ARCHS4 genes to read
+
+    Important:
+    h5py requires fancy indices to be in increasing order, so we:
+    - sort ARCHS4 row indices for reading
+    - restore the original shared-gene order afterward
     """
 
     def __init__(
@@ -38,11 +43,20 @@ class ARCHS4SubsetDataset(Dataset):
         self.sample_manifest = self.sample_manifest[self.sample_manifest["split"] == split].reset_index(drop=True)
         self.sample_indices = self.sample_manifest["sample_idx"].astype(int).tolist()
 
+        # Keep the shared-gene order stable for the model
         self.shared_gene_table = self.shared_gene_table.sort_values("shared_gene_index").reset_index(drop=True)
         self.shared_gene_table = self.shared_gene_table.iloc[: int(n_genes)].copy()
-        self.gene_indices = self.shared_gene_table["archs4_gene_index"].astype(int).tolist()
 
-        self.n_features = len(self.gene_indices)
+        original_gene_indices = self.shared_gene_table["archs4_gene_index"].astype(int).to_numpy()
+
+        # h5py requires increasing indices when fancy-indexing rows
+        sorted_order = np.argsort(original_gene_indices)
+        self.sorted_gene_indices = original_gene_indices[sorted_order]
+
+        # After reading in sorted order, restore original shared-gene order
+        self.restore_order = np.argsort(sorted_order)
+
+        self.n_features = len(original_gene_indices)
         self.split = split
 
     def __len__(self) -> int:
@@ -52,9 +66,12 @@ class ARCHS4SubsetDataset(Dataset):
         sample_idx = self.sample_indices[idx]
 
         with h5py.File(self.h5_path, "r") as f:
-            x = f["data"]["expression"][self.gene_indices, sample_idx]
+            x_sorted = f["data"]["expression"][self.sorted_gene_indices, sample_idx]
 
-        x = np.asarray(x, dtype=np.float32)
+        x_sorted = np.asarray(x_sorted, dtype=np.float32)
+
+        # restore original shared-gene order
+        x = x_sorted[self.restore_order]
 
         if self.log1p_input:
             x = np.log1p(x)
