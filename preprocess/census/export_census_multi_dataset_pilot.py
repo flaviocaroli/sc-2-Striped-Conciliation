@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import argparse
+from email import parser
+from html import parser
 import os
 from pathlib import Path
 
@@ -21,7 +23,7 @@ OBS_COLUMNS = [
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export a multi-dataset Census pilot.")
     parser.add_argument("--organism", default="Homo sapiens")
-    parser.add_argument("--census-version", default="stable")
+    parser.add_argument("--census-version", default="2025-11-08")
     parser.add_argument("--tissue-general", default="lung")
     parser.add_argument("--max-datasets", type=int, default=5)
     parser.add_argument("--cells-per-dataset", type=int, default=1000)
