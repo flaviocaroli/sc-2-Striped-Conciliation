@@ -1,0 +1,22 @@
+eval_name: "sc2lite_sc_only_large_denoiser_eval"
+seed: 42
+device: "auto"
+
+data:
+  sc_h5ad_path: "raw/census/census_large_lung_12ds_2500cpd.h5ad"
+  sc_split_manifest_path: "processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  sc_mask_prob: 0.15
+  sc_noise_std: 0.0
+  sc_batch_size: 128
+  num_workers: 0
+
+model:
+  adapter_dim: 2048
+  latent_dim: 256
+  dropout: 0.1
+
+eval:
+  checkpoint_path: "sc2lite_sc_only_large_denoiser/checkpoints/best.pt"
