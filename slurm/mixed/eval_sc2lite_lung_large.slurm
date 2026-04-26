@@ -19,6 +19,6 @@ export SC2_OUTPUT_ROOT=/home/3159436/sc2/outputs
 
 cd /home/3159436/sc2/code
 
-python -m sc2.eval.evaluate_mixed_bulk_sc_autoencoder \
+python -m sc2.eval.evaluate_sc2lite_mixed_denoiser \
   --config configs/eval/mixed/sc2lite_lung_large_eval.yaml \
   --paths configs/paths/hpc.yaml
