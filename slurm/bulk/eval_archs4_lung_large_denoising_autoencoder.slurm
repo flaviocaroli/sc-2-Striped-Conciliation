@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=archs4_lgevl
-#SBATCH --partition=medium_gpunew
+#SBATCH --partition=gpunew
 #SBATCH --gres=gpu:H100:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
