@@ -1,0 +1,21 @@
+eval_name: "archs4_lung_large_denoising_autoencoder_eval"
+seed: 42
+device: "auto"
+
+data:
+  h5_path: "raw/archs4/human_gene_v2.5.h5"
+  sample_manifest_path: "processed/manifests/archs4_lung_large_pilot_manifest.parquet"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  mask_prob: 0.15
+  noise_std: 0.0
+  batch_size: 64
+  num_workers: 0
+
+model:
+  hidden_dims: [1024, 256]
+  dropout: 0.1
+
+eval:
+  checkpoint_path: "archs4_lung_large_denoising_autoencoder/checkpoints/best.pt"
