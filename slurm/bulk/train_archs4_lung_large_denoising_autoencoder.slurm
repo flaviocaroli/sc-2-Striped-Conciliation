@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=archs4_lgdae
-#SBATCH --partition=medium_gpu
+#SBATCH --partition=medium_gpunew
 #SBATCH --gres=gpu:H100:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
