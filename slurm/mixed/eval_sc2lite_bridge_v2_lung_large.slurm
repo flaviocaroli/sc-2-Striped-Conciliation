@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=sc2bridge2_eval
 #SBATCH --partition=medium_gpunew
-#SBATCH --gres=gpu:GA100:1
+#SBATCH --gres=gpu:H100:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
 #SBATCH --time=02:00:00
