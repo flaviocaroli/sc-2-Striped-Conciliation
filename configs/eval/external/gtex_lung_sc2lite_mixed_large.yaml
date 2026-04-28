@@ -1,0 +1,22 @@
+eval_name: "gtex_lung_sc2lite_mixed_large_eval"
+seed: 42
+device: "auto"
+
+data:
+  gtex_h5ad_path: "raw/gtex/gtex_lung.h5ad"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  mask_prob: 0.15
+  noise_std: 0.0
+  batch_size: 64
+  num_workers: 0
+
+model:
+  kind: "sc2lite_denoiser"
+  adapter_dim: 2048
+  latent_dim: 256
+  dropout: 0.1
+
+eval:
+  checkpoint_path: "sc2lite_lung_large_mixed_denoiser/checkpoints/best.pt"
