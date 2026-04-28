@@ -1,4 +1,3 @@
-cat > /home/3159436/sc2/code/configs/eval/census/census_autoencoder_multids_eval.yaml <<'YAML'
 eval_name: "census_autoencoder_multids_lung_best_eval"
 seed: 42
 device: "auto"
@@ -17,4 +16,3 @@ model:
 
 eval:
   checkpoint_path: "census_autoencoder_multids_lung/checkpoints/best.pt"
-YAML
