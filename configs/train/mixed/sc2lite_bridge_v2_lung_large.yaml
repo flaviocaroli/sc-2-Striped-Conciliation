@@ -1,0 +1,46 @@
+run_name: "sc2lite_bridge_v2_lung_large"
+seed: 42
+device: "auto"
+
+data:
+  bulk_h5_path: "raw/archs4/human_gene_v2.5.h5"
+  bulk_manifest_path: "processed/manifests/archs4_lung_large_pilot_manifest.parquet"
+  sc_h5ad_path: "raw/census/census_large_lung_12ds_2500cpd.h5ad"
+  sc_split_manifest_path: "processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet"
+  pseudobulk_h5ad_path: "processed/pseudobulk/census_large_lung_12ds_2500cpd_pseudobulk.h5ad"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  bulk_mask_prob: 0.15
+  bulk_noise_std: 0.0
+  sc_mask_prob: 0.15
+  sc_noise_std: 0.0
+  pb_mask_prob: 0.15
+  pb_noise_std: 0.0
+  bulk_batch_size: 32
+  sc_batch_size: 64
+  pb_batch_size: 32
+  num_workers: 0
+
+model:
+  adapter_dim: 2048
+  latent_dim: 256
+  dropout: 0.1
+
+train:
+  epochs: 10
+  lr: 0.001
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
+
+  bulk_loss_weight: 1.0
+  sc_loss_weight: 5.0
+  pb_loss_weight: 1.0
+  align_loss_weight: 1.0
+
+  bulk_masked_position_weight: 4.0
+  sc_masked_position_weight: 4.0
+  pb_masked_position_weight: 4.0
+
+  align_mean_weight: 1.0
+  align_coral_weight: 1.0
