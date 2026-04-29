@@ -13,6 +13,22 @@ def strip_ensembl_version(gene_id: str) -> str:
     return str(gene_id).split(".")[0]
 
 
+def sanitize_dataframe_for_h5ad(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    for col in df.columns:
+        # Convert pandas categorical to string
+        if pd.api.types.is_categorical_dtype(df[col]):
+            df[col] = df[col].astype(str)
+
+        # Convert object / mixed columns to string and handle missing values
+        elif df[col].dtype == object:
+            df[col] = df[col].where(df[col].notna(), "")
+            df[col] = df[col].astype(str)
+
+    return df
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build a GTEx lung h5ad from expression matrix + sample attributes.")
     parser.add_argument("--expression-tsv", required=True, help="GTEx gene TPM GCT/GCT.GZ file")
@@ -78,10 +94,13 @@ def main() -> None:
     obs = lung_df.set_index("SAMPID").loc[sample_cols_present].copy()
     obs["sample_id"] = obs.index.astype(str)
 
+    obs = sanitize_dataframe_for_h5ad(obs.reset_index(drop=True))
+    var = sanitize_dataframe_for_h5ad(var.reset_index(drop=True))
+
     adata = ad.AnnData(
         X=sp.csr_matrix(X),
-        obs=obs.reset_index(drop=True),
-        var=var.reset_index(drop=True),
+        obs=obs,
+        var=var,
     )
 
     out_path = Path(args.output_h5ad)
