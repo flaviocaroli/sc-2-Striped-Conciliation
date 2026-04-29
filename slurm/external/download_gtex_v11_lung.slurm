@@ -17,4 +17,4 @@ export SC2_DATA_ROOT=/home/3159436/sc2/data
 
 cd /home/3159436/sc2/code
 
-bash scripts/download_gtex_v11_lung.sh
+bash scripts/download_gtex_v8_lung.sh
