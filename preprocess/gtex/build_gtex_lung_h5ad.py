@@ -14,9 +14,9 @@ def strip_ensembl_version(gene_id: str) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build a GTEx lung h5ad from sample metadata and expression matrix.")
-    parser.add_argument("--expression-tsv", required=True, help="GTEx expression matrix TSV/TSV.GZ, genes x samples")
-    parser.add_argument("--sample-attributes-tsv", required=True, help="GTEx sample attributes TSV")
+    parser = argparse.ArgumentParser(description="Build a GTEx lung h5ad from expression matrix + sample attributes.")
+    parser.add_argument("--expression-tsv", required=True, help="GTEx gene TPM GCT/GCT.GZ file")
+    parser.add_argument("--sample-attributes-tsv", required=True, help="GTEx SampleAttributesDS txt file")
     parser.add_argument("--output-h5ad", required=True, help="Output h5ad path")
     parser.add_argument("--tissue-match-column", default="SMTSD")
     parser.add_argument("--tissue-match-value", default="Lung")
@@ -27,41 +27,51 @@ def main() -> None:
     if args.tissue_match_column not in sample_df.columns:
         raise ValueError(f"Column {args.tissue_match_column} not found in sample attributes")
 
-    lung_mask = sample_df[args.tissue_match_column].astype(str).str.contains(args.tissue_match_value, case=False, na=False)
-    lung_df = sample_df[lung_mask].copy()
-
-    if "SAMPID" not in lung_df.columns:
+    if "SAMPID" not in sample_df.columns:
         raise ValueError("Expected SAMPID column in sample attributes")
+
+    lung_mask = sample_df[args.tissue_match_column].astype(str).str.contains(
+        args.tissue_match_value,
+        case=False,
+        na=False,
+    )
+    lung_df = sample_df[lung_mask].copy()
 
     lung_sample_ids = lung_df["SAMPID"].astype(str).tolist()
     if len(lung_sample_ids) == 0:
-        raise ValueError("No GTEx lung samples found")
+        raise ValueError("No lung samples found in GTEx sample attributes")
 
-    header = pd.read_csv(args.expression_tsv, sep="\t", nrows=0)
+    # GTEx GCT files have two metadata lines before the header.
+    header = pd.read_csv(args.expression_tsv, sep="\t", nrows=0, skiprows=2)
     cols = list(header.columns)
 
-    gene_id_col = cols[0]
-    gene_name_col = None
-    if len(cols) > 1 and cols[1] not in lung_sample_ids:
-        gene_name_col = cols[1]
+    if len(cols) < 3:
+        raise ValueError("Unexpected GTEx expression file format")
 
-    wanted_cols = [gene_id_col]
-    if gene_name_col is not None:
-        wanted_cols.append(gene_name_col)
-
+    gene_id_col = cols[0]         # usually Name
+    gene_name_col = cols[1]       # usually Description
     sample_cols_present = [c for c in lung_sample_ids if c in cols]
-    wanted_cols.extend(sample_cols_present)
 
-    expr = pd.read_csv(args.expression_tsv, sep="\t", usecols=wanted_cols, low_memory=False).copy()
+    if len(sample_cols_present) == 0:
+        raise ValueError("None of the GTEx lung sample IDs were found in the expression matrix")
 
-    var = pd.DataFrame({
-        "gene_id_raw": expr[gene_id_col].astype(str),
-        "ensembl_gene": expr[gene_id_col].astype(str).map(strip_ensembl_version),
-    })
-    if gene_name_col is not None:
-        var["gene_name"] = expr[gene_name_col].astype(str)
-    else:
-        var["gene_name"] = var["ensembl_gene"]
+    wanted_cols = [gene_id_col, gene_name_col] + sample_cols_present
+
+    expr = pd.read_csv(
+        args.expression_tsv,
+        sep="\t",
+        usecols=wanted_cols,
+        low_memory=False,
+        skiprows=2,
+    ).copy()
+
+    var = pd.DataFrame(
+        {
+            "gene_id_raw": expr[gene_id_col].astype(str),
+            "ensembl_gene": expr[gene_id_col].astype(str).map(strip_ensembl_version),
+            "gene_name": expr[gene_name_col].astype(str),
+        }
+    )
 
     X = expr[sample_cols_present].T.to_numpy(dtype=np.float32)
 

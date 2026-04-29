@@ -178,7 +178,6 @@ def main() -> None:
     )
 
     model = build_model(model_cfg, input_dim=ds.n_features).to(device)
-
     checkpoint = torch.load(checkpoint_path, map_location=device)
     model.load_state_dict(checkpoint["model_state_dict"])
 

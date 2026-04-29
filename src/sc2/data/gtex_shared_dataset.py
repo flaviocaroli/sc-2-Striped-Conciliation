@@ -42,7 +42,11 @@ class GTExSharedDataset(Dataset):
 
         matched = (
             shared[["shared_gene_index", "ensembl_gene"]]
-            .merge(var_df[["gtex_var_index", "ensembl_gene"]], on="ensembl_gene", how="inner")
+            .merge(
+                var_df[["gtex_var_index", "ensembl_gene"]],
+                on="ensembl_gene",
+                how="inner",
+            )
             .sort_values("shared_gene_index")
             .reset_index(drop=True)
         )
