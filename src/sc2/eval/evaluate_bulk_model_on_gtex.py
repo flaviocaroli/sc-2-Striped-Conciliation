@@ -15,6 +15,7 @@ from sc2.data.gtex_shared_dataset import GTExSharedDataset
 from sc2.eval.group_metrics import summarize_by_group
 from sc2.eval.metrics import samplewise_mae, samplewise_mse
 from sc2.models.bulk_autoencoder import BulkAutoencoder
+from sc2.models.sc2_mamba_bridge import SC2MambaBridge
 from sc2.models.sc2lite_bridge_denoiser import SC2LiteBridgeDenoiser
 from sc2.models.sc2lite_denoiser import SC2LiteDenoiser
 from sc2.utils.paths import ensure_dir
@@ -84,6 +85,17 @@ def build_model(model_cfg: dict, input_dim: int) -> torch.nn.Module:
             input_dim=input_dim,
             adapter_dim=int(model_cfg["adapter_dim"]),
             latent_dim=int(model_cfg["latent_dim"]),
+            dropout=float(model_cfg["dropout"]),
+        )
+
+    if kind == "sc2_mamba_bridge":
+        return SC2MambaBridge(
+            n_genes=input_dim,
+            d_model=int(model_cfg["d_model"]),
+            n_layers=int(model_cfg["n_layers"]),
+            d_state=int(model_cfg["d_state"]),
+            d_conv=int(model_cfg["d_conv"]),
+            expand=int(model_cfg["expand"]),
             dropout=float(model_cfg["dropout"]),
         )
 
