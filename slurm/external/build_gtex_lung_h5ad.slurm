@@ -3,7 +3,7 @@
 #SBATCH --partition=medium_cpu
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=96G
-#SBATCH --time=04:00:00
+#SBATCH --time=03:00:00
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
 #SBATCH --error=/home/3159436/sc2/logs/%x_%j.err
 
