@@ -1,0 +1,32 @@
+eval_name: "gtex_lung_sc2_native_mamba_original_like_large_eval"
+seed: 42
+device: "auto"
+
+data:
+  gtex_h5ad_path: "raw/gtex/gtex_lung.h5ad"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  mask_prob: 0.15
+  noise_std: 0.0
+  batch_size: 32
+  num_workers: 0
+
+model:
+  kind: "native_mamba_bridge"
+  d_model: 128
+  n_layers: 4
+  d_state: 16
+  d_conv: 4
+  expand: 2
+  dropout: 0.1
+  mixer_type: "mamba1"
+  bidirectional: false
+  merge_mode: "sum"
+  smart_flip: false
+  rank_input: false
+  preserve_prefix_tokens: 0
+  norm_type: "rmsnorm"
+
+eval:
+  checkpoint_path: "sc2_native_mamba_original_like_lung_large/checkpoints/best.pt"

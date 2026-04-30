@@ -19,7 +19,7 @@ from sc2.eval.metrics import samplewise_mae, samplewise_mse
 from sc2.models.sc2_mamba_bridge import SC2MambaBridge
 from sc2.models.sc2lite_bridge_denoiser import SC2LiteBridgeDenoiser
 from sc2.utils.paths import ensure_dir
-
+from sc2.models.sc2_native_mamba_bridge import SC2NativeMambaBridge
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate bridge-style denoiser on bulk + sc + pseudobulk.")
@@ -124,7 +124,23 @@ def build_model(model_cfg: dict, n_genes: int, device: torch.device) -> torch.nn
             expand=int(model_cfg["expand"]),
             dropout=float(model_cfg["dropout"]),
         ).to(device)
-
+    if kind == "native_mamba_bridge":
+        return SC2NativeMambaBridge(
+            n_genes=n_genes,
+            d_model=int(model_cfg["d_model"]),
+            n_layers=int(model_cfg["n_layers"]),
+            d_state=int(model_cfg["d_state"]),
+            d_conv=int(model_cfg["d_conv"]),
+            expand=int(model_cfg["expand"]),
+            dropout=float(model_cfg["dropout"]),
+            mixer_type=str(model_cfg.get("mixer_type", "mamba1")),
+            bidirectional=bool(model_cfg.get("bidirectional", True)),
+            merge_mode=str(model_cfg.get("merge_mode", "sum")),
+            smart_flip=bool(model_cfg.get("smart_flip", False)),
+            rank_input=bool(model_cfg.get("rank_input", False)),
+            preserve_prefix_tokens=int(model_cfg.get("preserve_prefix_tokens", 0)),
+            norm_type=str(model_cfg.get("norm_type", "rmsnorm")),
+        ).to(device)
     raise ValueError(f"Unsupported model kind: {kind}")
 
 
