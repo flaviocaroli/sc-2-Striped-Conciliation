@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=sc2m2_eval
-#SBATCH --partition=medium_gpuh200
+#SBATCH --partition=gpunew
 #SBATCH --gres=gpu:H100:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
