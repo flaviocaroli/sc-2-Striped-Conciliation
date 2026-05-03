@@ -17,10 +17,10 @@ data:
   sc_noise_std: 0.0
   pb_mask_prob: 0.15
   pb_noise_std: 0.0
-  bulk_batch_size: 8
-  sc_batch_size: 16
-  pb_batch_size: 8
-  num_workers: 0
+  bulk_batch_size: 32
+  sc_batch_size: 64
+  pb_batch_size: 32
+  num_workers: 4
 
 model:
   kind: "native_mamba_bridge"
@@ -39,7 +39,8 @@ model:
   norm_type: "rmsnorm"
 
 train:
-  epochs: 10
+  epochs: 6
+  steps_per_epoch: 350
   lr: 0.0005
   weight_decay: 0.0001
   grad_clip_norm: 1.0
@@ -47,3 +48,4 @@ train:
   sc_loss_weight: 5.0
   pb_loss_weight: 1.0
   align_loss_weight: 0.5
+  amp: true

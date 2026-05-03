@@ -631,8 +631,8 @@ def main() -> None:
     scheduler = build_scheduler(optimizer, train_section)
 
     amp_enabled = resolve_amp(train_section, device)
-    scaler = torch.cuda.amp.GradScaler(enabled=amp_enabled and device.type == "cuda")
-
+    scaler = torch.amp.GradScaler("cuda", enabled=amp_enabled and device.type == "cuda")
+    
     epochs = int(train_section.get("epochs", 10))
     grad_clip_norm = float(train_section.get("grad_clip_norm", 1.0))
     grad_accum_steps = max(1, int(train_section.get("grad_accum_steps", 1)))
