@@ -17,9 +17,9 @@ data:
   sc_noise_std: 0.0
   pb_mask_prob: 0.15
   pb_noise_std: 0.0
-  bulk_batch_size: 32
-  sc_batch_size: 64
-  pb_batch_size: 32
+  bulk_batch_size: 16
+  sc_batch_size: 32
+  pb_batch_size: 16
   num_workers: 4
 
 model:
@@ -40,7 +40,7 @@ model:
 
 train:
   epochs: 6
-  steps_per_epoch: 350
+  steps_per_epoch: 300
   lr: 0.0005
   weight_decay: 0.0001
   grad_clip_norm: 1.0
