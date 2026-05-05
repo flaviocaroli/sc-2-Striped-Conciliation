@@ -13,7 +13,7 @@ from sc2.models.mamba_native_like import (
 
 class SC2NativeMambaBridge(nn.Module):
     """
-    Flexible bridge wrapper for your repo.
+    Flexible bridge wrapper.
 
     Supports:
     - original-like unidirectional Mamba
@@ -33,9 +33,9 @@ class SC2NativeMambaBridge(nn.Module):
         d_conv: int = 4,
         expand: int = 2,
         dropout: float = 0.1,
-        mixer_type: str = "mamba1",          # "mamba1" | "mamba2_lite"
+        mixer_type: str = "mamba1",
         bidirectional: bool = True,
-        merge_mode: str = "sum",             # "sum" | "gate" | "avg"
+        merge_mode: str = "sum",
         smart_flip: bool = False,
         rank_input: bool = False,
         preserve_prefix_tokens: int = 0,
@@ -126,16 +126,16 @@ class SC2NativeMambaBridge(nn.Module):
         x: torch.Tensor,
         modality: str,
     ) -> tuple[torch.Tensor, torch.Tensor | None]:
-        B, G = x.shape
-        if G != self.n_genes:
-            raise ValueError(f"Expected {self.n_genes} genes, got {G}")
+        bsz, genes = x.shape
+        if genes != self.n_genes:
+            raise ValueError(f"Expected {self.n_genes} genes, got {genes}")
 
         if self.rank_input:
             x_work, perm = self._rank_tokens(x)
         else:
             x_work, perm = x, None
 
-        gene_emb = self.gene_embedding.expand(B, -1, -1)
+        gene_emb = self.gene_embedding.expand(bsz, -1, -1)
         if perm is not None:
             gene_emb = torch.gather(
                 gene_emb,
@@ -186,11 +186,22 @@ class SC2NativeMambaBridge(nn.Module):
             y = self._scatter_back(y, perm)
         return y
 
+    def forward_with_latent(
+        self,
+        x: torch.Tensor,
+        modality: str,
+        valid_mask: torch.Tensor | None = None,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        h, perm = self.forward_features(x, modality=modality, valid_mask=valid_mask)
+        y = self.decode(h, modality=modality, perm=perm)
+        z = h.mean(dim=1)
+        return y, z
+
     def forward(
         self,
         x: torch.Tensor,
         modality: str,
         valid_mask: torch.Tensor | None = None,
     ) -> torch.Tensor:
-        h, perm = self.forward_features(x, modality=modality, valid_mask=valid_mask)
-        return self.decode(h, modality=modality, perm=perm)
+        y, _ = self.forward_with_latent(x, modality=modality, valid_mask=valid_mask)
+        return y

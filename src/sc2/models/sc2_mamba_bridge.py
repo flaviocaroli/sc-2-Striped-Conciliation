@@ -66,17 +66,14 @@ class SC2MambaBridge(nn.Module):
         self.n_genes = int(n_genes)
         self.d_model = int(d_model)
 
-        # Modality-specific scalar-to-token projections
         self.bulk_input = nn.Linear(1, d_model)
         self.sc_input = nn.Linear(1, d_model)
         self.pb_input = nn.Linear(1, d_model)
 
-        # Shared positional/gene embedding
         self.gene_embedding = nn.Parameter(
             torch.randn(1, n_genes, d_model) * 0.02
         )
 
-        # Modality embeddings
         self.modality_embedding = nn.ParameterDict(
             {
                 "bulk": nn.Parameter(torch.randn(1, 1, d_model) * 0.02),
@@ -101,7 +98,6 @@ class SC2MambaBridge(nn.Module):
         )
         self.final_norm = nn.LayerNorm(d_model)
 
-        # Modality-specific token-to-scalar heads
         self.bulk_head = nn.Linear(d_model, 1)
         self.sc_head = nn.Linear(d_model, 1)
         self.pb_head = nn.Linear(d_model, 1)
@@ -125,17 +121,13 @@ class SC2MambaBridge(nn.Module):
         raise ValueError(f"Unsupported modality: {modality}")
 
     def token_embed(self, x: torch.Tensor, modality: str) -> torch.Tensor:
-        """
-        x: [batch, n_genes]
-        returns tokens: [batch, n_genes, d_model]
-        """
         if x.ndim != 2:
             raise ValueError(f"Expected x to have shape [batch, n_genes], got {tuple(x.shape)}")
         if x.shape[1] != self.n_genes:
             raise ValueError(f"Expected {self.n_genes} genes, got {x.shape[1]}")
 
         proj = self._input_proj(modality)
-        x_tok = proj(x.unsqueeze(-1))  # [B, G, d_model]
+        x_tok = proj(x.unsqueeze(-1))
         x_tok = x_tok + self.gene_embedding + self.modality_embedding[modality]
         x_tok = self.input_dropout(x_tok)
         return x_tok
@@ -148,22 +140,24 @@ class SC2MambaBridge(nn.Module):
         return h
 
     def encode(self, x: torch.Tensor, modality: str) -> torch.Tensor:
-        """
-        Returns pooled latent summary for alignment: [batch, d_model]
-        """
         h = self.forward_features(x, modality=modality)
         return h.mean(dim=1)
 
     def decode(self, h: torch.Tensor, modality: str) -> torch.Tensor:
-        """
-        h: [batch, n_genes, d_model]
-        returns reconstruction: [batch, n_genes]
-        """
         head = self._output_head(modality)
         y = head(h).squeeze(-1)
         return y
 
-    def forward(self, x: torch.Tensor, modality: str) -> torch.Tensor:
+    def forward_with_latent(
+        self,
+        x: torch.Tensor,
+        modality: str,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
         h = self.forward_features(x, modality=modality)
         y = self.decode(h, modality=modality)
+        z = h.mean(dim=1)
+        return y, z
+
+    def forward(self, x: torch.Tensor, modality: str) -> torch.Tensor:
+        y, _ = self.forward_with_latent(x, modality=modality)
         return y

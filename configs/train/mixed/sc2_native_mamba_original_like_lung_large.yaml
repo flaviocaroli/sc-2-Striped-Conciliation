@@ -1,4 +1,4 @@
-run_name: "sc2_native_mamba_original_like_lung_large"
+run_name: "sc2_native_mamba_genemamba_like_lung_large"
 seed: 42
 device: "auto"
 
@@ -17,9 +17,9 @@ data:
   sc_noise_std: 0.0
   pb_mask_prob: 0.15
   pb_noise_std: 0.0
-  bulk_batch_size: 16
-  sc_batch_size: 32
-  pb_batch_size: 16
+  bulk_batch_size: 8
+  sc_batch_size: 16
+  pb_batch_size: 8
   num_workers: 4
 
 model:
@@ -31,10 +31,10 @@ model:
   expand: 2
   dropout: 0.1
   mixer_type: "mamba1"
-  bidirectional: false
-  merge_mode: "sum"
+  bidirectional: true
+  merge_mode: "gate"
   smart_flip: false
-  rank_input: false
+  rank_input: true
   preserve_prefix_tokens: 0
   norm_type: "rmsnorm"
 

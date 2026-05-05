@@ -111,12 +111,6 @@ def move_tensor(x: torch.Tensor, device: torch.device) -> torch.Tensor:
     return x.to(device, non_blocking=device.type == "cuda")
 
 
-def autocast_context(device: torch.device, enabled: bool):
-    if enabled and device.type == "cuda":
-        return torch.autocast(device_type="cuda", dtype=torch.float16)
-    return nullcontext()
-
-
 def resolve_amp(train_cfg: dict[str, Any], device: torch.device) -> bool:
     amp_cfg = train_cfg.get("amp", "auto")
     if isinstance(amp_cfg, str):
@@ -127,37 +121,27 @@ def resolve_amp(train_cfg: dict[str, Any], device: torch.device) -> bool:
     return bool(amp_cfg) and device.type == "cuda"
 
 
+def resolve_amp_dtype(train_cfg: dict[str, Any], device: torch.device) -> torch.dtype | None:
+    if device.type != "cuda":
+        return None
+    dtype_cfg = str(train_cfg.get("amp_dtype", "bfloat16")).strip().lower()
+    if dtype_cfg in {"bf16", "bfloat16"}:
+        return torch.bfloat16
+    if dtype_cfg in {"fp16", "float16", "half"}:
+        return torch.float16
+    raise ValueError("Unsupported amp_dtype. Use 'bfloat16' or 'float16'.")
+
+
+def autocast_context(device: torch.device, enabled: bool, amp_dtype: torch.dtype | None):
+    if enabled and device.type == "cuda" and amp_dtype is not None:
+        return torch.autocast(device_type="cuda", dtype=amp_dtype)
+    return nullcontext()
+
+
 def mean_alignment_loss(z_a: torch.Tensor, z_b: torch.Tensor) -> torch.Tensor:
     mu_a = F.normalize(z_a.mean(dim=0, keepdim=True), dim=1)
     mu_b = F.normalize(z_b.mean(dim=0, keepdim=True), dim=1)
     return F.mse_loss(mu_a, mu_b)
-
-
-@torch.inference_mode()
-def eval_loader(
-    model: nn.Module,
-    loader: DataLoader,
-    modality: str,
-    device: torch.device,
-    amp_enabled: bool,
-) -> float:
-    ensure_non_empty_loader(f"eval loader ({modality})", loader)
-    model.eval()
-    criterion = nn.MSELoss()
-    total_loss = 0.0
-    total_count = 0
-
-    for batch in loader:
-        x = move_tensor(batch["x"], device)
-        y = move_tensor(batch["y"], device)
-        with autocast_context(device, amp_enabled):
-            pred = model(x, modality=modality)
-            loss = criterion(pred, y)
-        batch_size = int(x.shape[0])
-        total_loss += float(loss.item()) * batch_size
-        total_count += batch_size
-
-    return total_loss / max(total_count, 1)
 
 
 def current_lr(optimizer: torch.optim.Optimizer) -> float:
@@ -189,11 +173,9 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
             raise ImportError(
                 "model.kind='sc2_mamba_bridge' requires mamba-ssm. "
                 "Install it with `pip install mamba-ssm`, or switch to "
-                "model.kind='native_mamba_bridge' if you want the pure-PyTorch "
-                "native-like implementation."
+                "model.kind='native_mamba_bridge' for the native-like implementation."
             ) from exc
-        model = SC2MambaBridge(**common_kwargs)
-        return kind, model
+        return kind, SC2MambaBridge(**common_kwargs)
 
     if kind in {
         "native_mamba_bridge",
@@ -202,7 +184,7 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
     }:
         from sc2.models.sc2_native_mamba_bridge import SC2NativeMambaBridge
 
-        model = SC2NativeMambaBridge(
+        return kind, SC2NativeMambaBridge(
             **common_kwargs,
             mixer_type=str(model_cfg.get("mixer_type", "mamba1")),
             bidirectional=bool(model_cfg.get("bidirectional", True)),
@@ -212,7 +194,6 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
             preserve_prefix_tokens=int(model_cfg.get("preserve_prefix_tokens", 0)),
             norm_type=str(model_cfg.get("norm_type", "rmsnorm")),
         )
-        return kind, model
 
     if kind in {
         "sc2_hybrid_bridge",
@@ -227,20 +208,15 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
                 "model.kind='sc2_hybrid_bridge' requires mamba-ssm. "
                 "Install it with `pip install mamba-ssm`."
             ) from exc
-        model = SC2HybridBridge(
+        return kind, SC2HybridBridge(
             **common_kwargs,
             n_heads=int(model_cfg.get("n_heads", 4)),
             attn_every=int(model_cfg.get("attn_every", 3)),
         )
-        return kind, model
 
-    supported = [
-        "sc2_mamba_bridge",
-        "native_mamba_bridge",
-        "sc2_hybrid_bridge",
-    ]
     raise ValueError(
-        f"Unsupported model.kind={kind!r}. Supported values: {supported}"
+        "Unsupported model.kind. Supported values: "
+        "['sc2_mamba_bridge', 'native_mamba_bridge', 'sc2_hybrid_bridge']"
     )
 
 
@@ -270,9 +246,7 @@ def build_scheduler(
             patience=patience,
             min_lr=min_lr,
         )
-    raise ValueError(
-        f"Unsupported scheduler={scheduler_name!r}. Use one of: none, cosine, plateau."
-    )
+    raise ValueError("Unsupported scheduler. Use one of: none, cosine, plateau.")
 
 
 def save_checkpoint(
@@ -282,7 +256,7 @@ def save_checkpoint(
     model: nn.Module,
     optimizer: torch.optim.Optimizer,
     scheduler: torch.optim.lr_scheduler.LRScheduler | torch.optim.lr_scheduler.ReduceLROnPlateau | None,
-    scaler: torch.cuda.amp.GradScaler,
+    scaler: torch.amp.GradScaler,
     cfg: dict[str, Any],
     model_kind: str,
     best_val_total: float,
@@ -308,7 +282,7 @@ def load_checkpoint(
     device: torch.device,
     optimizer: torch.optim.Optimizer | None = None,
     scheduler: torch.optim.lr_scheduler.LRScheduler | torch.optim.lr_scheduler.ReduceLROnPlateau | None = None,
-    scaler: torch.cuda.amp.GradScaler | None = None,
+    scaler: torch.amp.GradScaler | None = None,
 ) -> dict[str, Any]:
     checkpoint = torch.load(path, map_location=device)
     model.load_state_dict(checkpoint["model_state_dict"])
@@ -323,6 +297,46 @@ def load_checkpoint(
     return checkpoint
 
 
+def model_forward_with_latent(
+    model: nn.Module,
+    x: torch.Tensor,
+    modality: str,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    if hasattr(model, "forward_with_latent"):
+        return model.forward_with_latent(x, modality=modality)
+    y = model(x, modality=modality)
+    z = model.encode(x, modality=modality)
+    return y, z
+
+
+@torch.inference_mode()
+def eval_loader(
+    model: nn.Module,
+    loader: DataLoader,
+    modality: str,
+    device: torch.device,
+    amp_enabled: bool,
+    amp_dtype: torch.dtype | None,
+) -> float:
+    ensure_non_empty_loader(f"eval loader ({modality})", loader)
+    model.eval()
+    criterion = nn.MSELoss()
+    total_loss = 0.0
+    total_count = 0
+
+    for batch in loader:
+        x = move_tensor(batch["x"], device)
+        y = move_tensor(batch["y"], device)
+        with autocast_context(device, amp_enabled, amp_dtype):
+            pred = model(x, modality=modality)
+            loss = criterion(pred, y)
+        batch_size = int(x.shape[0])
+        total_loss += float(loss.item()) * batch_size
+        total_count += batch_size
+
+    return total_loss / max(total_count, 1)
+
+
 def evaluate_all(
     model: nn.Module,
     bulk_loader: DataLoader,
@@ -330,12 +344,13 @@ def evaluate_all(
     pb_loader: DataLoader,
     device: torch.device,
     amp_enabled: bool,
+    amp_dtype: torch.dtype | None,
     weights: dict[str, float],
     prefix: str,
 ) -> dict[str, float]:
-    bulk_loss = eval_loader(model, bulk_loader, "bulk", device, amp_enabled)
-    sc_loss = eval_loader(model, sc_loader, "sc", device, amp_enabled)
-    pb_loss = eval_loader(model, pb_loader, "pseudobulk", device, amp_enabled)
+    bulk_loss = eval_loader(model, bulk_loader, "bulk", device, amp_enabled, amp_dtype)
+    sc_loss = eval_loader(model, sc_loader, "sc", device, amp_enabled, amp_dtype)
+    pb_loss = eval_loader(model, pb_loader, "pseudobulk", device, amp_enabled, amp_dtype)
     total = (
         weights["bulk"] * bulk_loss
         + weights["sc"] * sc_loss
@@ -361,6 +376,7 @@ def main() -> None:
     if torch.cuda.is_available():
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
+        torch.set_float32_matmul_precision("high")
 
     output_root = Path(cfg["paths"]["output_root"])
     data_root = Path(cfg["paths"]["data_root"])
@@ -631,12 +647,19 @@ def main() -> None:
     scheduler = build_scheduler(optimizer, train_section)
 
     amp_enabled = resolve_amp(train_section, device)
-    scaler = torch.amp.GradScaler("cuda", enabled=amp_enabled and device.type == "cuda")
-    
+    amp_dtype = resolve_amp_dtype(train_section, device) if amp_enabled else None
+    scaler = torch.amp.GradScaler(
+        "cuda",
+        enabled=amp_enabled and device.type == "cuda" and amp_dtype == torch.float16,
+    )
+
     epochs = int(train_section.get("epochs", 10))
     grad_clip_norm = float(train_section.get("grad_clip_norm", 1.0))
     grad_accum_steps = max(1, int(train_section.get("grad_accum_steps", 1)))
     steps_per_epoch_cfg = train_section.get("steps_per_epoch")
+    pb_every = max(1, int(train_section.get("pb_every", 1)))
+    eval_every = max(1, int(train_section.get("eval_every", 1)))
+
     n_steps = max(len(bulk_train_loader), len(sc_train_loader), len(pb_train_loader))
     if steps_per_epoch_cfg is not None:
         n_steps = max(1, int(steps_per_epoch_cfg))
@@ -649,8 +672,11 @@ def main() -> None:
     }
 
     print(f"amp_enabled={amp_enabled}")
+    print(f"amp_dtype={amp_dtype}")
     print(f"grad_accum_steps={grad_accum_steps}")
     print(f"steps_per_epoch={n_steps}")
+    print(f"pb_every={pb_every}")
+    print(f"eval_every={eval_every}")
 
     best_val_total = float("inf")
     best_epoch = 0
@@ -675,33 +701,38 @@ def main() -> None:
         for step in range(1, n_steps + 1):
             bulk_batch = next(bulk_iter)
             sc_batch = next(sc_iter)
-            pb_batch = next(pb_iter)
 
             xb = move_tensor(bulk_batch["x"], device)
             yb = move_tensor(bulk_batch["y"], device)
             xs = move_tensor(sc_batch["x"], device)
             ys = move_tensor(sc_batch["y"], device)
-            xp = move_tensor(pb_batch["x"], device)
-            yp = move_tensor(pb_batch["y"], device)
 
-            with autocast_context(device, amp_enabled):
-                pred_b = model(xb, modality="bulk")
-                pred_s = model(xs, modality="sc")
-                pred_p = model(xp, modality="pseudobulk")
+            with autocast_context(device, amp_enabled, amp_dtype):
+                pred_b, z_b = model_forward_with_latent(model, xb, modality="bulk")
+                pred_s, _ = model_forward_with_latent(model, xs, modality="sc")
 
                 loss_b = criterion(pred_b, yb)
                 loss_s = criterion(pred_s, ys)
-                loss_p = criterion(pred_p, yp)
 
-                z_b = model.encode(xb, modality="bulk")
-                z_p = model.encode(xp, modality="pseudobulk")
-                loss_align = mean_alignment_loss(z_b, z_p)
+                loss_p = torch.zeros((), device=device)
+                loss_align = torch.zeros((), device=device)
+                pb_scale = 1.0
+
+                if step % pb_every == 0:
+                    pb_batch = next(pb_iter)
+                    xp = move_tensor(pb_batch["x"], device)
+                    yp = move_tensor(pb_batch["y"], device)
+
+                    pred_p, z_p = model_forward_with_latent(model, xp, modality="pseudobulk")
+                    loss_p = criterion(pred_p, yp)
+                    loss_align = mean_alignment_loss(z_b, z_p)
+                    pb_scale = float(pb_every)
 
                 raw_total_loss = (
                     weights["bulk"] * loss_b
                     + weights["sc"] * loss_s
-                    + weights["pb"] * loss_p
-                    + weights["align"] * loss_align
+                    + weights["pb"] * pb_scale * loss_p
+                    + weights["align"] * pb_scale * loss_align
                 )
                 scaled_loss = raw_total_loss / grad_accum_steps
 
@@ -725,27 +756,38 @@ def main() -> None:
 
             totals["train_bulk_loss"] += float(loss_b.item())
             totals["train_sc_loss"] += float(loss_s.item())
-            totals["train_pb_loss"] += float(loss_p.item())
-            totals["train_align_loss"] += float(loss_align.item())
+            totals["train_pb_loss"] += float(loss_p.item()) * pb_scale
+            totals["train_align_loss"] += float(loss_align.item()) * pb_scale
             totals["train_total"] += float(raw_total_loss.item())
 
         for key in totals:
             totals[key] /= n_steps
 
-        val_metrics = evaluate_all(
-            model,
-            bulk_val_loader,
-            sc_val_loader,
-            pb_val_loader,
-            device,
-            amp_enabled,
-            weights,
-            prefix="val",
-        )
+        did_eval = (epoch % eval_every == 0) or (epoch == epochs)
+        if did_eval:
+            val_metrics = evaluate_all(
+                model,
+                bulk_val_loader,
+                sc_val_loader,
+                pb_val_loader,
+                device,
+                amp_enabled,
+                amp_dtype,
+                weights,
+                prefix="val",
+            )
+        else:
+            val_metrics = {
+                "val_bulk_loss": float("nan"),
+                "val_sc_loss": float("nan"),
+                "val_pb_loss": float("nan"),
+                "val_total": float("nan"),
+            }
 
         if scheduler is not None:
             if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
-                scheduler.step(val_metrics["val_total"])
+                if did_eval:
+                    scheduler.step(val_metrics["val_total"])
             else:
                 scheduler.step()
 
@@ -758,19 +800,31 @@ def main() -> None:
         }
         history.append(row)
 
-        print(
-            f"epoch={epoch} "
-            f"lr={row['lr']:.8f} "
-            f"train_bulk_loss={row['train_bulk_loss']:.6f} "
-            f"train_sc_loss={row['train_sc_loss']:.6f} "
-            f"train_pb_loss={row['train_pb_loss']:.6f} "
-            f"train_align_loss={row['train_align_loss']:.6f} "
-            f"train_total={row['train_total']:.6f} "
-            f"val_bulk_loss={row['val_bulk_loss']:.6f} "
-            f"val_sc_loss={row['val_sc_loss']:.6f} "
-            f"val_pb_loss={row['val_pb_loss']:.6f} "
-            f"val_total={row['val_total']:.6f}"
-        )
+        if did_eval:
+            print(
+                f"epoch={epoch} "
+                f"lr={row['lr']:.8f} "
+                f"train_bulk_loss={row['train_bulk_loss']:.6f} "
+                f"train_sc_loss={row['train_sc_loss']:.6f} "
+                f"train_pb_loss={row['train_pb_loss']:.6f} "
+                f"train_align_loss={row['train_align_loss']:.6f} "
+                f"train_total={row['train_total']:.6f} "
+                f"val_bulk_loss={row['val_bulk_loss']:.6f} "
+                f"val_sc_loss={row['val_sc_loss']:.6f} "
+                f"val_pb_loss={row['val_pb_loss']:.6f} "
+                f"val_total={row['val_total']:.6f}"
+            )
+        else:
+            print(
+                f"epoch={epoch} "
+                f"lr={row['lr']:.8f} "
+                f"train_bulk_loss={row['train_bulk_loss']:.6f} "
+                f"train_sc_loss={row['train_sc_loss']:.6f} "
+                f"train_pb_loss={row['train_pb_loss']:.6f} "
+                f"train_align_loss={row['train_align_loss']:.6f} "
+                f"train_total={row['train_total']:.6f} "
+                f"val_skipped=1"
+            )
 
         save_checkpoint(
             ckpt_dir / "last.pt",
@@ -784,7 +838,7 @@ def main() -> None:
             best_val_total=best_val_total,
         )
 
-        if float(val_metrics["val_total"]) < best_val_total:
+        if did_eval and float(val_metrics["val_total"]) < best_val_total:
             best_val_total = float(val_metrics["val_total"])
             best_epoch = epoch
             save_checkpoint(
@@ -825,6 +879,7 @@ def main() -> None:
         pb_test_loader,
         device,
         amp_enabled,
+        amp_dtype,
         weights,
         prefix="test",
     )
@@ -835,8 +890,11 @@ def main() -> None:
         "model_kind": model_kind,
         "parameter_counts": param_counts,
         "amp_enabled": amp_enabled,
+        "amp_dtype": str(amp_dtype),
         "grad_accum_steps": grad_accum_steps,
         "steps_per_epoch": n_steps,
+        "pb_every": pb_every,
+        "eval_every": eval_every,
         "best_epoch": best_epoch,
         "best_val_total": best_val_total,
         **test_metrics,
