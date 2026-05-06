@@ -2,7 +2,7 @@
 #SBATCH --job-name=sc2orig_train
 #SBATCH --partition=long_gpuh200
 #SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=6
+#SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=1-00:00:00
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
