@@ -17,10 +17,10 @@ data:
   sc_noise_std: 0.0
   pb_mask_prob: 0.15
   pb_noise_std: 0.0
-  bulk_batch_size: 16
-  sc_batch_size: 32
-  pb_batch_size: 16
-  num_workers: 0
+  bulk_batch_size: 32
+  sc_batch_size: 64
+  pb_batch_size: 32
+  num_workers: 4
 
 model:
   kind: "native_mamba_bridge"
