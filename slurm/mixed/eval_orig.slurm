@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=sc2orig_eval
-#SBATCH --partition=medium_gpuh200
+#SBATCH --partition=long_gpuh200
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
-#SBATCH --time=06:00:00
+#SBATCH --time=03:00:00
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
 #SBATCH --error=/home/3159436/sc2/logs/%x_%j.err
 
