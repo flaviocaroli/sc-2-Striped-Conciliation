@@ -10,15 +10,15 @@ data:
   mask_prob: 0.15
   noise_std: 0.0
   batch_size: 32
-  num_workers: 0
+  num_workers: 4
 
 model:
   kind: "native_mamba_bridge"
   d_model: 128
   n_layers: 4
-  d_state: 16
+  d_state: 8
   d_conv: 4
-  expand: 2
+  expand: 1
   dropout: 0.1
   mixer_type: "mamba1"
   bidirectional: false
