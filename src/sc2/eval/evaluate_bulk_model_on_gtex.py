@@ -4,6 +4,7 @@ import argparse
 import json
 import random
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -15,11 +16,10 @@ from sc2.data.gtex_shared_dataset import GTExSharedDataset
 from sc2.eval.group_metrics import summarize_by_group
 from sc2.eval.metrics import samplewise_mae, samplewise_mse
 from sc2.models.bulk_autoencoder import BulkAutoencoder
-from sc2.models.sc2_mamba_bridge import SC2MambaBridge
 from sc2.models.sc2lite_bridge_denoiser import SC2LiteBridgeDenoiser
 from sc2.models.sc2lite_denoiser import SC2LiteDenoiser
 from sc2.utils.paths import ensure_dir
-from sc2.models.sc2_native_mamba_bridge import SC2NativeMambaBridge
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate a bulk-capable model on GTEx lung.")
@@ -37,9 +37,10 @@ def seed_everything(seed: int) -> None:
 
 
 def get_device(cfg_device: str) -> torch.device:
-    if cfg_device == "cpu":
+    value = str(cfg_device).lower()
+    if value == "cpu":
         return torch.device("cpu")
-    if cfg_device == "cuda":
+    if value in {"cuda", "gpu"}:
         return torch.device("cuda" if torch.cuda.is_available() else "cpu")
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -62,34 +63,45 @@ def resolve_output_path(base_output_root: Path, path_str: str | None) -> Path | 
     return base_output_root / path
 
 
-def build_model(model_cfg: dict, input_dim: int) -> torch.nn.Module:
-    kind = model_cfg["kind"]
+def build_model(model_cfg: dict[str, Any], input_dim: int) -> tuple[str, torch.nn.Module]:
+    kind = str(model_cfg["kind"]).strip().lower()
 
     if kind == "bulk_autoencoder":
-        return BulkAutoencoder(
+        model = BulkAutoencoder(
             input_dim=input_dim,
             hidden_dims=model_cfg["hidden_dims"],
             dropout=float(model_cfg["dropout"]),
         )
+        return kind, model
 
     if kind == "sc2lite_denoiser":
-        return SC2LiteDenoiser(
+        model = SC2LiteDenoiser(
             input_dim=input_dim,
             adapter_dim=int(model_cfg["adapter_dim"]),
             latent_dim=int(model_cfg["latent_dim"]),
             dropout=float(model_cfg["dropout"]),
         )
+        return kind, model
 
     if kind == "sc2lite_bridge":
-        return SC2LiteBridgeDenoiser(
+        model = SC2LiteBridgeDenoiser(
             input_dim=input_dim,
             adapter_dim=int(model_cfg["adapter_dim"]),
             latent_dim=int(model_cfg["latent_dim"]),
             dropout=float(model_cfg["dropout"]),
         )
+        return kind, model
 
     if kind == "sc2_mamba_bridge":
-        return SC2MambaBridge(
+        try:
+            from sc2.models.sc2_mamba_bridge import SC2MambaBridge
+        except ImportError as exc:
+            raise ImportError(
+                "model.kind='sc2_mamba_bridge' requires mamba-ssm. "
+                "Install it with `pip install mamba-ssm`."
+            ) from exc
+
+        model = SC2MambaBridge(
             n_genes=input_dim,
             d_model=int(model_cfg["d_model"]),
             n_layers=int(model_cfg["n_layers"]),
@@ -98,8 +110,12 @@ def build_model(model_cfg: dict, input_dim: int) -> torch.nn.Module:
             expand=int(model_cfg["expand"]),
             dropout=float(model_cfg["dropout"]),
         )
-    if kind == "native_mamba_bridge":
-        return SC2NativeMambaBridge(
+        return kind, model
+
+    if kind in {"native_mamba_bridge", "sc2_native_mamba_bridge", "native_like_mamba_bridge"}:
+        from sc2.models.sc2_native_mamba_bridge import SC2NativeMambaBridge
+
+        model = SC2NativeMambaBridge(
             n_genes=input_dim,
             d_model=int(model_cfg["d_model"]),
             n_layers=int(model_cfg["n_layers"]),
@@ -115,6 +131,7 @@ def build_model(model_cfg: dict, input_dim: int) -> torch.nn.Module:
             preserve_prefix_tokens=int(model_cfg.get("preserve_prefix_tokens", 0)),
             norm_type=str(model_cfg.get("norm_type", "rmsnorm")),
         )
+        return kind, model
 
     raise ValueError(f"Unsupported model kind: {kind}")
 
@@ -155,9 +172,14 @@ def collect_metrics(
     return pd.DataFrame(rows)
 
 
+def count_parameters(model: torch.nn.Module) -> dict[str, int]:
+    total = sum(p.numel() for p in model.parameters())
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    return {"total": int(total), "trainable": int(trainable)}
+
+
 def main() -> None:
     args = parse_args()
-
     eval_cfg = load_yaml(args.config)
     path_cfg = load_yaml(args.paths)
     cfg = merge_train_and_paths(eval_cfg, path_cfg)
@@ -206,12 +228,27 @@ def main() -> None:
         pin_memory=torch.cuda.is_available(),
     )
 
-    model = build_model(model_cfg, input_dim=ds.n_features).to(device)
     checkpoint = torch.load(checkpoint_path, map_location=device)
+
+    if "config" in checkpoint and isinstance(checkpoint["config"], dict):
+        ckpt_cfg = checkpoint["config"]
+        if "model" in ckpt_cfg:
+            model_cfg = ckpt_cfg["model"]
+        if "data" in ckpt_cfg and "n_genes" in ckpt_cfg["data"]:
+            data_cfg["n_genes"] = ckpt_cfg["data"]["n_genes"]
+
+    model_kind, model = build_model(model_cfg, input_dim=ds.n_features)
+    model = model.to(device)
+    params = count_parameters(model)
+
+    print(f"input_dim={ds.n_features}")
+    print(f"model_kind={model_kind}")
+    print(f"parameters_total={params['total']}")
+    print(f"parameters_trainable={params['trainable']}")
+
     model.load_state_dict(checkpoint["model_state_dict"])
 
-    modality_key = model_cfg["kind"]
-    df = collect_metrics(model, loader, device, modality=modality_key)
+    df = collect_metrics(model, loader, device, modality=model_kind)
     overall = summarize_by_group(df, ["split"])
     by_tissue = summarize_by_group(df, ["split", "tissue"])
 
