@@ -80,8 +80,27 @@ def main() -> None:
     cfg = load_yaml(args.config)
     paths = load_yaml(args.paths)
 
-    data_root = Path(paths["paths"]["data_root"])
-    output_root = Path(paths["paths"]["output_root"])
+    def get_root(paths_cfg: dict, key: str, env_key: str) -> Path:
+        if "paths" in paths_cfg and key in paths_cfg["paths"]:
+            return Path(paths_cfg["paths"][key])
+
+        if key in paths_cfg:
+            return Path(paths_cfg[key])
+
+        import os
+
+        env_value = os.environ.get(env_key)
+        if env_value:
+            return Path(env_value)
+
+        raise KeyError(
+            f"Could not find {key}. Expected either paths.{key}, top-level {key}, "
+            f"or environment variable {env_key}."
+        )
+
+
+    data_root = get_root(paths, "data_root", "SC2_DATA_ROOT")
+    output_root = get_root(paths, "output_root", "SC2_OUTPUT_ROOT")
 
     eval_name = cfg["eval_name"]
     out_dir = output_root / "evals" / eval_name
