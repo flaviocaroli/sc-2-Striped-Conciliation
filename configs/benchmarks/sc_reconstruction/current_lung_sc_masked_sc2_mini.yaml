@@ -1,0 +1,17 @@
+eval_name: "benchmark_current_lung_sc_masked_sc2_mini"
+
+model:
+  kind: "sc2_striped_mini"
+  d_model: 128
+  n_mamba_blocks: 6
+  n_attention_checkpoints: 2
+  d_state: 8
+  d_conv: 5
+  expand: 1
+  dropout: 0.1
+  top_k: 256
+  use_rank_bins: false
+  n_rank_bins: 16
+
+eval:
+  checkpoint_path: "sc2_mini_lung_large/checkpoints/best.pt"
