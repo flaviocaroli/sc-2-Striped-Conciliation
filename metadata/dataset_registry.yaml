@@ -1,0 +1,239 @@
+version: 1
+
+datasets:
+  current_lung_internal:
+    source_paper: "SC2 internal"
+    task_groups:
+      - sc_reconstruction
+      - bulk_denoising
+      - paired_pseudobulk
+    organism: human
+    tissue: lung
+    modality:
+      - bulk_rna
+      - scrna
+      - pseudobulk
+    has_bulk: true
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      bulk_h5: raw/archs4/human_gene_v2.5.h5
+      bulk_manifest: processed/manifests/archs4_lung_large_pilot_manifest.parquet
+      sc_h5ad: raw/census/census_large_lung_12ds_2500cpd.h5ad
+      sc_manifest: processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet
+      pseudobulk_h5ad: processed/pseudobulk/census_large_lung_12ds_2500cpd_pseudobulk.h5ad
+      shared_gene_table: artifacts/gene_tables/census_archs4_shared_genes.tsv
+    split_policy: "existing train/val/test manifests"
+    primary_metrics:
+      - mse
+      - mae
+      - pearson
+      - spearman
+      - pseudobulk_consistency
+
+  gtex_lung_external:
+    source_paper: "SC2 external bulk robustness"
+    task_groups:
+      - external_bulk_denoising
+    organism: human
+    tissue: lung
+    modality:
+      - bulk_rna
+    has_bulk: true
+    has_sc: false
+    has_paired_bulk_sc: false
+    local_paths:
+      gtex_h5ad: raw/gtex/gtex_lung.h5ad
+      shared_gene_table: artifacts/gene_tables/census_archs4_shared_genes.tsv
+    split_policy: "external eval only"
+    primary_metrics:
+      - mse
+      - mae
+      - pearson
+      - spearman
+
+  hpancreas:
+    source_paper: "GeneMamba / scGPT-style annotation benchmark"
+    source_url: "https://arxiv.org/abs/2504.16956"
+    task_groups:
+      - sc_reconstruction
+      - annotation
+    organism: human
+    tissue: pancreas
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/hpancreas/hpancreas.h5ad
+    split_policy: "paper split if available; otherwise study/donor split"
+    primary_metrics:
+      - masked_mse
+      - masked_mae
+      - pearson
+      - annotation_macro_f1
+      - ari
+      - nmi
+
+  ms:
+    source_paper: "GeneMamba / scGPT-style annotation benchmark"
+    source_url: "https://arxiv.org/abs/2504.16956"
+    task_groups:
+      - sc_reconstruction
+      - annotation
+    organism: human
+    tissue: immune
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/ms/ms.h5ad
+    split_policy: "paper split if available; otherwise study/donor split"
+    primary_metrics:
+      - masked_mse
+      - masked_mae
+      - pearson
+      - annotation_macro_f1
+
+  myeloid:
+    source_paper: "GeneMamba / scGPT-style annotation benchmark"
+    source_url: "https://arxiv.org/abs/2504.16956"
+    task_groups:
+      - sc_reconstruction
+      - annotation
+    organism: human
+    tissue: immune
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/myeloid/myeloid.h5ad
+    split_policy: "paper split if available; otherwise study/donor split"
+    primary_metrics:
+      - masked_mse
+      - masked_mae
+      - pearson
+      - annotation_macro_f1
+
+  pbmc12k:
+    source_paper: "GeneMamba multi-batch integration benchmark"
+    source_url: "https://arxiv.org/abs/2504.16956"
+    task_groups:
+      - integration
+      - sc_reconstruction
+    organism: human
+    tissue: blood
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/pbmc12k/pbmc12k.h5ad
+    split_policy: "paper split if available"
+    primary_metrics:
+      - masked_mse
+      - batch_asw
+      - celltype_asw
+      - ari
+      - nmi
+
+  baron:
+    source_paper: "scFoundation-style expression enhancement / pancreas benchmark"
+    source_url: "https://www.nature.com/articles/s41592-024-02305-7"
+    task_groups:
+      - sc_reconstruction
+      - expression_enhancement
+    organism: human
+    tissue: pancreas
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/baron/baron.h5ad
+    split_policy: "paper split if available"
+    primary_metrics:
+      - masked_mse
+      - masked_mae
+      - pearson
+      - rare_marker_recovery
+
+  zheng68k:
+    source_paper: "scFoundation-style expression enhancement / annotation benchmark"
+    source_url: "https://www.nature.com/articles/s41592-024-02305-7"
+    task_groups:
+      - sc_reconstruction
+      - annotation
+    organism: human
+    tissue: blood
+    modality:
+      - scrna
+    has_bulk: false
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      h5ad: raw/benchmarks/zheng68k/zheng68k.h5ad
+    split_policy: "paper split if available"
+    primary_metrics:
+      - masked_mse
+      - pearson
+      - annotation_macro_f1
+
+  bal_paired:
+    source_paper: "Paired BAL bulk/single-cell benchmark"
+    task_groups:
+      - paired_bulk_sc
+      - deconvolution
+      - digital_cytometry
+    organism: human
+    tissue: bronchoalveolar_lavage
+    modality:
+      - bulk_rna
+      - scrna
+    has_bulk: true
+    has_sc: true
+    has_paired_bulk_sc: true
+    local_paths:
+      bulk_h5ad: raw/benchmarks/bal/bulk.h5ad
+      sc_h5ad: raw/benchmarks/bal/sc.h5ad
+      pair_manifest: processed/benchmarks/bal/pair_manifest.parquet
+      shared_gene_table: processed/benchmarks/bal/shared_genes.tsv
+    split_policy: "donor-held-out"
+    primary_metrics:
+      - pseudobulk_to_bulk_mse
+      - pseudobulk_to_bulk_pearson
+      - deconv_rmse
+      - js_divergence
+      - rare_type_rmse
+
+  dlpfc_deconvolution:
+    source_paper: "DLPFC deconvolution benchmark"
+    task_groups:
+      - deconvolution_external
+    organism: human
+    tissue: brain_dlpfc
+    modality:
+      - bulk_rna
+      - snrna
+      - spatial
+      - orthogonal_cell_fraction_truth
+    has_bulk: true
+    has_sc: true
+    has_paired_bulk_sc: false
+    local_paths:
+      bulk_h5ad: raw/benchmarks/dlpfc/bulk.h5ad
+      sn_h5ad: raw/benchmarks/dlpfc/sn.h5ad
+      truth_table: raw/benchmarks/dlpfc/cell_fraction_truth.tsv
+    split_policy: "paper benchmark split"
+    primary_metrics:
+      - deconv_rmse
+      - deconv_pearson
+      - rare_type_rmse
+      - calibration_error
