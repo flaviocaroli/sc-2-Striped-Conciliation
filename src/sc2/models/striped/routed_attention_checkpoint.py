@@ -127,11 +127,15 @@ class RoutedTopKAttentionCheckpoint(nn.Module):
             )
         indices = self._select_indices(hidden_states, score_source, marker_prior)
         batch, _, d_model = hidden_states.shape
-        gather_index = indices.unsqueeze(-1).expand(batch, indices.shape[1], d_model)
+
+        gather_index = indices.to(dtype=torch.long).unsqueeze(-1).expand(batch, indices.shape[1], d_model)
         selected = hidden_states.gather(dim=1, index=gather_index)
         selected_norm = self.norm(selected)
         attended, _ = self.attn(selected_norm, selected_norm, selected_norm, need_weights=False)
-        delta = torch.sigmoid(self.update_gate) * self.proj(attended)
+
+        gate = torch.sigmoid(self.update_gate).to(device=attended.device, dtype=attended.dtype)
+        delta = gate * self.proj(attended)
+        delta = delta.to(dtype=hidden_states.dtype)
 
         out = hidden_states.clone()
         out.scatter_add_(dim=1, index=gather_index, src=delta)

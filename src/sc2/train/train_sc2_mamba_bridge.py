@@ -231,9 +231,14 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
         )
         return kind, model
     
+    if kind in {"sc2_striped_medium", "striped_medium", "sc2_medium"}:
+        from sc2.models.striped.sc2_striped_medium import build_sc2_striped_medium_from_config
+        model = build_sc2_striped_medium_from_config(model_cfg, n_genes=n_genes)
+        return "sc2_striped_medium", model
+
     raise ValueError(
         "Unsupported model.kind. Supported values: "
-        "['sc2_mamba_bridge', 'native_mamba_bridge', 'sc2_hybrid_bridge', 'sc2_striped_mini']"
+        "['sc2_mamba_bridge', 'native_mamba_bridge', 'sc2_hybrid_bridge', 'sc2_striped_mini', 'sc2_striped_medium']"
     )
 
 

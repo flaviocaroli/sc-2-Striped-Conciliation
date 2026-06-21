@@ -197,6 +197,11 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
             n_rank_bins=int(model_cfg.get("n_rank_bins", 16)),
         )
         return kind, model
+    if kind in {"sc2_striped_medium", "striped_medium", "sc2_medium"}:
+        from sc2.models.striped.sc2_striped_medium import build_sc2_striped_medium_from_config
+        model = build_sc2_striped_medium_from_config(model_cfg, n_genes=n_genes)
+        return "sc2_striped_medium", model
+
     raise ValueError(
         f"Unsupported model.kind={kind!r}. Supported values: {supported}"
     )
