@@ -1,4 +1,4 @@
-eval_name: "benchmark_current_lung_sc_masked_sc2_mini"
+eval_name: "benchmark_current_lung_sc_masked_orig"
 seed: 42
 device: "auto"
 
@@ -14,20 +14,23 @@ data:
   num_workers: 4
 
 model:
-  kind: "sc2_striped_mini"
+  kind: "native_mamba_bridge"
   d_model: 128
-  n_mamba_blocks: 6
-  n_attention_checkpoints: 2
+  n_layers: 4
   d_state: 8
-  d_conv: 5
+  d_conv: 4
   expand: 1
   dropout: 0.1
-  top_k: 256
-  use_rank_bins: false
-  n_rank_bins: 16
+  mixer_type: "mamba1"
+  bidirectional: false
+  merge_mode: "sum"
+  smart_flip: false
+  rank_input: false
+  preserve_prefix_tokens: 0
+  norm_type: "rmsnorm"
 
 eval:
-  checkpoint_path: "sc2_mini_lung_large/checkpoints/best.pt"
+  checkpoint_path: "sc2_native_mamba_original_like_lung_large/checkpoints/best.pt"
 
 benchmark:
   modality: "sc"
