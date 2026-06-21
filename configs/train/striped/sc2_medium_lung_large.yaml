@@ -1,0 +1,100 @@
+run_name: "sc2_medium_lung_large"
+seed: 42
+device: "auto"
+
+data:
+  bulk_h5_path: "raw/archs4/human_gene_v2.5.h5"
+  bulk_manifest_path: "processed/manifests/archs4_lung_large_pilot_manifest.parquet"
+  sc_h5ad_path: "raw/census/census_large_lung_12ds_2500cpd.h5ad"
+  sc_split_manifest_path: "processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet"
+  pseudobulk_h5ad_path: "processed/pseudobulk/census_large_lung_12ds_2500cpd_pseudobulk.h5ad"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  n_genes: 4096
+  log1p_input: true
+  bulk_mask_prob: 0.15
+  bulk_noise_std: 0.0
+  sc_mask_prob: 0.15
+  sc_noise_std: 0.0
+  pb_mask_prob: 0.15
+  pb_noise_std: 0.0
+  bulk_batch_size: 16
+  sc_batch_size: 32
+  pb_batch_size: 16
+  num_workers: 4
+
+model:
+  kind: "sc2_striped_medium"
+  n_genes: 4096
+  d_model: 160
+  n_mamba_blocks: 12
+  n_attention_checkpoints: 3
+  d_state: 16
+  d_conv: 5
+  expand: 2
+  dropout: 0.10
+  bidirectional_mamba: true
+  mamba_merge_mode: "gate"
+  top_k: 512
+  n_heads: 4
+  routed_learned_fraction: 0.50
+  expression_score_weight: 0.25
+  nonzero_bonus: 0.05
+  marker_prior_weight: 0.0
+  use_rank_bins: true
+  n_rank_bins: 32
+  use_depth_token: true
+  n_depth_bins: 8
+  use_modality_token: true
+  n_modalities: 3
+  dropout_head: true
+
+train:
+  epochs: 8
+  steps_per_epoch: 400
+  pb_every: 4
+  eval_every: 2
+  lr: 0.0003
+  min_lr: 0.00003
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
+  grad_accum_steps: 1
+  scheduler: "cosine"
+  bulk_loss_weight: 1.0
+  sc_loss_weight: 5.0
+  pb_loss_weight: 1.0
+  align_loss_weight: 0.5
+  dropout_loss_weight: 0.10
+  zero_fp_loss_weight: 0.05
+  amp: true
+  amp_dtype: bfloat16
+  stages:
+    - name: "warm_reconstruction"
+      epochs: 2
+      steps_per_epoch: 350
+      pb_every: 4
+      bulk_loss_weight: 1.0
+      sc_loss_weight: 5.0
+      pb_loss_weight: 1.0
+      align_loss_weight: 0.25
+      dropout_loss_weight: 0.0
+      zero_fp_loss_weight: 0.0
+    - name: "dropout_router"
+      epochs: 3
+      steps_per_epoch: 400
+      pb_every: 4
+      bulk_loss_weight: 1.0
+      sc_loss_weight: 5.0
+      pb_loss_weight: 1.0
+      align_loss_weight: 0.5
+      dropout_loss_weight: 0.10
+      zero_fp_loss_weight: 0.03
+    - name: "pseudobulk_calibration"
+      epochs: 3
+      steps_per_epoch: 400
+      pb_every: 2
+      bulk_loss_weight: 1.0
+      sc_loss_weight: 5.0
+      pb_loss_weight: 1.25
+      align_loss_weight: 0.5
+      dropout_loss_weight: 0.08
+      zero_fp_loss_weight: 0.05
