@@ -16,23 +16,23 @@ data:
   sc_noise_std: 0.0
   pb_mask_prob: 0.15
   pb_noise_std: 0.0
-  bulk_batch_size: 16
-  sc_batch_size: 32
-  pb_batch_size: 16
-  num_workers: 4
+  bulk_batch_size: 4
+  sc_batch_size: 8
+  pb_batch_size: 4
+  num_workers: 2
 model:
   kind: sc2_striped_medium
   n_genes: 4096
-  d_model: 160
+  d_model: 128
   n_mamba_blocks: 12
   n_attention_checkpoints: 3
-  d_state: 16
+  d_state: 4
   d_conv: 5
-  expand: 2
+  expand: 1
   dropout: 0.1
   bidirectional_mamba: true
   mamba_merge_mode: gate
-  top_k: 512
+  top_k: 256
   n_heads: 4
   routed_learned_fraction: 0.5
   expression_score_weight: 0.25
@@ -54,7 +54,7 @@ train:
   min_lr: 3.0e-05
   weight_decay: 0.0001
   grad_clip_norm: 1.0
-  grad_accum_steps: 1
+  grad_accum_steps: 4
   scheduler: cosine
   bulk_loss_weight: 1.0
   sc_loss_weight: 5.0
@@ -67,7 +67,7 @@ train:
   stages:
   - name: warm_reconstruction
     epochs: 2
-    steps_per_epoch: 350
+    steps_per_epoch: 150
     pb_every: 4
     bulk_loss_weight: 1.0
     sc_loss_weight: 5.0
@@ -77,7 +77,7 @@ train:
     zero_fp_loss_weight: 0.0
   - name: dropout_router
     epochs: 3
-    steps_per_epoch: 400
+    steps_per_epoch: 150
     pb_every: 4
     bulk_loss_weight: 1.0
     sc_loss_weight: 5.0
@@ -87,7 +87,7 @@ train:
     zero_fp_loss_weight: 0.03
   - name: pseudobulk_calibration
     epochs: 3
-    steps_per_epoch: 400
+    steps_per_epoch: 150
     pb_every: 2
     bulk_loss_weight: 1.0
     sc_loss_weight: 5.0
