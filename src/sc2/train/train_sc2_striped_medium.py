@@ -2,8 +2,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import os
+import signal
+import sys
+import time
 from pathlib import Path
-from typing import Any, Dict, Iterable, Tuple
+from typing import Any, Dict
 
 import torch
 import torch.nn.functional as F
@@ -15,12 +20,46 @@ from sc2.losses.dropout_losses import dropout_bce_loss, zero_false_positive_pena
 from sc2.models.striped.sc2_striped_medium import build_sc2_striped_medium_from_config
 from sc2.train import train_sc2_mamba_bridge as bridge
 
+_STOP_REQUESTED = False
+_STOP_SIGNAL = None
+
+
+def _handle_stop_signal(signum: int, frame: Any) -> None:
+    global _STOP_REQUESTED, _STOP_SIGNAL
+    _STOP_REQUESTED = True
+    _STOP_SIGNAL = signum
+    print(
+        f"received_signal={signum}; will save checkpoint and exit at the next safe point",
+        flush=True,
+    )
+
+
+def install_signal_handlers() -> None:
+    for sig in (signal.SIGTERM, signal.SIGINT):
+        signal.signal(sig, _handle_stop_signal)
+    if hasattr(signal, "SIGUSR1"):
+        signal.signal(signal.SIGUSR1, _handle_stop_signal)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train SC2-medium with staged reconstruction + dropout losses.")
     parser.add_argument("--config", required=True, help="Training YAML config.")
     parser.add_argument("--paths", required=True, help="Path-root YAML config.")
-    parser.add_argument("--resume", default=None, help="Optional checkpoint to resume from.")
+    parser.add_argument(
+        "--resume",
+        default=None,
+        help="Checkpoint to resume from, or 'auto' to resume from <run_dir>/checkpoints/last.pt when present.",
+    )
+    parser.add_argument(
+        "--auto-resume",
+        action="store_true",
+        help="Resume from <run_dir>/checkpoints/last.pt if it exists. Ignored when --fresh is set.",
+    )
+    parser.add_argument(
+        "--fresh",
+        action="store_true",
+        help="Ignore existing last.pt and start a new run from scratch.",
+    )
     return parser.parse_args()
 
 
@@ -210,11 +249,103 @@ def evaluate_with_dropout(
     return base
 
 
+def atomic_torch_save(payload: dict[str, Any], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(path.name + ".tmp")
+    torch.save(payload, tmp_path)
+    os.replace(tmp_path, path)
+
+
+def save_training_checkpoint(
+    path: Path,
+    *,
+    completed_global_epoch: int,
+    model: nn.Module,
+    optimizer: torch.optim.Optimizer,
+    scheduler: torch.optim.lr_scheduler.LRScheduler | torch.optim.lr_scheduler.ReduceLROnPlateau | None,
+    scaler: torch.amp.GradScaler,
+    cfg: dict[str, Any],
+    model_kind: str,
+    best_val_total: float,
+    best_epoch: int,
+    history: list[dict[str, Any]],
+    stage_name: str | None = None,
+    stage_idx: int | None = None,
+    stage_epoch_idx: int | None = None,
+    step: int | None = None,
+    n_steps: int | None = None,
+    partial_epoch: bool = False,
+    interrupted: bool = False,
+) -> None:
+    payload: dict[str, Any] = {
+        "epoch": int(completed_global_epoch),
+        "completed_global_epoch": int(completed_global_epoch),
+        "model_kind": model_kind,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "config": cfg,
+        "best_val_total": float(best_val_total),
+        "best_epoch": int(best_epoch),
+        "history": history,
+        "stage_name": stage_name,
+        "stage_idx": stage_idx,
+        "stage_epoch_idx": stage_epoch_idx,
+        "step": step,
+        "n_steps": n_steps,
+        "partial_epoch": bool(partial_epoch),
+        "interrupted": bool(interrupted),
+        "saved_at_unix": time.time(),
+    }
+    if scheduler is not None:
+        payload["scheduler_state_dict"] = scheduler.state_dict()
+    if scaler.is_enabled():
+        payload["scaler_state_dict"] = scaler.state_dict()
+    atomic_torch_save(payload, path)
+
+
+def load_partial_metrics(run_dir: Path) -> tuple[int, float, list[dict[str, Any]]]:
+    path = run_dir / "metrics_partial.json"
+    if not path.exists():
+        return 0, float("inf"), []
+    try:
+        data = json.loads(path.read_text())
+        return int(data.get("best_epoch", 0)), float(data.get("best_val_total", float("inf"))), list(data.get("history", []))
+    except Exception as exc:
+        print(f"warning=could_not_read_metrics_partial path={path} error={exc}", flush=True)
+        return 0, float("inf"), []
+
+
+def resolve_resume_path(args: argparse.Namespace, ckpt_dir: Path) -> Path | None:
+    if args.fresh:
+        return None
+    if args.resume is not None:
+        if str(args.resume).strip().lower() == "auto":
+            candidate = ckpt_dir / "last.pt"
+            return candidate if candidate.exists() else None
+        return Path(args.resume)
+    if args.auto_resume:
+        candidate = ckpt_dir / "last.pt"
+        return candidate if candidate.exists() else None
+    return None
+
+
+def patch_train_cfg_for_scheduler(cfg: dict[str, Any]) -> None:
+    train_cfg = cfg.get("train", {})
+    stages = train_cfg.get("stages") or []
+    if stages:
+        total_epochs = sum(int(stage.get("epochs", 1)) for stage in stages)
+        train_cfg["epochs"] = int(train_cfg.get("epochs", total_epochs) or total_epochs)
+        if int(train_cfg["epochs"]) != total_epochs:
+            train_cfg["epochs"] = total_epochs
+
+
 def main() -> None:
+    install_signal_handlers()
     args = parse_args()
     train_cfg = load_yaml(args.config)
     path_cfg = load_yaml(args.paths)
     cfg = merge_train_and_paths(train_cfg, path_cfg)
+    patch_train_cfg_for_scheduler(cfg)
 
     seed = int(cfg.get("seed", 42))
     bridge.seed_everything(seed)
@@ -229,6 +360,8 @@ def main() -> None:
     ckpt_dir = run_dir / "checkpoints"
     bridge.ensure_dir(run_dir)
     bridge.ensure_dir(ckpt_dir)
+    with (run_dir / "resolved_config.json").open("w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2)
 
     device = bridge.get_device(cfg.get("device", "auto"))
     train_section = cfg.get("train", {})
@@ -253,9 +386,35 @@ def main() -> None:
         "cuda",
         enabled=amp_enabled and device.type == "cuda" and amp_dtype == torch.float16,
     )
-    if args.resume:
-        bridge.load_checkpoint(Path(args.resume), model=model, device=device, optimizer=optimizer, scheduler=scheduler, scaler=scaler)
-        print(f"resumed_from={args.resume}")
+
+    best_epoch, best_val_total, history = load_partial_metrics(run_dir)
+    completed_global_epoch = 0
+    resume_path = resolve_resume_path(args, ckpt_dir)
+    if resume_path is not None:
+        if not resume_path.exists():
+            raise FileNotFoundError(f"resume checkpoint does not exist: {resume_path}")
+        checkpoint = bridge.load_checkpoint(
+            resume_path,
+            model=model,
+            device=device,
+            optimizer=optimizer,
+            scheduler=scheduler,
+            scaler=scaler,
+        )
+        completed_global_epoch = int(checkpoint.get("completed_global_epoch", checkpoint.get("epoch", 0)))
+        best_val_total = float(checkpoint.get("best_val_total", best_val_total))
+        best_epoch = int(checkpoint.get("best_epoch", best_epoch))
+        if checkpoint.get("history"):
+            history = list(checkpoint.get("history", history))
+        print(
+            "resumed_from="
+            f"{resume_path} completed_global_epoch={completed_global_epoch} "
+            f"partial_epoch={bool(checkpoint.get('partial_epoch', False))} "
+            f"best_epoch={best_epoch} best_val_total={best_val_total}",
+            flush=True,
+        )
+    else:
+        print("resume=none fresh_start=1", flush=True)
 
     stages = train_section.get("stages")
     if not stages:
@@ -264,153 +423,199 @@ def main() -> None:
     grad_clip_norm = float(train_section.get("grad_clip_norm", 1.0))
     grad_accum_steps = max(1, int(train_section.get("grad_accum_steps", 1)))
     eval_every = max(1, int(train_section.get("eval_every", 1)))
-    best_val_total = float("inf")
-    best_epoch = 0
-    global_epoch = 0
-    history: list[dict[str, Any]] = []
+    save_every_steps = int(train_section.get("save_every_steps", 25))
+    if save_every_steps < 0:
+        save_every_steps = 0
 
-    for stage_idx, stage in enumerate(stages, start=1):
-        stage_name = str(stage.get("name", f"stage{stage_idx}"))
-        n_stage_epochs = int(stage.get("epochs", 1))
-        n_steps = int(stage_value(stage, train_section, "steps_per_epoch", train_section.get("steps_per_epoch", 400)))
-        pb_every = max(1, int(stage_value(stage, train_section, "pb_every", train_section.get("pb_every", 4))))
-        weights = stage_weights(stage, train_section)
-        print(f"stage={stage_name} epochs={n_stage_epochs} steps_per_epoch={n_steps} pb_every={pb_every} weights={weights}")
+    total_epochs = sum(int(stage.get("epochs", 1)) for stage in stages)
+    if completed_global_epoch >= total_epochs:
+        print(f"training_already_complete completed_global_epoch={completed_global_epoch} total_epochs={total_epochs}")
 
-        for _ in range(n_stage_epochs):
-            global_epoch += 1
-            model.train()
-            bulk_iter = bridge.infinite_loader(loaders["bulk_train"])
-            sc_iter = bridge.infinite_loader(loaders["sc_train"])
-            pb_iter = bridge.infinite_loader(loaders["pb_train"])
-            optimizer.zero_grad(set_to_none=True)
-            totals = {
-                "train_bulk_loss": 0.0,
-                "train_sc_loss": 0.0,
-                "train_pb_loss": 0.0,
-                "train_align_loss": 0.0,
-                "train_dropout_loss": 0.0,
-                "train_zero_fp_loss": 0.0,
-                "train_total": 0.0,
-            }
+    global_epoch_slot = 0
+    current_stage_name = None
 
-            for step in range(1, n_steps + 1):
-                bulk_batch = next(bulk_iter)
-                sc_batch = next(sc_iter)
-                xb = bridge.move_tensor(bulk_batch["x"], device)
-                yb = bridge.move_tensor(bulk_batch["y"], device)
-                xs = bridge.move_tensor(sc_batch["x"], device)
-                ys = bridge.move_tensor(sc_batch["y"], device)
+    try:
+        for stage_idx, stage in enumerate(stages, start=1):
+            stage_name = str(stage.get("name", f"stage{stage_idx}"))
+            n_stage_epochs = int(stage.get("epochs", 1))
+            n_steps = int(stage_value(stage, train_section, "steps_per_epoch", train_section.get("steps_per_epoch", 400)))
+            pb_every = max(1, int(stage_value(stage, train_section, "pb_every", train_section.get("pb_every", 4))))
+            weights = stage_weights(stage, train_section)
 
-                with bridge.autocast_context(device, amp_enabled, amp_dtype):
-                    out_b = forward_dict(model, xb, modality="bulk")
-                    out_s = forward_dict(model, xs, modality="sc")
-                    pred_b = out_b["reconstruction"]
-                    pred_s = out_s["reconstruction"]
-                    z_b = latent_pool(out_b)
-                    loss_b = criterion(pred_b, yb)
-                    loss_s = criterion(pred_s, ys)
-                    drop = dropout_bce_loss(out_s.get("dropout_logits"), xs, ys)
-                    loss_drop = drop.loss
-                    loss_zero_fp = zero_false_positive_penalty(pred_s, xs, ys)
-                    loss_p = torch.zeros((), device=device)
-                    loss_align = torch.zeros((), device=device)
-                    pb_scale = 1.0
-                    if step % pb_every == 0:
-                        pb_batch = next(pb_iter)
-                        xp = bridge.move_tensor(pb_batch["x"], device)
-                        yp = bridge.move_tensor(pb_batch["y"], device)
-                        out_p = forward_dict(model, xp, modality="pseudobulk")
-                        pred_p = out_p["reconstruction"]
-                        z_p = latent_pool(out_p)
-                        loss_p = criterion(pred_p, yp)
-                        loss_align = bridge.mean_alignment_loss(z_b, z_p)
-                        pb_scale = float(pb_every)
+            for stage_epoch_idx in range(1, n_stage_epochs + 1):
+                global_epoch_slot += 1
+                if global_epoch_slot <= completed_global_epoch:
+                    continue
 
-                    raw_total_loss = (
-                        weights["bulk"] * loss_b
-                        + weights["sc"] * loss_s
-                        + weights["pb"] * pb_scale * loss_p
-                        + weights["align"] * pb_scale * loss_align
-                        + weights["dropout"] * loss_drop
-                        + weights["zero_fp"] * loss_zero_fp
+                if current_stage_name != stage_name:
+                    current_stage_name = stage_name
+                    print(
+                        f"stage={stage_name} epochs={n_stage_epochs} steps_per_epoch={n_steps} "
+                        f"pb_every={pb_every} weights={weights}",
+                        flush=True,
                     )
-                    scaled_loss = raw_total_loss / grad_accum_steps
 
-                if scaler.is_enabled():
-                    scaler.scale(scaled_loss).backward()
-                else:
-                    scaled_loss.backward()
-
-                if step % grad_accum_steps == 0 or step == n_steps:
-                    if grad_clip_norm > 0:
-                        if scaler.is_enabled():
-                            scaler.unscale_(optimizer)
-                        clip_grad_norm_(model.parameters(), max_norm=grad_clip_norm)
-                    if scaler.is_enabled():
-                        scaler.step(optimizer)
-                        scaler.update()
-                    else:
-                        optimizer.step()
-                    optimizer.zero_grad(set_to_none=True)
-
-                totals["train_bulk_loss"] += float(loss_b.item())
-                totals["train_sc_loss"] += float(loss_s.item())
-                totals["train_pb_loss"] += float(loss_p.item()) * pb_scale
-                totals["train_align_loss"] += float(loss_align.item()) * pb_scale
-                totals["train_dropout_loss"] += float(loss_drop.item())
-                totals["train_zero_fp_loss"] += float(loss_zero_fp.item())
-                totals["train_total"] += float(raw_total_loss.item())
-
-            for key in totals:
-                totals[key] /= float(n_steps)
-
-            did_eval = (global_epoch % eval_every == 0) or (stage_idx == len(stages) and _ == n_stage_epochs - 1)
-            if did_eval:
-                val_metrics = evaluate_with_dropout(model, loaders, device, amp_enabled, amp_dtype, weights, prefix="val")
-            else:
-                val_metrics = {
-                    "val_bulk_loss": float("nan"),
-                    "val_sc_loss": float("nan"),
-                    "val_pb_loss": float("nan"),
-                    "val_total": float("nan"),
+                global_epoch = global_epoch_slot
+                model.train()
+                bulk_iter = bridge.infinite_loader(loaders["bulk_train"])
+                sc_iter = bridge.infinite_loader(loaders["sc_train"])
+                pb_iter = bridge.infinite_loader(loaders["pb_train"])
+                optimizer.zero_grad(set_to_none=True)
+                totals = {
+                    "train_bulk_loss": 0.0,
+                    "train_sc_loss": 0.0,
+                    "train_pb_loss": 0.0,
+                    "train_align_loss": 0.0,
+                    "train_dropout_loss": 0.0,
+                    "train_zero_fp_loss": 0.0,
+                    "train_total": 0.0,
                 }
 
-            if scheduler is not None:
-                if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
-                    if did_eval:
-                        scheduler.step(val_metrics["val_total"])
+                for step in range(1, n_steps + 1):
+                    bulk_batch = next(bulk_iter)
+                    sc_batch = next(sc_iter)
+                    xb = bridge.move_tensor(bulk_batch["x"], device)
+                    yb = bridge.move_tensor(bulk_batch["y"], device)
+                    xs = bridge.move_tensor(sc_batch["x"], device)
+                    ys = bridge.move_tensor(sc_batch["y"], device)
+
+                    with bridge.autocast_context(device, amp_enabled, amp_dtype):
+                        out_b = forward_dict(model, xb, modality="bulk")
+                        out_s = forward_dict(model, xs, modality="sc")
+                        pred_b = out_b["reconstruction"]
+                        pred_s = out_s["reconstruction"]
+                        z_b = latent_pool(out_b)
+                        loss_b = criterion(pred_b, yb)
+                        loss_s = criterion(pred_s, ys)
+                        drop = dropout_bce_loss(out_s.get("dropout_logits"), xs, ys)
+                        loss_drop = drop.loss
+                        loss_zero_fp = zero_false_positive_penalty(pred_s, xs, ys)
+                        loss_p = torch.zeros((), device=device)
+                        loss_align = torch.zeros((), device=device)
+                        pb_scale = 1.0
+                        if step % pb_every == 0:
+                            pb_batch = next(pb_iter)
+                            xp = bridge.move_tensor(pb_batch["x"], device)
+                            yp = bridge.move_tensor(pb_batch["y"], device)
+                            out_p = forward_dict(model, xp, modality="pseudobulk")
+                            pred_p = out_p["reconstruction"]
+                            z_p = latent_pool(out_p)
+                            loss_p = criterion(pred_p, yp)
+                            loss_align = bridge.mean_alignment_loss(z_b, z_p)
+                            pb_scale = float(pb_every)
+
+                        raw_total_loss = (
+                            weights["bulk"] * loss_b
+                            + weights["sc"] * loss_s
+                            + weights["pb"] * pb_scale * loss_p
+                            + weights["align"] * pb_scale * loss_align
+                            + weights["dropout"] * loss_drop
+                            + weights["zero_fp"] * loss_zero_fp
+                        )
+                        scaled_loss = raw_total_loss / grad_accum_steps
+
+                    if scaler.is_enabled():
+                        scaler.scale(scaled_loss).backward()
+                    else:
+                        scaled_loss.backward()
+
+                    did_optim_step = False
+                    if step % grad_accum_steps == 0 or step == n_steps:
+                        if grad_clip_norm > 0:
+                            if scaler.is_enabled():
+                                scaler.unscale_(optimizer)
+                            clip_grad_norm_(model.parameters(), max_norm=grad_clip_norm)
+                        if scaler.is_enabled():
+                            scaler.step(optimizer)
+                            scaler.update()
+                        else:
+                            optimizer.step()
+                        optimizer.zero_grad(set_to_none=True)
+                        did_optim_step = True
+
+                    totals["train_bulk_loss"] += float(loss_b.item())
+                    totals["train_sc_loss"] += float(loss_s.item())
+                    totals["train_pb_loss"] += float(loss_p.item()) * pb_scale
+                    totals["train_align_loss"] += float(loss_align.item()) * pb_scale
+                    totals["train_dropout_loss"] += float(loss_drop.item())
+                    totals["train_zero_fp_loss"] += float(loss_zero_fp.item())
+                    totals["train_total"] += float(raw_total_loss.item())
+
+                    should_periodic_save = bool(save_every_steps and step % save_every_steps == 0 and did_optim_step)
+                    if should_periodic_save or _STOP_REQUESTED:
+                        if not did_optim_step:
+                            optimizer.zero_grad(set_to_none=True)
+                        save_training_checkpoint(
+                            ckpt_dir / "last.pt",
+                            completed_global_epoch=global_epoch - 1,
+                            model=model,
+                            optimizer=optimizer,
+                            scheduler=scheduler,
+                            scaler=scaler,
+                            cfg=cfg,
+                            model_kind=model_kind,
+                            best_val_total=best_val_total,
+                            best_epoch=best_epoch,
+                            history=history,
+                            stage_name=stage_name,
+                            stage_idx=stage_idx,
+                            stage_epoch_idx=stage_epoch_idx,
+                            step=step,
+                            n_steps=n_steps,
+                            partial_epoch=True,
+                            interrupted=bool(_STOP_REQUESTED),
+                        )
+                        if should_periodic_save:
+                            print(
+                                f"checkpoint_saved=last.pt partial_epoch=1 completed_global_epoch={global_epoch - 1} "
+                                f"stage={stage_name} epoch={global_epoch} step={step}/{n_steps}",
+                                flush=True,
+                            )
+                        if _STOP_REQUESTED:
+                            print(
+                                f"stop_requested=1 signal={_STOP_SIGNAL} saved_checkpoint={ckpt_dir / 'last.pt'} "
+                                f"resume_with='--auto-resume'",
+                                flush=True,
+                            )
+                            return
+
+                for key in totals:
+                    totals[key] /= float(n_steps)
+
+                did_eval = (global_epoch % eval_every == 0) or (global_epoch == total_epochs)
+                if did_eval:
+                    val_metrics = evaluate_with_dropout(model, loaders, device, amp_enabled, amp_dtype, weights, prefix="val")
                 else:
-                    scheduler.step()
+                    val_metrics = {
+                        "val_bulk_loss": float("nan"),
+                        "val_sc_loss": float("nan"),
+                        "val_pb_loss": float("nan"),
+                        "val_total": float("nan"),
+                    }
 
-            row = {
-                "epoch": global_epoch,
-                "stage": stage_name,
-                "model_kind": model_kind,
-                "lr": bridge.current_lr(optimizer),
-                **totals,
-                **val_metrics,
-            }
-            history.append(row)
-            print(json.dumps(row, sort_keys=True))
+                if scheduler is not None:
+                    if isinstance(scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
+                        if did_eval:
+                            scheduler.step(val_metrics["val_total"])
+                    else:
+                        scheduler.step()
 
-            bridge.save_checkpoint(
-                ckpt_dir / "last.pt",
-                epoch=global_epoch,
-                model=model,
-                optimizer=optimizer,
-                scheduler=scheduler,
-                scaler=scaler,
-                cfg=cfg,
-                model_kind=model_kind,
-                best_val_total=best_val_total,
-            )
-            if did_eval and float(val_metrics["val_total"]) < best_val_total:
-                best_val_total = float(val_metrics["val_total"])
-                best_epoch = global_epoch
-                bridge.save_checkpoint(
-                    ckpt_dir / "best.pt",
-                    epoch=global_epoch,
+                row = {
+                    "epoch": global_epoch,
+                    "stage": stage_name,
+                    "stage_epoch": stage_epoch_idx,
+                    "model_kind": model_kind,
+                    "lr": bridge.current_lr(optimizer),
+                    **totals,
+                    **val_metrics,
+                }
+                history.append(row)
+                print(json.dumps(row, sort_keys=True), flush=True)
+
+                completed_global_epoch = global_epoch
+                save_training_checkpoint(
+                    ckpt_dir / "last.pt",
+                    completed_global_epoch=completed_global_epoch,
                     model=model,
                     optimizer=optimizer,
                     scheduler=scheduler,
@@ -418,9 +623,48 @@ def main() -> None:
                     cfg=cfg,
                     model_kind=model_kind,
                     best_val_total=best_val_total,
+                    best_epoch=best_epoch,
+                    history=history,
+                    stage_name=stage_name,
+                    stage_idx=stage_idx,
+                    stage_epoch_idx=stage_epoch_idx,
+                    step=n_steps,
+                    n_steps=n_steps,
+                    partial_epoch=False,
+                    interrupted=False,
                 )
-            with (run_dir / "metrics_partial.json").open("w", encoding="utf-8") as f:
-                json.dump({"best_epoch": best_epoch, "best_val_total": best_val_total, "history": history}, f, indent=2)
+                if did_eval and float(val_metrics["val_total"]) < best_val_total:
+                    best_val_total = float(val_metrics["val_total"])
+                    best_epoch = global_epoch
+                    save_training_checkpoint(
+                        ckpt_dir / "best.pt",
+                        completed_global_epoch=completed_global_epoch,
+                        model=model,
+                        optimizer=optimizer,
+                        scheduler=scheduler,
+                        scaler=scaler,
+                        cfg=cfg,
+                        model_kind=model_kind,
+                        best_val_total=best_val_total,
+                        best_epoch=best_epoch,
+                        history=history,
+                        stage_name=stage_name,
+                        stage_idx=stage_idx,
+                        stage_epoch_idx=stage_epoch_idx,
+                        step=n_steps,
+                        n_steps=n_steps,
+                        partial_epoch=False,
+                        interrupted=False,
+                    )
+                with (run_dir / "metrics_partial.json").open("w", encoding="utf-8") as f:
+                    json.dump(
+                        {"best_epoch": best_epoch, "best_val_total": best_val_total, "history": history},
+                        f,
+                        indent=2,
+                    )
+    finally:
+        if _STOP_REQUESTED:
+            print("exit_after_signal=1", flush=True)
 
     best_path = ckpt_dir / "best.pt"
     if best_path.exists():
