@@ -180,6 +180,28 @@ def build_model(model_cfg: dict[str, Any], n_genes: int) -> tuple[str, nn.Module
         "native_mamba_bridge",
         "sc2_hybrid_bridge",
     ]
+    if kind in {"sc2_striped_mini", "striped_mini"}:
+        from sc2.models.striped.sc2_striped_mini import SC2StripedMini
+
+        model = SC2StripedMini(
+            n_genes=n_genes,
+            d_model=int(model_cfg.get("d_model", 128)),
+            n_mamba_blocks=int(model_cfg.get("n_mamba_blocks", 6)),
+            n_attention_checkpoints=int(model_cfg.get("n_attention_checkpoints", 2)),
+            d_state=int(model_cfg.get("d_state", 8)),
+            d_conv=int(model_cfg.get("d_conv", 5)),
+            expand=int(model_cfg.get("expand", 1)),
+            dropout=float(model_cfg.get("dropout", 0.1)),
+            top_k=int(model_cfg.get("top_k", 256)),
+            use_rank_bins=bool(model_cfg.get("use_rank_bins", False)),
+            n_rank_bins=int(model_cfg.get("n_rank_bins", 16)),
+        )
+        return kind, model
+    if kind in {"sc2_striped_medium", "striped_medium", "sc2_medium"}:
+        from sc2.models.striped.sc2_striped_medium import build_sc2_striped_medium_from_config
+        model = build_sc2_striped_medium_from_config(model_cfg, n_genes=n_genes)
+        return "sc2_striped_medium", model
+
     raise ValueError(
         f"Unsupported model.kind={kind!r}. Supported values: {supported}"
     )

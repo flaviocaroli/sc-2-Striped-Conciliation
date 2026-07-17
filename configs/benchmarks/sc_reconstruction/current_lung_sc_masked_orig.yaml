@@ -1,0 +1,39 @@
+eval_name: "benchmark_current_lung_sc_masked_orig"
+seed: 42
+device: "auto"
+
+data:
+  h5ad_path: "raw/census/census_large_lung_12ds_2500cpd.h5ad"
+  split_manifest_path: "processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet"
+  shared_gene_table_path: "artifacts/gene_tables/census_archs4_shared_genes.tsv"
+  split: "test"
+  split_col: "split"
+  n_genes: 4096
+  log1p_input: true
+  batch_size: 64
+  num_workers: 4
+
+model:
+  kind: "native_mamba_bridge"
+  d_model: 128
+  n_layers: 4
+  d_state: 8
+  d_conv: 4
+  expand: 1
+  dropout: 0.1
+  mixer_type: "mamba1"
+  bidirectional: false
+  merge_mode: "sum"
+  smart_flip: false
+  rank_input: false
+  preserve_prefix_tokens: 0
+  norm_type: "rmsnorm"
+
+eval:
+  checkpoint_path: "sc2_native_mamba_original_like_lung_large/checkpoints/best.pt"
+
+benchmark:
+  modality: "sc"
+  mask_probs: [0.15, 0.30, 0.50]
+  nonzero_only: true
+  zero_fill_threshold: 0.1

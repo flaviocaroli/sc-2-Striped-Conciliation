@@ -1,0 +1,37 @@
+eval_name: "bal_paired_consistency_sc2_m2"
+seed: 42
+device: "auto"
+
+data:
+  sc_h5ad_path: "raw/benchmarks/bal/sc.h5ad"
+  bulk_h5ad_path: "raw/benchmarks/bal/bulk.h5ad"
+  pair_manifest_path: "processed/benchmarks/bal/pair_manifest.parquet"
+  n_genes: 4096
+  batch_size: 64
+
+  donor_col: "donor_id"
+  sc_index_col: "sc_index"
+  bulk_index_col: "bulk_index"
+  split_col: "split"
+
+model:
+  kind: "native_mamba_bridge"
+  d_model: 128
+  n_layers: 4
+  d_state: 16
+  d_conv: 4
+  expand: 2
+  dropout: 0.1
+  mixer_type: "mamba2_lite"
+  bidirectional: true
+  merge_mode: "sum"
+  smart_flip: true
+  rank_input: false
+  preserve_prefix_tokens: 0
+  norm_type: "rmsnorm"
+
+eval:
+  checkpoint_path: "sc2_native_mamba_scmamba2_like_lung_large/checkpoints/best.pt"
+
+benchmark:
+  split: "test"
