@@ -1,0 +1,52 @@
+eval_name: benchmark_current_lung_sc_dropout_calibration_sc2_medium_v2_test
+seed: 42
+device: auto
+
+data:
+  h5ad_path: raw/census/census_large_lung_12ds_2500cpd.h5ad
+  split_manifest_path: processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet
+  shared_gene_table_path: artifacts/gene_tables/census_archs4_shared_genes.tsv
+  split: test
+  split_col: split
+  n_genes: 4096
+  log1p_input: true
+  batch_size: 64
+  num_workers: 4
+
+model:
+  kind: sc2_striped_medium
+  n_genes: 4096
+  d_model: 128
+  n_mamba_blocks: 12
+  n_attention_checkpoints: 3
+  d_state: 4
+  d_conv: 5
+  expand: 1
+  dropout: 0.10
+  bidirectional_mamba: true
+  mamba_merge_mode: gate
+  top_k: 256
+  n_heads: 4
+  routed_learned_fraction: 0.50
+  expression_score_weight: 0.25
+  nonzero_bonus: 0.05
+  marker_prior_weight: 0.0
+  use_rank_bins: true
+  n_rank_bins: 32
+  use_depth_token: true
+  n_depth_bins: 8
+  use_modality_token: true
+  n_modalities: 3
+  dropout_head: true
+
+eval:
+  checkpoint_path: sc2_medium_v2_lung_recovery/checkpoints/best.pt
+
+benchmark:
+  mode: evaluate
+  modality: sc
+  nonzero_only: true
+  mask_probs: [0.15, 0.30, 0.50, 0.70]
+  selected_threshold_path: evals/benchmark_current_lung_sc_dropout_calibration_sc2_medium_v2_val/selected_threshold.json
+  zero_threshold: 1.0e-8
+  value_threshold: 0.10
