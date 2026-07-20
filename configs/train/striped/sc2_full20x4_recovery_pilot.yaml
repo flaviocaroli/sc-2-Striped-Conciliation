@@ -1,0 +1,130 @@
+run_name: sc2_full20x4_recovery_pilot
+seed: 42
+device: auto
+
+data:
+  bulk_h5_path: raw/archs4/human_gene_v2.5.h5
+  bulk_manifest_path: processed/manifests/archs4_lung_large_pilot_manifest.parquet
+  sc_h5ad_path: raw/census/census_large_lung_12ds_2500cpd.h5ad
+  sc_split_manifest_path: processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet
+  pseudobulk_h5ad_path: processed/pseudobulk/census_large_lung_12ds_2500cpd_pseudobulk.h5ad
+  shared_gene_table_path: artifacts/gene_tables/census_archs4_shared_genes.tsv
+  n_genes: 4096
+  log1p_input: true
+  bulk_mask_prob: 0.15
+  bulk_noise_std: 0.0
+  sc_mask_prob: 0.15
+  sc_noise_std: 0.0
+  pb_mask_prob: 0.15
+  pb_noise_std: 0.0
+  bulk_batch_size: 2
+  sc_batch_size: 4
+  pb_batch_size: 2
+  num_workers: 2
+
+model:
+  kind: sc2_striped_full
+  n_genes: 4096
+  d_model: 128
+  n_mamba_blocks: 20
+  n_attention_checkpoints: 4
+  d_state: 4
+  d_conv: 5
+  expand: 1
+  dropout: 0.10
+  bidirectional_mamba: true
+  mamba_merge_mode: gate
+  top_k: 256
+  n_heads: 4
+  routed_learned_fraction: 0.50
+  expression_score_weight: 0.25
+  nonzero_bonus: 0.05
+  marker_prior_weight: 0.0
+  use_rank_bins: true
+  n_rank_bins: 32
+  use_depth_token: true
+  n_depth_bins: 8
+  use_modality_token: true
+  n_modalities: 3
+  dropout_head: true
+  gradient_checkpointing: true
+  positive_activation: softplus
+  softplus_beta: 1.0
+  positive_output_bias_init: -2.0
+  reconstruction_mode: positive
+
+train:
+  init_checkpoint_path: null
+  strict_init: true
+  weight_decay: 0.0001
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip_norm: 1.0
+  grad_accum_steps: 4
+  save_every_steps: 20
+  pb_every: 4
+  upper_mamba_blocks: 6
+  amp: true
+  amp_dtype: bfloat16
+
+  loss:
+    name: recovery
+    prediction_key: positive_value
+    smooth_l1_beta: 0.20
+    zero_threshold: 1.0e-8
+    masked_positive_weight: 4.0
+    visible_positive_weight: 1.0
+    zero_regularization_weight: 0.02
+    zero_margin: 0.05
+    dropout_weight: 0.10
+    negative_ratio: 3.0
+    structure_weight: 0.20
+    variance_weight: 0.20
+    bulk:
+      prediction_key: positive_value
+      smooth_l1_beta: 0.20
+      observed_consistency_weight: 0.05
+    pseudobulk:
+      prediction_key: positive_value
+      smooth_l1_beta: 0.20
+      observed_consistency_weight: 0.05
+
+  selection:
+    prediction_key: positive_value
+    min_std_ratio: 0.15
+    max_zero_fill_rate: 0.25
+    zero_fill_threshold: 0.10
+
+  stages:
+    - name: dense_warmup
+      epochs: 2
+      steps_per_epoch: 100
+      train_groups: [all]
+      lr_heads: 0.00025
+      lr_upper: 0.00020
+      lr_base: 0.00020
+      warmup_ratio: 0.10
+      lr_end_ratio: 0.30
+      modality_weights: {sc: 0.50, bulk: 1.00, pseudobulk: 0.25, unpaired_align: 0.0}
+
+    - name: direct_recovery
+      epochs: 3
+      steps_per_epoch: 150
+      train_groups: [all]
+      lr_heads: 0.00015
+      lr_upper: 0.00010
+      lr_base: 0.00008
+      warmup_ratio: 0.05
+      lr_end_ratio: 0.20
+      modality_weights: {sc: 1.00, bulk: 0.25, pseudobulk: 0.25, unpaired_align: 0.0}
+
+    - name: recovery_refine
+      epochs: 1
+      steps_per_epoch: 150
+      train_groups: [all]
+      lr_heads: 0.00005
+      lr_upper: 0.00003
+      lr_base: 0.00002
+      warmup_ratio: 0.0
+      lr_end_ratio: 0.10
+      modality_weights: {sc: 1.00, bulk: 0.10, pseudobulk: 0.10, unpaired_align: 0.0}
