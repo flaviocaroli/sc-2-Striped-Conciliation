@@ -460,7 +460,11 @@ def main() -> None:
     best_eligible_epoch: int | None = None
 
     if resume_path is not None:
-        checkpoint_data = torch.load(resume_path, map_location=device)
+        checkpoint_data = torch.load(
+            resume_path,
+            map_location=device,
+            weights_only=False,
+        )
         model.load_state_dict(checkpoint_data["model_state_dict"], strict=True)
         optimizer.load_state_dict(checkpoint_data["optimizer_state_dict"])
         if scaler.is_enabled() and "scaler_state_dict" in checkpoint_data:
