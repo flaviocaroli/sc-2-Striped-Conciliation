@@ -120,14 +120,86 @@ def capture_rng_state() -> dict[str, Any]:
     return state
 
 
-def restore_rng_state(state: Mapping[str, Any] | None) -> None:
+def restore_rng_state(state: dict | None) -> None:
+    """Restore Python, NumPy, CPU torch, and CUDA RNG states safely."""
     if not state:
         return
-    random.setstate(state["python"])
-    np.random.set_state(state["numpy"])
-    torch.set_rng_state(state["torch"])
-    if torch.cuda.is_available() and "cuda" in state:
-        torch.cuda.set_rng_state_all(state["cuda"])
+
+    import random
+
+    import numpy as np
+    import torch
+
+    python_state = state.get("python")
+    if python_state is not None:
+        random.setstate(python_state)
+
+    numpy_state = state.get("numpy")
+    if numpy_state is not None:
+        np.random.set_state(numpy_state)
+
+    torch_state = state.get("torch")
+    if torch_state is not None:
+        if not isinstance(torch_state, torch.Tensor):
+            torch_state = torch.as_tensor(
+                torch_state,
+                dtype=torch.uint8,
+            )
+
+        torch_state = (
+            torch_state.detach()
+            .to(device="cpu", dtype=torch.uint8)
+            .contiguous()
+        )
+
+        torch.set_rng_state(torch_state)
+
+    cuda_state = state.get("cuda")
+    if cuda_state is None:
+        cuda_state = state.get("cuda_all")
+
+    if (
+        cuda_state is not None
+        and torch.cuda.is_available()
+    ):
+        if isinstance(cuda_state, torch.Tensor):
+            cuda_states = [cuda_state]
+        else:
+            cuda_states = list(cuda_state)
+
+        normalized_cuda_states = []
+
+        for item in cuda_states:
+            if not isinstance(item, torch.Tensor):
+                item = torch.as_tensor(
+                    item,
+                    dtype=torch.uint8,
+                )
+
+            normalized_cuda_states.append(
+                item.detach()
+                .to(device="cpu", dtype=torch.uint8)
+                .contiguous()
+            )
+
+        available_devices = torch.cuda.device_count()
+
+        if len(normalized_cuda_states) == available_devices:
+            torch.cuda.set_rng_state_all(
+                normalized_cuda_states
+            )
+        elif normalized_cuda_states:
+            current_device = torch.cuda.current_device()
+
+            source_index = min(
+                current_device,
+                len(normalized_cuda_states) - 1,
+            )
+
+            torch.cuda.set_rng_state(
+                normalized_cuda_states[source_index],
+                device=current_device,
+            )
 
 
 def group_name(name: str, n_mamba_blocks: int, upper_mamba_blocks: int) -> str:
@@ -462,7 +534,7 @@ def main() -> None:
     if resume_path is not None:
         checkpoint_data = torch.load(
             resume_path,
-            map_location=device,
+            map_location="cpu",
             weights_only=False,
         )
         model.load_state_dict(checkpoint_data["model_state_dict"], strict=True)
