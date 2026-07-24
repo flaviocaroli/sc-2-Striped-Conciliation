@@ -18,7 +18,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     path = Path(args.checkpoint)
-    checkpoint = torch.load(path, map_location="cpu")
+    checkpoint = torch.load(
+        path,
+        map_location="cpu",
+        weights_only=False,
+    )
     config = checkpoint.get("config")
     if not isinstance(config, dict) or "model" not in config:
         raise ValueError("Checkpoint has no resolved model config")
