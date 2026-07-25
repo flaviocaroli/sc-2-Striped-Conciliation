@@ -897,7 +897,11 @@ def main() -> None:
     if not selected_source.exists():
         raise RuntimeError("Training produced neither best_eligible.pt nor best_any.pt")
     shutil.copy2(selected_source, checkpoint_dir / "best.pt")
-    selected_checkpoint = torch.load(selected_source, map_location=device)
+    selected_checkpoint = torch.load(
+        selected_source,
+        map_location="cpu",
+        weights_only=False,
+    )
     model.load_state_dict(selected_checkpoint["model_state_dict"], strict=True)
 
     selection_cfg = dict(train_section.get("selection", {}))
