@@ -173,7 +173,11 @@ def main() -> None:
         matrix = np.log1p(np.maximum(matrix, 0.0)).astype(np.float32)
     print(f"benchmark matrix shape={matrix.shape}")
 
-    checkpoint_data = torch.load(checkpoint_path, map_location=device)
+    checkpoint_data = torch.load(
+        checkpoint_path,
+        map_location="cpu",
+        weights_only=False,
+    )
     checkpoint_cfg = checkpoint_data.get("config")
     if not isinstance(checkpoint_cfg, dict) or "model" not in checkpoint_cfg:
         raise ValueError("Checkpoint must contain its resolved model config")

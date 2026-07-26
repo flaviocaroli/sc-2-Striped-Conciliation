@@ -100,7 +100,11 @@ def main() -> None:
     device = bridge.get_device(cfg.get("device", "auto"))
     output_root = Path(cfg["paths"]["output_root"])
     checkpoint_path = resolve_path(output_root, cfg["eval"]["checkpoint_path"])
-    checkpoint = torch.load(checkpoint_path, map_location=device)
+    checkpoint = torch.load(
+        checkpoint_path,
+        map_location="cpu",
+        weights_only=False,
+    )
     checkpoint_cfg = checkpoint.get("config")
     if not isinstance(checkpoint_cfg, dict) or "model" not in checkpoint_cfg:
         raise ValueError("Checkpoint must contain its resolved training config")

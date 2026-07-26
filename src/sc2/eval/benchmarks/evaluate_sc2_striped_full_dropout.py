@@ -161,7 +161,11 @@ def main() -> None:
     if bool(data_cfg.get("log1p_input", False)):
         matrix = np.log1p(np.maximum(matrix, 0.0)).astype(np.float32)
 
-    checkpoint_data = torch.load(checkpoint_path, map_location=device)
+    checkpoint_data = torch.load(
+        checkpoint_path,
+        map_location="cpu",
+        weights_only=False,
+    )
     checkpoint_cfg = checkpoint_data.get("config")
     if not isinstance(checkpoint_cfg, dict) or "model" not in checkpoint_cfg:
         raise ValueError("Checkpoint must contain model config")
