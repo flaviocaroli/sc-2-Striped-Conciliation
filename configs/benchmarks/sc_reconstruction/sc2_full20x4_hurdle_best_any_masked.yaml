@@ -1,0 +1,26 @@
+eval_name: benchmark_current_lung_sc_masked_sc2_full20x4_hurdle_best_any
+seed: 42
+device: auto
+
+data:
+  h5ad_path: raw/census/census_large_lung_12ds_2500cpd.h5ad
+  split_manifest_path: processed/splits/census_large_lung_12ds_2500cpd_manifest_with_splits.parquet
+  shared_gene_table_path: artifacts/gene_tables/census_archs4_shared_genes.tsv
+  split: test
+  split_col: split
+  n_genes: 4096
+  log1p_input: true
+  batch_size: 32
+  num_workers: 4
+
+eval:
+  checkpoint_path: sc2_full20x4_hurdle_pilot/checkpoints/best_any.pt
+  prediction_key: reconstruction
+  amp: true
+  amp_dtype: bfloat16
+
+benchmark:
+  modality: sc
+  mask_probs: [0.15, 0.30, 0.50, 0.70]
+  nonzero_only: true
+  zero_fill_threshold: 0.10
