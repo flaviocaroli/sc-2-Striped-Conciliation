@@ -1,0 +1,27 @@
+zero_threshold: 1.0e-8
+batch_size: 32
+max_true_zero_fill: 0.02
+min_precision: 0.0
+model:
+  n_mamba_blocks: 20
+  n_attention_checkpoints: 4
+  d_model: 128
+  d_state: 4
+  d_conv: 5
+  expand: 1
+  dropout: 0.10
+  top_k: 256
+  n_heads: 4
+  use_rank_bins: true
+  n_rank_bins: 32
+  use_depth_token: true
+  n_depth_bins: 8
+  use_modality_token: true
+  n_modalities: 3
+  dropout_head: true
+  bidirectional_mamba: true
+  mamba_merge_mode: gate
+  gradient_checkpointing: false
+  positive_activation: softplus
+  positive_output_bias_init: -2.0
+  reconstruction_mode: preserve_observed

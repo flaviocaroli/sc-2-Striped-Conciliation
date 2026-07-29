@@ -1,0 +1,55 @@
+registry_version: 1
+frozen_at: "2026-07-28"
+policy:
+  exclude_from_pretraining_by_dataset_id: true
+  exclude_by_accession_alias: true
+  exclude_donor_overlap_when_known: true
+  validation_thresholds_never_tuned_on_test: true
+benchmarks:
+  - name: Bubble_paired
+    task: paired_bulk_guided_recovery
+    accessions: [GSE118767, GSE86337]
+    status: verify_and_freeze_before_planning
+  - name: BAL_paired
+    task: paired_bulk_guided_recovery
+    accessions: [GSE316545]
+    status: verify_and_freeze_before_planning
+  - name: Baron_pancreas
+    task: expression_recovery
+    accessions: []
+    aliases: [Baron]
+    status: resolve_exact_dataset_ids
+  - name: Zheng68K
+    task: expression_recovery_and_rank
+    accessions: []
+    aliases: [Zheng68K, PBMC68K]
+    status: resolve_exact_dataset_ids
+  - name: Segerstolpe_pancreas
+    task: expression_recovery
+    accessions: []
+    aliases: [Segerstolpe]
+    status: resolve_exact_dataset_ids
+  - name: hPancreas
+    task: cell_type_annotation
+    accessions: []
+    aliases: [hPancreas]
+    status: resolve_exact_dataset_ids
+  - name: MS_E_HCAD_35
+    task: cell_type_annotation
+    accessions: [E-HCAD-35]
+    status: verify_accession
+  - name: Norman
+    task: perturbation_prediction
+    accessions: []
+    aliases: [Norman]
+    status: resolve_exact_dataset_ids
+  - name: Adamson
+    task: perturbation_prediction
+    accessions: []
+    aliases: [Adamson]
+    status: resolve_exact_dataset_ids
+  - name: Replogle
+    task: perturbation_prediction
+    accessions: []
+    aliases: [Replogle]
+    status: resolve_exact_dataset_ids

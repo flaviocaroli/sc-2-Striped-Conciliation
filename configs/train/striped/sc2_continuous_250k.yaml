@@ -1,0 +1,90 @@
+run_name: sc2_continuous_250k_v1
+seed: 20260728
+device: auto
+
+data:
+  manifest: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/shards.parquet
+  gene_mean_log1p: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_mean_log1p.npy
+
+model:
+  n_mamba_blocks: 20
+  n_attention_checkpoints: 4
+  d_model: 128
+  d_state: 4
+  d_conv: 5
+  expand: 1
+  dropout: 0.10
+  top_k: 256
+  n_heads: 4
+  use_rank_bins: true
+  n_rank_bins: 32
+  use_depth_token: true
+  n_depth_bins: 8
+  use_modality_token: true
+  n_modalities: 3
+  dropout_head: true
+  bidirectional_mamba: true
+  mamba_merge_mode: gate
+  gradient_checkpointing: true
+  positive_activation: softplus
+  positive_output_bias_init: -2.0
+  reconstruction_mode: preserve_observed
+
+train:
+  total_steps: 10000
+  batch_size: 8
+  grad_accum_steps: 4
+  num_workers: 0
+  learning_rate: 0.0001
+  beta1: 0.9
+  beta2: 0.95
+  weight_decay: 0.0001
+  warmup_fraction: 0.05
+  lr_end_ratio: 0.10
+  grad_clip_norm: 1.0
+  amp: true
+  amp_dtype: bfloat16
+  save_every_steps: 100
+  log_every_steps: 10
+  gradient_diagnostic_every_steps: 100
+  modality_weights:
+    sc: 0.60
+    bulk: 0.25
+    pseudobulk: 0.15
+  mask_rates: [0.0, 0.10, 0.15, 0.30, 0.50]
+  mask_probabilities: [0.10, 0.25, 0.30, 0.25, 0.10]
+  loss:
+    zero_threshold: 1.0e-8
+    smooth_l1_beta: 0.20
+    negative_ratio: 3.0
+    focal_gamma: 2.0
+    focal_alpha: 0.5
+    nb_theta: 10.0
+    reference_depth: 10000.0
+    rank_max_genes: 64
+    rank_margin: 0.05
+    weights:
+      masked_count_nb: 0.0
+      gene_centered_residual: 0.0
+      within_cell_rank: 0.0
+      cell_structure: 0.10
+      repair_gate: 0.25
+      expected_positive: 1.0
+      expected_zero: 0.05
+      variance: 0.05
+    ramps:
+      gene_centered_residual:
+        start_step: 1000
+        end_step: 4000
+        start: 0.0
+        end: 0.50
+      within_cell_rank:
+        start_step: 2500
+        end_step: 6000
+        start: 0.0
+        end: 0.25
+      masked_count_nb:
+        start_step: 5000
+        end_step: 8000
+        start: 0.0
+        end: 0.25
