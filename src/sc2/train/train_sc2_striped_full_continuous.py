@@ -19,7 +19,7 @@ from sc2.data.shard_manifest import filter_records, load_manifest
 from sc2.data.sharded_expression_dataset import CounterBasedExpressionStream
 from sc2.losses.continuous_repair_losses import compute_continuous_objective
 from sc2.models.striped.sc2_striped_full import build_sc2_striped_full_from_config
-from sc2.train.checkpointing import atomic_torch_save, build_checkpoint, load_checkpoint
+from sc2.train.checkpointing import atomic_torch_save, build_checkpoint, config_sha256, load_checkpoint
 from sc2.train.gradient_diagnostics import objective_gradient_diagnostics
 from sc2.train.pareto import ParetoFront
 from sc2.train.schedules import cosine_with_warmup, scheduled_weights
@@ -176,6 +176,7 @@ def main() -> None:
             scaler=scaler,
             device=device,
             expected_manifest_sha256=manifest_hash,
+            expected_config_sha256=config_sha256(cfg),
         )
         global_step = int(checkpoint["global_step"])
         next_sample_index = int(checkpoint["next_sample_index"])

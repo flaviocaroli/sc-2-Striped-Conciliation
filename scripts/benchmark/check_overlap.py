@@ -8,37 +8,44 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-
-def normalized(value: object) -> str:
-    return "".join(character.lower() for character in str(value) if character.isalnum())
+from sc2.data.census_pipeline import (
+    dataset_matches_registry,
+    registry_exclusions,
+    validate_registry_payload,
+)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Fail on benchmark/corpus identifier or alias overlap")
+    parser = argparse.ArgumentParser(description="Fail on benchmark/corpus dataset, collection, accession or alias overlap")
     parser.add_argument("--registry", required=True)
-    parser.add_argument("--planned-cells", required=True, help="Parquet with dataset_id and optional title/accession")
+    parser.add_argument("--planned-cells", required=True, help="Parquet with dataset and collection metadata")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--census-release", default=None)
     args = parser.parse_args()
+
     registry = yaml.safe_load(Path(args.registry).read_text(encoding="utf-8"))
+    if not isinstance(registry, dict):
+        raise ValueError("Registry YAML must contain a mapping")
+    errors = validate_registry_payload(registry, expected_release=args.census_release)
+    if errors:
+        raise SystemExit("Benchmark registry is not frozen:\n" + "\n".join(f"- {value}" for value in errors))
     frame = pd.read_parquet(args.planned_cells)
-    searchable_columns = [name for name in ("dataset_id", "collection_id", "accession", "dataset_title", "collection_name") if name in frame]
+    searchable_columns = [
+        name
+        for name in ("dataset_id", "collection_id", "dataset_title", "collection_name", "collection_doi", "citation")
+        if name in frame.columns
+    ]
     if not searchable_columns:
         raise ValueError("Planned cells contain no searchable dataset identifiers")
-    banned = set()
-    for benchmark in registry.get("benchmarks", []):
-        for value in benchmark.get("accessions", []) + benchmark.get("aliases", []):
-            if str(value).strip():
-                banned.add(normalized(value))
+    exclusions = registry_exclusions(registry)
     overlaps = []
-    for column in searchable_columns:
-        for value in frame[column].dropna().astype(str).unique():
-            value_norm = normalized(value)
-            matched = [item for item in banned if item and (item == value_norm or item in value_norm or value_norm in item)]
-            if matched:
-                overlaps.append({"column": column, "value": value, "matched_registry_tokens": sorted(matched)})
+    for row in frame[searchable_columns].drop_duplicates().to_dict(orient="records"):
+        matches = dataset_matches_registry(row, exclusions)
+        if matches:
+            overlaps.append({**row, "matches": matches})
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(overlaps, indent=2), encoding="utf-8")
+    output.write_text(json.dumps(overlaps, indent=2, sort_keys=True), encoding="utf-8")
     if overlaps:
         raise SystemExit(f"benchmark_overlap=FAIL n={len(overlaps)} details={output}")
     print("benchmark_overlap=ok")

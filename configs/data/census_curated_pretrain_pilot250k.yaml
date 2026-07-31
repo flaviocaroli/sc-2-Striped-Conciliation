@@ -6,36 +6,50 @@ target_cells: 250000
 cells_per_shard: 25000
 target_gene_count: 4096
 vocabulary_source: train_split_only
+
+planning:
+  # Plan extra candidates because mitochondrial QC is evaluated after metadata-only selection.
+  candidate_multiplier: 1.30
+
 required_metadata:
   - dataset_id
   - donor_id
   - tissue
   - cell_type
   - assay
+
 quality_control:
   min_detected_genes: 200
   max_mito_fraction: 0.20
   min_cells_per_dataset: 100
+
 sampling_caps:
   per_dataset: 50000
   per_donor: 10000
   per_tissue: 50000
   per_tissue_cell_type: 10000
+
 splits:
-  unit_priority: [donor_id, dataset_id]
+  # The planner uses the composite dataset_id::donor_id group so repeated donor labels
+  # in unrelated studies cannot leak across train/validation/test.
+  unit_priority: [dataset_id, donor_id]
   fractions:
     train: 0.80
     validation: 0.10
     test: 0.10
   seed: 20260728
+
 leakage:
   benchmark_registry: configs/benchmarks/official_benchmark_registry.yaml
   fail_on_overlap: true
+
 normalization:
   counts: raw_integer_counts
   log1p: log1p_cp10k
+
 outputs:
   plan_dir: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/plan
+  selected_cells: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/selected_cells.parquet
   materialized_dir: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/shards
   manifest: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/shards.parquet
   gene_vocabulary: /home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet

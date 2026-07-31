@@ -1,0 +1,30 @@
+registry_version: 2
+frozen_at: "YYYY-MM-DD"
+policy:
+  exclude_from_pretraining_by_dataset_id: true
+  exclude_by_accession_alias: true
+  exclude_donor_overlap_when_known: true
+  validation_thresholds_never_tuned_on_test: true
+benchmarks:
+  - name: example_benchmark
+    task: expression_recovery
+    accessions: [GSE000000]
+    aliases: [Example dataset]
+    dataset_ids: [00000000-0000-0000-0000-000000000000]
+    collection_ids: []
+    status: frozen
+    resolution:
+      disposition: exact_ids_frozen
+      census_release: "2025-01-30"
+      reviewed_at: "YYYY-MM-DD"
+      reviewer: "name"
+      evidence: "Candidate CSV reviewed against Census datasets table and publication metadata."
+
+# For a benchmark absent from the pinned Census release, use:
+# status: frozen
+# resolution:
+#   disposition: absent_from_census_release
+#   census_release: "2025-01-30"
+#   reviewed_at: "YYYY-MM-DD"
+#   reviewer: "name"
+#   evidence: "No candidate matched after accession/title/collection and publication review."

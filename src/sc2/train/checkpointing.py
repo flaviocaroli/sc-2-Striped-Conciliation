@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import os
 import random
 import time
@@ -9,6 +11,11 @@ from typing import Any, Mapping
 import numpy as np
 import torch
 
+
+
+def config_sha256(config: Mapping[str, Any]) -> str:
+    encoded = json.dumps(config, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
 
 def capture_rng_state() -> dict[str, Any]:
     state: dict[str, Any] = {
@@ -75,6 +82,7 @@ def build_checkpoint(
         "next_sample_index": int(next_sample_index),
         "manifest_sha256": str(manifest_sha256),
         "config": dict(config),
+        "config_sha256": config_sha256(config),
         "pareto_state": dict(pareto_state),
         "history": history,
         "rng_state": capture_rng_state(),
@@ -97,12 +105,19 @@ def load_checkpoint(
     scaler: Any,
     device: torch.device,
     expected_manifest_sha256: str,
+    expected_config_sha256: str | None = None,
 ) -> dict[str, Any]:
     checkpoint = torch.load(Path(path), map_location="cpu", weights_only=False)
     if checkpoint.get("format") != "sc2-continuous-checkpoint-v1":
         raise ValueError("Unsupported checkpoint format")
     if str(checkpoint["manifest_sha256"]) != str(expected_manifest_sha256):
         raise ValueError("Manifest changed; refuse exact resume and create a new run")
+    if expected_config_sha256 is not None:
+        checkpoint_config_hash = checkpoint.get("config_sha256")
+        if checkpoint_config_hash is None:
+            raise ValueError("Checkpoint has no config hash; refuse exact resume and create a new run")
+        if str(checkpoint_config_hash) != str(expected_config_sha256):
+            raise ValueError("Resolved configuration changed; refuse exact resume and create a new run")
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
     optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
     optimizer_to_device(optimizer, device)

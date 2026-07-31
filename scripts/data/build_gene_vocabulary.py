@@ -25,7 +25,11 @@ def main() -> None:
     candidates = candidates.sort_values(["variance_log1p", "detected_cells", "ensembl_id"], ascending=[False, False, True])
     required: list[str] = []
     if args.required_genes:
-        required = [line.strip() for line in Path(args.required_genes).read_text(encoding="utf-8").splitlines() if line.strip()]
+        required = [
+            line.strip()
+            for line in Path(args.required_genes).read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        ]
     missing_required = sorted(set(required) - set(candidates["ensembl_id"].astype(str)))
     if missing_required:
         raise ValueError(f"Required genes absent from eligible train-only statistics: {missing_required[:20]}")

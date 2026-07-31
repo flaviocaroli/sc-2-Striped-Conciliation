@@ -88,6 +88,13 @@ class CounterBasedExpressionStream(IterableDataset[dict[str, Any]]):
         self.mask_probabilities = tuple(float(value) for value in mask_probabilities)
         modalities = sorted({record.modality for record in self.records})
         requested = dict(modality_weights or {name: 1.0 for name in modalities})
+        requested_positive = {name for name, weight in requested.items() if float(weight) > 0.0}
+        missing_modalities = requested_positive - set(modalities)
+        if missing_modalities:
+            raise ValueError(
+                "Positive modality weights were configured for missing shard modalities: "
+                f"{sorted(missing_modalities)}; available={modalities}"
+            )
         self.modalities = [name for name in modalities if float(requested.get(name, 0.0)) > 0.0]
         self.modality_weights = [float(requested[name]) for name in self.modalities]
         if not self.modalities:

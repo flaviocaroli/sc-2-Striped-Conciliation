@@ -1,0 +1,3 @@
+# Optional predeclared Ensembl gene IDs that must be retained in the 4,096-gene vocabulary.
+# Keep this file empty unless a benchmark protocol requires specific genes.
+# Add one Ensembl gene ID per line before computing/finalizing the vocabulary.
