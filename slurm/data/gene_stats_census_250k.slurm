@@ -1,8 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=sc2-gstats-250k
+#SBATCH --partition=compute
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=96G
-#SBATCH --time=48:00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --signal=B:USR1@180
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
 #SBATCH --error=/home/3159436/sc2/logs/%x_%j.err
