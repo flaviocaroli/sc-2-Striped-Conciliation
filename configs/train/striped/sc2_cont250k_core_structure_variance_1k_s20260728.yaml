@@ -1,4 +1,4 @@
-run_name: sc2_continuous_250k_sc_only_v1
+run_name: sc2_cont250k_core_structure_variance_1k_s20260728
 seed: 20260728
 device: auto
 data:
@@ -28,7 +28,7 @@ model:
   positive_output_bias_init: -2.0
   reconstruction_mode: preserve_observed
 train:
-  total_steps: 10000
+  total_steps: 1000
   batch_size: 8
   grad_accum_steps: 4
   num_workers: 0
@@ -49,17 +49,9 @@ train:
     bulk: 0.0
     pseudobulk: 0.0
   mask_rates:
-  - 0.0
-  - 0.1
   - 0.15
-  - 0.3
-  - 0.5
   mask_probabilities:
-  - 0.1
-  - 0.25
-  - 0.3
-  - 0.25
-  - 0.1
+  - 1.0
   loss:
     zero_threshold: 1.0e-08
     smooth_l1_beta: 0.2
@@ -74,24 +66,9 @@ train:
       masked_count_nb: 0.0
       gene_centered_residual: 0.0
       within_cell_rank: 0.0
-      cell_structure: 0.1
+      cell_structure: 0.05
       repair_gate: 0.25
       expected_positive: 1.0
       expected_zero: 0.05
-      variance: 0.05
-    ramps:
-      gene_centered_residual:
-        start_step: 1000
-        end_step: 4000
-        start: 0.0
-        end: 0.5
-      within_cell_rank:
-        start_step: 2500
-        end_step: 6000
-        start: 0.0
-        end: 0.25
-      masked_count_nb:
-        start_step: 5000
-        end_step: 8000
-        start: 0.0
-        end: 0.25
+      variance: 0.01
+    ramps: {}

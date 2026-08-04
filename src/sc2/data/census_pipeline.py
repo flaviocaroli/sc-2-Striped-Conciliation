@@ -162,14 +162,14 @@ def registry_exclusions(registry: Mapping[str, Any]) -> RegistryExclusions:
             text = str(value).strip()
             if text:
                 collection_ids.add(text)
-        for key in ("accessions", "aliases"):
-            for value in benchmark.get(key, []):
-                token = normalized(value)
-                if token:
-                    tokens.add(token)
-        name_token = normalized(benchmark.get("name", ""))
-        if name_token:
-            tokens.add(name_token)
+        # Accessions, aliases, and benchmark names are provenance metadata,
+        # not automatic substring exclusions. Short values such as "Xin" or
+        # "BAL" can otherwise match unrelated titles. Only explicit
+        # exclusion_tokens are eligible for normalized substring matching.
+        for value in benchmark.get("exclusion_tokens", []):
+            token = normalized(value)
+            if token:
+                tokens.add(token)
     return RegistryExclusions(
         dataset_ids=frozenset(dataset_ids),
         collection_ids=frozenset(collection_ids),
