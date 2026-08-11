@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=sc2-shards-250k
+#SBATCH --partition=compute
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=96G
 #SBATCH --time=2-00:00:00
