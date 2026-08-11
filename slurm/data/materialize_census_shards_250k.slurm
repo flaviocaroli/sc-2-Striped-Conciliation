@@ -2,7 +2,7 @@
 #SBATCH --job-name=sc2-shards-250k
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=96G
-#SBATCH --time=48:00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --output=/home/3159436/sc2/logs/%x_%j.out
 #SBATCH --error=/home/3159436/sc2/logs/%x_%j.err
 
