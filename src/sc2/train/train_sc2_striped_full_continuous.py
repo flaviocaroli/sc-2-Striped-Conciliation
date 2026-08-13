@@ -6,6 +6,7 @@ import os
 import random
 import signal
 import subprocess
+import time
 from pathlib import Path
 from typing import Any
 
@@ -126,6 +127,29 @@ def main() -> None:
         return
 
     model = build_sc2_striped_full_from_config(cfg["model"], n_genes=n_genes).to(device)
+    trainable_parameters = sum(
+        parameter.numel()
+        for parameter in model.parameters()
+        if parameter.requires_grad
+    )
+    print(
+        json.dumps(
+            {
+                "device": str(device),
+                "mamba_backend": cfg["model"].get(
+                    "mamba_backend",
+                    "reference",
+                ),
+                "gradient_checkpointing": cfg["model"].get(
+                    "gradient_checkpointing",
+                    False,
+                ),
+                "trainable_parameters": trainable_parameters,
+            },
+            sort_keys=True,
+        ),
+        flush=True,
+    )
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=float(train_cfg["learning_rate"]),
@@ -197,6 +221,11 @@ def main() -> None:
     ramps = dict(train_cfg["loss"].get("ramps", {}))
 
     while global_step < total_steps:
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+            torch.cuda.reset_peak_memory_stats(device)
+        step_started = time.perf_counter()
+
         model.train()
         optimizer.zero_grad(set_to_none=True)
         aggregate: dict[str, float] = {}
@@ -218,7 +247,14 @@ def main() -> None:
                 scaled_loss.backward()
             aggregate["loss"] = aggregate.get("loss", 0.0) + float(objective.loss.detach().item()) / grad_accum
             for name, value in objective.components.items():
-                aggregate[name] = aggregate.get(name, 0.0) + float(value.detach().item()) / grad_accum
+                if float(
+                    current_loss_cfg["weights"].get(name, 0.0)
+                ) == 0.0:
+                    continue
+                aggregate[name] = (
+                    aggregate.get(name, 0.0)
+                    + float(value.detach().item()) / grad_accum
+                )
 
         if scaler.is_enabled():
             scaler.unscale_(optimizer)
@@ -229,8 +265,25 @@ def main() -> None:
         else:
             optimizer.step()
         scheduler.step()
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+
+        step_seconds = time.perf_counter() - step_started
+        peak_gpu_gb = (
+            torch.cuda.max_memory_allocated(device) / (1024 ** 3)
+            if device.type == "cuda"
+            else 0.0
+        )
+
         global_step += 1
         aggregate.update(
+            step_seconds=step_seconds,
+            samples_per_second=(
+                int(train_cfg["batch_size"])
+                * grad_accum
+                / max(step_seconds, 1.0e-9)
+            ),
+            peak_gpu_memory_gb=peak_gpu_gb,
             step=global_step,
             next_sample_index=next_sample_index,
             grad_norm=grad_norm,
