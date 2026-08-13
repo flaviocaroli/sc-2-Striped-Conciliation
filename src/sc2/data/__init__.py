@@ -4,7 +4,6 @@ from .census_reader import (
     load_census_manifest,
     load_census_split_manifest,
 )
-from .census_datasets import CensusPilotDataset
 
 __all__ = [
     "load_census_gene_table",
@@ -13,3 +12,14 @@ __all__ = [
     "load_census_split_manifest",
     "CensusPilotDataset",
 ]
+
+
+def __getattr__(name):
+    if name == "CensusPilotDataset":
+        from .census_datasets import CensusPilotDataset
+
+        return CensusPilotDataset
+
+    raise AttributeError(
+        f"module {__name__!r} has no attribute {name!r}"
+    )
