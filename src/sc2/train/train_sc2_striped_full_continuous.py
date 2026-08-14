@@ -307,6 +307,18 @@ def main() -> None:
                 git_commit=_git_commit(),
             )
             atomic_torch_save(payload, checkpoint_dir / "last.pt")
+
+            retain_every = int(train_cfg.get("retain_every_steps", 0))
+            if retain_every > 0 and (
+                global_step % retain_every == 0 or global_step == total_steps
+            ):
+                retained_path = checkpoint_dir / f"step_{global_step:06d}.pt"
+                atomic_torch_save(payload, retained_path)
+                print(
+                    f"checkpoint_retained={retained_path.name} step={global_step}",
+                    flush=True,
+                )
+
             _json_dump({"global_step": global_step, "next_sample_index": next_sample_index}, run_dir / "status.json")
         if _STOP_REQUESTED:
             print("stopped_after_checkpoint=1", flush=True)
