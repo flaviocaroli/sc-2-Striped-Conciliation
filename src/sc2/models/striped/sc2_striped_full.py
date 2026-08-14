@@ -59,6 +59,7 @@ class SC2StripedFull(SC2StripedMedium):
         dropout_head: bool = True,
         bidirectional_mamba: bool = True,
         mamba_merge_mode: str = "gate",
+        mamba_backend: str = "reference",
         zero_threshold: float = 1.0e-8,
         marker_prior: Optional[torch.Tensor] = None,
         gradient_checkpointing: bool = True,
@@ -91,6 +92,7 @@ class SC2StripedFull(SC2StripedMedium):
             dropout_head=dropout_head,
             bidirectional_mamba=bidirectional_mamba,
             mamba_merge_mode=mamba_merge_mode,
+            mamba_backend=mamba_backend,
             zero_threshold=zero_threshold,
             marker_prior=marker_prior,
         )
