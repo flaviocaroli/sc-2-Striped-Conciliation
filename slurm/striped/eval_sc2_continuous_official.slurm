@@ -81,8 +81,18 @@ done
   exit 2
 }
 
-python -u -m sc2.eval.evaluate_continuous_repair \
-  --config "${SC2_EVAL_CONFIG}" \
-  --checkpoint "${SC2_CHECKPOINT}" \
-  --benchmark "${SC2_BENCHMARK}" \
+EVAL_ARGS=(
+  --config "${SC2_EVAL_CONFIG}"
+  --checkpoint "${SC2_CHECKPOINT}"
+  --benchmark "${SC2_BENCHMARK}"
   --output-dir "${SC2_OUTPUT_DIR}"
+)
+
+if [[ -n "${SC2_THRESHOLD:-}" ]]; then
+  echo "SC2_THRESHOLD=${SC2_THRESHOLD}"
+  EVAL_ARGS+=(--threshold "${SC2_THRESHOLD}")
+else
+  echo "SC2_THRESHOLD=<selected-on-validation>"
+fi
+
+python -u -m sc2.eval.evaluate_continuous_repair "${EVAL_ARGS[@]}"

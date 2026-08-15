@@ -1,0 +1,91 @@
+{
+  "checkpoint_step": 4000,
+  "seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "selection_split": "validation",
+  "max_true_zero_fill": 0.02,
+  "criterion": "For each mask rate, choose one common threshold across all seeds that maximizes mean validation recall subject to true_zero_fill <= 0.02 for every seed.",
+  "thresholds": {
+    "15": {
+      "threshold": 0.545,
+      "mean_recall": 0.1402973353692079,
+      "mean_precision": 0.40432601280879604,
+      "mean_true_zero_fill": 0.01602943031165213,
+      "per_seed": {
+        "20260728": {
+          "threshold": 0.545,
+          "recall": 0.15473610746950045,
+          "precision": 0.38602608745839667,
+          "true_zero_fill": 0.01882277966989396
+        },
+        "20260729": {
+          "threshold": 0.545,
+          "recall": 0.14501943334824252,
+          "precision": 0.39086605662857826,
+          "true_zero_fill": 0.017285019541600326
+        },
+        "20260730": {
+          "threshold": 0.545,
+          "recall": 0.12113646528988078,
+          "precision": 0.43608589433941314,
+          "true_zero_fill": 0.0119804917234621
+        }
+      }
+    },
+    "30": {
+      "threshold": 0.51,
+      "mean_recall": 0.13630400479646357,
+      "mean_precision": 0.5756397884630055,
+      "mean_true_zero_fill": 0.015500132557901556,
+      "per_seed": {
+        "20260728": {
+          "threshold": 0.51,
+          "recall": 0.13758312601030814,
+          "precision": 0.5915511053272879,
+          "true_zero_fill": 0.014531678389464257
+        },
+        "20260729": {
+          "threshold": 0.51,
+          "recall": 0.14664782525295658,
+          "precision": 0.5446652966826816,
+          "true_zero_fill": 0.018753477986098967
+        },
+        "20260730": {
+          "threshold": 0.51,
+          "recall": 0.12468106312612598,
+          "precision": 0.5907029633790467,
+          "true_zero_fill": 0.013215241298141446
+        }
+      }
+    },
+    "50": {
+      "threshold": 0.46,
+      "mean_recall": 0.11660265170947215,
+      "mean_precision": 0.6910352523300888,
+      "mean_true_zero_fill": 0.013646189641059547,
+      "per_seed": {
+        "20260728": {
+          "threshold": 0.46,
+          "recall": 0.10500438687050433,
+          "precision": 0.719973509828726,
+          "true_zero_fill": 0.010412061913829401
+        },
+        "20260729": {
+          "threshold": 0.46,
+          "recall": 0.1339403813598778,
+          "precision": 0.6418627339573119,
+          "true_zero_fill": 0.01905309718071903
+        },
+        "20260730": {
+          "threshold": 0.46,
+          "recall": 0.11086318689803433,
+          "precision": 0.7112695132042286,
+          "true_zero_fill": 0.011473409828630207
+        }
+      }
+    }
+  }
+}
