@@ -48,18 +48,42 @@ def main() -> None:
     batch_size = int(cfg.get("batch_size", 32))
     expected_chunks: list[np.ndarray] = []
     probability_chunks: list[np.ndarray] = []
+    reconstruction_chunks: list[np.ndarray] = []
     with torch.inference_mode():
         for start in range(0, x.shape[0], batch_size):
             tensor = torch.from_numpy(x[start : start + batch_size]).to(device)
             output = model(tensor, modality="sc", return_dict=True)
             expected_chunks.append(output["expected_repair"].float().cpu().numpy())
             probability_chunks.append(output["dropout_probability"].float().cpu().numpy())
+            reconstruction_chunks.append(output["reconstruction"].float().cpu().numpy())
     expected = np.concatenate(expected_chunks, axis=0)
     probability = np.concatenate(probability_chunks, axis=0)
+    reconstruction = np.concatenate(reconstruction_chunks, axis=0)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     value_metrics = masked_value_metrics(expected, y, positive)
+
+    observed_nonzero = np.abs(x) > float(model.zero_threshold)
+    preservation_error = reconstruction[observed_nonzero] - x[observed_nonzero]
+
+    if preservation_error.size:
+        preservation_metrics = {
+            "observed_nonzero_mse": float(np.mean(preservation_error ** 2)),
+            "observed_nonzero_mae": float(np.mean(np.abs(preservation_error))),
+            "observed_nonzero_max_abs_error": float(np.max(np.abs(preservation_error))),
+            "observed_nonzero_changed_fraction": float(np.mean(preservation_error != 0.0)),
+            "n_observed_nonzero": int(preservation_error.size),
+        }
+    else:
+        preservation_metrics = {
+            "observed_nonzero_mse": float("nan"),
+            "observed_nonzero_mae": float("nan"),
+            "observed_nonzero_max_abs_error": float("nan"),
+            "observed_nonzero_changed_fraction": float("nan"),
+            "n_observed_nonzero": 0,
+        }
+
     gate_metrics = gate_discrimination(probability, positive, true_zero)
     sweep = threshold_sweep(probability, positive, true_zero)
     sweep.to_csv(output_dir / "threshold_sweep.csv", index=False)
@@ -78,6 +102,7 @@ def main() -> None:
     row = sweep.iloc[int(np.argmin(np.abs(sweep["threshold"].to_numpy() - threshold)))]
     summary: dict[str, Any] = {
         **value_metrics,
+        **preservation_metrics,
         **{f"gate_{key}": value for key, value in gate_metrics.items()},
         "threshold": threshold,
         "threshold_source": threshold_source,
