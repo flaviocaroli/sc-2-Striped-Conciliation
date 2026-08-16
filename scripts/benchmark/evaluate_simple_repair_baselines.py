@@ -25,14 +25,30 @@ def main() -> None:
     mask = np.asarray(data["synthetic_mask"], dtype=bool)
     if x.shape != y.shape or mask.shape != y.shape:
         raise ValueError("x, y and synthetic_mask must have identical shapes")
+
+    if "available_gene_mask" in data.files:
+        available_gene_mask = np.asarray(data["available_gene_mask"], dtype=bool)
+        if available_gene_mask.shape != (y.shape[1],):
+            raise ValueError(
+                "available_gene_mask must have shape (n_genes,), "
+                f"got {available_gene_mask.shape}"
+            )
+    else:
+        available_gene_mask = np.ones(y.shape[1], dtype=bool)
+
+    available = available_gene_mask[None, :]
+    if np.any(mask & ~available):
+        raise ValueError("synthetic_mask contains unavailable external genes")
+
     gene_mean = np.load(args.gene_mean).astype(np.float32)
     if gene_mean.shape != (x.shape[1],):
         raise ValueError(f"Gene mean shape {gene_mean.shape} does not match genes={x.shape[1]}")
     if not 0.0 <= args.shrinkage_alpha <= 1.0:
         raise ValueError("shrinkage-alpha must be in [0, 1]")
 
-    observed_counts = (~mask).sum(axis=1, keepdims=True)
-    observed_sum = np.where(mask, 0.0, x).sum(axis=1, keepdims=True)
+    observed_eligible = (~mask) & available
+    observed_counts = observed_eligible.sum(axis=1, keepdims=True)
+    observed_sum = np.where(observed_eligible, x, 0.0).sum(axis=1, keepdims=True)
     cell_mean = np.divide(
         observed_sum,
         observed_counts,

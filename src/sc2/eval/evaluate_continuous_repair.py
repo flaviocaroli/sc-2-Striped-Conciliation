@@ -39,7 +39,24 @@ def main() -> None:
     positive = np.asarray(data["synthetic_mask"], dtype=bool)
     if x.shape != y.shape or positive.shape != y.shape:
         raise ValueError("x, y and synthetic_mask must have identical shapes")
-    true_zero = y <= float(cfg.get("zero_threshold", 1.0e-8))
+
+    if "available_gene_mask" in data.files:
+        available_gene_mask = np.asarray(data["available_gene_mask"], dtype=bool)
+        if available_gene_mask.shape != (y.shape[1],):
+            raise ValueError(
+                "available_gene_mask must have shape (n_genes,), "
+                f"got {available_gene_mask.shape}"
+            )
+    else:
+        available_gene_mask = np.ones(y.shape[1], dtype=bool)
+
+    available = available_gene_mask[None, :]
+    if np.any(positive & ~available):
+        raise ValueError("synthetic_mask contains unavailable external genes")
+
+    true_zero = (
+        y <= float(cfg.get("zero_threshold", 1.0e-8))
+    ) & available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = build_sc2_striped_full_from_config(cfg["model"], n_genes=x.shape[1]).to(device)
     checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
@@ -64,7 +81,9 @@ def main() -> None:
 
     value_metrics = masked_value_metrics(expected, y, positive)
 
-    observed_nonzero = np.abs(x) > float(model.zero_threshold)
+    observed_nonzero = (
+        np.abs(x) > float(model.zero_threshold)
+    ) & available
     preservation_error = reconstruction[observed_nonzero] - x[observed_nonzero]
 
     if preservation_error.size:
@@ -104,6 +123,8 @@ def main() -> None:
         **value_metrics,
         **preservation_metrics,
         **{f"gate_{key}": value for key, value in gate_metrics.items()},
+        "n_available_genes": int(available_gene_mask.sum()),
+        "available_gene_fraction": float(available_gene_mask.mean()),
         "threshold": threshold,
         "threshold_source": threshold_source,
         "threshold_recall": float(row["recall"]),
