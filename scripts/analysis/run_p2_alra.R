@@ -29,8 +29,7 @@ if (
     || n_cols <= 100
 ) {
     stop(
-        "ALRA automatic choose_k requires "
-        "both dimensions > 100 for K=100."
+        "ALRA automatic choose_k requires both dimensions > 100 for K=100."
     )
 }
 
