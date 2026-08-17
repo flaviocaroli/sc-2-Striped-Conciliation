@@ -1,0 +1,43 @@
+{
+  "alra": {
+    "install_job": "629759",
+    "install_partition": "medium_cpu",
+    "package_version": "0.0.0.9000",
+    "root": "/home/3159436/sc2/tools/p2-alra",
+    "rsvd_version": "1.0.5",
+    "source_commit": "f34d46570b1221179047d9f99c235ed880cc3bae"
+  },
+  "files": {
+    "alra_DESCRIPTION": "5dd8cf0761662766e34a73e9984fbfcc48d410bc4edc16f48b35f74b0c04b5d3",
+    "alra_install.err": "c86a817bd77e5fcfd6be12aaf735c94928433907d0fc9420b324411e85dda180",
+    "alra_install.out": "4aa17620343b9dff9c885e4191682ab701bc1030cb5ce3094cbd7fe05ebd5729",
+    "alra_packages.tsv": "2e8f0cfc25132207e901db2f0c2cf9b269a478eacf676bd350145b34c4c10a3b",
+    "alra_runtime.json": "e1ee0be1d5d55c66d8a09b8d119937e8a99da2af88f16fa83e29234ee98d0427",
+    "alra_sessionInfo.txt": "afd8dab26d5cd756075f39984d35a87a8dd6607bbd9599bfe3965082048bd04d",
+    "alra_source.txt": "80c568331215ea42bc1adde762dc1d5f12de48531880a8dfab26ff9f622cf345",
+    "gpu_scheduler.txt": "b331f9d6892a221c8b04a73d02a40844941b195946b0acc7f6c392e9b6f12e05",
+    "scvi_conda_explicit.txt": "3d4741823c69406f1921ca9f13d9b4a33d8f7bc0b869e13c4bf803adcb2435e4",
+    "scvi_gpu_smoke.err": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scvi_gpu_smoke.out": "51cbc1326a062c6379616fb69b92479c5b71e6ac1c3932c200a5842f736a210a",
+    "scvi_pip_freeze.txt": "11ebe5652a19a290db7827d6c92f6df2fa0a242a78c7b19e6b32b8e3234c27b2",
+    "scvi_runtime.json": "5cd1ca43dd8fae563a5542e83bd4843f906a23d58307500ec0b52a0d3766a20a"
+  },
+  "protocol": {
+    "freeze_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_comparator_protocol.json",
+    "sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9"
+  },
+  "receipt_name": "sc2_p2_comparator_environment_v1",
+  "scvi": {
+    "environment": "/home/3159436/.conda/envs/sc2-p2-scvi",
+    "gpu_gres": "gpu:H200:1",
+    "gpu_partition": "short_gpuh200",
+    "gpu_smoke_job": "629737",
+    "observed_version": "1.5.0.post1",
+    "requested_version": "1.5.0.post1",
+    "torch": "2.13.0+cu130",
+    "torch_cuda_build": "13.0",
+    "user_site_enabled": false
+  },
+  "status": "frozen_before_comparator_validation_or_inference"
+}

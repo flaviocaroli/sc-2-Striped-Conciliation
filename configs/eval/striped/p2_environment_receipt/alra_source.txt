@@ -1,0 +1,14 @@
+repository=https://github.com/KlugerLab/ALRA.git
+frozen_commit=f34d46570b1221179047d9f99c235ed880cc3bae
+install_job=629759
+install_partition=medium_cpu
+
+commit f34d46570b1221179047d9f99c235ed880cc3bae
+Author:     George Linderman <george@Georges-MacBook-Pro.local>
+AuthorDate: Fri May 19 18:02:40 2023 -0400
+Commit:     George Linderman <george@Georges-MacBook-Pro.local>
+CommitDate: Fri May 19 18:02:40 2023 -0400
+
+    Added data to the data folder
+
+===== STATUS =====

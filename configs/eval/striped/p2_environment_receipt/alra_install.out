@@ -1,0 +1,35 @@
+===== ENV =====
+ALRA_SRC=/home/3159436/sc2/tools/p2-alra/src/ALRA
+ALRA_RLIB=/home/3159436/sc2/tools/p2-alra/Rlib
+R_LIBS_USER=/home/3159436/sc2/tools/p2-alra/Rlib
+OBSERVED_COMMIT=f34d46570b1221179047d9f99c235ed880cc3bae
+
+===== INSTALL RSVD =====
+install_lib=/home/3159436/sc2/tools/p2-alra/Rlib
+  converting help for package ‘rsvd’
+    digits                                  html  
+    ggbiplot                                html  
+    ggcorplot                               html  
+    ggindplot                               html  
+    ggscreeplot                             html  
+    plot.rpca                               html  
+    rcur                                    html  
+    rid                                     html  
+    rpca                                    html  
+    rqb                                     html  
+    rrpca                                   html  
+    rsvd                                    html  
+    tiger                                   html  
+
+===== INSTALL ALRA =====
+  converting help for package ‘ALRA’
+    alra                                    html  
+    alraSeurat2                             html  
+    choose_k                                html  
+    normalize_data                          html  
+
+===== VERIFY =====
+R=R version 4.6.1 (2026-06-24)
+rsvd=1.0.5
+ALRA=0.0.0.9000
+ALRA_IMPORT=PASS

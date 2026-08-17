@@ -1,0 +1,42 @@
+trying URL 'https://cloud.r-project.org/src/contrib/rsvd_1.0.5.tar.gz'
+Content type 'application/x-gzip' length 3458090 bytes (3.3 MB)
+==================================================
+downloaded 3.3 MB
+
+* installing *source* package ‘rsvd’ ...
+** this is package ‘rsvd’ version ‘1.0.5’
+** package ‘rsvd’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+    finding HTML links ... done
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rsvd)
+
+The downloaded source packages are in
+	‘/tmp/RtmpRr1424/downloaded_packages’
+* installing *source* package ‘ALRA’ ...
+** this is package ‘ALRA’ version ‘0.0.0.9000’
+** using staged installation
+Warning in person1(given = given[[i]], family = family[[i]], middle = middle[[i]],  :
+  Invalid ORCID iD: ‘YOUR-ORCID-ID’.
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+    finding HTML links ... done
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ALRA)

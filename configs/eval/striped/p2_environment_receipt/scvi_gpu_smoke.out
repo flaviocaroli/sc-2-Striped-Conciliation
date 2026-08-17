@@ -1,0 +1,8 @@
+user_site_enabled= False
+scvi= 1.5.0.post1
+torch= 2.13.0+cu130
+torch_cuda_build= 13.0
+cuda_available= True
+device= NVIDIA H200 NVL
+gpu_sum= 1048576.0
+SCVI_GPU_SMOKE=PASS
