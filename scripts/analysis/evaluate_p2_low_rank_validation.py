@@ -16,10 +16,10 @@ from sc2.eval.p2_selective import (
     choose_exact_threshold,
     exact_threshold_frontier,
     presentation_frontier,
+    score_discrimination,
 )
 
 from sc2.eval.selective_repair_metrics import (
-    gate_discrimination,
     masked_value_metrics,
     risk_coverage_curve,
 )
@@ -347,7 +347,7 @@ def main() -> None:
         )
     )
 
-    gate_metrics = gate_discrimination(
+    score_metrics = score_discrimination(
         score,
         positive,
         true_zero,
@@ -405,6 +405,10 @@ def main() -> None:
             0.0,
         "repair_score":
             "nonnegative low-rank reconstruction magnitude",
+        "score_scale":
+            "unbounded_nonnegative_expression",
+        "score_calibration_applicable":
+            False,
         "threshold":
             threshold,
         "threshold_recall":
@@ -446,8 +450,8 @@ def main() -> None:
         ),
         **preservation,
         **prefixed(
-            gate_metrics,
-            "gate_",
+            score_metrics,
+            "score_",
         ),
     }
 

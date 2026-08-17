@@ -2,6 +2,78 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from sklearn.metrics import (
+    average_precision_score,
+    roc_auc_score,
+)
+
+
+
+def score_discrimination(
+    score: np.ndarray,
+    positive: np.ndarray,
+    negative: np.ndarray,
+) -> dict[str, float]:
+    if (
+        score.shape != positive.shape
+        or score.shape != negative.shape
+    ):
+        raise ValueError(
+            "score, positive and negative must "
+            "have identical shapes"
+        )
+
+    if np.any(positive & negative):
+        raise ValueError(
+            "positive and negative overlap"
+        )
+
+    eligible = positive | negative
+
+    labels = np.asarray(
+        positive[eligible],
+        dtype=np.int8,
+    )
+
+    scores = np.asarray(
+        score[eligible],
+        dtype=np.float64,
+    )
+
+    if scores.size == 0:
+        raise ValueError(
+            "No eligible score positions"
+        )
+
+    if not np.all(np.isfinite(scores)):
+        raise ValueError(
+            "Non-finite discrimination score"
+        )
+
+    prevalence = float(labels.mean())
+
+    if np.unique(labels).size < 2:
+        return {
+            "auroc": float("nan"),
+            "auprc": float("nan"),
+            "prevalence": prevalence,
+        }
+
+    return {
+        "auroc": float(
+            roc_auc_score(
+                labels,
+                scores,
+            )
+        ),
+        "auprc": float(
+            average_precision_score(
+                labels,
+                scores,
+            )
+        ),
+        "prevalence": prevalence,
+    }
 
 
 def exact_threshold_frontier(
