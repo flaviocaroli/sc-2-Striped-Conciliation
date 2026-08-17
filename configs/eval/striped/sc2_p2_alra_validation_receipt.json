@@ -1,0 +1,201 @@
+{
+  "alra_source": {
+    "implementation": "KlugerLab/ALRA",
+    "random_seed": 20260728,
+    "source_commit": "f34d46570b1221179047d9f99c235ed880cc3bae",
+    "use_mkl": false
+  },
+  "classification": "new_confirmatory_protocol_validation_only",
+  "locks": [
+    "No ALRA rank was tuned against target y.",
+    "Each cohort used ALRA automatic choose_k.",
+    "No internal test comparator result used.",
+    "No external comparator result used.",
+    "No target y used during ALRA fitting.",
+    "No p1 SC2 model or threshold changed."
+  ],
+  "pre_result_failed_attempt": {
+    "attempts": {
+      "15": {
+        "exit_code": "1:0",
+        "failure_reason": "Invalid adjacent R string literals in preflight error message.",
+        "failure_stage": "R wrapper parse before ALRA fit",
+        "job_id": 629926,
+        "scientific_result_written": false,
+        "state": "FAILED",
+        "stderr_sha256": "6b9948ac4fe53bc25659bfcfdfe85b90bad869faa0e9ac845ecf057661f43242",
+        "stdout_sha256": "7fd3ec5bfd1bdd1274a0f3b5e641436844ed39e9f9e8409947febfd9d8e0f7b2"
+      },
+      "30": {
+        "exit_code": "1:0",
+        "failure_reason": "Invalid adjacent R string literals in preflight error message.",
+        "failure_stage": "R wrapper parse before ALRA fit",
+        "job_id": 629927,
+        "scientific_result_written": false,
+        "state": "FAILED",
+        "stderr_sha256": "6b9948ac4fe53bc25659bfcfdfe85b90bad869faa0e9ac845ecf057661f43242",
+        "stdout_sha256": "7fd3ec5bfd1bdd1274a0f3b5e641436844ed39e9f9e8409947febfd9d8e0f7b2"
+      },
+      "50": {
+        "exit_code": "1:0",
+        "failure_reason": "Invalid adjacent R string literals in preflight error message.",
+        "failure_stage": "R wrapper parse before ALRA fit",
+        "job_id": 629928,
+        "scientific_result_written": false,
+        "state": "FAILED",
+        "stderr_sha256": "6b9948ac4fe53bc25659bfcfdfe85b90bad869faa0e9ac845ecf057661f43242",
+        "stdout_sha256": "7fd3ec5bfd1bdd1274a0f3b5e641436844ed39e9f9e8409947febfd9d8e0f7b2"
+      }
+    },
+    "result_directory_files_written": false,
+    "summary": "Initial ALRA validation jobs failed during R parsing before ALRA fitting and before any scientific result artifact was written."
+  },
+  "protocol": {
+    "alra_q": 10,
+    "choose_k_K": 100,
+    "choose_k_noise_start": 80,
+    "choose_k_q": 2,
+    "choose_k_thresh": 6,
+    "family": "established_transductive_unsupervised",
+    "input": "frozen corrupted normalized log1p(CP10K) x",
+    "quantile_prob": 0.001,
+    "rank_policy": "ALRA automatic choose_k separately for each corrupted cohort",
+    "repair_score": "ALRA completed normalized expression",
+    "target_access_during_fit": false,
+    "threshold_constraint": "true_zero_fill <= 0.02",
+    "threshold_policy": "exact distinct validation score boundaries plus no-selection sentinel",
+    "value_prediction": "ALRA completed normalized expression"
+  },
+  "receipt_name": "sc2_p2_alra_validation_v1",
+  "repository": {
+    "comparator_protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "initial_alra_evaluator_commit": "4342733fd83717df52ddd5dc742e18c2819ead29",
+    "knn_validation_freeze_commit": "f6d2d9e9d7854488c590657243f0560ef3e2dbd9",
+    "protocol_neutral_wrapper_fix_commit": "37dd5a58cb43ade54647fb40b77e0e1b70832ed5"
+  },
+  "status": "frozen_before_scvi_raw_count_alignment_audit",
+  "successful_results": {
+    "15": {
+      "artifacts": {
+        "SHA256SUMS.txt": "e7e5e3102c3ce3a9acd5b083409ed19ec3d2e491338172dbf88e1bbe911f2cc8",
+        "alra_metadata.tsv": "c0aaac8e0da3fa799a57f3cf484aae648db6fce147960e012fb761bcb69e5ab2",
+        "alra_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "alra_stdout.txt": "8bd2ca81a85150507ff0b8d4bf5c7f73603eab6addb2fcd4af2f260c3ccd8b80",
+        "choose_k_num_of_sds.csv": "594053614bdce7bfc71313127f53e4f396bd8c0fe29a57d45bd0ef9af786abae",
+        "choose_k_singular_values.csv": "563f0170144a8c258e8a5bdf71db27eede9a4f9fbbd4078c0f72020f1319481a",
+        "exact_threshold_frontier.csv": "569c37425df3a77acfc3f4c442f6ad684b95933c4fa0c074ab56db75b93cd2b2",
+        "risk_coverage.csv": "282db85a8f78f25aa8884dfca532520994922d9eaffd55365ec41e68bd00020b",
+        "summary.csv": "2a5c446cf046389882204791b18d8a9f8710566fe6bbd944b5782a973b22606b",
+        "summary.json": "ba50c24aa9975f30afad301a39bf88e35ec461f4d527768d706015425429e2fa",
+        "threshold_curve.csv": "9c9a6b51b1d5ae02e81999ff0e4acc6c6757a46d2f52805dc9c330bbef2acc7e"
+      },
+      "chosen_k": 28,
+      "completed_nonzero_fraction": 0.67398486328125,
+      "gene_spearman": 0.14632577395279495,
+      "input_nonzero_fraction": 0.2870470703125,
+      "job_id": 629929,
+      "logs": {
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "94a6c8f8b4b1267cc520b8a65d7b62d0bce29cf0a3d7d93ff4f5dd0756754ea7"
+      },
+      "masked_mae": 0.5850434303283691,
+      "masked_mse": 0.6251636147499084,
+      "precision": 0.5008188606611977,
+      "prediction_float32_sha256": "c6bfceec332a9aed11546413c31536cc2844268ec269a72b00d8a05ed8f18736",
+      "prediction_sd": 0.8270182609558105,
+      "recall": 0.2623540570970279,
+      "recovery_r": 0.14112540871860169,
+      "sample_spearman": 0.5703295879252075,
+      "score_auprc": 0.3785199994599606,
+      "score_auroc": 0.8365720111172319,
+      "sd_ratio": 0.9693555802731355,
+      "target_sd": 0.853162944316864,
+      "target_variance": 0.7278869593955449,
+      "threshold": 1.896252989768982,
+      "true_zero_fill": 0.01999972869128046
+    },
+    "30": {
+      "artifacts": {
+        "SHA256SUMS.txt": "a8e91aa9774fdb78c9afe095bf9a06a9c1314839cbe34a79e6204c1d47342280",
+        "alra_metadata.tsv": "4db88710abdabcfb1d13c60016265381d229286b9dcb36f2c4454e924687973c",
+        "alra_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "alra_stdout.txt": "48825de303cb28af651e478bdd22789105878a277d726b8c7d09c8a7d2f5c2f1",
+        "choose_k_num_of_sds.csv": "6d595c25c3524029c5e727ddec407eec14191118111ecb0a143d27edf0f8d91c",
+        "choose_k_singular_values.csv": "7a86a4e60202839ea825505ce76103f027befaea6a9fdc047289dfea858b8456",
+        "exact_threshold_frontier.csv": "1d478328cfe0c9a6eb910642a548f030a555fb70767c20a09da6b7c3e40313d5",
+        "risk_coverage.csv": "25cd45f3001333823b65148b2d194d56992c799b09fab1599f35b51c2513cc62",
+        "summary.csv": "6c7e22b0f74280dd0f6168d9788401bfb00af90f8745bfe813e61d28f0d58cd7",
+        "summary.json": "986bb585dba9a256ffd82cd751fe8815836867381c4c29c61f57644e37fcbfa7",
+        "threshold_curve.csv": "2011c1dd63f3b2d4cf0d3c8d6470c5cdffd200a5b0f26d8b563d62695fa13f07"
+      },
+      "chosen_k": 21,
+      "completed_nonzero_fraction": 0.692895703125,
+      "gene_spearman": 0.11750832048083941,
+      "input_nonzero_fraction": 0.23638935546875,
+      "job_id": 629930,
+      "logs": {
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "bf2f7ab35846e1483516f1e76cda342cedb27fad19a6e4d0c7eea67a4a0fddb0"
+      },
+      "masked_mae": 0.6019250750541687,
+      "masked_mse": 0.6694077849388123,
+      "precision": 0.6579176345078575,
+      "prediction_float32_sha256": "21e48d9e1e1806e000e2f194e6b86e96fcf0590c1ec1a3befcb0760630e10ab6",
+      "prediction_sd": 0.8206976056098938,
+      "recall": 0.2514528677087922,
+      "recovery_r": 0.07827188545587105,
+      "sample_spearman": 0.5502646191314551,
+      "score_auprc": 0.49849052545092937,
+      "score_auroc": 0.8326610896429524,
+      "sd_ratio": 0.9630286123064923,
+      "target_sd": 0.8522047996520996,
+      "target_variance": 0.7262529745768794,
+      "threshold": 1.9339152574539185,
+      "true_zero_fill": 0.019999581240889408
+    },
+    "50": {
+      "artifacts": {
+        "SHA256SUMS.txt": "02aa15e1d333e4cf8bf7101606308fb6024a240742102a399d52a387343162d3",
+        "alra_metadata.tsv": "940b4c3f3b468bbdc690cbf439858dd9855cea0696961e1b40473b07eb423008",
+        "alra_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "alra_stdout.txt": "837c624423a02b2223053028cbf05714de4146f46136fe0d816b00ceaa7f7b9b",
+        "choose_k_num_of_sds.csv": "2375485ebddb4786df4c495ce627af99629e9a94fc87b7b324b21063e075c496",
+        "choose_k_singular_values.csv": "2381ea151eec68dc31b6881878b28d55f00385151aa9d87efe0ceb2a7eb8173f",
+        "exact_threshold_frontier.csv": "4eee5b3da8c8fe537050f8523e3e79cab153c2c78fba20b3fad70d525a2f7566",
+        "risk_coverage.csv": "b6d75ba41abbb589d8b600390301469c5c2bc0cb4e1a948ebd779dcfffb55540",
+        "summary.csv": "c4b821eaf2075d2d1424817010859574f39b18e1ddabf83b984f186d3435f836",
+        "summary.json": "e571c922b820183e053444de29ca18f00b31432b864e5c80b610274810388c65",
+        "threshold_curve.csv": "cfce02ea493f6e3f0cd77c759c8e96b20cb191e147ea6bcfc0e3a44bb768ce7b"
+      },
+      "chosen_k": 17,
+      "completed_nonzero_fraction": 0.693619921875,
+      "gene_spearman": 0.08374704482376366,
+      "input_nonzero_fraction": 0.16885107421875,
+      "job_id": 629931,
+      "logs": {
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "39d6ba1bcb4421371aa381325d7775db09eaede27787d5e42de840ae8eaa2472"
+      },
+      "masked_mae": 0.6274386644363403,
+      "masked_mse": 0.7387217879295349,
+      "precision": 0.7508445216765156,
+      "prediction_float32_sha256": "5db3322d8206eff11fa3933e3059ae83be8048fb6f5e6bdb3d266b6c5554e9ba",
+      "prediction_sd": 0.8275381326675415,
+      "recall": 0.23640691882062875,
+      "recovery_r": -0.013548980783448128,
+      "sample_spearman": 0.518113330302455,
+      "score_auprc": 0.5797837915651776,
+      "score_auroc": 0.8218978202698064,
+      "sd_ratio": 0.9693261222475643,
+      "target_sd": 0.8537251949310303,
+      "target_variance": 0.7288466585586435,
+      "threshold": 1.9688705205917358,
+      "true_zero_fill": 0.019999876141671515
+    }
+  },
+  "validation_panel_sha256": {
+    "15": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430",
+    "30": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e",
+    "50": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+  }
+}
