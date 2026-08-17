@@ -1,6 +1,6 @@
 import numpy as np
 
-from scripts.analysis.evaluate_p2_train_stat_baseline import (
+from sc2.eval.p2_selective import (
     choose_exact_threshold,
     exact_threshold_frontier,
 )

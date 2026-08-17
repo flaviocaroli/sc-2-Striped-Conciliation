@@ -10,6 +10,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from sklearn.utils.extmath import randomized_svd
+
 from sc2.eval.p2_selective import (
     choose_exact_threshold,
     exact_threshold_frontier,
@@ -23,12 +25,15 @@ from sc2.eval.selective_repair_metrics import (
 )
 
 
+RANDOM_STATE = 20260728
+
+
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
 
-    with path.open("rb") as handle:
+    with path.open("rb") as f:
         for block in iter(
-            lambda: handle.read(1024 * 1024),
+            lambda: f.read(1024 * 1024),
             b"",
         ):
             h.update(block)
@@ -37,60 +42,43 @@ def sha256(path: Path) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description=(
-            "Validation-only p2 evaluator for frozen "
-            "positive-train mean/median baselines."
-        )
-    )
+    p = argparse.ArgumentParser()
 
-    parser.add_argument(
+    p.add_argument(
         "--benchmark",
         required=True,
     )
 
-    parser.add_argument(
+    p.add_argument(
         "--benchmark-sha256",
         required=True,
     )
 
-    parser.add_argument(
-        "--train-stats",
+    p.add_argument(
+        "--rank",
+        type=int,
         required=True,
+        choices=(16, 32, 64, 128),
     )
 
-    parser.add_argument(
-        "--train-stats-sha256",
-        required=True,
-    )
-
-    parser.add_argument(
-        "--method",
-        required=True,
-        choices=(
-            "positive_train_mean",
-            "positive_train_median",
-        ),
-    )
-
-    parser.add_argument(
+    p.add_argument(
         "--output-dir",
         required=True,
     )
 
-    parser.add_argument(
+    p.add_argument(
         "--max-true-zero-fill",
         type=float,
         default=0.02,
     )
 
-    parser.add_argument(
+    p.add_argument(
         "--zero-threshold",
         type=float,
         default=1.0e-8,
     )
 
-    return parser.parse_args()
+    return p.parse_args()
 
 
 def prefixed(
@@ -110,10 +98,6 @@ def main() -> None:
         args.benchmark
     ).resolve()
 
-    stats_path = Path(
-        args.train_stats
-    ).resolve()
-
     output_dir = Path(
         args.output_dir
     ).resolve()
@@ -131,31 +115,10 @@ def main() -> None:
             "Benchmark SHA256 mismatch"
         )
 
-    if (
-        sha256(stats_path)
-        != args.train_stats_sha256
-    ):
-        raise RuntimeError(
-            "Train-statistics SHA256 mismatch"
-        )
-
     panel = np.load(
         benchmark_path,
         allow_pickle=False,
     )
-
-    required_panel = {
-        "x",
-        "y",
-        "synthetic_mask",
-    }
-
-    if not required_panel.issubset(
-        panel.files
-    ):
-        raise ValueError(
-            "Benchmark missing required arrays"
-        )
 
     x = np.asarray(
         panel["x"],
@@ -177,17 +140,28 @@ def main() -> None:
         or x.shape != positive.shape
     ):
         raise ValueError(
-            "Panel array shape mismatch"
+            "Panel shape mismatch"
         )
 
-    if x.shape[1] != 4096:
+    if x.shape != (2500, 4096):
         raise ValueError(
-            f"Expected 4096 genes, got {x.shape[1]}"
+            f"Unexpected validation shape {x.shape}"
         )
 
     zero_threshold = float(
         args.zero_threshold
     )
+
+    if np.any(
+        positive
+        & (
+            np.abs(x)
+            > zero_threshold
+        )
+    ):
+        raise ValueError(
+            "Masked positives are not zero in x"
+        )
 
     true_zero = (
         y <= zero_threshold
@@ -201,73 +175,81 @@ def main() -> None:
         positive & true_zero
     ):
         raise ValueError(
-            "Synthetic positive mask overlaps true zero"
+            "Positive/true-zero overlap"
         )
 
-    if np.any(
-        positive & ~eligible_zero
-    ):
-        raise ValueError(
-            "Synthetic masked positives are not zero in x"
+    #
+    # Fit ONLY the corrupted x.
+    # No target y is used here.
+    #
+    u, singular_values, vt = (
+        randomized_svd(
+            x,
+            n_components=int(args.rank),
+            random_state=RANDOM_STATE,
         )
-
-    stats = np.load(
-        stats_path,
-        allow_pickle=False,
     )
 
-    prevalence = np.asarray(
-        stats["positive_prevalence"],
+    raw_prediction = (
+        u * singular_values[None, :]
+    ) @ vt
+
+    raw_prediction = np.asarray(
+        raw_prediction,
         dtype=np.float32,
     )
 
-    if args.method == "positive_train_mean":
-        gene_value = np.asarray(
-            stats["positive_mean"],
-            dtype=np.float32,
-        )
-
-    elif args.method == "positive_train_median":
-        gene_value = np.asarray(
-            stats["positive_median"],
-            dtype=np.float32,
-        )
-
-    else:
-        raise AssertionError(
-            args.method
-        )
-
-    if (
-        prevalence.shape != (4096,)
-        or gene_value.shape != (4096,)
-    ):
-        raise ValueError(
-            "Train-statistic vector shape mismatch"
-        )
-
-    if not np.all(
-        np.isfinite(prevalence)
-    ):
-        raise ValueError(
-            "Non-finite prevalence"
-        )
-
-    if not np.all(
-        np.isfinite(gene_value)
-    ):
-        raise ValueError(
-            "Non-finite baseline value"
-        )
-
-    score = np.broadcast_to(
-        prevalence[None, :],
-        x.shape,
+    #
+    # Frozen comparator rule:
+    # negative low-rank estimates cannot
+    # represent positive-expression repair.
+    #
+    raw_prediction = np.maximum(
+        raw_prediction,
+        0.0,
     )
 
-    raw_prediction = np.broadcast_to(
-        gene_value[None, :],
-        x.shape,
+    if not np.all(
+        np.isfinite(raw_prediction)
+    ):
+        raise RuntimeError(
+            "Non-finite low-rank reconstruction"
+        )
+
+    #
+    # Proposal magnitude is the repair score.
+    #
+    score = raw_prediction
+
+    raw_metrics = masked_value_metrics(
+        raw_prediction,
+        y,
+        positive,
+    )
+
+    target = np.asarray(
+        y[positive],
+        dtype=np.float64,
+    )
+
+    target_variance = float(
+        np.var(
+            target,
+            ddof=0,
+        )
+    )
+
+    if target_variance <= 0.0:
+        raise RuntimeError(
+            "Masked target variance is zero"
+        )
+
+    recovery_r = (
+        1.0
+        - float(
+            raw_metrics["masked_mse"]
+        )
+        / target_variance
     )
 
     frontier = exact_threshold_frontier(
@@ -294,23 +276,17 @@ def main() -> None:
 
     reconstruction = x.copy()
 
-    reconstruction[
-        selected_repair
-    ] = raw_prediction[
-        selected_repair
-    ]
+    reconstruction[selected_repair] = (
+        raw_prediction[selected_repair]
+    )
 
     observed_nonzero = (
         np.abs(x) > zero_threshold
     )
 
     preservation_error = (
-        reconstruction[
-            observed_nonzero
-        ]
-        - x[
-            observed_nonzero
-        ]
+        reconstruction[observed_nonzero]
+        - x[observed_nonzero]
     )
 
     if preservation_error.size:
@@ -340,8 +316,7 @@ def main() -> None:
             "observed_nonzero_changed_fraction":
                 float(
                     np.mean(
-                        preservation_error
-                        != 0.0
+                        preservation_error != 0.0
                     )
                 ),
             "n_observed_nonzero":
@@ -350,35 +325,21 @@ def main() -> None:
                 ),
         }
     else:
-        preservation = {
-            "observed_nonzero_mse":
-                float("nan"),
-            "observed_nonzero_mae":
-                float("nan"),
-            "observed_nonzero_max_abs_error":
-                float("nan"),
-            "observed_nonzero_changed_fraction":
-                float("nan"),
-            "n_observed_nonzero":
-                0,
-        }
+        raise RuntimeError(
+            "No observed nonzeros"
+        )
 
     if (
         preservation[
             "observed_nonzero_max_abs_error"
-        ] != 0.0
+        ]
+        != 0.0
     ):
         raise RuntimeError(
-            "Observed nonzero preservation failed"
+            "Observed-nonzero preservation failed"
         )
 
-    raw_value_metrics = masked_value_metrics(
-        raw_prediction,
-        y,
-        positive,
-    )
-
-    selective_value_metrics = (
+    selective_metrics = (
         masked_value_metrics(
             reconstruction,
             y,
@@ -424,17 +385,34 @@ def main() -> None:
     )
 
     summary: dict[str, Any] = {
-        "method": args.method,
+        "method":
+            "transductive_low_rank",
         "classification":
             "confirmatory_validation_only",
-        "threshold_policy":
-            "exact_distinct_score_boundaries",
+        "transductive":
+            True,
+        "fit_input":
+            "corrupted validation x only",
+        "target_used_for_fit":
+            False,
+        "rank":
+            int(args.rank),
+        "random_state":
+            RANDOM_STATE,
+        "centered":
+            False,
+        "negative_reconstruction_clamp":
+            0.0,
+        "repair_score":
+            "nonnegative low-rank reconstruction magnitude",
         "threshold":
             threshold,
         "threshold_recall":
             float(selected["recall"]),
         "threshold_precision":
-            float(selected["precision"]),
+            float(
+                selected["precision"]
+            ),
         "threshold_true_zero_fill":
             float(
                 selected[
@@ -446,30 +424,24 @@ def main() -> None:
         "threshold_fp":
             int(selected["fp"]),
         "threshold_selected":
-            int(selected["selected"]),
-        "max_true_zero_fill":
-            float(
-                args.max_true_zero_fill
+            int(
+                selected["selected"]
             ),
-        "zero_threshold":
-            zero_threshold,
+        "target_variance":
+            target_variance,
+        "recovery_r":
+            recovery_r,
         "n_masked_positive":
             int(positive.sum()),
         "n_true_zero":
             int(true_zero.sum()),
-        "n_eligible_zero":
-            int(eligible_zero.sum()),
         "benchmark":
             str(benchmark_path),
         "benchmark_sha256":
             sha256(benchmark_path),
-        "train_statistics":
-            str(stats_path),
-        "train_statistics_sha256":
-            sha256(stats_path),
-        **raw_value_metrics,
+        **raw_metrics,
         **prefixed(
-            selective_value_metrics,
+            selective_metrics,
             "selective_",
         ),
         **preservation,
@@ -479,19 +451,16 @@ def main() -> None:
         ),
     }
 
-    summary_path = (
+    (
         output_dir
         / "summary.json"
-    )
-
-    summary_path.write_text(
+    ).write_text(
         json.dumps(
             summary,
             indent=2,
             sort_keys=True,
         )
-        + "\n",
-        encoding="utf-8",
+        + "\n"
     )
 
     pd.DataFrame(
@@ -502,17 +471,12 @@ def main() -> None:
         index=False,
     )
 
-    hash_files = [
-        output_dir
-        / "summary.json",
-        output_dir
-        / "summary.csv",
-        output_dir
-        / "exact_threshold_frontier.csv",
-        output_dir
-        / "threshold_curve.csv",
-        output_dir
-        / "risk_coverage.csv",
+    files = [
+        "summary.json",
+        "summary.csv",
+        "exact_threshold_frontier.csv",
+        "threshold_curve.csv",
+        "risk_coverage.csv",
     ]
 
     with (
@@ -522,10 +486,11 @@ def main() -> None:
         "w",
         encoding="utf-8",
     ) as handle:
-        for path in hash_files:
+        for name in files:
+            path = output_dir / name
+
             handle.write(
-                f"{sha256(path)}  "
-                f"{path.name}\n"
+                f"{sha256(path)}  {name}\n"
             )
 
     print(
@@ -537,7 +502,7 @@ def main() -> None:
     )
 
     print(
-        "P2_TRAIN_STAT_BASELINE_EVAL=PASS"
+        "P2_LOW_RANK_VALIDATION=PASS"
     )
 
 
