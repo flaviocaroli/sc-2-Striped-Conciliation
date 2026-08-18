@@ -1,0 +1,167 @@
+{
+  "classification": "new_confirmatory_protocol_pretest_freeze",
+  "existing_comparator_validation_receipts": {
+    "sc2_p2_alra_validation_receipt.json": {
+      "path": "configs/eval/striped/sc2_p2_alra_validation_receipt.json",
+      "sha256": "44797fe64604603ab3bd7d0df06ad14ce490d4ef6b43275c56a3c17be502c896"
+    },
+    "sc2_p2_baseline_validation_receipt.json": {
+      "path": "configs/eval/striped/sc2_p2_baseline_validation_receipt.json",
+      "sha256": "4e60ec90d4fdfebd2f0a4af1d68fa97380dd92f6a2ac9c73a2a83ef9a24a8e20"
+    },
+    "sc2_p2_knn_validation_receipt.json": {
+      "path": "configs/eval/striped/sc2_p2_knn_validation_receipt.json",
+      "sha256": "4a37cab3864edd2153f0a6ee23f56cffd11cd91437add15153535d48a43658bf"
+    },
+    "sc2_p2_low_rank_validation_receipt.json": {
+      "path": "configs/eval/striped/sc2_p2_low_rank_validation_receipt.json",
+      "sha256": "ee9c25820cbe390ac3ed448896cf07ed811b4fd167411de6d95b527ac95cd397"
+    }
+  },
+  "locks": [
+    "All p2 comparator hyperparameter selection is complete.",
+    "All validation-derived operating thresholds are frozen.",
+    "Internal test is evaluated only after this receipt is committed.",
+    "External Baron and Zheng evaluations use frozen selections without external label tuning.",
+    "Unavailable external genes remain ineligible.",
+    "SC2 v1 remains immutable."
+  ],
+  "protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+  "protocol_sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9",
+  "schema_version": "sc2-p2-pretest-selection-v1",
+  "scvi_validation_selection_receipt": {
+    "path": "configs/eval/striped/sc2_p2_scvi_validation_selection_receipt.json",
+    "selected_n_latent": 10,
+    "sha256": "a0eb3bcd218b13ce544c2eda9cbc92f2592eb2e3b7d20db2e5417adb1ae13a68",
+    "thresholds": {
+      "15": {
+        "max_seed_true_zero_fill": 0.0199992863401073,
+        "mean_precision": 0.4904374064801749,
+        "mean_recall": 0.24787158566867684,
+        "n_candidate_thresholds": 16616386,
+        "per_seed": {
+          "20260728": {
+            "fp": 131023,
+            "mask_percent": 15,
+            "precision": 0.4940903913354055,
+            "recall": 0.2466994154572235,
+            "seed": 20260728,
+            "selected": 258985,
+            "threshold": 1.599393606185913,
+            "tp": 127962,
+            "true_zero_fill": 0.019319392586961
+          },
+          "20260729": {
+            "fp": 134134,
+            "mask_percent": 15,
+            "precision": 0.4901321291185817,
+            "recall": 0.2485887687585792,
+            "seed": 20260729,
+            "selected": 263076,
+            "threshold": 1.599393606185913,
+            "tp": 128942,
+            "true_zero_fill": 0.0197781107535275
+          },
+          "20260730": {
+            "fp": 135634,
+            "mask_percent": 15,
+            "precision": 0.4870896989865376,
+            "recall": 0.2483265727902278,
+            "seed": 20260730,
+            "selected": 264440,
+            "threshold": 1.599393606185913,
+            "tp": 128806,
+            "true_zero_fill": 0.0199992863401073
+          }
+        },
+        "threshold": 1.599393606185913
+      },
+      "30": {
+        "max_seed_true_zero_fill": 0.0199998761416715,
+        "mean_precision": 0.6623727003494951,
+        "mean_recall": 0.2508844764936977,
+        "n_candidate_thresholds": 17877162,
+        "per_seed": {
+          "20260728": {
+            "fp": 131309,
+            "mask_percent": 30,
+            "precision": 0.6645608423978296,
+            "recall": 0.2507588456485299,
+            "seed": 20260728,
+            "selected": 391454,
+            "threshold": 1.6823054552078247,
+            "tp": 260145,
+            "true_zero_fill": 0.0193615633988022
+          },
+          "20260729": {
+            "fp": 131092,
+            "mask_percent": 30,
+            "precision": 0.6631696870190368,
+            "recall": 0.2487885941330074,
+            "seed": 20260729,
+            "selected": 389193,
+            "threshold": 1.6823054552078247,
+            "tp": 258101,
+            "true_zero_fill": 0.0193295666639437
+          },
+          "20260730": {
+            "fp": 135638,
+            "mask_percent": 30,
+            "precision": 0.6593875716316189,
+            "recall": 0.2531059896995559,
+            "seed": 20260730,
+            "selected": 398218,
+            "threshold": 1.6823054552078247,
+            "tp": 262580,
+            "true_zero_fill": 0.0199998761416715
+          }
+        },
+        "threshold": 1.6823054552078247
+      },
+      "50": {
+        "max_seed_true_zero_fill": 0.0199998761416715,
+        "mean_precision": 0.7646137928644068,
+        "mean_recall": 0.24830034071264523,
+        "n_candidate_thresholds": 19409733,
+        "per_seed": {
+          "20260728": {
+            "fp": 129789,
+            "mask_percent": 50,
+            "precision": 0.7669567684327143,
+            "recall": 0.2470424048725783,
+            "seed": 20260728,
+            "selected": 556931,
+            "threshold": 1.8164048194885252,
+            "tp": 427142,
+            "true_zero_fill": 0.0191374388044014
+          },
+          "20260729": {
+            "fp": 131112,
+            "mask_percent": 50,
+            "precision": 0.7648084467477115,
+            "recall": 0.2465883912475427,
+            "seed": 20260729,
+            "selected": 557469,
+            "threshold": 1.8164048194885252,
+            "tp": 426357,
+            "true_zero_fill": 0.0193325156717648
+          },
+          "20260730": {
+            "fp": 135638,
+            "mask_percent": 50,
+            "precision": 0.7620761634127945,
+            "recall": 0.2512702260178147,
+            "seed": 20260730,
+            "selected": 570090,
+            "threshold": 1.8164048194885252,
+            "tp": 434452,
+            "true_zero_fill": 0.0199998761416715
+          }
+        },
+        "threshold": 1.8164048194885252
+      }
+    }
+  },
+  "selection_code_commit": "9e55ebbd03e3c87620fe0c29d57b13f352b4af77",
+  "status": "frozen_before_any_p2_internal_test_or_external_comparator_evaluation"
+}

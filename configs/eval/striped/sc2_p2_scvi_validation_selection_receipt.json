@@ -1,0 +1,205 @@
+{
+  "additional_confirmatory_runs": [
+    {
+      "bundle_manifest_sha256": "c6da8a32f1ed90f2ba5642f610cc1d845d60939bdfa601b9b99becb3d4687e04",
+      "mask_percent": 15,
+      "prediction_float32_sha256": "d271d04bb63a0836a64bc594c6e9e035741155f1eb12378eec4ef69299d72b4d",
+      "recovery_r": 0.4844714279228125,
+      "seed": 20260729,
+      "summary_sha256": "3489ed9f67818e94e64ffa8019125e70a6a46eaf291f5b6fd4ff51ce09403f58"
+    },
+    {
+      "bundle_manifest_sha256": "7f703669b5d635d0bee809a0f4e7e53b2176da783ed0dd920af68051ae3f902d",
+      "mask_percent": 30,
+      "prediction_float32_sha256": "4140c16c4795cd3a080d1da188ef783a2b262ccfe4259b765c341f6bd09f2044",
+      "recovery_r": 0.4454512846301245,
+      "seed": 20260729,
+      "summary_sha256": "436781a5d86f6da4ae106788e19df95385e0c591ac130e92b65638dce1a05e99"
+    },
+    {
+      "bundle_manifest_sha256": "c5d14d8db3d5bd19b8afe2bbf5934adc289ea6481cebb0a6ef63b0afcabc9aed",
+      "mask_percent": 50,
+      "prediction_float32_sha256": "d07d27018a21591780717a8056f5b802d4935d1f67e19e8cbda150a5a3b08078",
+      "recovery_r": 0.34648087558897045,
+      "seed": 20260729,
+      "summary_sha256": "b1399481b315ce213e3c29efde85d8c611e5bf3ec669e02e3cc9f281eceb85e4"
+    },
+    {
+      "bundle_manifest_sha256": "aca083f5cd9c5e68b52877358c791532d235e6b7d2661f86a373b8d0d172121e",
+      "mask_percent": 15,
+      "prediction_float32_sha256": "de40deb8990d31e04221e56b914194bb527d5c8a6d995321b370fb5048ca4eb2",
+      "recovery_r": 0.4885680002348851,
+      "seed": 20260730,
+      "summary_sha256": "f400d6b1b755679c0c19d3de171f59b0a08df076828558f8841df11a35b08c84"
+    },
+    {
+      "bundle_manifest_sha256": "a6bdb62b037b595350f91fc12f40b3c2ed3b24f07327d832d3db9937707a6ed3",
+      "mask_percent": 30,
+      "prediction_float32_sha256": "3fc5822049b06a74affbb446cbdaf386ccb3ee37ce8435e9f9acde00d13ad734",
+      "recovery_r": 0.4511833198108798,
+      "seed": 20260730,
+      "summary_sha256": "d4da288d1c9ff9b73594d6f81ce402e106b29ffd3bafaab66b085be858a96e36"
+    },
+    {
+      "bundle_manifest_sha256": "07c47ffd98b1916b3b148d8ece69cce112f7b4c8dfe52095ec3809ab67679002",
+      "mask_percent": 50,
+      "prediction_float32_sha256": "3907e48d7937d229302bcd14c582705ac928e6f5b6f8a3a8a1a9058cb4143408",
+      "recovery_r": 0.3511842544063287,
+      "seed": 20260730,
+      "summary_sha256": "c40b5468b5fce882cf48f2cfb2bc00bec38eea5ca3dfbbc3915768e2b94006a0"
+    }
+  ],
+  "alignment_receipt_sha256": "ca1548005991533bdfa194a45d9eaed7b1150277d535933b61c3b0dee1519f74",
+  "classification": "new_confirmatory_protocol_validation_selection",
+  "common_threshold_selection_job": 630429,
+  "common_thresholds": {
+    "15": {
+      "max_seed_true_zero_fill": 0.0199992863401073,
+      "mean_precision": 0.4904374064801749,
+      "mean_recall": 0.24787158566867684,
+      "n_candidate_thresholds": 16616386,
+      "per_seed": {
+        "20260728": {
+          "fp": 131023,
+          "mask_percent": 15,
+          "precision": 0.4940903913354055,
+          "recall": 0.2466994154572235,
+          "seed": 20260728,
+          "selected": 258985,
+          "threshold": 1.599393606185913,
+          "tp": 127962,
+          "true_zero_fill": 0.019319392586961
+        },
+        "20260729": {
+          "fp": 134134,
+          "mask_percent": 15,
+          "precision": 0.4901321291185817,
+          "recall": 0.2485887687585792,
+          "seed": 20260729,
+          "selected": 263076,
+          "threshold": 1.599393606185913,
+          "tp": 128942,
+          "true_zero_fill": 0.0197781107535275
+        },
+        "20260730": {
+          "fp": 135634,
+          "mask_percent": 15,
+          "precision": 0.4870896989865376,
+          "recall": 0.2483265727902278,
+          "seed": 20260730,
+          "selected": 264440,
+          "threshold": 1.599393606185913,
+          "tp": 128806,
+          "true_zero_fill": 0.0199992863401073
+        }
+      },
+      "threshold": 1.599393606185913
+    },
+    "30": {
+      "max_seed_true_zero_fill": 0.0199998761416715,
+      "mean_precision": 0.6623727003494951,
+      "mean_recall": 0.2508844764936977,
+      "n_candidate_thresholds": 17877162,
+      "per_seed": {
+        "20260728": {
+          "fp": 131309,
+          "mask_percent": 30,
+          "precision": 0.6645608423978296,
+          "recall": 0.2507588456485299,
+          "seed": 20260728,
+          "selected": 391454,
+          "threshold": 1.6823054552078247,
+          "tp": 260145,
+          "true_zero_fill": 0.0193615633988022
+        },
+        "20260729": {
+          "fp": 131092,
+          "mask_percent": 30,
+          "precision": 0.6631696870190368,
+          "recall": 0.2487885941330074,
+          "seed": 20260729,
+          "selected": 389193,
+          "threshold": 1.6823054552078247,
+          "tp": 258101,
+          "true_zero_fill": 0.0193295666639437
+        },
+        "20260730": {
+          "fp": 135638,
+          "mask_percent": 30,
+          "precision": 0.6593875716316189,
+          "recall": 0.2531059896995559,
+          "seed": 20260730,
+          "selected": 398218,
+          "threshold": 1.6823054552078247,
+          "tp": 262580,
+          "true_zero_fill": 0.0199998761416715
+        }
+      },
+      "threshold": 1.6823054552078247
+    },
+    "50": {
+      "max_seed_true_zero_fill": 0.0199998761416715,
+      "mean_precision": 0.7646137928644068,
+      "mean_recall": 0.24830034071264523,
+      "n_candidate_thresholds": 19409733,
+      "per_seed": {
+        "20260728": {
+          "fp": 129789,
+          "mask_percent": 50,
+          "precision": 0.7669567684327143,
+          "recall": 0.2470424048725783,
+          "seed": 20260728,
+          "selected": 556931,
+          "threshold": 1.8164048194885252,
+          "tp": 427142,
+          "true_zero_fill": 0.0191374388044014
+        },
+        "20260729": {
+          "fp": 131112,
+          "mask_percent": 50,
+          "precision": 0.7648084467477115,
+          "recall": 0.2465883912475427,
+          "seed": 20260729,
+          "selected": 557469,
+          "threshold": 1.8164048194885252,
+          "tp": 426357,
+          "true_zero_fill": 0.0193325156717648
+        },
+        "20260730": {
+          "fp": 135638,
+          "mask_percent": 50,
+          "precision": 0.7620761634127945,
+          "recall": 0.2512702260178147,
+          "seed": 20260730,
+          "selected": 570090,
+          "threshold": 1.8164048194885252,
+          "tp": 434452,
+          "true_zero_fill": 0.0199998761416715
+        }
+      },
+      "threshold": 1.8164048194885252
+    }
+  },
+  "common_thresholds_sha256": "6d7fe82de65ec96e15ed62c49e32dc42fd60b05f3fdd43ebe13c7e3cd5fe2405",
+  "confirmatory_array_job": 630420,
+  "confirmatory_validation_code_commit": "9e55ebbd03e3c87620fe0c29d57b13f352b4af77",
+  "confirmatory_validation_seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "locks": [
+    "n_latent=10 is final.",
+    "One common threshold per mask is final.",
+    "All threshold selection used internal validation only.",
+    "No internal-test tuning is permitted.",
+    "No external tuning is permitted.",
+    "SC2 v1 checkpoints and thresholds remain unchanged."
+  ],
+  "nlatent_selection_receipt_sha256": "72946e9d494e83b4393e63ffa751ac941f08b71bda91c057769f8754bd0ef0d9",
+  "protocol_path": "configs/eval/striped/sc2_p2_comparator_protocol.json",
+  "protocol_sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9",
+  "schema_version": "sc2-p2-scvi-validation-selection-v1",
+  "selected_n_latent": 10,
+  "status": "frozen_before_internal_test_and_external_evaluation"
+}
