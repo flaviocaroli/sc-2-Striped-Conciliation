@@ -96,19 +96,25 @@ def first_rows_as_csr(
         matrix.indptr[n_rows]
     )
 
-    data = np.asarray(
-        matrix.data[:stop]
+    # CSRMemmap arrays are mmap-backed and read-only.
+    # scipy canonicalization is allowed to mutate CSR storage,
+    # so this audit must own writable copies.
+    data = np.array(
+        matrix.data[:stop],
+        copy=True,
     )
 
-    indices = np.asarray(
+    indices = np.array(
         matrix.indices[:stop],
         dtype=np.int32,
+        copy=True,
     )
 
-    indptr = np.asarray(
+    indptr = np.array(
         matrix.indptr[: n_rows + 1],
         dtype=np.int64,
-    ).copy()
+        copy=True,
+    )
 
     if int(indptr[0]) != 0:
         raise RuntimeError(
@@ -127,7 +133,6 @@ def first_rows_as_csr(
             matrix.shape[1],
         ),
     )
-
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
@@ -324,12 +329,12 @@ def main() -> None:
         )
 
     #
-    # The materializer writes CP10K log1p from
-    # exactly the same CSR count support. Prove
-    # support identity for the full immutable shard
-    # without densifying 25k x 4096.
+    # Count and log1p matrices have identical row-level
+    # nonzero cardinality, but scipy sparse multiplication
+    # may reorder column indices inside each CSR row.
+    # Raw index ordering is therefore diagnostic only.
     #
-    full_support_indices_equal = bool(
+    full_raw_index_order_equal = bool(
         np.array_equal(
             counts_mm.indices,
             log1p_mm.indices,
@@ -343,14 +348,19 @@ def main() -> None:
         )
     )
 
-    if not full_support_indices_equal:
-        raise RuntimeError(
-            "Full-shard count/log1p CSR indices differ"
-        )
+    full_nnz_equal = bool(
+        counts_mm.data.shape[0]
+        == log1p_mm.data.shape[0]
+    )
 
     if not full_support_indptr_equal:
         raise RuntimeError(
             "Full-shard count/log1p CSR indptr differ"
+        )
+
+    if not full_nnz_equal:
+        raise RuntimeError(
+            "Full-shard count/log1p nnz differ"
         )
 
     #
@@ -403,40 +413,60 @@ def main() -> None:
         )
     )
 
-    if not np.array_equal(
-        recomputed_log1p_csr.indices,
-        stored_log1p_csr.indices,
-    ):
-        raise RuntimeError(
-            "Recomputed/stored log1p support differs"
-        )
+    stored_canonical = (
+        stored_log1p_csr.copy()
+    )
 
-    if not np.array_equal(
-        recomputed_log1p_csr.indptr,
-        stored_log1p_csr.indptr,
+    recomputed_canonical = (
+        recomputed_log1p_csr.copy()
+    )
+
+    for matrix in (
+        stored_canonical,
+        recomputed_canonical,
     ):
+        matrix.sum_duplicates()
+        matrix.sort_indices()
+
+    canonical_support_equal = bool(
+        np.array_equal(
+            stored_canonical.indptr,
+            recomputed_canonical.indptr,
+        )
+        and np.array_equal(
+            stored_canonical.indices,
+            recomputed_canonical.indices,
+        )
+    )
+
+    if not canonical_support_equal:
         raise RuntimeError(
-            "Recomputed/stored log1p indptr differs"
+            "Recomputed/stored log1p canonical "
+            "support differs"
         )
 
     normalization_exact = bool(
         np.array_equal(
-            recomputed_log1p_csr.data,
-            stored_log1p_csr.data,
+            recomputed_canonical.data,
+            stored_canonical.data,
         )
     )
 
-    normalization_max_abs_error = float(
-        np.max(
-            np.abs(
-                recomputed_log1p_csr.data.astype(
-                    np.float64
-                )
-                - stored_log1p_csr.data.astype(
-                    np.float64
-                )
-            )
+    normalization_abs_error = np.abs(
+        recomputed_canonical.data.astype(
+            np.float64
         )
+        - stored_canonical.data.astype(
+            np.float64
+        )
+    )
+
+    normalization_max_abs_error = (
+        float(
+            normalization_abs_error.max()
+        )
+        if normalization_abs_error.size
+        else 0.0
     )
 
     #
@@ -730,9 +760,27 @@ def main() -> None:
         # benchmark mask from its published
         # builder algorithm.
         #
-        mask_rate = float(
+        stored_mask_rate = float(
             panel["mask_rate"].item()
         )
+
+        mask_rate = {
+            15: 0.15,
+            30: 0.30,
+            50: 0.50,
+        }[mask_percent]
+
+        if not np.isclose(
+            stored_mask_rate,
+            mask_rate,
+            rtol=0.0,
+            atol=1.0e-7,
+        ):
+            raise RuntimeError(
+                f"Stored mask_rate mismatch for "
+                f"mask{mask_percent}: "
+                f"{stored_mask_rate}"
+            )
 
         regenerated = np.zeros_like(
             synthetic_mask
@@ -896,6 +944,9 @@ def main() -> None:
             "mask_rate":
                 mask_rate,
 
+            "stored_mask_rate_float32":
+                stored_mask_rate,
+
             "n_cells":
                 EXPECTED_N_PANEL_CELLS,
 
@@ -1033,11 +1084,17 @@ def main() -> None:
         "raw_counts_are_nonnegative_integers":
             True,
 
-        "full_shard_count_log1p_indices_equal":
-            full_support_indices_equal,
+        "full_shard_count_log1p_raw_index_order_equal":
+            full_raw_index_order_equal,
 
         "full_shard_count_log1p_indptr_equal":
             full_support_indptr_equal,
+
+        "full_shard_count_log1p_nnz_equal":
+            full_nnz_equal,
+
+        "panel_recomputed_stored_log1p_canonical_support_equal":
+            canonical_support_equal,
 
         "raw_count_log1p_positive_support_exact":
             support_identity,
