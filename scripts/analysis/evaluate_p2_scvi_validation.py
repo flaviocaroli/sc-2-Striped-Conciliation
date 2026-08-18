@@ -490,15 +490,21 @@ def main() -> None:
             "Benchmark modality is not sc"
         )
 
-    if benchmark_seed != int(
-        alignment[
-            "audit_summary"
-        ][
-            "benchmark_seed"
+    expected_benchmark_seed = int(
+        cfg[
+            "hyperparameter_tuning_seed"
         ]
+    )
+
+    if (
+        benchmark_seed
+        != expected_benchmark_seed
     ):
         raise RuntimeError(
-            "Benchmark seed mismatch"
+            "Benchmark seed mismatch: "
+            f"observed={benchmark_seed}, "
+            f"expected="
+            f"{expected_benchmark_seed}"
         )
 
     expected_rate = (
