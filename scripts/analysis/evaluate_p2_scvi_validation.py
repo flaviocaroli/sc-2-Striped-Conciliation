@@ -36,6 +36,12 @@ EXPECTED_ALIGNMENT_RECEIPT_SHA256 = (
     "ca1548005991533bdfa194a45d9eaed7b1150277d535933b61c3b0dee1519f74"
 )
 
+EXPECTED_NLATENT_SELECTION_RECEIPT_SHA256 = (
+    "72946e9d494e83b4393e63ffa751ac941f08b71bda91c057769f8754bd0ef0d9"
+)
+
+EXPECTED_SELECTED_N_LATENT = 10
+
 EXPECTED_SHAPE = (
     2500,
     4096,
@@ -205,6 +211,11 @@ def parse_args() -> argparse.Namespace:
     )
 
     p.add_argument(
+        "--nlatent-selection-receipt",
+        default=None,
+    )
+
+    p.add_argument(
         "--mask-percent",
         required=True,
         type=int,
@@ -253,6 +264,15 @@ def main() -> None:
     alignment_receipt_path = Path(
         args.alignment_receipt
     ).resolve()
+
+    nlatent_selection_receipt_path = (
+        Path(
+            args.nlatent_selection_receipt
+        ).resolve()
+        if args.nlatent_selection_receipt
+        is not None
+        else None
+    )
 
     output_dir = Path(
         args.output_dir
@@ -311,15 +331,87 @@ def main() -> None:
             f"{scvi.__version__}"
         )
 
-    if args.seed != int(
+    tuning_seed = int(
         cfg[
             "hyperparameter_tuning_seed"
         ]
-    ):
+    )
+
+    confirmatory_seeds = tuple(
+        int(v)
+        for v in cfg[
+            "confirmatory_seeds"
+        ]
+    )
+
+    if args.seed not in confirmatory_seeds:
         raise RuntimeError(
-            "Validation tuning must use only "
-            "the frozen tuning seed"
+            "Seed is not in the frozen "
+            "confirmatory seed set"
         )
+
+    nlatent_selection_receipt_sha = None
+
+    if args.seed == tuning_seed:
+        validation_role = (
+            "hyperparameter_tuning_seed"
+        )
+
+    else:
+        validation_role = (
+            "confirmatory_threshold_seed"
+        )
+
+        if (
+            nlatent_selection_receipt_path
+            is None
+        ):
+            raise RuntimeError(
+                "Frozen n_latent selection "
+                "receipt is required for "
+                "post-selection validation "
+                "seeds"
+            )
+
+        nlatent_selection_receipt_sha = (
+            sha256_file(
+                nlatent_selection_receipt_path
+            )
+        )
+
+        if (
+            nlatent_selection_receipt_sha
+            !=
+            EXPECTED_NLATENT_SELECTION_RECEIPT_SHA256
+        ):
+            raise RuntimeError(
+                "n_latent selection receipt "
+                "SHA mismatch"
+            )
+
+        selection = json.loads(
+            nlatent_selection_receipt_path
+            .read_text()
+        )
+
+        if int(
+            selection[
+                "selected_n_latent"
+            ]
+        ) != EXPECTED_SELECTED_N_LATENT:
+            raise RuntimeError(
+                "Frozen selected n_latent "
+                "mismatch"
+            )
+
+        if (
+            args.n_latent
+            != EXPECTED_SELECTED_N_LATENT
+        ):
+            raise RuntimeError(
+                "Post-selection validation "
+                "must use frozen n_latent=10"
+            )
 
     candidates = tuple(
         int(v)
@@ -1200,6 +1292,22 @@ def main() -> None:
         "alignment_receipt_sha256":
             alignment_sha,
 
+        "validation_role":
+            validation_role,
+
+        "nlatent_selection_receipt":
+            (
+                str(
+                    nlatent_selection_receipt_path
+                )
+                if nlatent_selection_receipt_path
+                is not None
+                else None
+            ),
+
+        "nlatent_selection_receipt_sha256":
+            nlatent_selection_receipt_sha,
+
         "implementation_git_commit":
             code_commit,
 
@@ -1259,6 +1367,12 @@ def main() -> None:
 
         "protocol_sha256":
             protocol_sha,
+
+        "validation_role":
+            validation_role,
+
+        "nlatent_selection_receipt_sha256":
+            nlatent_selection_receipt_sha,
 
         "implementation_git_commit":
             code_commit,
