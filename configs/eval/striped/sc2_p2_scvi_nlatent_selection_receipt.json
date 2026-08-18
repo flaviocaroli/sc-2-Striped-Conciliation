@@ -1,0 +1,156 @@
+{
+  "alignment_receipt_sha256": "ca1548005991533bdfa194a45d9eaed7b1150277d535933b61c3b0dee1519f74",
+  "classification": "new_confirmatory_protocol_validation_selection",
+  "failed_pre_result_grid": {
+    "error": "KeyError: benchmark_seed",
+    "jobs": [
+      630335,
+      630336,
+      630337,
+      630338,
+      630339,
+      630340,
+      630341,
+      630342,
+      630343
+    ],
+    "scientific_result_written": false,
+    "scvi_training_started": false
+  },
+  "hyperparameter_tuning_seed": 20260728,
+  "locks": [
+    "n_latent=10 is frozen before seeds 20260729 and 20260730.",
+    "No internal test result was accessed for n_latent selection.",
+    "No external result was accessed for n_latent selection.",
+    "Final scVI thresholds are not selected by the tuning-seed operating points."
+  ],
+  "mean_recovery_r": {
+    "10": 0.42761175274637747,
+    "30": 0.3876664911365628,
+    "50": 0.39374956157029867
+  },
+  "n_latent_candidates": [
+    10,
+    30,
+    50
+  ],
+  "protocol_path": "configs/eval/striped/sc2_p2_comparator_protocol.json",
+  "protocol_sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9",
+  "runs": [
+    {
+      "mask_percent": 15,
+      "masked_mse": 0.3759443163871765,
+      "n_latent": 10,
+      "prediction_sha256": "85ff747aac6be8551f50eaac64ed89636cde20d2f82f270b42e3c395cba9020e",
+      "recovery_r": 0.4835127741546986,
+      "sha256sums_sha256": "fbc1c406bbb38145481e176498d23aaff89cf4aeb0b8ba8eada5213fef96e50c",
+      "summary_sha256": "f62cc2f8aa2ffd22a40fd570352a1918ea6e11161763e7d930a017377eeabab9",
+      "threshold": 1.5861226320266724,
+      "threshold_true_zero_fill": 0.01999972869128046
+    },
+    {
+      "mask_percent": 30,
+      "masked_mse": 0.399396151304245,
+      "n_latent": 10,
+      "prediction_sha256": "bf139c3ab17eac41080be7fb266394e6295e207f7b30186662d7b620245388df",
+      "recovery_r": 0.45005918697002756,
+      "sha256sums_sha256": "5509cebfba155c15e6e7a8238563adcfb84bb8407f10a4299d4a17f9d3bf6f14",
+      "summary_sha256": "10df942d059703892303eb1b06a8b066f10db9107c8ed6068d14d59e4ccf8cd0",
+      "threshold": 1.6691642999649048,
+      "threshold_true_zero_fill": 0.019999876141671515
+    },
+    {
+      "mask_percent": 50,
+      "masked_mse": 0.4742872714996338,
+      "n_latent": 10,
+      "prediction_sha256": "337a69990840713a6801d2726315fcda7d174b81dbfdff2b3bf40a71822067d9",
+      "recovery_r": 0.3492632971144063,
+      "sha256sums_sha256": "79910c888d1303b00ec1e000a3124ad122207489250c1cf478860d74fe0bde54",
+      "summary_sha256": "bbd9db2016a4d0e26b153596ef4c343ae36464f7f6a3b9744719b370e3adef14",
+      "threshold": 1.7972657680511475,
+      "threshold_true_zero_fill": 0.01999972869128046
+    },
+    {
+      "mask_percent": 15,
+      "masked_mse": 0.39181452989578247,
+      "n_latent": 30,
+      "prediction_sha256": "c3cd9d993dcd4547fa26930608e362b0dcea330e511f4a9e4b0bfa23972f65f1",
+      "recovery_r": 0.46170964483117705,
+      "sha256sums_sha256": "596e0580685256e9209e495d74c1d3d8a9d70eb7d3bcb5ca180357082ed08acc",
+      "summary_sha256": "bf87c6e39537a7bc5fe92ce5cfc0e73ebe8d576e593a84ac684b78d87de379d1",
+      "threshold": 1.5819225311279297,
+      "threshold_true_zero_fill": 0.01999972869128046
+    },
+    {
+      "mask_percent": 30,
+      "masked_mse": 0.42882123589515686,
+      "n_latent": 30,
+      "prediction_sha256": "d9765943a004c2e64cdad37c0b55f2b32ef2b3780d158b9e77b11af9f3c4f365",
+      "recovery_r": 0.4095428853217553,
+      "sha256sums_sha256": "6f101ccf0912c649f06a8bce5aa7f83562497c93d3f050548c9eb5dc5d06dfc3",
+      "summary_sha256": "65e0deb5315d8e4532316d9e98f58780eb58f14f74bea1c7872b4731d7a6f8a1",
+      "threshold": 1.6583201885223389,
+      "threshold_true_zero_fill": 0.019999876141671515
+    },
+    {
+      "mask_percent": 50,
+      "masked_mse": 0.5162078738212585,
+      "n_latent": 30,
+      "prediction_sha256": "0f0a76ec633291177421575db4263abbf719a8c003c88fcd15cbcfd58803f22f",
+      "recovery_r": 0.2917469432567562,
+      "sha256sums_sha256": "92d9e5633b55899613ad68f463878fea913dda8e5ca00a4a34670d5930a5b708",
+      "summary_sha256": "3be5be9a55e4d72037cb90294e52a0cd418f742b0b2cc6afe666866615511155",
+      "threshold": 1.808335542678833,
+      "threshold_true_zero_fill": 0.01999972869128046
+    },
+    {
+      "mask_percent": 15,
+      "masked_mse": 0.38718658685684204,
+      "n_latent": 50,
+      "prediction_sha256": "d98fe3f73fd6877325e0da51df52af84cc885daefe4f52101fffce8057d0a2fd",
+      "recovery_r": 0.4680676966951418,
+      "sha256sums_sha256": "449686bdad6b5addbcedc576376c1323e09204b04ecb956dbe133b5b7c2106bd",
+      "summary_sha256": "bc8bc5a57c5292df187d625e817bbcf8e8aa8f851a90bca7641272dd1a9f3d4e",
+      "threshold": 1.6019443273544312,
+      "threshold_true_zero_fill": 0.01999972869128046
+    },
+    {
+      "mask_percent": 30,
+      "masked_mse": 0.4251192808151245,
+      "n_latent": 50,
+      "prediction_sha256": "1eb5b45d0d96d1049229454b1ec7793824f89ea10a204e7c2045dd8e17b06b24",
+      "recovery_r": 0.41464022083654495,
+      "sha256sums_sha256": "4e79588dca2ea09c4db27a40f67f488767d20e148bbc759fe6f9b5e8df7ad0e3",
+      "summary_sha256": "2e40ba4cecb1f820c80c4c7ae622d31a676d83f8fce4e3969c747984d0e081ca",
+      "threshold": 1.6772180795669556,
+      "threshold_true_zero_fill": 0.019999876141671515
+    },
+    {
+      "mask_percent": 50,
+      "masked_mse": 0.511256217956543,
+      "n_latent": 50,
+      "prediction_sha256": "ee20670c2a2335a6cbf1677d941e2ba1b646a33c695ac4861cc3d6ad377b7004",
+      "recovery_r": 0.2985407671792092,
+      "sha256sums_sha256": "a64bbd8ee0a1fec55918270b2be6dc6b67704247d44341a4557139c9649c4967",
+      "summary_sha256": "2e4302c411f00f12bfa01e11e6775a46b0eefa89c94f442ff485c1d7e5fc8c6c",
+      "threshold": 1.8319427967071533,
+      "threshold_true_zero_fill": 0.019999876141671515
+    }
+  ],
+  "schema_version": "sc2-p2-scvi-nlatent-selection-v1",
+  "selected_n_latent": 10,
+  "selection_rule": "maximize mean validation recovery_r across mask15/mask30/mask50; ties choose smaller n_latent",
+  "status": "frozen_before_additional_confirmatory_validation_seeds",
+  "successful_tuning_jobs": [
+    630353,
+    630354,
+    630355,
+    630356,
+    630357,
+    630358,
+    630359,
+    630360,
+    630361
+  ],
+  "tuning_evaluator_commit": "e2db20d36dc205a2322a6c18b445bb3ef37387f7"
+}
