@@ -1,0 +1,106 @@
+{
+  "benchmarks": {
+    "baron_pancreas": {
+      "available_genes": 3851,
+      "cell_selection_and_mask_seed": 20260729,
+      "coverage_fraction": 0.940185546875,
+      "dataset": "baron_pancreas",
+      "directory": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1",
+      "files": {
+        "benchmark_metadata.json": "cb740fa230dc91771c4439a545e0c31c8867a3d34dbb7bd59a6c577a5046a759",
+        "mask15.npz": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+        "mask30.npz": "edc1422a764c1aa40a9028401df6629c771fc7f3809ff5e9a7443be6fabd1e3e",
+        "mask50.npz": "7654fcc78719327f73fcbe46bf69beaf866e32b9331134f2aec1bc4964b2d792",
+        "selected_cells.csv": "42730645e6b075f7ee09d7b486cc2a0843994acae64a15cc70e643a8eac39c0d"
+      },
+      "mapping": "exact_unique_gene_symbol",
+      "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+      "selected_cells": 5000,
+      "source_cells": 8569,
+      "source_genes": 20125,
+      "source_sha256": "6b257a03bcf61fa58c08ef9ca1de6957cb9072cfdd19bf78ce0c5743de031a63",
+      "unavailable_genes": 245
+    },
+    "zheng68k": {
+      "available_genes": 4046,
+      "cell_selection_and_mask_seed": 20260729,
+      "coverage_fraction": 0.98779296875,
+      "dataset": "zheng68k",
+      "directory": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1",
+      "files": {
+        "benchmark_metadata.json": "0d6bf7ead0f1ce0cb39cb9ab9c3c81f2162f68a080654017c09a7c1c7657e8b5",
+        "mask15.npz": "35490be0d1a83b46517d2d5792a2c0a1bc9c5b3f800f29aeb90447d11d8a6ecc",
+        "mask30.npz": "ba6b8e6d2698048faac52e6b384a795bd429ec3d58bb385b1fc769ad50da7871",
+        "mask50.npz": "2313651071d4c2d69053a51e21ba477d3f2c3c146172dc187ac809af4590f040",
+        "selected_cells.csv": "6dcfd9844c01b5576e6ff065c399e0c559bcdf7acc7a2f488962038aa2e1b19f"
+      },
+      "mapping": "exact_ensembl_id",
+      "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+      "selected_cells": 5000,
+      "source_cells": 68579,
+      "source_genes": 32738,
+      "source_sha256": "3f35f37ff344bc9b32f97cd003ac986ebb9b5d7f31006c53dff4cb38da267931",
+      "unavailable_genes": 50
+    }
+  },
+  "branch": "p1-official-mamba",
+  "code": {
+    "external_preparation_and_evaluator_commit": "4df3baf58b8361ac4080c6533e10f2728779cdff",
+    "internal_threshold_freeze_commit": "fad2706"
+  },
+  "external_benchmark_policy": {
+    "cell_selection_seed": 20260729,
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "masking": "Positive available genes only; per-cell deterministic BLAKE2b-derived RNG; round(mask_rate * positive_count), minimum one; sampling without replacement.",
+    "normalization": "Frozen-vocabulary projection first, then CP10K over the projected matrix, then log1p.",
+    "selected_cells_per_dataset": 5000,
+    "unavailable_genes": "Zero-filled for model input but excluded from true-zero, gate-discrimination, threshold, and observed-nonzero-preservation eligibility."
+  },
+  "frozen_thresholds": {
+    "15": 0.545,
+    "30": 0.51,
+    "50": 0.46,
+    "policy_file": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_step004000_frozen_thresholds.json",
+    "policy_file_sha256": "a9c8b5230743dccbea0771ab9800d97e0133a62792e4c39fc96b90ae2db1d277"
+  },
+  "model": {
+    "checkpoint_step": 4000,
+    "checkpoints": {
+      "20260728": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+        "sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8"
+      },
+      "20260729": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+        "sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1"
+      },
+      "20260730": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+        "sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c"
+      }
+    },
+    "eval_config": {
+      "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_continuous_official_eval.yaml",
+      "sha256": "45cc9075db0f30d8fc38b67ef50df4b88c304f91b754529365b2ada5700022c4"
+    },
+    "objective": "Core",
+    "seeds": [
+      20260728,
+      20260729,
+      20260730
+    ]
+  },
+  "protocol_name": "sc2_p1_external_frozen_v1",
+  "selection_policy": {
+    "checkpoint_selection_split": "internal_validation",
+    "external_checkpoint_selection": false,
+    "external_preprocessing_tuning_after_results": false,
+    "external_threshold_tuning": false,
+    "threshold_selection_split": "internal_validation"
+  },
+  "status": "frozen_before_external_model_inference"
+}

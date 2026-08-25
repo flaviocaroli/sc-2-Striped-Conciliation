@@ -1,0 +1,179 @@
+{
+  "classification": "new_confirmatory_protocol_validation_only",
+  "inputs": {
+    "positive_train_statistics_sha256": "75d713e31ff63269b9885f5076d1d3223bc357a620cea0bc4b1e829181d638c0",
+    "validation_panel_sha256": {
+      "15": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430",
+      "30": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e",
+      "50": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+    }
+  },
+  "locks": [
+    "No internal test comparator result used.",
+    "No external comparator result used.",
+    "No p1 SC2 threshold changed.",
+    "No p1 model changed."
+  ],
+  "receipt_name": "sc2_p2_baseline_validation_v1",
+  "repository": {
+    "baseline_evaluator_commit": "9244ef417ce7b99f5c02627f3d7292e8f5862b54",
+    "comparator_protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "environment_freeze_commit": "d53ec511077b85d6229874a91ee7fb32d5268a18",
+    "train_stats_freeze_commit": "a3ee1a54cca153684196fe2c11e314f4b2b5c2e4"
+  },
+  "results": {
+    "positive_train_mean": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "fb3c02a1894ebe6dffc08875bb45e88f4382540ec53863f4307e68b226625266",
+          "exact_threshold_frontier.csv": "383584d40c3945c26281c7abd8fd25b20d7404b8ef1476878623f9733048a1b6",
+          "risk_coverage.csv": "47e77b30b6ef6341b306b9490768228d7b0ed5fdab0e1228b043ac92687ba6fe",
+          "summary.csv": "eff5b6dc9dcafe131b895bcc55245e80ffa3398c5e834aeeb1857fa728bd8b70",
+          "summary.json": "775858b425898cfd7a28d265a4ba39ac70ed34f892fffc0a93b3b228be3e9752",
+          "threshold_curve.csv": "78c1ccaa3ab15c7d0dc4081fdfd1bb7dc23a43d092a98f76deee879613d7916c"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629821,
+        "masked_mae": 0.49043822288513184,
+        "masked_mse": 0.38466742634773254,
+        "precision": 0.4044855764150611,
+        "prediction_sd": 0.5512312054634094,
+        "recall": 0.17711723244443758,
+        "sample_spearman": 0.5044071111121743,
+        "sd_ratio": 0.6461030792948769,
+        "selective_masked_mse": 1.7672183513641357,
+        "target_sd": 0.853162944316864,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "242a6181c6d0c60d9ff12a2a973cd7b7e6bbd157dda32d611772001972a85358",
+          "exact_threshold_frontier.csv": "1a8fbc2e477d45f7628fe0fd96d6b1c5fde954a8a54d643e7c25a0ac88ed084f",
+          "risk_coverage.csv": "23c42b59b47646da88bb3683b0a730f4208fb6843fba57c6c964f4d0b40a344e",
+          "summary.csv": "e61d5cbca8bd272ee8ef25950516ece41c5d8a494c59ba8659db5789f28b8d40",
+          "summary.json": "1abd0980ff9e4f63bc37a90f204ab85145c6f9b790af489f8b7c48fc7bf4c598",
+          "threshold_curve.csv": "c685e4bc34a8350e93b6b5dc589d2ff87ecb800c7b7135aaf53e270fa8b3300d"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629822,
+        "masked_mae": 0.49069076776504517,
+        "masked_mse": 0.38453906774520874,
+        "precision": 0.5755852811326261,
+        "prediction_sd": 0.5505954623222351,
+        "recall": 0.17681657864474842,
+        "sample_spearman": 0.504998377753873,
+        "sd_ratio": 0.6460835031051313,
+        "selective_masked_mse": 1.7641009092330933,
+        "target_sd": 0.8522047996520996,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "a3fe202323de61bc0d07e52d4b3615efb51481d9ead77feb90b8a5f5528ebbd6",
+          "exact_threshold_frontier.csv": "0d2adfa7bb417c1919133f8bc54673d2d3aec04c58b5af3b2ca93360bacaf45c",
+          "risk_coverage.csv": "32b1e61612f80cb46338dc9814a2c9206191617233174267074d0f3e5f3d8c52",
+          "summary.csv": "3e85422d217aa8c733664c75fbb51da57aae0721e2c5a0576f459d2e9d3c3d40",
+          "summary.json": "6dc9c4fc8e04a6b6fe1259f962ed27edfe9c3ea8129ec66b6e254e3521082f1b",
+          "threshold_curve.csv": "6b07bcb272c31139bcdec9429e315441f1f767a08d89a64ae5f95acac178b6dc"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629823,
+        "masked_mae": 0.4908459186553955,
+        "masked_mse": 0.38500112295150757,
+        "precision": 0.6936981412370014,
+        "prediction_sd": 0.5505068302154541,
+        "recall": 0.1771671053537171,
+        "sample_spearman": 0.5060629908665978,
+        "sd_ratio": 0.6448290778860378,
+        "selective_masked_mse": 1.7667866945266724,
+        "target_sd": 0.8537251949310303,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      }
+    },
+    "positive_train_median": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "7f6dd6d1684f197f85953076dbab7cbee8121b8a1e6a1302550d25734036f76e",
+          "exact_threshold_frontier.csv": "383584d40c3945c26281c7abd8fd25b20d7404b8ef1476878623f9733048a1b6",
+          "risk_coverage.csv": "5dfaf9eb7b0961ebce536c5b819381e7b314643d82e52f61971886304e318a52",
+          "summary.csv": "74919550a116467e0c1a14005e4c939fcd10b249cac87383f06b87087cc49a5a",
+          "summary.json": "9a12e13113d3599bc02ec47166a7549733b1a6e84d32477a7463e7f0ca293562",
+          "threshold_curve.csv": "78c1ccaa3ab15c7d0dc4081fdfd1bb7dc23a43d092a98f76deee879613d7916c"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629824,
+        "masked_mae": 0.48026716709136963,
+        "masked_mse": 0.38385772705078125,
+        "precision": 0.4044855764150611,
+        "prediction_sd": 0.6228545308113098,
+        "recall": 0.17711723244443758,
+        "sample_spearman": 0.5010265452418052,
+        "sd_ratio": 0.7300534264413413,
+        "selective_masked_mse": 1.7698404788970947,
+        "target_sd": 0.853162944316864,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "5f4d135bde689e01adee430ce2bef918d7d5177eb5e864c7a7cbfa04fb8b2ab9",
+          "exact_threshold_frontier.csv": "1a8fbc2e477d45f7628fe0fd96d6b1c5fde954a8a54d643e7c25a0ac88ed084f",
+          "risk_coverage.csv": "7da23fdcc577bd199557e8ca67102082a2cd395600a75d17bea4abcc33824121",
+          "summary.csv": "f31a040dbdfa3b571159968aab91dce246b99770dd28ff58c36d639db5ed1ffa",
+          "summary.json": "4dd88ecaf2af3369be003a872fdff762cd7bfb10c9e0cd7b87cf649baff7938a",
+          "threshold_curve.csv": "c685e4bc34a8350e93b6b5dc589d2ff87ecb800c7b7135aaf53e270fa8b3300d"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629825,
+        "masked_mae": 0.4803099036216736,
+        "masked_mse": 0.3834743797779083,
+        "precision": 0.5755852811326261,
+        "prediction_sd": 0.6220546364784241,
+        "recall": 0.17681657864474842,
+        "sample_spearman": 0.5017670895741936,
+        "sd_ratio": 0.7299356172745906,
+        "selective_masked_mse": 1.7667429447174072,
+        "target_sd": 0.8522047996520996,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "f4c7cc1de2ffa1f56b26c3458f08aa5d128eb9f6b6e127ff55a11b1867f6afb4",
+          "exact_threshold_frontier.csv": "0d2adfa7bb417c1919133f8bc54673d2d3aec04c58b5af3b2ca93360bacaf45c",
+          "risk_coverage.csv": "c43b12a799cb30edd348c9f056a76714bb9e72514b220c94f749169601ee2354",
+          "summary.csv": "b307ea82af90f0098f12bfcfa9e3fbec54e86abf778c660e3db4b26d01bf99d0",
+          "summary.json": "e2808d8b29c34d7db5a122ab484cad4edf3c29dd56a8b77bab435c5fe55ddf52",
+          "threshold_curve.csv": "6b07bcb272c31139bcdec9429e315441f1f767a08d89a64ae5f95acac178b6dc"
+        },
+        "gene_spearman": NaN,
+        "job_id": 629826,
+        "masked_mae": 0.48044487833976746,
+        "masked_mse": 0.3838385045528412,
+        "precision": 0.6936981412370014,
+        "prediction_sd": 0.6220595240592957,
+        "recall": 0.1771671053537171,
+        "sample_spearman": 0.5028338550995869,
+        "sd_ratio": 0.7286414032908445,
+        "selective_masked_mse": 1.7692581415176392,
+        "target_sd": 0.8537251949310303,
+        "threshold": 0.5788050293922424,
+        "true_zero_fill": 0.019943844993071305
+      }
+    }
+  },
+  "selection_policy": {
+    "constraint": "true_zero_fill <= 0.02",
+    "objective": "maximum masked-positive recall",
+    "score": "positive train prevalence per gene",
+    "threshold_candidates": "exact distinct validation score boundaries plus no-selection sentinel",
+    "tie_breaks": [
+      "higher precision",
+      "higher stricter threshold"
+    ]
+  },
+  "status": "frozen_before_low_rank_validation"
+}

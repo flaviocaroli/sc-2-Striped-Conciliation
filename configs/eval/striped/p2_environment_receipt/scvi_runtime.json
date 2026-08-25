@@ -1,0 +1,24 @@
+{
+  "anndata": "0.13.2",
+  "module_paths": {
+    "anndata": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/anndata/__init__.py",
+    "numpy": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/numpy/__init__.py",
+    "pandas": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/pandas/__init__.py",
+    "scikit_learn": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/sklearn/__init__.py",
+    "scipy": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/scipy/__init__.py",
+    "scvi": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/scvi/__init__.py",
+    "torch": "/home/3159436/.conda/envs/sc2-p2-scvi/lib/python3.13/site-packages/torch/__init__.py"
+  },
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "platform": "Linux-5.14.0-687.5.3.el9_8.x86_64-x86_64-with-glibc2.34",
+  "python": "3.13.15 | packaged by Anaconda, Inc. | (main, Aug 14 2026, 17:26:23) [GCC 14.3.0]",
+  "python_prefix": "/home/3159436/.conda/envs/sc2-p2-scvi",
+  "scikit_learn": "1.9.0",
+  "scipy": "1.18.0",
+  "scvi_tools": "1.5.0.post1",
+  "torch": "2.13.0+cu130",
+  "torch_cuda_build": "13.0",
+  "user_site": "/home/3159436/.local/lib/python3.13/site-packages",
+  "user_site_enabled": false
+}

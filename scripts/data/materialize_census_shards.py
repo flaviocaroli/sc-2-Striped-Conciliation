@@ -139,7 +139,16 @@ def main() -> None:
         raise SystemExit("cellxgene-census is required in the active environment") from error
 
     manifest_rows: list[dict[str, object]] = []
-    with cellxgene_census.open_soma(census_version=census_release) as census:
+    soma_context = cellxgene_census.get_default_soma_context(
+        tiledb_config={
+            "sm.compute_concurrency_level": "2",
+            "sm.io_concurrency_level": "2",
+        }
+    )
+    with cellxgene_census.open_soma(
+        census_version=census_release,
+        context=soma_context,
+    ) as census:
         var = census["census_data"]["homo_sapiens"].ms["RNA"].var.read(
             column_names=["soma_joinid", "feature_id", "feature_name"]
         ).concat().to_pandas()

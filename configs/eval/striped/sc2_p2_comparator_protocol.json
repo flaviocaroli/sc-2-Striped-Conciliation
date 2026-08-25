@@ -1,0 +1,253 @@
+{
+  "classification": "new_confirmatory_protocol",
+  "comparators": {
+    "alra": {
+      "external_policy": "Fit ALRA separately on each corrupted external cohort using x only and the same pinned source.",
+      "family": "established_transductive_unsupervised",
+      "implementation": "KlugerLab/ALRA",
+      "input": "Frozen corrupted normalized log1p(CP10K) x, cells as rows and genes as columns.",
+      "random_seed": 20260728,
+      "rank_policy": "Use the implementation automatic choose_k procedure separately on each corrupted cohort. No target-based ALRA rank tuning.",
+      "repair_score": "ALRA completed normalized expression",
+      "source_branch": "master",
+      "source_commit": "f34d46570b1221179047d9f99c235ed880cc3bae",
+      "target_access_during_fit": false,
+      "value_prediction": "ALRA completed normalized expression"
+    },
+    "knn": {
+      "algorithm": "sklearn.neighbors.NearestNeighbors with cosine distance and brute-force search; query cell itself is excluded from its neighbor set.",
+      "family": "transductive_unsupervised",
+      "hyperparameter_selection": "Choose ONE common k across mask15, mask30, and mask50 that maximizes mean validation recovery index R=1-MSE/Var(masked_target). Ties choose smaller k.",
+      "input": "corrupted normalized x only",
+      "k_candidates": [
+        5,
+        10,
+        20,
+        50
+      ],
+      "repair_score": "Fraction of the k neighbors with expression >1e-8 at that gene.",
+      "target_access_during_fit": false,
+      "test_external_fit": "Refit neighbor search separately on each corrupted test or external cohort using x only.",
+      "value_prediction": "Arithmetic mean of the k neighbor corrupted expression values at each gene."
+    },
+    "positive_train_mean": {
+      "family": "train_only_deterministic",
+      "fit_data": "Only log1p matrices from manifest records with split=train and modality=sc.",
+      "hyperparameters": null,
+      "random_seed": null,
+      "repair_score": "Per-gene positive prevalence: positive training cell count divided by total training cell count.",
+      "value_prediction": "Per-gene arithmetic mean over strictly positive training log1p values."
+    },
+    "positive_train_median": {
+      "family": "train_only_deterministic",
+      "fit_data": "Only log1p matrices from manifest records with split=train and modality=sc.",
+      "hyperparameters": null,
+      "random_seed": null,
+      "repair_score": "Per-gene positive prevalence: positive training cell count divided by total training cell count.",
+      "value_prediction": "Per-gene median over strictly positive training log1p values."
+    },
+    "scvi": {
+      "batch_key": null,
+      "confirmatory_seeds": [
+        20260728,
+        20260729,
+        20260730
+      ],
+      "environment_python": "3.13",
+      "external_policy": "Fit a new unsupervised scVI model separately on each corrupted external cohort and mask panel, with frozen architecture and seed policy; never use masked y.",
+      "family": "established_transductive_probabilistic",
+      "hyperparameter_selection": "At tuning seed 20260728, choose ONE common n_latent across mask15, mask30, and mask50 maximizing mean validation recovery index R. Ties choose smaller n_latent.",
+      "hyperparameter_tuning_seed": 20260728,
+      "implementation": "scvi-tools",
+      "input": "Aligned raw-count view of the exact frozen cells and 4096 genes. Exact synthetic_mask count positions are set to zero. Frozen log1p panels are not used as scVI training counts.",
+      "model_fixed_parameters": {
+        "dispersion": "gene",
+        "gene_likelihood": "zinb",
+        "n_hidden": 128,
+        "n_layers": 1,
+        "use_observed_lib_size": true
+      },
+      "n_latent_candidates": [
+        10,
+        30,
+        50
+      ],
+      "prediction": "Use get_normalized_expression(library_size=10000, return_numpy=True), then apply np.log1p to place predictions on the frozen evaluation scale.",
+      "repair_score": "Same log1p decoded normalized expression value.",
+      "target_access_during_fit": false,
+      "training": {
+        "all_other_training_options": "Use defaults of pinned scvi-tools version unless an option is required for deterministic device or seed selection; any such execution option must be recorded in the pre-result environment receipt.",
+        "max_epochs": 400
+      },
+      "value_prediction": "log1p of scVI decoded expression scaled to library_size=10000.",
+      "version": "1.5.0.post1"
+    },
+    "truncated_low_rank": {
+      "algorithm": "sklearn.utils.extmath.randomized_svd on x without centering; reconstruction=(U*S)@Vt; clamp negative reconstructed values to zero.",
+      "family": "transductive_unsupervised",
+      "hyperparameter_selection": "Choose ONE common rank across mask15, mask30, and mask50 that maximizes mean validation recovery index R=1-MSE/Var(masked_target). Ties choose smaller rank.",
+      "input": "corrupted normalized x only",
+      "random_state": 20260728,
+      "rank_candidates": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "repair_score": "Nonnegative low-rank reconstructed expression.",
+      "target_access_during_fit": false,
+      "test_external_fit": "Refit the frozen-rank decomposition separately on each corrupted test or external cohort using x only.",
+      "value_prediction": "Nonnegative low-rank reconstructed expression."
+    }
+  },
+  "date_frozen": "2026-08-17",
+  "execution_order": {
+    "1": "Commit this scientific protocol before any p2 comparator statistic, fit, prediction, or evaluation is produced.",
+    "2": "Create isolated ALRA and scVI environments and commit an environment and source receipt before comparator inference.",
+    "3": "Derive train-only positive statistics and tune deterministic comparator hyperparameters on frozen internal validation.",
+    "4": "Tune scVI n_latent on internal validation using only the predeclared tuning seed.",
+    "5": "Freeze all selected hyperparameters and comparator thresholds in a second pre-test selection receipt.",
+    "6": "Only then evaluate frozen internal test and external panels."
+  },
+  "frozen_corpus": {
+    "manifest_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/shards.parquet",
+    "manifest_sha256": "2e5adfb5558113ad570651e57cabee78362ae70ac27c96db7e353eea51055b85",
+    "n_genes": 4096,
+    "normalization": "raw counts -> frozen 4096-gene projection -> CP10K using projected 4096-gene row sum -> log1p",
+    "split_cells": {
+      "test": 25000,
+      "train": 200000,
+      "validation": 25000
+    },
+    "vocabulary_file_sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2",
+    "vocabulary_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "vocabulary_semantic_sha256": "220093512a48251f9b4f2d45e8bf9134725473ce5bab89c93e2440bea1f74d01"
+  },
+  "frozen_external_benchmarks": {
+    "baron_pancreas": {
+      "available_genes": 3851,
+      "directory": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1",
+      "mapping": "exact_unique_gene_symbol",
+      "mask15_sha256": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+      "mask30_sha256": "edc1422a764c1aa40a9028401df6629c771fc7f3809ff5e9a7443be6fabd1e3e",
+      "mask50_sha256": "7654fcc78719327f73fcbe46bf69beaf866e32b9331134f2aec1bc4964b2d792",
+      "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+      "selected_cells": 5000
+    },
+    "zheng68k": {
+      "available_genes": 4046,
+      "directory": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1",
+      "mapping": "exact_ensembl_id",
+      "mask15_sha256": "35490be0d1a83b46517d2d5792a2c0a1bc9c5b3f800f29aeb90447d11d8a6ecc",
+      "mask30_sha256": "ba6b8e6d2698048faac52e6b384a795bd429ec3d58bb385b1fc769ad50da7871",
+      "mask50_sha256": "2313651071d4c2d69053a51e21ba477d3f2c3c146172dc187ac809af4590f040",
+      "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+      "selected_cells": 5000
+    }
+  },
+  "frozen_internal_benchmarks": {
+    "directory": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks",
+    "panels": {
+      "test_mask15.npz": "eb9d3d63f42bc30fb5233f0f39271f792b43535a6be4f46b690cc188ed99c3d7",
+      "test_mask30.npz": "ca59d9407830484360c476865c1b339b0ed62b8c4e0a75e8ca5f07acbc1d7ecf",
+      "test_mask50.npz": "e1a75d8b27eda99ccf0ba08857fad385708ca0dd5cbdc0166ded9f1607b7a4d2",
+      "validation_mask15.npz": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430",
+      "validation_mask30.npz": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e",
+      "validation_mask50.npz": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+    },
+    "receipt_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/benchmark_panels.sha256",
+    "receipt_sha256": "f3e0d050ba243d7b0debdd2252cedc60edac4f3c478eff016f988ea9d372f331",
+    "selection_policy": "Comparator hyperparameters and repair thresholds may use validation panels only. Frozen test panels are evaluated only after method-specific validation choices are frozen."
+  },
+  "labels_and_eligibility": {
+    "external_available_gene_mask": "Use frozen available_gene_mask from each external panel. Unavailable genes are never counted as true zeros, masked positives, gate/selective candidates, or preservation entries.",
+    "internal_available_gene_mask": "all 4096 genes eligible",
+    "masked_positive": "synthetic_mask == true",
+    "observed_nonzero": "(abs(x) > 1e-8) AND available_gene_mask",
+    "true_zero": "(y <= 1e-8) AND available_gene_mask",
+    "zero_threshold": 1e-08
+  },
+  "prohibited_actions": [
+    "No p1 SC2 checkpoint reselection.",
+    "No p1 SC2 threshold retuning.",
+    "No comparator hyperparameter selection using internal test.",
+    "No comparator threshold selection using internal test.",
+    "No comparator threshold or hyperparameter tuning using external labels.",
+    "No use of masked y during transductive comparator fitting.",
+    "No alteration of Zheng68K or Baron mappings or preprocessing.",
+    "No treatment of unavailable external genes as biological true zeros.",
+    "No regeneration of frozen p1 internal or external normalized panels.",
+    "No comparator result may be inspected before this protocol is committed."
+  ],
+  "protocol_name": "sc2_p2_comparator_frozen_v1",
+  "reconstruction_policy": {
+    "below_threshold_rule": "leave x unchanged",
+    "preservation_audit": [
+      "observed_nonzero_mse",
+      "observed_nonzero_mae",
+      "observed_nonzero_max_abs_error",
+      "observed_nonzero_changed_fraction",
+      "n_observed_nonzero"
+    ],
+    "preserve_observed_nonzero": true,
+    "replacement_rule": "Only available positions with abs(x)<=1e-8 and repair_score>=frozen_threshold may be replaced by the comparator value prediction.",
+    "required_preservation_result": "All observed-nonzero reconstruction errors must be exactly 0.",
+    "start_matrix": "corrupted x",
+    "unavailable_external_genes": "leave unchanged and exclude"
+  },
+  "repository": {
+    "branch": "p1-official-mamba",
+    "p1_final_results_commit": "d62eef0",
+    "p1_submission_rederivation_commit": "87bd27e",
+    "parent_git_head": "87bd27ecfacbfbcf104022700078e074f0c31f68",
+    "parent_git_head_short": "87bd27e"
+  },
+  "selective_repair_policy": {
+    "curve_reporting": "Save recall-versus-true-zero-fill and risk-versus-coverage curves across the full score range. Operating-point selection uses exact score boundaries; presentation curves may be downsampled deterministically to at most 201 points plus the exact selected point.",
+    "deterministic_method_thresholds": "One frozen threshold per method per mask rate.",
+    "max_true_zero_fill": 0.02,
+    "min_precision": 0.0,
+    "score_direction": "higher_score_means_more_likely_to_repair",
+    "scvi_common_threshold": "After n_latent is frozen, choose one common threshold per mask across the three confirmatory scVI validation seeds, maximizing mean recall subject to true_zero_fill <=0.02 in EVERY seed. Break ties by mean precision then stricter or higher threshold.",
+    "test_external_threshold_tuning": false,
+    "threshold_search": "For each comparator and mask rate, search exact distinct validation score boundaries plus a no-selection sentinel. Select the threshold maximizing masked-positive recall subject to true_zero_fill<=0.02. Break ties by higher precision, then stricter or higher threshold.",
+    "threshold_selection_split": "internal_validation_only"
+  },
+  "status": "frozen_before_any_p2_comparator_result",
+  "v1_immutability": {
+    "checkpoint_step": 4000,
+    "external_protocol_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_external_frozen_protocol.json",
+    "external_protocol_sha256": "1038f534d44df6d73b69f10ac18276ab24c441d105349b27b3057f95a10365d2",
+    "external_results_receipt_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_external_results_receipt.json",
+    "external_results_receipt_sha256": "6efc320add25eb62c0e36efe590bc883e4399365e6a75ddd65dc11177fbf535a",
+    "frozen_thresholds": {
+      "15": 0.545,
+      "30": 0.51,
+      "50": 0.46
+    },
+    "rule": "The completed SC2 p1 confirmatory chain is immutable. No p1 checkpoint, threshold, internal panel, external panel, mapping, preprocessing rule, or external cell selection may change as part of p2.",
+    "sc2_curve_policy": "Reuse existing p1 step-4000 validation, test, and external summary, threshold_sweep, and risk_coverage artefacts. Do not rerun or reselect the p1 SC2 operating point.",
+    "sc2_seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "threshold_policy_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_step004000_frozen_thresholds.json",
+    "threshold_policy_sha256": "a9c8b5230743dccbea0771ab9800d97e0133a62792e4c39fc96b90ae2db1d277"
+  },
+  "value_metric_policy": {
+    "evaluation_positions": "All frozen masked-positive positions, restricted to available genes externally.",
+    "metrics": [
+      "masked_mse",
+      "masked_mae",
+      "sample_spearman",
+      "gene_spearman",
+      "prediction_sd",
+      "target_sd",
+      "sd_ratio",
+      "recovery_index_R"
+    ],
+    "recovery_index_R": "1 - masked_mse / population_variance(masked_target, ddof=0)",
+    "value_metrics_use_raw_ungated_prediction": true
+  }
+}

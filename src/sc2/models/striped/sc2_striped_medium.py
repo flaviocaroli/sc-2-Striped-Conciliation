@@ -63,6 +63,7 @@ class SC2StripedMedium(nn.Module):
         dropout_head: bool = True,
         bidirectional_mamba: bool = True,
         mamba_merge_mode: str = "gate",
+        mamba_backend: str = "reference",
         zero_threshold: float = 1e-8,
         marker_prior: Optional[torch.Tensor] = None,
     ) -> None:
@@ -77,6 +78,7 @@ class SC2StripedMedium(nn.Module):
         self.n_attention_checkpoints = int(n_attention_checkpoints)
         self.zero_threshold = float(zero_threshold)
         self.use_modality_token = bool(use_modality_token)
+        self.mamba_backend = str(mamba_backend).lower()
 
         self.gene_embedding = nn.Embedding(self.n_genes, d_model)
         self.value_projection = nn.Sequential(
@@ -108,6 +110,7 @@ class SC2StripedMedium(nn.Module):
                     dropout=dropout,
                     bidirectional=bidirectional_mamba,
                     merge_mode=mamba_merge_mode,
+                    backend=self.mamba_backend,
                 )
                 for _ in range(n_mamba_blocks)
             ]
@@ -161,6 +164,13 @@ class SC2StripedMedium(nn.Module):
 
     @staticmethod
     def _init_weights(module: nn.Module) -> None:
+        if getattr(
+            module,
+            "_sc2_preserve_init",
+            False,
+        ):
+            return
+
         if isinstance(module, nn.Linear):
             nn.init.xavier_uniform_(module.weight)
             if module.bias is not None:

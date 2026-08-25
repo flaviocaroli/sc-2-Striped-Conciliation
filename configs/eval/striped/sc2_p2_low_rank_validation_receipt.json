@@ -1,0 +1,543 @@
+{
+  "classification": "new_confirmatory_protocol_validation_only",
+  "common_rank_selection": {
+    "mean_recovery_r_by_rank": {
+      "128": -1.240769537919349,
+      "16": -0.4690852112987674,
+      "32": -0.6276302897756012,
+      "64": -0.8837399674474815
+    },
+    "selected_mean_recovery_r": -0.4690852112987674,
+    "selected_rank": 16
+  },
+  "locks": [
+    "No internal test comparator result used.",
+    "No external comparator result used.",
+    "No target y used during SVD fitting.",
+    "No rank selected independently per mask.",
+    "No p1 SC2 model or threshold changed."
+  ],
+  "pre_result_failed_attempt": {
+    "attempts": {
+      "128": {
+        "15": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629870,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "37f21658fbe83382e03be2f01748dcfbc56174c9d52420d7cf22845f9cbf05b7"
+        },
+        "30": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629871,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "b53eda5fd8796f57270efea97490df2cbb7487ccafb3794c5eb658e580315efc"
+        },
+        "50": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629872,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "e99a268c0de3e9a5c06e6b0065fe8f6d48c1b72a7186b1bb1e8307d8017dad42"
+        }
+      },
+      "16": {
+        "15": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629861,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "1800de046de6c2cc97257b98224f7d218182a5a09d80056eabbf54dc086ce000"
+        },
+        "30": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629862,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "218c4c00d2b865d8421997202684f477336afa24116e97ecbe9ec702a0b0dfc1"
+        },
+        "50": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629863,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "6506deb28831b5dc1a66e03587878aba6efa261f540cf95cd875ce7472835f8c"
+        }
+      },
+      "32": {
+        "15": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629864,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "8df3e50fcb1598873b7659d77e447b2a90c5d7d2c361f040dfd505c7436e0003"
+        },
+        "30": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629865,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "4bf84bbf50ff8d87b014e566548654c0ba9694d85597dd54685c978e57188f7f"
+        },
+        "50": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629866,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "0bf5aa370879381145023ff5886807e11a12f22c0ef3736869f03bd3415918c2"
+        }
+      },
+      "64": {
+        "15": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629867,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "e4b1735dcfbf820f199c52da3ce2b0d98ffff642b299ffaddae2ae5247941bfc"
+        },
+        "30": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629868,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "77a1addf3e471c9e3d42ddfeea5ff3b20d3dc80604e5e03f881885b765d6fcb4"
+        },
+        "50": {
+          "exit_code": "1:0",
+          "failure_reason": "Brier score incorrectly treated unbounded expression-valued repair score as probability.",
+          "failure_stage": "post-reconstruction diagnostic",
+          "job_id": 629869,
+          "scientific_result_written": false,
+          "state": "FAILED",
+          "stderr_sha256": "d8c92b9661503f362faf22efd3c8fb24ac8d97f50eed6d345ec91a393c633040"
+        }
+      }
+    },
+    "result_directory_files_written": false,
+    "summary": "All initial jobs failed after low-rank predictions were computed because a probability-only Brier diagnostic was applied to expression-valued scores."
+  },
+  "protocol": {
+    "algorithm": "sklearn randomized_svd without centering",
+    "family": "transductive_unsupervised",
+    "input": "corrupted normalized x only",
+    "random_state": 20260728,
+    "rank_candidates": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "rank_selection": "maximize mean validation recovery_r across mask15/mask30/mask50; tie smaller rank",
+    "repair_score": "nonnegative low-rank reconstructed expression",
+    "target_access_during_fit": false,
+    "threshold_constraint": "true_zero_fill <= 0.02",
+    "threshold_policy": "exact distinct validation score boundaries plus no-selection sentinel",
+    "value_prediction": "nonnegative low-rank reconstructed expression"
+  },
+  "receipt_name": "sc2_p2_low_rank_validation_v1",
+  "repository": {
+    "baseline_validation_freeze_commit": "c543c96f6fc177d029c5240e17a7181cd853c155",
+    "comparator_protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "initial_low_rank_evaluator_commit": "dae3654",
+    "protocol_neutral_bugfix_commit": "9ea6f2ef696886ad3c5c4aaec7cdfba13b8769f8"
+  },
+  "status": "frozen_before_knn_validation",
+  "successful_results": {
+    "128": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "f9cad8e33ede0bfaa04a8af88a3be4136fa181d9c55e0ac4670308cf3df78c98",
+          "exact_threshold_frontier.csv": "5a364956bb667fbf7bb5f8c2e14a408bfb9e47918b91797541d8f7df3a44ce2c",
+          "risk_coverage.csv": "d1877ed960250e6f39e3eae7f803325ff6fd2bb9c2a0fa57bc1eece55cf497de",
+          "summary.csv": "98d8d7b73b8059fff4098073617499158d9c58fcce305f72e897cc6e407c7c1c",
+          "summary.json": "f203df3f0ef09831c127b1b9ca34173573b8e6b99140ea73d17d5bd10ef4d9da",
+          "threshold_curve.csv": "5689749bd2eb575238d23860b44c5f3c3d46d97ccfcaf6eb27b02d87c93a80b0"
+        },
+        "gene_spearman": 0.13251440511791623,
+        "job_id": 629895,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "c032dfce129ecf158ef43de03394e1b75d535fe664012a5a527b027168325a0a"
+        },
+        "masked_mae": 0.8659794926643372,
+        "masked_mse": 1.3076261281967163,
+        "precision": 0.49965878112930534,
+        "prediction_sd": 0.49138936400413513,
+        "recall": 0.2611375449203387,
+        "recovery_r": -0.7964686842069555,
+        "sample_spearman": 0.4621340181256984,
+        "score_auprc": 0.36594666706101425,
+        "score_auroc": 0.822540845260889,
+        "sd_ratio": 0.5759619159240389,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.8670704960823059,
+        "true_zero_fill": 0.019999581240889408
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "c5ea9c3430d3beffa8f8775404810d533ba842aac1027b2fd790a1ada051a414",
+          "exact_threshold_frontier.csv": "e2ba47d98d65e0f65c0d27e8eb1370c1af20ef5509806b05fb72ac74f2a25304",
+          "risk_coverage.csv": "f7ebc3164e23d7f4798f4b7125e69fafa9d577e73b35ed00909bd73fa84ebf96",
+          "summary.csv": "9b440fce39a203a1329748a5416e212c7ed815312db2815c338b57a1e889410b",
+          "summary.json": "108aacb5754ae44557b98ae4470a1bf45ef3bf83ae517b9ba6d369d6321a6150",
+          "threshold_curve.csv": "981524740202406f13223c24ec5e1a8111ab451cd6424358a02b913450afaebe"
+        },
+        "gene_spearman": 0.11830426182669819,
+        "job_id": 629896,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "135de107bec4db9d0d5ca40a2f40569433c23c1ebd54cce7b68e738d564ebf57"
+        },
+        "masked_mae": 0.9845982193946838,
+        "masked_mse": 1.6249257326126099,
+        "precision": 0.6357525726684856,
+        "prediction_sd": 0.4087570011615753,
+        "recall": 0.2281973451728356,
+        "recovery_r": -1.2374100891763011,
+        "sample_spearman": 0.34576050285959514,
+        "score_auprc": 0.4552743188724425,
+        "score_auroc": 0.7985485982139157,
+        "sd_ratio": 0.47964644335310536,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.7412812113761902,
+        "true_zero_fill": 0.01999972869128046
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "92e7ae710ed4f1fe4792aae89d10fcb24e9accdac923087efbd8da546d338fde",
+          "exact_threshold_frontier.csv": "c436e4da364af73605b4b5a3185b54ac18f79b92c867dde2f4afb07805741ce8",
+          "risk_coverage.csv": "89d4a88941dd86db253078cd98b6d4e86d5275983a7ad55e249275d31a262974",
+          "summary.csv": "97ec249ca07b32c87129cbb93025e43aee8d1f08749352679d8af6fa3cf135de",
+          "summary.json": "7ec263012f111c10f6039463598d7cb15f31b27e05ae704540696cd6333562d2",
+          "threshold_curve.csv": "bfee8d8ead59549d7c8f27c4981e31b1b7ac44762cb21fa752bfa4aa01b5bfe9"
+        },
+        "gene_spearman": 0.1019634227912992,
+        "job_id": 629897,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "f94416e626f123b76c83bb4c7c3c15258a8f2a0a9b24ce2c329f451af54a17a8"
+        },
+        "masked_mae": 1.1282069683074951,
+        "masked_mse": 1.9594531059265137,
+        "precision": 0.7168279418365536,
+        "prediction_sd": 0.3112366199493408,
+        "recall": 0.19858440286797804,
+        "recovery_r": -1.6884298403747908,
+        "sample_spearman": 0.27824280090216125,
+        "score_auprc": 0.5185342933919099,
+        "score_auroc": 0.7702116171629201,
+        "sd_ratio": 0.36456300200263464,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.5664085149765015,
+        "true_zero_fill": 0.019999876141671515
+      }
+    },
+    "16": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "385afba82a3ae4752ea5821d07c20295abdec0d81cad133487cd37014050f1e4",
+          "exact_threshold_frontier.csv": "ef3ad9e9c1a1158adf8df1e15a0b1e4e59f69881b8fe3fcfb04880eace042931",
+          "risk_coverage.csv": "0b8da97d3f01755ddd8a0eaecdca4f53d436851bb016a09bab7113d15239bfb2",
+          "summary.csv": "b43728d8afad7338d92bf66f16058d74ae6507d5dada017aa8f4e6863f727f07",
+          "summary.json": "a3a26db270a8f3531e99bb03b26f519c77c3ddf1c518dd814d3db5fab2436ef7",
+          "threshold_curve.csv": "96313ac9d79ccc410e187a18bcf426c78fa97e1e89307ac2023d6fb3bea3870d"
+        },
+        "gene_spearman": 0.1343299351760419,
+        "job_id": 629886,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "50fd19bfac2346fa3bb50911584446e19d8afb21945dfa05232fc029f74737c6"
+        },
+        "masked_mae": 0.6879905462265015,
+        "masked_mse": 0.7355776429176331,
+        "precision": 0.5452667998766243,
+        "prediction_sd": 0.7312964200973511,
+        "recall": 0.3135555315637676,
+        "recovery_r": -0.010565766322389702,
+        "sample_spearman": 0.6427654181859309,
+        "score_auprc": 0.44285288294050024,
+        "score_auroc": 0.8587344782265028,
+        "sd_ratio": 0.8571591452356235,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.891780436038971,
+        "true_zero_fill": 0.019999581240889408
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "7f56c843070488e7b3ee8213ef6738c47c214fab8ce68a0570b0ff032ddff7c0",
+          "exact_threshold_frontier.csv": "d6e0beffe00fbe269b4afbe39b995b2dbc677b92cf49d28cc8b914307d51690b",
+          "risk_coverage.csv": "842e5c8318704e20133ecab71bc652c8e032add720b47356ad8f6494b0c15c6b",
+          "summary.csv": "38923f08e30011aa89ff9d870a6127f023667a08caeb40674fa4bbdf2f583bde",
+          "summary.json": "d1cec850ae82ebad5c4ee100dda12b977cb4fc4490407bbd5d57e6f72028dc7a",
+          "threshold_curve.csv": "2ce9ab11d17818bc473b427f6432a8e7aa4f44352e55b6e2ecc0082277c9519e"
+        },
+        "gene_spearman": 0.10857742162490826,
+        "job_id": 629887,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "0bc10fbe077bb445df3990012c55295e9580d9f6091575951cebd6de4134c4b3"
+        },
+        "masked_mae": 0.8236368298530579,
+        "masked_mse": 1.0131077766418457,
+        "precision": 0.6999099519670074,
+        "prediction_sd": 0.5849810242652893,
+        "recall": 0.30493208704964475,
+        "recovery_r": -0.3949791768248385,
+        "sample_spearman": 0.6245359507974353,
+        "score_auprc": 0.556201531681446,
+        "score_auroc": 0.8537635212159741,
+        "sd_ratio": 0.686432444999253,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.7398899793624878,
+        "true_zero_fill": 0.019999433790498355
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "f07738dc2951c1ce948cddf5365028b9984d804ffd480356b38c4ca66d6b3ac4",
+          "exact_threshold_frontier.csv": "65cb0441de2ac4d5fe53106674095c163635e55d077ed7b7358f05ae765f21f1",
+          "risk_coverage.csv": "a1c7128c1f9a5420fa1304309cb0c636f7580d9a9c7cf40577167f7469d73e1d",
+          "summary.csv": "23cab153472451bfa29cb7796301e37ceecf8e299fdd120cb549796f84c276b4",
+          "summary.json": "6dcee14bd7daff6ab53a569a3b1771a4d68f50f4325af9cd31caab8bd29620ed",
+          "threshold_curve.csv": "561e329b06403985d3b46eed26133d750312147cfc1b002576ecd2e02f500ba8"
+        },
+        "gene_spearman": 0.07558973171090468,
+        "job_id": 629888,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "d71d8dadddcd3333623e042b2605a7257cb6449b780cb4169e33727efab23b04"
+        },
+        "masked_mae": 1.0168852806091309,
+        "masked_mse": 1.4589401483535767,
+        "precision": 0.7875643123957493,
+        "prediction_sd": 0.4146261215209961,
+        "recall": 0.29082782588779904,
+        "recovery_r": -1.001710690749074,
+        "sample_spearman": 0.5953905754395244,
+        "score_auprc": 0.634392224606186,
+        "score_auroc": 0.8444378687714202,
+        "sd_ratio": 0.4856669616673225,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.5340583324432373,
+        "true_zero_fill": 0.01999972869128046
+      }
+    },
+    "32": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "ad067d9dad0646f2c7b442843cfe812493e5642775d6c3f5a52054c4b27c3930",
+          "exact_threshold_frontier.csv": "f5bf9258eb4716d981b9edf01a6ca6ecbe56e0b1528b51c709e719ccf2c45fc7",
+          "risk_coverage.csv": "9f6f7ade89d4e3ff831ef48dc130ce9c63537e066624ff29d7086b0b041d5c4d",
+          "summary.csv": "2dcbc59335cf1323cee3523c8cc4edefa0edf4ee1030d4764018a8e652f47781",
+          "summary.json": "d6708f67e9e775ae1bda3839c2bcd80c021a332af0bc3a541965744ca3fb08f5",
+          "threshold_curve.csv": "a81d20dcb3f13cf194f5dbe9b831a030c25bb9d10852335653a8854a015b6e65"
+        },
+        "gene_spearman": 0.14224650864677632,
+        "job_id": 629889,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "8f9d3c03aa2f2d60c1366d775178f419b34622a0fc90657ada1f08599165ec79"
+        },
+        "masked_mae": 0.7155815958976746,
+        "masked_mse": 0.8423075675964355,
+        "precision": 0.5442381680415316,
+        "prediction_sd": 0.6778872609138489,
+        "recall": 0.31225997501426656,
+        "recovery_r": -0.15719557374115922,
+        "sample_spearman": 0.6240221577519405,
+        "score_auprc": 0.43865681587980343,
+        "score_auroc": 0.8560548874028884,
+        "sd_ratio": 0.7945577869144796,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.8852896690368652,
+        "true_zero_fill": 0.01999972869128046
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "e9d77e05e5055ae9a7b31c4aeceba4d9af4859e786d30dddf907eba5e99de7ca",
+          "exact_threshold_frontier.csv": "840100678a617acc64adad34bd024d88a94b5c69f3207cee2f72b26ccaf4e482",
+          "risk_coverage.csv": "438e0d86a1375947b635cfd0b8b4110aeeba8866a8086360715105be03eca7b4",
+          "summary.csv": "3cd28a7ad0735212126da41ab68fed4b019c13efe2fb1b7aa92c43901f6e4164",
+          "summary.json": "6ee21509f32e2131db3f504cb132c6816a788f13e7c89bde2321a91a9cc2332a",
+          "threshold_curve.csv": "4f271c435cf1f60ebd3b400075efdf99ca10f5dca3c2238f6b6d670f9779e84c"
+        },
+        "gene_spearman": 0.11831670350620038,
+        "job_id": 629890,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "4e3ded76e931301e2fcf095f646b41be3dbad03467f7c29a3c3690b671f454b3"
+        },
+        "masked_mae": 0.8527523875236511,
+        "masked_mse": 1.1414228677749634,
+        "precision": 0.695555071725336,
+        "prediction_sd": 0.5400539636611938,
+        "recall": 0.2987022751392623,
+        "recovery_r": -0.5716601621356046,
+        "sample_spearman": 0.5855945413846694,
+        "score_auprc": 0.5460705476900791,
+        "score_auroc": 0.8479478421377956,
+        "sd_ratio": 0.6337138254579922,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.738710880279541,
+        "true_zero_fill": 0.019999581240889408
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "0fd097b7c40980a0097bc823b01f5400a6310c78153d728f4a7e3fd2203e3d53",
+          "exact_threshold_frontier.csv": "84b0a9a2ba3fe691b9f424caf1ab1d5d4f63d3f005d8e4b660f22715085e7869",
+          "risk_coverage.csv": "a1edfb86e83fe2e16ecbaeed4b3c014f4cd39a9165e0efd0cbf7b4963c997f98",
+          "summary.csv": "996c26e0c57459c3761e7b8d25f950cf741fcb00522e140ff23d78e4b29240f5",
+          "summary.json": "3c49042d060a18751f180c647e683b932fc2eda75e586d15b30e0143acca4361",
+          "threshold_curve.csv": "c4869b12e73c4cc70c4e7e4ed6fbe917dfe058768037b9405ba50806c0a91fc5"
+        },
+        "gene_spearman": 0.08612039779953845,
+        "job_id": 629891,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "733681e475d0340ad2e90e71b4a58a75a4cde63875be87a33e41975239a6422a"
+        },
+        "masked_mae": 1.037712574005127,
+        "masked_mse": 1.5699613094329834,
+        "precision": 0.7808953188959715,
+        "prediction_sd": 0.3901127576828003,
+        "recall": 0.2795839037421712,
+        "recovery_r": -1.1540351334500398,
+        "sample_spearman": 0.5423056206699379,
+        "score_auprc": 0.6194105782339113,
+        "score_auroc": 0.834950605512627,
+        "sd_ratio": 0.456953548986353,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.5382368564605713,
+        "true_zero_fill": 0.019999433790498355
+      }
+    },
+    "64": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "8f85ba092850b2e93406a6437130cdd1890a1630f52804ac0cb38e6a12f0492b",
+          "exact_threshold_frontier.csv": "bd41324a0886497ff0587aea0f59e0a3d25a354dd9bf8472f169dd40994e74fd",
+          "risk_coverage.csv": "a1061dcbf07b21555e2897d168a60062b116fe6782df13620a948caf895291ea",
+          "summary.csv": "b38c22efcb42000e5923920545ee15c33dea2ee212c80c3ba05e460932508a1f",
+          "summary.json": "61c8a8458f7829a8a7fbac02293332b9e8b6d7dddfa000b25485a8f079cb7bbc",
+          "threshold_curve.csv": "e7a9ddc105a5bf9b7dcf45e29a570d2453cb1ebdee08f118c3ee984256207729"
+        },
+        "gene_spearman": 0.14417683961815858,
+        "job_id": 629892,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "73031db6371a763081d2f4a2484c41c0caa1d8e8744fd8ed51083c38d512c5cb"
+        },
+        "masked_mae": 0.7758170962333679,
+        "masked_mse": 1.0297125577926636,
+        "precision": 0.5333581042027908,
+        "prediction_sd": 0.5862212181091309,
+        "recall": 0.2988802689822169,
+        "recovery_r": -0.4146599887539708,
+        "sample_spearman": 0.5723838342448889,
+        "score_auprc": 0.41711398951691864,
+        "score_auroc": 0.8462396494901485,
+        "sd_ratio": 0.6871151894419465,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.8798326849937439,
+        "true_zero_fill": 0.019999581240889408
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "54c7f02ed693285f56f19b565b8064f9d50dde078a36ce7f0545b84cff7334d0",
+          "exact_threshold_frontier.csv": "d3b12c243a5f1631bf7a5ce75c9e3fd131697d6d99bc040076336375d46f32d8",
+          "risk_coverage.csv": "685acf12ba09ae946fb55ac988ff1fca1c4386f655dbac7dfda3be34fd9eee49",
+          "summary.csv": "8a29bd372d93de89daef4d7c6f2d8a7e14041911e0ff08bd366a0843f06e91f7",
+          "summary.json": "81231f16045410bd139a4a53cd868c86732ba093ffcfc2f5569d8fd4a6fdfbfa",
+          "threshold_curve.csv": "cf318d2fdd75a7b84470b203f401c4fc5f30f071a1f0a28bea784d671636290b"
+        },
+        "gene_spearman": 0.12100402132308764,
+        "job_id": 629893,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "3bbc408e3bb9dcb7d853bb6fe1edb61b519200cdb6373bcaed54c240c560676e"
+        },
+        "masked_mae": 0.9057594537734985,
+        "masked_mse": 1.3452996015548706,
+        "precision": 0.6789353709371605,
+        "prediction_sd": 0.47548049688339233,
+        "recall": 0.2764723629812489,
+        "recovery_r": -0.852384291215678,
+        "sample_spearman": 0.5005063450401938,
+        "score_auprc": 0.5173257709753144,
+        "score_auroc": 0.8328532392310215,
+        "sd_ratio": 0.5579415852592011,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.7397023439407349,
+        "true_zero_fill": 0.019999581240889408
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "867aeae296b419f59cbe40cdfb903b21766f779bd40f24a63e8c83da1e7144b0",
+          "exact_threshold_frontier.csv": "f7e8cddc461570b7a6d13da7c73831f6e613022aa2d073089d24f976e8d937a4",
+          "risk_coverage.csv": "3b8ad13b5dbdcb29db63b5ac29963b2393ef2916b1159412f74204ef41549125",
+          "summary.csv": "ed00a2bd81c9a5e53f68cf1bfa0c80783a90f315b32f096f8b976cf27dee7d7d",
+          "summary.json": "dd7d28b65b7b1d0045be5ade799da464dbe673c8c6c65a304eedafce929af10e",
+          "threshold_curve.csv": "0d5a2debbf92813aa65a5f5ac9a5d20c26c64c827033c47c39589e6fee4a10de"
+        },
+        "gene_spearman": 0.09754414257160407,
+        "job_id": 629894,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "cc2e99248a5477b7022c00b6aa04d0b1b45043510e1c3b44263d3de91f133137"
+        },
+        "masked_mae": 1.073763132095337,
+        "masked_mse": 1.7376984357833862,
+        "precision": 0.7619429560297032,
+        "prediction_sd": 0.35266759991645813,
+        "recall": 0.25108572876127155,
+        "recovery_r": -1.3841756223727955,
+        "sample_spearman": 0.43826487916777623,
+        "score_auprc": 0.5848459393301678,
+        "score_auroc": 0.8128518923260646,
+        "sd_ratio": 0.4130926462173217,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.5480839014053345,
+        "true_zero_fill": 0.019999876141671515
+      }
+    }
+  },
+  "validation_panel_sha256": {
+    "15": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430",
+    "30": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e",
+    "50": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+  }
+}

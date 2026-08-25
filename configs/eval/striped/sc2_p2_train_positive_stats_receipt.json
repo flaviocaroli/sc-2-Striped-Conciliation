@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "output_directory": "/home/3159436/sc2/outputs/analysis/p2_train_positive_stats_v1",
+    "positive_train_statistics_csv_sha256": "bedfd9d756b23d9a37a3a3cfc9e99743f838875d99e16e53083181c953359238",
+    "positive_train_statistics_npz_sha256": "75d713e31ff63269b9885f5076d1d3223bc357a620cea0bc4b1e829181d638c0",
+    "sha256sums_txt_sha256": "3ce3e09f77400c58a273ec92c1bfcd304d71e0b74c4aebb46e17b0d373165b72",
+    "summary_json_sha256": "f39da4185dd6d39e6444a646faec90b0ac66c6ad502480f38876532e3ff3448d"
+  },
+  "classification": "confirmatory_train_only_derived_artifact",
+  "definition": {
+    "mean": "arithmetic mean among positive train values only",
+    "median": "exact median among positive train values only",
+    "positive": "train log1p value > 1e-8",
+    "prevalence": "positive count divided by 200000 train cells"
+  },
+  "derivation_script": {
+    "path": "/home/3159436/sc2/code/scripts/data/compute_positive_train_stats_from_shards.py",
+    "sha256": "4ecef3fa1a53266d7c5835c4117b79e6c6bef91ceb80e7a915cb76a8291dd936"
+  },
+  "job": {
+    "partition": "medium_cpu",
+    "slurm_job_id": 629774
+  },
+  "prohibitions_at_time_of_derivation": [
+    "No validation target used.",
+    "No internal test target used.",
+    "No external target used.",
+    "No comparator threshold selected.",
+    "No comparator hyperparameter selected."
+  ],
+  "receipt_name": "sc2_p2_train_positive_stats_v1",
+  "repository": {
+    "comparator_protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "current_head": "12341b45ad3cefa26a7481835f76c1437baf4763",
+    "derivation_script_commit": "12341b45ad3cefa26a7481835f76c1437baf4763",
+    "environment_freeze_commit": "d53ec511077b85d6229874a91ee7fb32d5268a18"
+  },
+  "source_data": {
+    "manifest_sha256": "2e5adfb5558113ad570651e57cabee78362ae70ac27c96db7e353eea51055b85",
+    "n_genes": 4096,
+    "n_train_cells": 200000,
+    "n_train_shards": 8,
+    "vocabulary_sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2"
+  },
+  "statistics": {
+    "positive_mean_max": 5.571457862854004,
+    "positive_mean_min": 1.0859841108322144,
+    "positive_median_max": 5.801480293273926,
+    "positive_median_min": 1.008193016052246,
+    "positive_prevalence_max": 0.9503999948501587,
+    "positive_prevalence_min": 0.024815000593662262,
+    "total_positive_values": 261336528
+  },
+  "status": "frozen_before_comparator_validation"
+}

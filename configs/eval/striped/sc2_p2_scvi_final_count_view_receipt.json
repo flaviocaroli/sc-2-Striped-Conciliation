@@ -1,0 +1,48 @@
+{
+  "classification": "protocol_neutral_rederivation_from_frozen_artifacts",
+  "count_view_job": 630457,
+  "count_view_root": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1",
+  "count_view_root_manifest_sha256": "228903368269107b2e3936f99892d096aceea3384cd63305b135d4a1f60f11bc",
+  "count_view_summary_sha256": "175c306c981095d33f8043031499d4ff05658d8a47007e4c41ae70e02b935ad8",
+  "datasets": {
+    "baron_pancreas": {
+      "available_file_sha256": "8e5854edc20d468db12b66e37183fe004c560cea042badb945ccaa2637d82bba",
+      "available_gene_mask_sha256": "2192f4b3cd5c084800192d5ff8e5b650faef232827b7a8a227d85412b6586763",
+      "bundle_manifest_sha256": "a1fd1e558d022da11cff6fa2fe0bfe8ab4dcc7a54fded5c3ed43b338e2bf0176",
+      "counts_file_sha256": "49c2890dfe65f5b4d004e9f138d1c9b85e5412727a215d4a8d673737fb89eb27",
+      "counts_uint32_sha256": "d9fe58a26a33b16df5ea191f08c2320206a5f030b04fc426c0cadddb75a29afe",
+      "metadata_sha256": "7281d1d2ba13d99b3f2f4523b37dadbe7a617a52d0d84265451b297ab4f5dfcb",
+      "n_available_genes": 3851
+    },
+    "internal_test": {
+      "available_file_sha256": "0eb60eefaeb410d873690380c29d88417cec5684124ea314a7bbd63cb33b5cfd",
+      "available_gene_mask_sha256": "3431383721510cf1c211de027cf958c183e16db5fabb6b230eb284c85e196aa9",
+      "bundle_manifest_sha256": "245405b62aeecafeb47fe1e9c7c690b8ed0cef8038c138f7fe5861c9ec68e0c7",
+      "counts_file_sha256": "68a281ddc31bf1fae07b25d1860ff4e9d7d3b9ffd4ab18693122f2a7cca5d90d",
+      "counts_uint32_sha256": "545ab558830816c72275f5b29db02cf68f27d00b9463cc318148bd10139c2043",
+      "metadata_sha256": "6a0355cccb54ee12dccf6eb9ac7d47b159ddc2bf764a38db6b0d6137e3c190e8",
+      "n_available_genes": 4096
+    },
+    "zheng68k": {
+      "available_file_sha256": "90d1a0ccd82424ae941994eb3c5deb167e59a950e6ee169839e8ab2ffd5cb658",
+      "available_gene_mask_sha256": "ab6d2753573580bcb4e35fc02b25fe8b744e46459484e26516138ad83fcb591f",
+      "bundle_manifest_sha256": "d0eafdce5834caa2cb0a7c30d4d35c6f68592d419d9b767a946aa6fb8573d2a8",
+      "counts_file_sha256": "aa0d89bab3d7f4c7eb7e0282cecd7816eaa30321072c616a061434bd332cf2d0",
+      "counts_uint32_sha256": "0cfcfb7dc0abbe3f113dd1b4a7d2fd1efc4e60dd9a6dc60c77e28777c50b5e93",
+      "metadata_sha256": "426f31d77811ab0b3d80058350a8067ad144fe80e5e557a9266be85b9f649659",
+      "n_available_genes": 4046
+    }
+  },
+  "implementation_commit": "93c5ec9117505bcb23e46b0fb18c2381b80061e7",
+  "locks": [
+    "Count views are protocol-neutral re-derivations from frozen raw sources.",
+    "No p2 scVI internal-test or external result preceded this receipt.",
+    "Frozen panel targets were used only for raw-count alignment verification.",
+    "No hyperparameter or threshold may change after this receipt."
+  ],
+  "pretest_receipt_sha256": "514b76785abf7fbe16e65a4d4753827e32f9c0469ffd07b3c6bbb94b4bf48452",
+  "protocol_sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9",
+  "schema_version": "sc2-p2-scvi-final-count-view-receipt-v1",
+  "scvi_selection_receipt_sha256": "a0eb3bcd218b13ce544c2eda9cbc92f2592eb2e3b7d20db2e5417adb1ae13a68",
+  "status": "frozen_before_any_p2_scvi_internal_test_or_external_result"
+}

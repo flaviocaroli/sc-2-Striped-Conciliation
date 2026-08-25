@@ -1,0 +1,4 @@
+partition=short_gpuh200
+gres=gpu:H200:1
+smoke_job=629737
+smoke_device=NVIDIA H200 NVL

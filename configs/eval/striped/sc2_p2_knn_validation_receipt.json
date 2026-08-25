@@ -1,0 +1,469 @@
+{
+  "classification": "new_confirmatory_protocol_validation_only",
+  "common_k_selection": {
+    "mean_recovery_r_by_k": {
+      "10": -0.33897237685657844,
+      "20": -0.3060319249561151,
+      "5": -0.41049214727682243,
+      "50": -0.2949568794806067
+    },
+    "selected_k": 50,
+    "selected_mean_recovery_r": -0.2949568794806067
+  },
+  "locks": [
+    "No internal test comparator result used.",
+    "No external comparator result used.",
+    "No target y used during neighbor fitting.",
+    "No k selected independently per mask.",
+    "No p1 SC2 model or threshold changed."
+  ],
+  "protocol": {
+    "algorithm": "brute",
+    "family": "transductive_unsupervised",
+    "input": "corrupted normalized x only",
+    "k_candidates": [
+      5,
+      10,
+      20,
+      50
+    ],
+    "k_selection": "maximize mean validation recovery_r across mask15/mask30/mask50; tie smaller k",
+    "metric": "cosine",
+    "repair_score": "fraction of k neighbors with expression >1e-8",
+    "self_neighbor_excluded": true,
+    "target_access_during_fit": false,
+    "threshold_constraint": "true_zero_fill <= 0.02",
+    "threshold_policy": "exact distinct validation score boundaries plus no-selection sentinel",
+    "value_prediction": "arithmetic mean of k neighbor corrupted expression values"
+  },
+  "receipt_name": "sc2_p2_knn_validation_v1",
+  "repository": {
+    "comparator_protocol_commit": "6417a61412d3e553dd5ac6d7e4c53a799a5e300e",
+    "knn_evaluator_commit": "79d7c1d353e1014a55729afeac1318093350f82e",
+    "low_rank_validation_freeze_commit": "eaed35ae3c7a91c879e47ff01cff8b2b2387a3f4"
+  },
+  "status": "frozen_before_alra_validation",
+  "successful_results": {
+    "10": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "cfbfa1af0cb34436c296ec0a0dc467de6524359ca69fc1d9b49778e28b3b6b0d",
+          "exact_threshold_frontier.csv": "d6c7b228a780f7ba6dc1d6ec310842afe87dc64ce560cf7882064ac2ce2043d4",
+          "risk_coverage.csv": "3ca4eb0bd57fce9f8905e972c4c1c93f0514abd7ce5b43613e450e0ae61f5828",
+          "summary.csv": "58b93426f170d14820527703043dea739fa0c1694a52ae6e7452dbfc230dc864",
+          "summary.json": "46371cd1fb3500ed6ecce2d00ec6132386cc4b9402ef376bcb20a300cd6b558c",
+          "threshold_curve.csv": "fe962d02ae5d3e37e1cda9cb7b9b053b263867e75636c79ac5ab0c34463d8479"
+        },
+        "gate_auprc": 0.2184284780107212,
+        "gate_auroc": 0.8136293922327665,
+        "gate_brier": 0.18025322330147922,
+        "gate_ece": 0.2695301726608432,
+        "gene_spearman": 0.17908390547983963,
+        "job_id": 629913,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "320024e90eeaff9faa4ed3e29f0b10a971f0cbbdb2d186919b4e7d7c72481cb6"
+        },
+        "masked_mae": 0.6467010378837585,
+        "masked_mse": 0.6582858562469482,
+        "neighbor_distance_max": 0.7022631764411926,
+        "neighbor_distance_min": 0.186786949634552,
+        "precision": 0.339968738506804,
+        "prediction_sd": 0.7914581298828125,
+        "recall": 0.07128452889553805,
+        "recovery_r": 0.09562075848479978,
+        "sample_spearman": 0.6121442870070928,
+        "sd_ratio": 0.9276752291633351,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 1.0,
+        "true_zero_fill": 0.010584726321752677
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "978fad15f9f6d6818236f063d9d76c6151c11d44378336198cecf4e6dff06b82",
+          "exact_threshold_frontier.csv": "67301679f81b5c841c3a1f460f663d2fc4e8d06b5dde5ee52a3ac1073177cab7",
+          "risk_coverage.csv": "9bfb2124ba4849b700d189fcc5249243234894ea09d978c45a5b28489a9446e7",
+          "summary.csv": "43d934c53570f70d9cf9680301bd447b9832cf615fdfbc96c27d42dda57d7140",
+          "summary.json": "efe6608fa0f792647b4217444ad2bd6b4383a8636ff2f8820cf4a840a3d70717",
+          "threshold_curve.csv": "4e6e2d3fa8c200e828cf99ef25965976053d8609d3e503554d6b3f2a77bf5b1b"
+        },
+        "gate_auprc": 0.33327523985550056,
+        "gate_auroc": 0.8004745762918003,
+        "gate_brier": 0.1374391185437414,
+        "gate_ece": 0.15571225843279693,
+        "gene_spearman": 0.1531255128747036,
+        "job_id": 629914,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "ce87240afbf82f0e6abbe2aab15bb5446ac70b536df0cb5246aaffaf20ebb728"
+        },
+        "masked_mae": 0.7813817262649536,
+        "masked_mse": 0.9042993783950806,
+        "neighbor_distance_max": 0.7470524311065674,
+        "neighbor_distance_min": 0.2998272180557251,
+        "precision": 0.49337177395431625,
+        "prediction_sd": 0.6569188833236694,
+        "recall": 0.051300761207251376,
+        "recovery_r": -0.24515755535725314,
+        "sample_spearman": 0.5942814659500857,
+        "sd_ratio": 0.7708462608892219,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.8999999761581421,
+        "true_zero_fill": 0.008058311321447456
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "660c21dde4b60b9b74ec4d6488c39d3a1f9769947186856a7e0ef406d951f3b1",
+          "exact_threshold_frontier.csv": "92292681a41a77c4f4c6ad97882ee13f7623f1483c7faa6bbbddc1bc1c590dce",
+          "risk_coverage.csv": "498c331f2ec4f18ad16d91fa1cfab2e2962b8547cb2a7afd64ec9bc3069a3bde",
+          "summary.csv": "5839a1d15261a9df836cdfa65b00af5eb7d1840479d9af88c91fac20bdf4aee7",
+          "summary.json": "80ccfa448f539d3b8903dcb8794ca27af5068e68c271a91bc900ac715281780b",
+          "threshold_curve.csv": "c7a71f54a325742d9cd33e6caf012a2a5c94a55b4988630362c7c1d2ccd44c84"
+        },
+        "gate_auprc": 0.41014482630362425,
+        "gate_auroc": 0.7711238080738141,
+        "gate_brier": 0.13837551697933534,
+        "gate_ece": 0.028592977146780375,
+        "gene_spearman": 0.1057918255873963,
+        "job_id": 629915,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "67e92efb9c400767d5ba76eefe287240908df0a9f2b66c30f27a63cda35a04c5"
+        },
+        "masked_mae": 0.9843021631240845,
+        "masked_mse": 1.3610339164733887,
+        "neighbor_distance_max": 0.8229329586029053,
+        "neighbor_distance_min": 0.4480510354042053,
+        "precision": 0.577086303143737,
+        "prediction_sd": 0.4899490177631378,
+        "recall": 0.061343891897331616,
+        "recovery_r": -0.8673803336972821,
+        "sample_spearman": 0.5448799970364397,
+        "sd_ratio": 0.5738954650421431,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.699999988079071,
+        "true_zero_fill": 0.011461171446172792
+      }
+    },
+    "20": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "94b58a06537a9b9f30e9dc1748bd687de2be3b800229506caa0c1df4d34280f1",
+          "exact_threshold_frontier.csv": "178ff05569aabe38d601cd766dc7213ecc06398c0b30088fc9fa2b09eef6d022",
+          "risk_coverage.csv": "d5964399567161954962147590fc9d45b37712ed2553ec16a5f52fb6bf30c7ad",
+          "summary.csv": "00fdb8f20e3cc33dd5bccc854681148832f7f44db541569b853b54be73c6927a",
+          "summary.json": "cc8b1c8b526a6996935b9f1087a61de5e8228fe4bf5465f5155040368bec5a3c",
+          "threshold_curve.csv": "01720e214379289ed119936abbad36d309c3d31e57ebb86efd08a5469f8fa0e9"
+        },
+        "gate_auprc": 0.25170899458060436,
+        "gate_auroc": 0.8279976342122096,
+        "gate_brier": 0.16939562463875196,
+        "gate_ece": 0.26351258744054995,
+        "gene_spearman": 0.18895460998269792,
+        "job_id": 629916,
+        "logs": {
+          "stderr_sha256": "e8062276343c1070140d33fa53471e2bb1ba5feb2c0148e7a03bf2eefda018db",
+          "stdout_sha256": "51cc889bac9589ce8f17f9c2479dce60ee7d10a9f08d3a5fddce8cb1ec8b2b1b"
+        },
+        "masked_mae": 0.6410553455352783,
+        "masked_mse": 0.6440346240997314,
+        "neighbor_distance_max": 0.7274739742279053,
+        "neighbor_distance_min": 0.186786949634552,
+        "precision": 0.37532371840020806,
+        "prediction_sd": 0.7780678272247314,
+        "recall": 0.13355607137899655,
+        "recovery_r": 0.11519966694477735,
+        "sample_spearman": 0.6214666150337157,
+        "sd_ratio": 0.9119803343636051,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.8999999761581421,
+        "true_zero_fill": 0.017000882638040844
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "0fd9167e0fb263c8d2275a55a810ec5c49e69502dc523dc0b6aadcd2d2a44492",
+          "exact_threshold_frontier.csv": "d8713007b2ff36275b8497f88b0c3b462a9996a75ef75e012c988d28f6e0f345",
+          "risk_coverage.csv": "0b7b9b91a7d8f570297351d2ad1a3b428b97c8e126a6686caa4ff8f801dbcff1",
+          "summary.csv": "e0cdcce419c1b4d52113223083f9f4c80821a090f0441473d75b1ba458e085f2",
+          "summary.json": "749397dd4ea8c5f5c01bd90ed52c0ccef0c2d89b988445754acf42109369bce3",
+          "threshold_curve.csv": "7cf8d82cfe4b0131dd2ba21bbe8d7185352ea1810bdc8272a1b6d7129872d835"
+        },
+        "gate_auprc": 0.3752107367819252,
+        "gate_auroc": 0.8197649687923829,
+        "gate_brier": 0.12906938138895485,
+        "gate_ece": 0.14882632672025625,
+        "gene_spearman": 0.16593012879793206,
+        "job_id": 629917,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "4f961edbfc366d681ecb930ed97a49a45d960a33382f2ac9bc3ebc40a81a95b3"
+        },
+        "masked_mae": 0.7750244140625,
+        "masked_mse": 0.878045380115509,
+        "neighbor_distance_max": 0.7634539604187012,
+        "neighbor_distance_min": 0.2998272180557251,
+        "precision": 0.5423511663343669,
+        "prediction_sd": 0.6367893218994141,
+        "recall": 0.06895976696281488,
+        "recovery_r": -0.20900761973066628,
+        "sample_spearman": 0.612343443784076,
+        "sd_ratio": 0.7472256928843561,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.800000011920929,
+        "true_zero_fill": 0.008901285207098498
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "30aaedfd0765405285952adb4e25a35cf07361306a89b87da076be916275b4bd",
+          "exact_threshold_frontier.csv": "1dc589d5ae7b5937b137809145f6e6a47796fef83ba39f3197c5e7916552da6c",
+          "risk_coverage.csv": "1d92c143deeea93cc8a809ab76514a1a4c2eb89314224dc05b9bb3f24fa6f2ee",
+          "summary.csv": "1aa91e62b95c190399cfe8b3ee776c37773262ea51cad43e6e892b4bd0bb9bb2",
+          "summary.json": "bbf9b6b1a306781c09af2c75a8a33b9c069ed7f217701aa9702c93deb1745df7",
+          "threshold_curve.csv": "28178395ee29223822bf2ff6a5973c675000de74c430f08d32a8af52f8b65aec"
+        },
+        "gate_auprc": 0.4593807329641774,
+        "gate_auroc": 0.8001250525475303,
+        "gate_brier": 0.13140910585577106,
+        "gate_ece": 0.016186955236500267,
+        "gene_spearman": 0.12260371999215981,
+        "job_id": 629918,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "c9839e46c7d088cb4b0cd4f2e1fc91d5f59e5f1cadb4d2db4f13a58b5aff8e72"
+        },
+        "masked_mae": 0.9806138277053833,
+        "masked_mse": 1.3296260833740234,
+        "neighbor_distance_max": 0.8283802270889282,
+        "neighbor_distance_min": 0.4480510354042053,
+        "precision": 0.6288122750520933,
+        "prediction_sd": 0.460796058177948,
+        "recall": 0.07679481418118787,
+        "recovery_r": -0.8242878220824563,
+        "sample_spearman": 0.5836961155999312,
+        "sd_ratio": 0.5397475217012592,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.6000000238418579,
+        "true_zero_fill": 0.011557161650748413
+      }
+    },
+    "5": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "97a54a60fe9d4cd4f97aadb4da35da2193a815e0e7443b13d1890a3c955f8691",
+          "exact_threshold_frontier.csv": "0359678e345cf692e5549de36316d0c99e81406615c234c8321d759cb4173535",
+          "risk_coverage.csv": "22722e0bb30fdf7200aceff8ce0f045d296fa0b32075d2be46ad7f219d265025",
+          "summary.csv": "8e08f790eaebec487f31798938d4a29d5e8a9d2947798aeed7a9bc888c929067",
+          "summary.json": "6d549327064d350fe911a4c7d3ec6e1c0f389b44cbd0f9f973668d96298fb475",
+          "threshold_curve.csv": "96bfc120422197adaaea76c2a83819fc65234fc283cf7544371e22ad02930e5d"
+        },
+        "gate_auprc": 0.18357447376475644,
+        "gate_auroc": 0.7886256358427749,
+        "gate_brier": 0.19792792951776175,
+        "gate_ece": 0.2760425933056012,
+        "gene_spearman": 0.1640800758697875,
+        "job_id": 629910,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "3d88bfd8f61cde658570ed18cbabebc212ee6590a2b0ef11d7808d26d57c55da"
+        },
+        "masked_mae": 0.6622330546379089,
+        "masked_mse": 0.6964670419692993,
+        "neighbor_distance_max": 0.6951369643211365,
+        "neighbor_distance_min": 0.186786949634552,
+        "precision": 0.0,
+        "prediction_sd": 0.817529022693634,
+        "recall": 0.0,
+        "recovery_r": 0.0431659298475926,
+        "sample_spearman": 0.5908876757065368,
+        "sd_ratio": 0.9582331583191738,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 1.0000000000000002,
+        "true_zero_fill": 0.0
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "2aa4a295f54da4a33aac9ef7e4085a9da52704529666c9cacaad71c47d432ec1",
+          "exact_threshold_frontier.csv": "f00baa2ec405edddbb27a6d89c89582b3d6fba3c53369516a19932b4422801fb",
+          "risk_coverage.csv": "aba4a36a65c356f5138142ba3bf3566e8cc7b16ae73ea5c3c144c1126f18fc7f",
+          "summary.csv": "25addfbc716fc66970012beb71f43d8690865dad5233d7c905f47a26edc6d9a3",
+          "summary.json": "7f6b9da356a9b85da2ef957be6d4a0aea508f832bbc1c4134d0646f0fb090d4f",
+          "threshold_curve.csv": "2d25649b30881c19b890d3d0cbb28a873c513ab610a3b4a25383906ba41704f0"
+        },
+        "gate_auprc": 0.2886270880117859,
+        "gate_auroc": 0.7690684792561234,
+        "gate_brier": 0.1530995169397372,
+        "gate_ece": 0.16828441956961293,
+        "gene_spearman": 0.13066583379956176,
+        "job_id": 629911,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "b748b8f593f45e579b9260388b296ab9b26a51eac046e1024d7d4e56f534f113"
+        },
+        "masked_mae": 0.7959474921226501,
+        "masked_mse": 0.9614035487174988,
+        "neighbor_distance_max": 0.7424963712692261,
+        "neighbor_distance_min": 0.2998272180557251,
+        "precision": 0.42740008193736345,
+        "prediction_sd": 0.697096049785614,
+        "recall": 0.0724028875173385,
+        "recovery_r": -0.323786039262173,
+        "sample_spearman": 0.5541528091715552,
+        "sd_ratio": 0.8179912270738131,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 1.0,
+        "true_zero_fill": 0.01483808030207277
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "958c43925a9a8da918c485f4eb2f5e7dc707a10f567f1778f48a6ca29bece05d",
+          "exact_threshold_frontier.csv": "2b0aaf96a8ab195ab10ea3add8f09380b3064ce822c3a14b6747e958b083f21e",
+          "risk_coverage.csv": "8026c9f77353a7c0bd5949e24d09bce2d6d033f56bfbfeff8edf98827ed344bd",
+          "summary.csv": "2b6ae7611fc86d4e5f30fb7c031efe161f015d11d99a056c9b2445c8cd1f65b0",
+          "summary.json": "51c6629b3ee74ea561c9f98f31c73631d5f2ae55303e1e233506f716bfa67488",
+          "threshold_curve.csv": "98c2627a10e47fdaf6f79322288c749bade0ea32552d9af88c2f4e5c689536c5"
+        },
+        "gate_auprc": 0.3585878104902536,
+        "gate_auroc": 0.7276637933881009,
+        "gate_brier": 0.15233946906122972,
+        "gate_ece": 0.0715395051469179,
+        "gene_spearman": 0.08265454677783785,
+        "job_id": 629912,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "8593b3e70c07fee932bdde892b4b2ac195392cdedd1cb7ab7ec92db8a1a8e18d"
+        },
+        "masked_mae": 0.9924928545951843,
+        "masked_mse": 1.4218751192092896,
+        "neighbor_distance_max": 0.8097376823425293,
+        "neighbor_distance_min": 0.4480510354042053,
+        "precision": 0.5579455164585698,
+        "prediction_sd": 0.5460338592529297,
+        "recall": 0.01137173999420482,
+        "recovery_r": -0.950856332415887,
+        "sample_spearman": 0.47286871968729366,
+        "sd_ratio": 0.6395897210191179,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 1.0,
+        "true_zero_fill": 0.002296982191826471
+      }
+    },
+    "50": {
+      "15": {
+        "artifacts": {
+          "SHA256SUMS.txt": "c084d3202d5b26c751e39fc6551f942a7365c006f72955b9f739ecc7c8106769",
+          "exact_threshold_frontier.csv": "4adda75cf093b94ff111fd1eef5e37b49f5e796f273c39a4350680c8c74a10d2",
+          "risk_coverage.csv": "c0d77d32aca7a7a869e1d0b70ea964eb8881f40a766049431e7bd51e1d11f07d",
+          "summary.csv": "1a0c299e089984b9261cd55eaecac8193909f495225896139a52b1dd6ac49749",
+          "summary.json": "870e909fe19149c601871e1e83eda579051ae8544bfa5d5799398b6f77def783",
+          "threshold_curve.csv": "d8e0303da79a3b8834f4d64315b4538b8f798e74327961a3807704d212fa756d"
+        },
+        "gate_auprc": 0.28993654322007983,
+        "gate_auroc": 0.8359164286369044,
+        "gate_brier": 0.16002278176626578,
+        "gate_ece": 0.25808604405126223,
+        "gene_spearman": 0.1967508322696868,
+        "job_id": 629919,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "195c2c98bb82ad1169506a3c895d862f1afe9316a4788f175216c9df3a403cae"
+        },
+        "masked_mae": 0.6421782970428467,
+        "masked_mse": 0.64423668384552,
+        "neighbor_distance_max": 0.7466675639152527,
+        "neighbor_distance_min": 0.186786949634552,
+        "precision": 0.4282929016105021,
+        "prediction_sd": 0.7700263857841492,
+        "recall": 0.19523767293366442,
+        "recovery_r": 0.11492206924477688,
+        "sample_spearman": 0.6237608476669849,
+        "sd_ratio": 0.9025548881529505,
+        "target_sd": 0.853162944316864,
+        "target_variance": 0.7278869593955449,
+        "threshold": 0.8399999737739563,
+        "true_zero_fill": 0.019932196412178103
+      },
+      "30": {
+        "artifacts": {
+          "SHA256SUMS.txt": "e8e548d274c52ecba72f33cf1be6ff7217a7222659f6788ff90f0fbcdd5aee6d",
+          "exact_threshold_frontier.csv": "bb9d6a4d56197bec9543463c43d4a93e3728d3328125bb8fd9410170d297fa38",
+          "risk_coverage.csv": "23c9337dea1236208a81e91e97b81180b98db293f8489b5bd95ee05752e63f37",
+          "summary.csv": "fa9e9c0f01f3a260b6ede9eec93f879354a37413245e57ecc800fef3ab8d7e6e",
+          "summary.json": "339e069645d88827c05aab34d4213e0590ed9007511239d0531dae5af713890c",
+          "threshold_curve.csv": "85aefb3b58a6645e04d7aae5a18aa54eff3585bd6d4259f1eecf8527d8d55605"
+        },
+        "gate_auprc": 0.4204794819369112,
+        "gate_auroc": 0.8319457622443966,
+        "gate_brier": 0.12340536963467026,
+        "gate_ece": 0.146621324136691,
+        "gene_spearman": 0.17553965535516497,
+        "job_id": 629920,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "7380fe4eab42fcc1264bdc950606c907891f0967d00dd5050775253826b6a83c"
+        },
+        "masked_mae": 0.7740325331687927,
+        "masked_mse": 0.868748664855957,
+        "neighbor_distance_max": 0.7803733944892883,
+        "neighbor_distance_min": 0.2998272180557251,
+        "precision": 0.584224213696025,
+        "prediction_sd": 0.6260308623313904,
+        "recall": 0.15634485570606624,
+        "recovery_r": -0.1962066872939099,
+        "sample_spearman": 0.6204250377021454,
+        "sd_ratio": 0.7346014274819369,
+        "target_sd": 0.8522047996520996,
+        "target_variance": 0.7262529745768794,
+        "threshold": 0.699999988079071,
+        "true_zero_fill": 0.017020346089659865
+      },
+      "50": {
+        "artifacts": {
+          "SHA256SUMS.txt": "26ba4cb212390639f66987ba361b6a52f204738625c76c9653f29f9b4285f68f",
+          "exact_threshold_frontier.csv": "b3948dcecd5f2f8da8187e144bedc79ece9cabb8eaaf657224978ce242cab5a4",
+          "risk_coverage.csv": "fad9e9d3c3d641b58077c2e91ab5e7f2f524d560ce6a6555d1e2bc459beac088",
+          "summary.csv": "80dcb2279c9ddde7e6b994adb57e10373089a6a851f9848dc4fd04e12617125f",
+          "summary.json": "b03a59d8332c30ed4ffc481432bdb5d46ad3e4fda30e0aa18382038277615b3f",
+          "threshold_curve.csv": "0b76c4c0881ba35192408e231c3936a11df3f00d9a56e06a1aaa1d7e8b0bc538"
+        },
+        "gate_auprc": 0.5141326759098241,
+        "gate_auroc": 0.8206438236101354,
+        "gate_brier": 0.12765683768625302,
+        "gate_ece": 0.03554012299910939,
+        "gene_spearman": 0.1376963730802111,
+        "job_id": 629921,
+        "logs": {
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "22a4a424da47ec53105e154ae78f27cb4645e7aa024bef7255e82e286c8dbefa"
+        },
+        "masked_mae": 0.9798898696899414,
+        "masked_mse": 1.3145376443862915,
+        "neighbor_distance_max": 0.8377091884613037,
+        "neighbor_distance_min": 0.4480510354042053,
+        "precision": 0.6722087110325006,
+        "prediction_sd": 0.4427034556865692,
+        "recall": 0.15826047426783796,
+        "recovery_r": -0.8035860203926872,
+        "sample_spearman": 0.6048511143828593,
+        "sd_ratio": 0.5185549850409813,
+        "target_sd": 0.8537251949310303,
+        "target_variance": 0.7288466585586435,
+        "threshold": 0.5,
+        "true_zero_fill": 0.019674895479790303
+      }
+    }
+  },
+  "validation_panel_sha256": {
+    "15": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430",
+    "30": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e",
+    "50": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+  }
+}
