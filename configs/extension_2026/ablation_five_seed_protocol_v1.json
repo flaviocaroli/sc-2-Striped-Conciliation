@@ -1,0 +1,105 @@
+{
+  "A4_interpretation": "Predeclared closest safe gate-loss ablation: retain the two-head architecture and set repair_gate loss coefficient from 0.25 to 0. This tests explicit gate supervision without changing output/checkpoint/evaluator interfaces.",
+  "base_commit": "6972c9e3e782232a7dff0cdf5254ed7279c4d02e",
+  "base_training_config": {
+    "path": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260728.yaml",
+    "sha256": "fbb19b4aa4735602dc8233542a13023c80ea97c20d185028f3401832e58afdef"
+  },
+  "existing_A0_seeds_reused": {
+    "20260728": {
+      "checkpoint_step4000": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+      "checkpoint_step4000_sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8",
+      "config": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260728.yaml",
+      "config_sha256": "fbb19b4aa4735602dc8233542a13023c80ea97c20d185028f3401832e58afdef"
+    },
+    "20260729": {
+      "checkpoint_step4000": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+      "checkpoint_step4000_sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1",
+      "config": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260729.yaml",
+      "config_sha256": "803a05304588614e60014e324d9fac403e8c3f8ebdc9b0d957f84f3877cb4336"
+    },
+    "20260730": {
+      "checkpoint_step4000": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+      "checkpoint_step4000_sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c",
+      "config": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260730.yaml",
+      "config_sha256": "a3f56d25f8b9d8be6ed0d0ec211765e71a68b67a652029d64345430a958abb87"
+    }
+  },
+  "frozen_before_training": true,
+  "implementation": {
+    "array_slurm": {
+      "path": "/home/3159436/sc2/code/slurm/extension_2026/train_ablation_five_seed_array.slurm",
+      "sha256": "27ff91620ad6f3562d65916d2713d0cfba95ad71102eb7179d252f3a8a4a3808"
+    },
+    "production_launcher": {
+      "path": "/home/3159436/sc2/code/slurm/striped/train_sc2_continuous_250k.slurm",
+      "sha256": "d610e237fda81a776d9fda72c2e199bb896c8ed68610e9187777a8cf822514e8"
+    },
+    "task_manifest": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026/ablation_train_tasks_v1.tsv",
+      "sha256": "0b3446ba7b263b491a7fdde4ec65ac281ce9bb1e03343f27ef36664e6a3deb00"
+    }
+  },
+  "new_A0_tasks": 2,
+  "new_ablation_tasks": 25,
+  "new_training_tasks": 27,
+  "primary_metrics": [
+    "recovery_index",
+    "gene_spearman",
+    "threshold_true_zero_fill"
+  ],
+  "protocol_id": "sc2-p2-five-seed-ablation-v1",
+  "secondary_metrics": [
+    "masked_mse",
+    "masked_mae",
+    "sample_spearman",
+    "sd_ratio",
+    "gate_auprc",
+    "gate_auroc",
+    "threshold_recall",
+    "threshold_precision",
+    "parameter_count",
+    "throughput",
+    "peak_memory"
+  ],
+  "seed_set": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "task_manifest": "/home/3159436/sc2/code/configs/extension_2026/ablation_train_tasks_v1.tsv",
+  "threshold_policy": "For every variant and mask level, choose one common five-seed validation threshold using the same <=2% originally-zero-fill rule. No test data.",
+  "training": {
+    "comparison_data": "internal validation only",
+    "effective_batch": 32,
+    "fixed_analysis_checkpoint": 4000,
+    "gradient_accumulation": 2,
+    "physical_batch": 16,
+    "test_selection_allowed": false,
+    "total_steps": 5000,
+    "training_mask": 0.15
+  },
+  "variants": {
+    "A0_full": {
+      "change": "none",
+      "role": "five-seed reference"
+    },
+    "A1_no_routed_attention": {
+      "change": "n_attention_checkpoints: 4 -> 0"
+    },
+    "A2_unidirectional_mamba": {
+      "change": "bidirectional Mamba: true -> false"
+    },
+    "A3_no_expected_zero": {
+      "change": "expected_zero: 0.05 -> 0"
+    },
+    "A4_no_gate_loss": {
+      "change": "repair_gate: 0.25 -> 0"
+    },
+    "A5_cell_structure": {
+      "change": "cell_structure: 0 -> 0.05"
+    }
+  }
+}
