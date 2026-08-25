@@ -1,0 +1,546 @@
+{
+  "base_commit": "fde22dfee97c7a992d1bb8e85f411bcbcefc2fb2",
+  "base_evaluator": {
+    "path": "/home/3159436/sc2/code/src/sc2/eval/evaluate_continuous_repair.py",
+    "sha256": "0ad12e542f46aca0ab13ba193f7ab22847fdf92f294a8f930ee7e83567118128"
+  },
+  "downstream_manifest": {
+    "cell_types": 14,
+    "donors": [
+      "human1",
+      "human2",
+      "human3",
+      "human4"
+    ],
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/baron_lodo_manifest_v1.csv",
+    "rows": 5000,
+    "sha256": "36278675afab723a6a04a1e1eb83cad8bb8168795d436a3d96e841b3eff516c6"
+  },
+  "eval_config": {
+    "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_continuous_official_eval.yaml",
+    "sha256": "45cc9075db0f30d8fc38b67ef50df4b88c304f91b754529365b2ada5700022c4"
+  },
+  "expected_export_tasks": 3,
+  "expected_sc2_representations": 45,
+  "export_tasks": [
+    {
+      "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8",
+      "model_seed": 20260728,
+      "runs": [
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep01_seed2026082701.npz",
+          "panel_sha256": "8505ea113876f1bd9a7198010584fb204b1c9ecf0a014bc15167237393178032",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_05_model20260728_baron_pancreas_rep01/q085/summary.json",
+          "reference_summary_sha256": "48ac96932dff93e2de81087d42a5e4cd370e1a14761e90d75c2667ed0b297985",
+          "replicate": 1,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep01_seed2026082711.npz",
+          "panel_sha256": "15876ebdf43b80d3b48d5cf526d362c67dbc472fb1029d7207537003194daccc",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_05_model20260728_baron_pancreas_rep01/q070/summary.json",
+          "reference_summary_sha256": "e863a3bef1c50da3dac680afc4be85e13a97297ca672b684a659415b3cdcbc7b",
+          "replicate": 1,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep01_seed2026082721.npz",
+          "panel_sha256": "85fa7f5527120425bcb53a5c57d45889e49639b578f7fc7a70074b2aa0bc2889",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_05_model20260728_baron_pancreas_rep01/q050/summary.json",
+          "reference_summary_sha256": "ea32213e81a5803c8f143e6b9e84c71038b076874d3983635cfd99c6bbcf6c5d",
+          "replicate": 1,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep02_seed2026082702.npz",
+          "panel_sha256": "1ae037f622fe909c870e7f00d3243861cf2e39a474bdc0cc5f916ce4af670d0e",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_06_model20260728_baron_pancreas_rep02/q085/summary.json",
+          "reference_summary_sha256": "5bc516604db9f5c04a64b25a6182b50ec0a1a6a44f8ccc35ae57285bf202705c",
+          "replicate": 2,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep02_seed2026082712.npz",
+          "panel_sha256": "6877e2a96720e38fdb9e09b04ca34730ebdafccd45a8965bb7e1a8fb2d9f36b8",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_06_model20260728_baron_pancreas_rep02/q070/summary.json",
+          "reference_summary_sha256": "488ebf06ea90e0da16ff8f25bac06c673157bf07f954c782dc859c27961f5559",
+          "replicate": 2,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep02_seed2026082722.npz",
+          "panel_sha256": "f3525aed195240798dbddf5bef07624eddf57bb69c064d42700e31b2c8a7516f",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_06_model20260728_baron_pancreas_rep02/q050/summary.json",
+          "reference_summary_sha256": "1c0d0fa0a945912ffb02535e1226106be3f28f13e715bdc70001dc20bc5cecc9",
+          "replicate": 2,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep03_seed2026082703.npz",
+          "panel_sha256": "18624c7e88989c2e8e44656bf611f445d49510d440f220ba34d38acbc341d2ac",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_07_model20260728_baron_pancreas_rep03/q085/summary.json",
+          "reference_summary_sha256": "ff1b75f23c4fa1ce4f85adb604b5d53596656d0269f8a6396f77c16001101abb",
+          "replicate": 3,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep03_seed2026082713.npz",
+          "panel_sha256": "0dea32bf4be3d987901ceeace23a9f03fede68e321f4694fca37f071d0700fca",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_07_model20260728_baron_pancreas_rep03/q070/summary.json",
+          "reference_summary_sha256": "8296702a51fbe766eaf4545c187749fa12bbd89c88b9b5c4b989d8944a5f9160",
+          "replicate": 3,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep03_seed2026082723.npz",
+          "panel_sha256": "463ad368935a0892f5205484c725a32a3544b88493bbf6f663371fc7ea03aa30",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_07_model20260728_baron_pancreas_rep03/q050/summary.json",
+          "reference_summary_sha256": "e09cba4baeeb6249602850f17946daf9293f4bed4ec849d1e45928d649c13340",
+          "replicate": 3,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep04_seed2026082704.npz",
+          "panel_sha256": "c16ceaf246e71c9f877f91661e7799ee2862bce05409f835e836284f7b98c8be",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_08_model20260728_baron_pancreas_rep04/q085/summary.json",
+          "reference_summary_sha256": "f23e84ea909e8d420f93dd9a8bf14ee18b930e211dae94076c76e2254622b132",
+          "replicate": 4,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep04_seed2026082714.npz",
+          "panel_sha256": "a8a70e8b4724bdb42ea40510aa290978a04c14d3197768a5a1707b3aedfe0753",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_08_model20260728_baron_pancreas_rep04/q070/summary.json",
+          "reference_summary_sha256": "3fd9923daa2364821755e67f7996ff2b06fd10573bf915ae866342d133a8a215",
+          "replicate": 4,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep04_seed2026082724.npz",
+          "panel_sha256": "3875be8569ca8b3d41879d0b8ea088770705bc77d39a39a7510da3ab88bbb720",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_08_model20260728_baron_pancreas_rep04/q050/summary.json",
+          "reference_summary_sha256": "147c25e1673c8580a8879f956a3516e9c07df52ab108da55c161443cd73f4732",
+          "replicate": 4,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep05_seed2026082705.npz",
+          "panel_sha256": "e87d3b89d70b2a7c9c798a120c8ca4adb03fa7d0180359d7a9ba223a1745d5dc",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_09_model20260728_baron_pancreas_rep05/q085/summary.json",
+          "reference_summary_sha256": "fc7f96c619463c21b14b85ee99505e008ea422ad50e7900bd3869a0440cab4e0",
+          "replicate": 5,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep05_seed2026082715.npz",
+          "panel_sha256": "d02814d15d1718863daf0b19c6163668e74c21999fab5aeccb13c637dfe435fd",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_09_model20260728_baron_pancreas_rep05/q070/summary.json",
+          "reference_summary_sha256": "c48c71af4c6a6a8388d5339605b356624044c522059d97c647996d338aa111c0",
+          "replicate": 5,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep05_seed2026082725.npz",
+          "panel_sha256": "67a9f4ad1c2ec74ddaf6a00e82984327a0f102ac51bba35a7508d89108671c00",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_09_model20260728_baron_pancreas_rep05/q050/summary.json",
+          "reference_summary_sha256": "2286883595ead222521f505d4be8d6bea684591735552a37db3f568142ec7dab",
+          "replicate": 5,
+          "threshold": 0.535
+        }
+      ],
+      "task_id": 0
+    },
+    {
+      "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1",
+      "model_seed": 20260729,
+      "runs": [
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep01_seed2026082701.npz",
+          "panel_sha256": "8505ea113876f1bd9a7198010584fb204b1c9ecf0a014bc15167237393178032",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_20_model20260729_baron_pancreas_rep01/q085/summary.json",
+          "reference_summary_sha256": "6b8eaabcf3aaff15efbea3ae3ecc89f88be8e57412c3d37b5c5ad9dc71b3e8c7",
+          "replicate": 1,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep01_seed2026082711.npz",
+          "panel_sha256": "15876ebdf43b80d3b48d5cf526d362c67dbc472fb1029d7207537003194daccc",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_20_model20260729_baron_pancreas_rep01/q070/summary.json",
+          "reference_summary_sha256": "06cc80909f845eae94b9b9a69e30a20cd68c0905fb494fd37a8658e7bb8b7eb9",
+          "replicate": 1,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep01_seed2026082721.npz",
+          "panel_sha256": "85fa7f5527120425bcb53a5c57d45889e49639b578f7fc7a70074b2aa0bc2889",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_20_model20260729_baron_pancreas_rep01/q050/summary.json",
+          "reference_summary_sha256": "e3906b8d8794fc052951aa28198f9d09e72b3f318d639df61dcfb1f58710c3c2",
+          "replicate": 1,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep02_seed2026082702.npz",
+          "panel_sha256": "1ae037f622fe909c870e7f00d3243861cf2e39a474bdc0cc5f916ce4af670d0e",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_21_model20260729_baron_pancreas_rep02/q085/summary.json",
+          "reference_summary_sha256": "043d68d2ac72cd67be8f707e124834e4d2c36460b2529d2533decaffae071adb",
+          "replicate": 2,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep02_seed2026082712.npz",
+          "panel_sha256": "6877e2a96720e38fdb9e09b04ca34730ebdafccd45a8965bb7e1a8fb2d9f36b8",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_21_model20260729_baron_pancreas_rep02/q070/summary.json",
+          "reference_summary_sha256": "4a86a1783bc0c1a96059920f0259bddf32640f4cdef8587d37aa0ed692c4f392",
+          "replicate": 2,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep02_seed2026082722.npz",
+          "panel_sha256": "f3525aed195240798dbddf5bef07624eddf57bb69c064d42700e31b2c8a7516f",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_21_model20260729_baron_pancreas_rep02/q050/summary.json",
+          "reference_summary_sha256": "30df2a420264b3f4cf70ecfe1206f06fc10ade98c44569f2b2a8ec5b6d82cf31",
+          "replicate": 2,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep03_seed2026082703.npz",
+          "panel_sha256": "18624c7e88989c2e8e44656bf611f445d49510d440f220ba34d38acbc341d2ac",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_22_model20260729_baron_pancreas_rep03/q085/summary.json",
+          "reference_summary_sha256": "efec1f24e52d0361b4e2e3afcedf2d04da27dd35ffa24380575918e28f6b8f6b",
+          "replicate": 3,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep03_seed2026082713.npz",
+          "panel_sha256": "0dea32bf4be3d987901ceeace23a9f03fede68e321f4694fca37f071d0700fca",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_22_model20260729_baron_pancreas_rep03/q070/summary.json",
+          "reference_summary_sha256": "14ccb8917a164d8fa1a18e09c4fb25a744cbbc9d65e5c307d3eecbf945572420",
+          "replicate": 3,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep03_seed2026082723.npz",
+          "panel_sha256": "463ad368935a0892f5205484c725a32a3544b88493bbf6f663371fc7ea03aa30",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_22_model20260729_baron_pancreas_rep03/q050/summary.json",
+          "reference_summary_sha256": "7b3f8cd29e6cb4f10655a4d1c78a70a6902694f272ccacb96a5715afe1722b6b",
+          "replicate": 3,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep04_seed2026082704.npz",
+          "panel_sha256": "c16ceaf246e71c9f877f91661e7799ee2862bce05409f835e836284f7b98c8be",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_23_model20260729_baron_pancreas_rep04/q085/summary.json",
+          "reference_summary_sha256": "2beec68ff9e216da11c1a1239646a2d815f3d34cb50b5cc5e1b66df40e15537e",
+          "replicate": 4,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep04_seed2026082714.npz",
+          "panel_sha256": "a8a70e8b4724bdb42ea40510aa290978a04c14d3197768a5a1707b3aedfe0753",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_23_model20260729_baron_pancreas_rep04/q070/summary.json",
+          "reference_summary_sha256": "2698b6aa1c418cc6a30a42d2bb0bbac59752bea40b6bc8c71360310c8877fd46",
+          "replicate": 4,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep04_seed2026082724.npz",
+          "panel_sha256": "3875be8569ca8b3d41879d0b8ea088770705bc77d39a39a7510da3ab88bbb720",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_23_model20260729_baron_pancreas_rep04/q050/summary.json",
+          "reference_summary_sha256": "7039877489df7a81de6f92749c9269e8296f8882783c74189f8cf288fd15149d",
+          "replicate": 4,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep05_seed2026082705.npz",
+          "panel_sha256": "e87d3b89d70b2a7c9c798a120c8ca4adb03fa7d0180359d7a9ba223a1745d5dc",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_24_model20260729_baron_pancreas_rep05/q085/summary.json",
+          "reference_summary_sha256": "d1e40506d5e32203ea7c0d11b5badfe6908dd6998dcffc7abf2c4c954b69ec8b",
+          "replicate": 5,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep05_seed2026082715.npz",
+          "panel_sha256": "d02814d15d1718863daf0b19c6163668e74c21999fab5aeccb13c637dfe435fd",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_24_model20260729_baron_pancreas_rep05/q070/summary.json",
+          "reference_summary_sha256": "c7e4bdffe1deb3099c1cb1dc91a0739fdb60f473b0963c978a30655e72c5b23d",
+          "replicate": 5,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep05_seed2026082725.npz",
+          "panel_sha256": "67a9f4ad1c2ec74ddaf6a00e82984327a0f102ac51bba35a7508d89108671c00",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_24_model20260729_baron_pancreas_rep05/q050/summary.json",
+          "reference_summary_sha256": "c9348f1e930dbf3e2a1f0fc6dc3ba24e6c4a0b65fd0d80ca34c2debd1ab9cee0",
+          "replicate": 5,
+          "threshold": 0.535
+        }
+      ],
+      "task_id": 1
+    },
+    {
+      "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c",
+      "model_seed": 20260730,
+      "runs": [
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep01_seed2026082701.npz",
+          "panel_sha256": "8505ea113876f1bd9a7198010584fb204b1c9ecf0a014bc15167237393178032",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_35_model20260730_baron_pancreas_rep01/q085/summary.json",
+          "reference_summary_sha256": "d74dafb2489f9b6e482f821c951e1f63f294d9e81e69e797942996852cc5c270",
+          "replicate": 1,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep01_seed2026082711.npz",
+          "panel_sha256": "15876ebdf43b80d3b48d5cf526d362c67dbc472fb1029d7207537003194daccc",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_35_model20260730_baron_pancreas_rep01/q070/summary.json",
+          "reference_summary_sha256": "87539ecf7e8a5eebffadd53c09bfc2adf98df06b8de8f4215eb60945142c8ebe",
+          "replicate": 1,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep01_seed2026082721.npz",
+          "panel_sha256": "85fa7f5527120425bcb53a5c57d45889e49639b578f7fc7a70074b2aa0bc2889",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_35_model20260730_baron_pancreas_rep01/q050/summary.json",
+          "reference_summary_sha256": "f78272319b4d7c3c0d5e9ef722b39a01bf02052deb63dd67a71ca4c02e70cf43",
+          "replicate": 1,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep02_seed2026082702.npz",
+          "panel_sha256": "1ae037f622fe909c870e7f00d3243861cf2e39a474bdc0cc5f916ce4af670d0e",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_36_model20260730_baron_pancreas_rep02/q085/summary.json",
+          "reference_summary_sha256": "fa94b173f12d186c6527c298fa2cdd9f5f36772eeed5082e29b780fe41d44b34",
+          "replicate": 2,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep02_seed2026082712.npz",
+          "panel_sha256": "6877e2a96720e38fdb9e09b04ca34730ebdafccd45a8965bb7e1a8fb2d9f36b8",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_36_model20260730_baron_pancreas_rep02/q070/summary.json",
+          "reference_summary_sha256": "ad098621a417aed78d3b06096381ec8ec690b37252464632805c79110905636e",
+          "replicate": 2,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep02_seed2026082722.npz",
+          "panel_sha256": "f3525aed195240798dbddf5bef07624eddf57bb69c064d42700e31b2c8a7516f",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_36_model20260730_baron_pancreas_rep02/q050/summary.json",
+          "reference_summary_sha256": "29caf938dfc3503aa75da82331a40937be02d780bfd206f1f112c35e7cdbdae5",
+          "replicate": 2,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep03_seed2026082703.npz",
+          "panel_sha256": "18624c7e88989c2e8e44656bf611f445d49510d440f220ba34d38acbc341d2ac",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_37_model20260730_baron_pancreas_rep03/q085/summary.json",
+          "reference_summary_sha256": "d6147a79965ce526f12e670730fc539c64f43479b72757decb970f2f83a5031b",
+          "replicate": 3,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep03_seed2026082713.npz",
+          "panel_sha256": "0dea32bf4be3d987901ceeace23a9f03fede68e321f4694fca37f071d0700fca",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_37_model20260730_baron_pancreas_rep03/q070/summary.json",
+          "reference_summary_sha256": "fda6bec3878d7e1108d0b8f4d271e71781f150b9704924445fee130bc73d7ba8",
+          "replicate": 3,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep03_seed2026082723.npz",
+          "panel_sha256": "463ad368935a0892f5205484c725a32a3544b88493bbf6f663371fc7ea03aa30",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_37_model20260730_baron_pancreas_rep03/q050/summary.json",
+          "reference_summary_sha256": "c6cdbd340d64782f6a22e4fca47019e2ee621b6a50a83f7957ac11ad3222337f",
+          "replicate": 3,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep04_seed2026082704.npz",
+          "panel_sha256": "c16ceaf246e71c9f877f91661e7799ee2862bce05409f835e836284f7b98c8be",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_38_model20260730_baron_pancreas_rep04/q085/summary.json",
+          "reference_summary_sha256": "c7ff97de19e26ff5804353c21670c649fad1df35b83b630eee0cc601e3b01682",
+          "replicate": 4,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep04_seed2026082714.npz",
+          "panel_sha256": "a8a70e8b4724bdb42ea40510aa290978a04c14d3197768a5a1707b3aedfe0753",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_38_model20260730_baron_pancreas_rep04/q070/summary.json",
+          "reference_summary_sha256": "178f7ee78994ad59fc6dfaf5e62e84e570fe66dff99e105d093de72676daf4e9",
+          "replicate": 4,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep04_seed2026082724.npz",
+          "panel_sha256": "3875be8569ca8b3d41879d0b8ea088770705bc77d39a39a7510da3ab88bbb720",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_38_model20260730_baron_pancreas_rep04/q050/summary.json",
+          "reference_summary_sha256": "59cf7e50093ca88f63f95e9577c6e9e2d6447b34920fc8a6855d098409de1fba",
+          "replicate": 4,
+          "threshold": 0.535
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q085_rep05_seed2026082705.npz",
+          "panel_sha256": "e87d3b89d70b2a7c9c798a120c8ca4adb03fa7d0180359d7a9ba223a1745d5dc",
+          "q": 0.85,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_39_model20260730_baron_pancreas_rep05/q085/summary.json",
+          "reference_summary_sha256": "9bfc34f32bf3ddb134813e69313e2f45765c0140f36d98996610d5f15df06544",
+          "replicate": 5,
+          "threshold": 0.575
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q070_rep05_seed2026082715.npz",
+          "panel_sha256": "d02814d15d1718863daf0b19c6163668e74c21999fab5aeccb13c637dfe435fd",
+          "q": 0.7,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_39_model20260730_baron_pancreas_rep05/q070/summary.json",
+          "reference_summary_sha256": "dc6f797546b2f8d4d10bd89d00dc465492ab81dc6c8570df552e6de7a51ec3b3",
+          "replicate": 5,
+          "threshold": 0.56
+        },
+        {
+          "panel": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/baron_pancreas_q050_rep05_seed2026082725.npz",
+          "panel_sha256": "67a9f4ad1c2ec74ddaf6a00e82984327a0f102ac51bba35a7508d89108671c00",
+          "q": 0.5,
+          "reference_summary": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1/task_39_model20260730_baron_pancreas_rep05/q050/summary.json",
+          "reference_summary_sha256": "a1f7d20dceff691697bd38c4b9ab8954f4120d6fb471686503070f75e37d121a",
+          "replicate": 5,
+          "threshold": 0.535
+        }
+      ],
+      "task_id": 2
+    }
+  ],
+  "implementation": {
+    "exporter": {
+      "path": "/home/3159436/sc2/code/src/sc2/eval/export_continuous_repair_arrays.py",
+      "sha256": "a9cd4a861aee237ce7ee3a6370f8b467d6a4cc46605c3e9adaabbcda4a283056"
+    },
+    "runner": {
+      "path": "/home/3159436/sc2/code/scripts/analysis/run_baron_lodo_sc2_export_task.py",
+      "sha256": "6739b621df91905de8525d4eee9cd9b704993d9044fcdf46ce7cb6e652e58b10"
+    },
+    "slurm": {
+      "path": "/home/3159436/sc2/code/slurm/extension_2026/export_baron_lodo_sc2_array.slurm",
+      "sha256": "44323a4eabfb850c5a5fd433b732943a25f6520c742fddbc1fcae3ce29e1f7ce"
+    }
+  },
+  "lodo": {
+    "biological_unit": "donor",
+    "classifier": {
+      "C": 1.0,
+      "all_preprocessing_fit_on_training_donors_only": true,
+      "class_weight": "balanced",
+      "family": "logistic_regression",
+      "max_iter": 2000,
+      "pca_components": 50,
+      "pca_solver": "randomized",
+      "random_state": 20260825,
+      "solver": "lbfgs",
+      "standard_scaler": true
+    },
+    "folds": [
+      {
+        "heldout_donor": "human1",
+        "train_donors": [
+          "human2",
+          "human3",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human2",
+        "train_donors": [
+          "human1",
+          "human3",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human3",
+        "train_donors": [
+          "human1",
+          "human2",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human4",
+        "train_donors": [
+          "human1",
+          "human2",
+          "human3"
+        ]
+      }
+    ],
+    "macro_f1_label_policy": "classes_present_in_heldout_donor",
+    "primary_metric": "macro_f1",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "per_class_f1",
+      "per_class_recall",
+      "log_loss"
+    ]
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/sc2_selective_export_v1",
+  "protocol_id": "sc2-baron-lodo-v1",
+  "selective_repair": {
+    "definition": "observed nonzeros are copied exactly; an available zero is changed only when dropout_probability >= the frozen q-specific threshold, using expected_repair as the value",
+    "thresholds": {
+      "0.50": 0.535,
+      "0.70": 0.56,
+      "0.85": 0.575
+    },
+    "zero_threshold": 1e-08
+  },
+  "source_inference_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_confirmatory_inference_protocol_v1.json",
+    "sha256": "81c1b9e9150e56ef0823b795329328accb6991a8937e3d59c8e6736670f1d3bd"
+  },
+  "source_scientific_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_confirmatory_protocol_v1.json",
+    "sha256": "96a0cc79af234f422af4b2cd04986362b3fc4024e452d20806561fd72aaf8301"
+  }
+}
