@@ -1,0 +1,41 @@
+{
+  "checkpoint_sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9",
+  "decoder": {
+    "ad_hoc_decoder_added": false,
+    "continuous": true,
+    "deterministic_smoke_passed": true,
+    "official_branch_marked_not_recommended": true,
+    "output_type": "gene_expression"
+  },
+  "environment": {
+    "pip_freeze_path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/environment_v1/pip_freeze.txt",
+    "pip_freeze_sha256": "6e80931328167d26c80552168e8fafeca2d7d92bb40e97448f840a164b793673"
+  },
+  "freeze_base_commit": "04a5da676054cf6bb486ad00def38ed9dd19ef72",
+  "gene_mapping": {
+    "coverage_fraction": 0.97802734375,
+    "exact_sc2_overlap": 4006,
+    "sc2_gene_count": 4096
+  },
+  "phase": "P2 extension Phase 5 foundation-model audit",
+  "phase6_eligible": true,
+  "pretraining_overlap": {
+    "can_be_excluded": false,
+    "must_be_reported_as_limitation": true
+  },
+  "schema_version": "sc2-scfoundation-feasibility-v1",
+  "smoke_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/scfoundation_decoder_smoke_protocol_v1.json",
+    "sha256": "a8776c4f0f0133da19c6004e115fedbc80bcd867c0b7d408f297b6e08e4e743b"
+  },
+  "smoke_summary": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/decoder_smoke_v1/smoke_summary.json",
+    "sha256": "f02c556dfdc0688fd5cc870a5c1a73d34588471c3a61b03367cd21d7a73b670f"
+  },
+  "source_commit": "397631c495eddf9ad6644fc00c6ea8139e651245",
+  "source_pin_receipt": {
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/scfoundation_source_pin_v1.json",
+    "sha256": "1a1ea429a1fb27e5360235e3be81cc2949b1e62cd2fadc0fe821da617b262b85"
+  },
+  "status": "PASS"
+}

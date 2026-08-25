@@ -1,0 +1,135 @@
+{
+  "checkpoint": {
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/models/models.ckpt",
+    "sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9"
+  },
+  "expected_tasks": 9,
+  "freeze_base_commit": "04a5da676054cf6bb486ad00def38ed9dd19ef72",
+  "frozen_before_final_results": true,
+  "implementation": {
+    "runner_path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_final_task.py",
+    "runner_sha256": "20da3cc5696ab45a48e4f6ca00ad7d37266b90e137aac96dcc8ef871348031a5",
+    "slurm_path": "/home/3159436/sc2/code/slurm/extension_2026/scfoundation_final_array.slurm",
+    "slurm_sha256": "f11759796c7e40e58d0ef8047204ea897be28784b96f1b180f44e3a83a50c8aa"
+  },
+  "inference": {
+    "batch_size": 1,
+    "deterministic": true,
+    "input_type": "singlecell",
+    "observed_nonzero_policy": "copy observed nonzero input exactly",
+    "output_type": "gene_expression",
+    "pre_normalized": "T",
+    "target_high_resolution": "t4",
+    "threshold": null,
+    "threshold_policy": "No threshold: direct decoder has no official selective gate and no ad-hoc gate is introduced.",
+    "zero_input_policy": "use official decoder output"
+  },
+  "mapping": {
+    "collision_rule": "retain lowest SC2 gene_index for duplicated symbol",
+    "evaluation_rule": "metrics restricted to exact scFoundation-mapped and dataset-available SC2 genes",
+    "exact_overlap": 4006,
+    "external_availability": "use frozen available_gene_mask stored in each panel",
+    "gene_stats": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/train_gene_stats.parquet",
+    "internal_availability": "all 4096 frozen internal genes are available; internal benchmark NPZs therefore require no available_gene_mask",
+    "sc2_vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "scfoundation_vocabulary": "/home/3159436/sc2/external/foundation_models/scFoundation/OS_scRNA_gene_index.19264.tsv"
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_v1",
+  "phase": "P2 extension Phase 6 foundation final evaluation",
+  "pretraining_overlap": {
+    "can_be_excluded": false,
+    "report_as_limitation": true
+  },
+  "primary_metrics": [
+    "recovery_index",
+    "gene_spearman",
+    "true_zero_changed_fraction"
+  ],
+  "protocol_id": "sc2-scfoundation-final-v1",
+  "secondary_metrics": [
+    "masked_mse",
+    "masked_mae",
+    "sample_spearman",
+    "sd_ratio",
+    "true_zero_positive_fill_fraction",
+    "true_zero_negative_fraction"
+  ],
+  "source": {
+    "commit": "397631c495eddf9ad6644fc00c6ea8139e651245",
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation"
+  },
+  "tasks": [
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_test",
+      "mask_percent": 15,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask15.npz",
+      "panel_sha256": "eb9d3d63f42bc30fb5233f0f39271f792b43535a6be4f46b690cc188ed99c3d7",
+      "task_id": 0
+    },
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_test",
+      "mask_percent": 30,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask30.npz",
+      "panel_sha256": "ca59d9407830484360c476865c1b339b0ed62b8c4e0a75e8ca5f07acbc1d7ecf",
+      "task_id": 1
+    },
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_test",
+      "mask_percent": 50,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask50.npz",
+      "panel_sha256": "e1a75d8b27eda99ccf0ba08857fad385708ca0dd5cbdc0166ded9f1607b7a4d2",
+      "task_id": 2
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "baron_pancreas",
+      "mask_percent": 15,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1/mask15.npz",
+      "panel_sha256": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+      "task_id": 3
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "baron_pancreas",
+      "mask_percent": 30,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1/mask30.npz",
+      "panel_sha256": "edc1422a764c1aa40a9028401df6629c771fc7f3809ff5e9a7443be6fabd1e3e",
+      "task_id": 4
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "baron_pancreas",
+      "mask_percent": 50,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1/mask50.npz",
+      "panel_sha256": "7654fcc78719327f73fcbe46bf69beaf866e32b9331134f2aec1bc4964b2d792",
+      "task_id": 5
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "zheng68k",
+      "mask_percent": 15,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1/mask15.npz",
+      "panel_sha256": "35490be0d1a83b46517d2d5792a2c0a1bc9c5b3f800f29aeb90447d11d8a6ecc",
+      "task_id": 6
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "zheng68k",
+      "mask_percent": 30,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1/mask30.npz",
+      "panel_sha256": "ba6b8e6d2698048faac52e6b384a795bd429ec3d58bb385b1fc769ad50da7871",
+      "task_id": 7
+    },
+    {
+      "availability_source": "panel_available_gene_mask",
+      "dataset": "zheng68k",
+      "mask_percent": 50,
+      "panel": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1/mask50.npz",
+      "panel_sha256": "2313651071d4c2d69053a51e21ba477d3f2c3c146172dc187ac809af4590f040",
+      "task_id": 8
+    }
+  ]
+}
