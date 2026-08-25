@@ -1,0 +1,85 @@
+{
+  "base_commit_before_inference_freeze": "fd9a65de330080db6a78e9e717aacaae14f34d29",
+  "created_utc": "2026-08-25T14:32:46.423203+00:00",
+  "evaluator": {
+    "path": "/home/3159436/sc2/code/src/sc2/eval/evaluate_continuous_repair.py",
+    "sha256": "0ad12e542f46aca0ab13ba193f7ab22847fdf92f294a8f930ee7e83567118128"
+  },
+  "evaluator_config": {
+    "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_continuous_official_eval.yaml",
+    "sha256": "45cc9075db0f30d8fc38b67ef50df4b88c304f91b754529365b2ada5700022c4"
+  },
+  "expected_evaluations": 135,
+  "expected_tasks": 45,
+  "gpu_contract_audit": {
+    "handoff_path": "/home/3159436/sc2/handoffs/p2_extension_phase1c_gpu_contract_audit_20260825T142159Z/handoff.txt",
+    "handoff_sha256": "e3588c2246a3c2b7b3ccc688aec1b459e2393efddf89f2491dd434a261550a98"
+  },
+  "implementation": {
+    "runner_path": "/home/3159436/sc2/code/scripts/eval/run_count_thinning_confirmatory_task.py",
+    "runner_sha256": "4498524fbea536670f9497a2a4ce2b6321d3314818690c3e94cfa664a1cdc122",
+    "slurm_path": "/home/3159436/sc2/code/slurm/extension_2026/eval_count_thinning_confirmatory_array.slurm",
+    "slurm_sha256": "9e77b6690b506999849efa26ec76a40a8b671439f211dc6a9c2356a623d6d7c2",
+    "tests_path": "/home/3159436/sc2/code/tests/test_count_thinning_confirmatory_inference.py",
+    "tests_sha256": "55ea5dd508bdf39b1b2e74465000e2e9d2b3d862f0da777ca5ad768ecb48afee"
+  },
+  "information_barrier": {
+    "confirmatory_inference_run_before_freeze": false,
+    "panel_scientific_qc_complete": true,
+    "result_aggregation_before_freeze": false,
+    "thresholds_frozen_before_confirmatory_inference": true
+  },
+  "output": {
+    "atomic_task_finalization": true,
+    "q_subdirs": [
+      "q085",
+      "q070",
+      "q050"
+    ],
+    "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1",
+    "task_subdir": "task_XX_modelSEED_DATASET_repNN"
+  },
+  "panel_receipt": {
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/count_thinning_confirmatory_panels_v1_receipt.json",
+    "sha256": "f3ea85f53e32b1a64704d71d8e47ec3c527b34f95c77c41667730e99775e6113"
+  },
+  "protocol_id": "sc2-count-thinning-confirmatory-inference-v1",
+  "q_per_task": 3,
+  "resources": {
+    "cpus_per_task": 4,
+    "gpus": 1,
+    "memory": "32G",
+    "partition": "short_gpuh200",
+    "time": "01:00:00"
+  },
+  "schema_version": 1,
+  "scientific_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_confirmatory_protocol_v1.json",
+    "sha256": "96a0cc79af234f422af4b2cd04986362b3fc4024e452d20806561fd72aaf8301"
+  },
+  "submission_waves": [
+    {
+      "array_range": "0-28",
+      "elements": 29
+    },
+    {
+      "array_range": "29-44",
+      "elements": 16
+    }
+  ],
+  "threshold_config": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_selected_thresholds_v1.json",
+    "sha256": "e0b5550386017a7dfdffc6ef760e7fd45e4dd82272f9b2d81483d9971c90cc8a"
+  },
+  "threshold_policy": {
+    "automatic_selection_allowed": false,
+    "old_transfer_analysis": "derive later from saved 201-point threshold sweeps",
+    "old_transfer_gpu_rerun": false,
+    "primary": {
+      "0.50": 0.535,
+      "0.70": 0.56,
+      "0.85": 0.575
+    },
+    "retuning_allowed": false
+  }
+}

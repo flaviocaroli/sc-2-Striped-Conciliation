@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-08-25T14:32:45.665752+00:00",
+  "datasets": {
+    "baron_pancreas": {
+      "bundle_manifest_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "0dce3bed747683a668a8012b8b5943c3dd57a49da4340155a8c97adab91a29e9",
+      "materialization_qc_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/materialization_qc_summary.json",
+      "materialization_qc_sha256": "94095b563bfaaca6f260261c8a87432fd3a6b5a3f3773715dbbcfa21b9ccaf7e",
+      "panel_count": 15,
+      "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas",
+      "source_identity_file_sha256": "58c8e92a4c619a15c218a673c27a8064c4306e9f0cb57a41209d8c7c397c5f36",
+      "source_identity_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas/source_identity.json"
+    },
+    "internal_test": {
+      "bundle_manifest_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/internal_test/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "4e4308c0d38fd217a527dadc8988309df6ad1114890c0651ef7fdc24f3f2687d",
+      "materialization_qc_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/internal_test/materialization_qc_summary.json",
+      "materialization_qc_sha256": "4a7df484790a3ae1b540d3c6df8e8d0f9cba216ce7f97014763223b162ad893a",
+      "panel_count": 15,
+      "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/internal_test",
+      "source_identity_file_sha256": "e6a9d9aa4a2131d1038e16c58a9922c69976845febda047e2e5febd0f289710e",
+      "source_identity_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/internal_test/source_identity.json"
+    },
+    "zheng68k": {
+      "bundle_manifest_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/zheng68k/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "6c18f1142516c98857460ba2fb0241d0215925fa5476e378e9d172ad2637ee0d",
+      "materialization_qc_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/zheng68k/materialization_qc_summary.json",
+      "materialization_qc_sha256": "f5a668714c149bbc0107d795d825555bf2d489a3941f92a95aa6cf963098944d",
+      "panel_count": 15,
+      "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/zheng68k",
+      "source_identity_file_sha256": "6fcb580040ee12613c4b0787bda2ab4210f9719584e52b52354ef6709caffb5e",
+      "source_identity_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/zheng68k/source_identity.json"
+    }
+  },
+  "information_barrier": {
+    "inference_root_existed_at_freeze": false,
+    "model_inference_run": false,
+    "threshold_retuning": false
+  },
+  "materialization_array_job_id": 636458,
+  "panel_root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1",
+  "schema_version": "sc2-count-thinning-confirmatory-panels-receipt-v1",
+  "scientific_protocol_path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_confirmatory_protocol_v1.json",
+  "scientific_protocol_sha256": "96a0cc79af234f422af4b2cd04986362b3fc4024e452d20806561fd72aaf8301",
+  "scientific_qc": {
+    "all_required_gates_pass": true,
+    "handoff_path": "/home/3159436/sc2/handoffs/p2_extension_phase1c_panel_scientific_qc_20260825T141514Z/handoff.txt",
+    "manifest_check_sha256": "a99aa2f539b82527e588f1576263460fb189e4ae5971099e8b4802eb3142d480",
+    "run_level_qc_sha256": "142552d3ac80a7da8db6b03eaaa021509d51b271685014916c9a7069c051e11c",
+    "scientific_qc_sha256": "0d4857934e35ad50865d912e6ee1e472eeb4f6d804b7586f0f74217c591d2929",
+    "structure_qc_sha256": "5ea73a85916dbaacb46d51655e443f134245837d5d7e3fa751eb6c257885629a",
+    "total_panels": 45,
+    "unique_thinning_seeds": 45,
+    "zero_library_cells": 0
+  },
+  "status": "frozen_after_materialization_and_scientific_qc_before_any_confirmatory_sc2_inference"
+}
