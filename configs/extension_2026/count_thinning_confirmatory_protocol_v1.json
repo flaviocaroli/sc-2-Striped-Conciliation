@@ -1,0 +1,707 @@
+{
+  "base_commit_before_phase1c_freeze": "e6f02ba125da40b755bf650262d364d836118b96",
+  "confirmatory_datasets": [
+    "internal_test",
+    "baron_pancreas",
+    "zheng68k"
+  ],
+  "confirmatory_inference": {
+    "model_checkpoints": {
+      "20260728": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+        "sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8"
+      },
+      "20260729": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+        "sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1"
+      },
+      "20260730": {
+        "path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+        "sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c"
+      }
+    },
+    "no_cell_level_pseudoreplication": true,
+    "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_sc2_v1",
+    "primary_endpoints": [
+      "recovery_index",
+      "gene_spearman",
+      "originally_zero_fill"
+    ],
+    "primary_thresholds": {
+      "0.50": 0.535,
+      "0.70": 0.56,
+      "0.85": 0.575
+    },
+    "q_order": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "recovery_index_definition": "1 - masked_mse / target_sd^2",
+    "secondary_old_direct_transfer_thresholds": {
+      "0.50": 0.46,
+      "0.70": 0.51,
+      "0.85": 0.545
+    },
+    "task_layout": {
+      "evaluations_per_task": 3,
+      "n_array_tasks": 45,
+      "submission_waves": [
+        {
+          "array_range": "0-28",
+          "elements": 29
+        },
+        {
+          "array_range": "29-44",
+          "elements": 16
+        }
+      ],
+      "task_definition": "one model seed x one dataset x one thinning replicate; all three q values sequential",
+      "tasks": [
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260728,
+          "replicate": 1,
+          "task_id": 0
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260728,
+          "replicate": 2,
+          "task_id": 1
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260728,
+          "replicate": 3,
+          "task_id": 2
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260728,
+          "replicate": 4,
+          "task_id": 3
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260728,
+          "replicate": 5,
+          "task_id": 4
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260728,
+          "replicate": 1,
+          "task_id": 5
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260728,
+          "replicate": 2,
+          "task_id": 6
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260728,
+          "replicate": 3,
+          "task_id": 7
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260728,
+          "replicate": 4,
+          "task_id": 8
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260728,
+          "replicate": 5,
+          "task_id": 9
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260728,
+          "replicate": 1,
+          "task_id": 10
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260728,
+          "replicate": 2,
+          "task_id": 11
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260728,
+          "replicate": 3,
+          "task_id": 12
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260728,
+          "replicate": 4,
+          "task_id": 13
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260728,
+          "replicate": 5,
+          "task_id": 14
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260729,
+          "replicate": 1,
+          "task_id": 15
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260729,
+          "replicate": 2,
+          "task_id": 16
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260729,
+          "replicate": 3,
+          "task_id": 17
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260729,
+          "replicate": 4,
+          "task_id": 18
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260729,
+          "replicate": 5,
+          "task_id": 19
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260729,
+          "replicate": 1,
+          "task_id": 20
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260729,
+          "replicate": 2,
+          "task_id": 21
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260729,
+          "replicate": 3,
+          "task_id": 22
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260729,
+          "replicate": 4,
+          "task_id": 23
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260729,
+          "replicate": 5,
+          "task_id": 24
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260729,
+          "replicate": 1,
+          "task_id": 25
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260729,
+          "replicate": 2,
+          "task_id": 26
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260729,
+          "replicate": 3,
+          "task_id": 27
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260729,
+          "replicate": 4,
+          "task_id": 28
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260729,
+          "replicate": 5,
+          "task_id": 29
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260730,
+          "replicate": 1,
+          "task_id": 30
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260730,
+          "replicate": 2,
+          "task_id": 31
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260730,
+          "replicate": 3,
+          "task_id": 32
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260730,
+          "replicate": 4,
+          "task_id": 33
+        },
+        {
+          "dataset": "internal_test",
+          "model_seed": 20260730,
+          "replicate": 5,
+          "task_id": 34
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260730,
+          "replicate": 1,
+          "task_id": 35
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260730,
+          "replicate": 2,
+          "task_id": 36
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260730,
+          "replicate": 3,
+          "task_id": 37
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260730,
+          "replicate": 4,
+          "task_id": 38
+        },
+        {
+          "dataset": "baron_pancreas",
+          "model_seed": 20260730,
+          "replicate": 5,
+          "task_id": 39
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260730,
+          "replicate": 1,
+          "task_id": 40
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260730,
+          "replicate": 2,
+          "task_id": 41
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260730,
+          "replicate": 3,
+          "task_id": 42
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260730,
+          "replicate": 4,
+          "task_id": 43
+        },
+        {
+          "dataset": "zheng68k",
+          "model_seed": 20260730,
+          "replicate": 5,
+          "task_id": 44
+        }
+      ],
+      "total_evaluations": 135
+    },
+    "threshold_policy": "Primary thinning-specific thresholds are frozen and applied unchanged. Old transferred thresholds are a secondary analysis derived from the saved threshold sweeps. No threshold selection or retuning is permitted.",
+    "uncertainty_units": [
+      "model_seed",
+      "thinning_replicate"
+    ]
+  },
+  "created_utc": "2026-08-25T14:05:37.291718+00:00",
+  "feature_space": {
+    "n_genes": 4096,
+    "ordered_vocabulary_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "ordered_vocabulary_sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2",
+    "selection": "Inherited frozen training-only 4096-gene vocabulary."
+  },
+  "implementation": {
+    "materializer_path": "/home/3159436/sc2/code/scripts/data/materialize_count_thinning_confirmatory.py",
+    "materializer_sha256": "f6e5949fc5fd5321d026924ece9deeebc06695df0b07180b4b40cc20f82c1bde",
+    "slurm_path": "/home/3159436/sc2/code/slurm/extension_2026/materialize_count_thinning_confirmatory_array.slurm",
+    "slurm_sha256": "02c7396423efdb4c54b87e484fc4b997c470a05ff83d9c160f389b4ebffae03e",
+    "tests_path": "/home/3159436/sc2/code/tests/test_count_thinning_confirmatory.py",
+    "tests_sha256": "3d5fb6a185d7c9222aefd3595bfec2f2cebdfb2eaed3893463e508a75536904c"
+  },
+  "information_barrier": {
+    "confirmatory_model_outcomes_inspected": false,
+    "confirmatory_outputs_existing_at_freeze": false,
+    "threshold_retuning_after_freeze_allowed": false,
+    "validation_threshold_selection_complete": true
+  },
+  "materialization": {
+    "array_task_mapping": {
+      "0": "internal_test",
+      "1": "baron_pancreas",
+      "2": "zheng68k"
+    },
+    "atomic_unit": "one dataset containing all 15 q-by-replicate panels",
+    "cpu_array_tasks": 3,
+    "datasets": {
+      "baron_pancreas": {
+        "available_file_sha256": "8e5854edc20d468db12b66e37183fe004c560cea042badb945ccaa2637d82bba",
+        "available_gene_mask_sha256": "2192f4b3cd5c084800192d5ff8e5b650faef232827b7a8a227d85412b6586763",
+        "available_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/baron_pancreas/available_gene_mask.npy",
+        "counts_file_sha256": "49c2890dfe65f5b4d004e9f138d1c9b85e5412727a215d4a8d673737fb89eb27",
+        "counts_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/baron_pancreas/counts_uint32.npy",
+        "counts_uint32_sha256": "d9fe58a26a33b16df5ea191f08c2320206a5f030b04fc426c0cadddb75a29afe",
+        "expected_panel_count": 15,
+        "metadata_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/baron_pancreas/metadata.json",
+        "metadata_sha256": "7281d1d2ba13d99b3f2f4523b37dadbe7a617a52d0d84265451b297ab4f5dfcb",
+        "n_available_genes": 3851,
+        "n_cells": 5000,
+        "n_genes": 4096,
+        "output_dir": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/baron_pancreas",
+        "panel_specs": [
+          {
+            "q": 0.85,
+            "replicate": 1,
+            "seed": 2026082701
+          },
+          {
+            "q": 0.85,
+            "replicate": 2,
+            "seed": 2026082702
+          },
+          {
+            "q": 0.85,
+            "replicate": 3,
+            "seed": 2026082703
+          },
+          {
+            "q": 0.85,
+            "replicate": 4,
+            "seed": 2026082704
+          },
+          {
+            "q": 0.85,
+            "replicate": 5,
+            "seed": 2026082705
+          },
+          {
+            "q": 0.7,
+            "replicate": 1,
+            "seed": 2026082711
+          },
+          {
+            "q": 0.7,
+            "replicate": 2,
+            "seed": 2026082712
+          },
+          {
+            "q": 0.7,
+            "replicate": 3,
+            "seed": 2026082713
+          },
+          {
+            "q": 0.7,
+            "replicate": 4,
+            "seed": 2026082714
+          },
+          {
+            "q": 0.7,
+            "replicate": 5,
+            "seed": 2026082715
+          },
+          {
+            "q": 0.5,
+            "replicate": 1,
+            "seed": 2026082721
+          },
+          {
+            "q": 0.5,
+            "replicate": 2,
+            "seed": 2026082722
+          },
+          {
+            "q": 0.5,
+            "replicate": 3,
+            "seed": 2026082723
+          },
+          {
+            "q": 0.5,
+            "replicate": 4,
+            "seed": 2026082724
+          },
+          {
+            "q": 0.5,
+            "replicate": 5,
+            "seed": 2026082725
+          }
+        ],
+        "reference_target_path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1/mask15.npz",
+        "reference_target_sha256": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+        "split": "external"
+      },
+      "internal_test": {
+        "available_file_sha256": "0eb60eefaeb410d873690380c29d88417cec5684124ea314a7bbd63cb33b5cfd",
+        "available_gene_mask_sha256": "3431383721510cf1c211de027cf958c183e16db5fabb6b230eb284c85e196aa9",
+        "available_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/internal_test/available_gene_mask.npy",
+        "counts_file_sha256": "68a281ddc31bf1fae07b25d1860ff4e9d7d3b9ffd4ab18693122f2a7cca5d90d",
+        "counts_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/internal_test/counts_uint32.npy",
+        "counts_uint32_sha256": "545ab558830816c72275f5b29db02cf68f27d00b9463cc318148bd10139c2043",
+        "expected_panel_count": 15,
+        "metadata_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/internal_test/metadata.json",
+        "metadata_sha256": "6a0355cccb54ee12dccf6eb9ac7d47b159ddc2bf764a38db6b0d6137e3c190e8",
+        "n_available_genes": 4096,
+        "n_cells": 5000,
+        "n_genes": 4096,
+        "output_dir": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/internal_test",
+        "panel_specs": [
+          {
+            "q": 0.85,
+            "replicate": 1,
+            "seed": 2026082601
+          },
+          {
+            "q": 0.85,
+            "replicate": 2,
+            "seed": 2026082602
+          },
+          {
+            "q": 0.85,
+            "replicate": 3,
+            "seed": 2026082603
+          },
+          {
+            "q": 0.85,
+            "replicate": 4,
+            "seed": 2026082604
+          },
+          {
+            "q": 0.85,
+            "replicate": 5,
+            "seed": 2026082605
+          },
+          {
+            "q": 0.7,
+            "replicate": 1,
+            "seed": 2026082611
+          },
+          {
+            "q": 0.7,
+            "replicate": 2,
+            "seed": 2026082612
+          },
+          {
+            "q": 0.7,
+            "replicate": 3,
+            "seed": 2026082613
+          },
+          {
+            "q": 0.7,
+            "replicate": 4,
+            "seed": 2026082614
+          },
+          {
+            "q": 0.7,
+            "replicate": 5,
+            "seed": 2026082615
+          },
+          {
+            "q": 0.5,
+            "replicate": 1,
+            "seed": 2026082621
+          },
+          {
+            "q": 0.5,
+            "replicate": 2,
+            "seed": 2026082622
+          },
+          {
+            "q": 0.5,
+            "replicate": 3,
+            "seed": 2026082623
+          },
+          {
+            "q": 0.5,
+            "replicate": 4,
+            "seed": 2026082624
+          },
+          {
+            "q": 0.5,
+            "replicate": 5,
+            "seed": 2026082625
+          }
+        ],
+        "reference_target_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask15.npz",
+        "reference_target_sha256": "eb9d3d63f42bc30fb5233f0f39271f792b43535a6be4f46b690cc188ed99c3d7",
+        "split": "test"
+      },
+      "zheng68k": {
+        "available_file_sha256": "90d1a0ccd82424ae941994eb3c5deb167e59a950e6ee169839e8ab2ffd5cb658",
+        "available_gene_mask_sha256": "ab6d2753573580bcb4e35fc02b25fe8b744e46459484e26516138ad83fcb591f",
+        "available_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/zheng68k/available_gene_mask.npy",
+        "counts_file_sha256": "aa0d89bab3d7f4c7eb7e0282cecd7816eaa30321072c616a061434bd332cf2d0",
+        "counts_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/zheng68k/counts_uint32.npy",
+        "counts_uint32_sha256": "0cfcfb7dc0abbe3f113dd1b4a7d2fd1efc4e60dd9a6dc60c77e28777c50b5e93",
+        "expected_panel_count": 15,
+        "metadata_path": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/zheng68k/metadata.json",
+        "metadata_sha256": "426f31d77811ab0b3d80058350a8067ad144fe80e5e557a9266be85b9f649659",
+        "n_available_genes": 4046,
+        "n_cells": 5000,
+        "n_genes": 4096,
+        "output_dir": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1/zheng68k",
+        "panel_specs": [
+          {
+            "q": 0.85,
+            "replicate": 1,
+            "seed": 2026082801
+          },
+          {
+            "q": 0.85,
+            "replicate": 2,
+            "seed": 2026082802
+          },
+          {
+            "q": 0.85,
+            "replicate": 3,
+            "seed": 2026082803
+          },
+          {
+            "q": 0.85,
+            "replicate": 4,
+            "seed": 2026082804
+          },
+          {
+            "q": 0.85,
+            "replicate": 5,
+            "seed": 2026082805
+          },
+          {
+            "q": 0.7,
+            "replicate": 1,
+            "seed": 2026082811
+          },
+          {
+            "q": 0.7,
+            "replicate": 2,
+            "seed": 2026082812
+          },
+          {
+            "q": 0.7,
+            "replicate": 3,
+            "seed": 2026082813
+          },
+          {
+            "q": 0.7,
+            "replicate": 4,
+            "seed": 2026082814
+          },
+          {
+            "q": 0.7,
+            "replicate": 5,
+            "seed": 2026082815
+          },
+          {
+            "q": 0.5,
+            "replicate": 1,
+            "seed": 2026082821
+          },
+          {
+            "q": 0.5,
+            "replicate": 2,
+            "seed": 2026082822
+          },
+          {
+            "q": 0.5,
+            "replicate": 3,
+            "seed": 2026082823
+          },
+          {
+            "q": 0.5,
+            "replicate": 4,
+            "seed": 2026082824
+          },
+          {
+            "q": 0.5,
+            "replicate": 5,
+            "seed": 2026082825
+          }
+        ],
+        "reference_target_path": "/home/3159436/sc2/data/external_benchmarks/zheng68k_v1/mask15.npz",
+        "reference_target_sha256": "35490be0d1a83b46517d2d5792a2c0a1bc9c5b3f800f29aeb90447d11d8a6ecc",
+        "split": "external"
+      }
+    },
+    "expected_total_panel_count": 45,
+    "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_panels_v1",
+    "planned_resources": {
+      "array": "0-2",
+      "cpus_per_task": 4,
+      "memory": "24G",
+      "partition": "medium_cpu",
+      "time": "01:00:00"
+    }
+  },
+  "protocol_id": "sc2-count-thinning-confirmatory-v1",
+  "provenance": {
+    "count_view_receipt_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_scvi_final_count_view_receipt.json",
+    "count_view_receipt_sha256": "42d88f2e715bef29692b6b6b4fbbb2828cddaf93d9e84d2309ccf6bf313ee08e",
+    "count_view_root_manifest_sha256": "228903368269107b2e3936f99892d096aceea3384cd63305b135d4a1f60f11bc",
+    "threshold_config_path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_selected_thresholds_v1.json",
+    "threshold_config_sha256": "e0b5550386017a7dfdffc6ef760e7fd45e4dd82272f9b2d81483d9971c90cc8a",
+    "thresholds_selected_before_confirmatory_evaluation": true
+  },
+  "required_materialization_qc": [
+    "source file SHA verification",
+    "source metadata contract verification",
+    "exact full-target alignment",
+    "integer thinned counts",
+    "0 <= thinned <= full",
+    "unavailable genes remain zero",
+    "no zero-library cells",
+    "exact lost-positive definition",
+    "exact originally-zero definition",
+    "renormalization from thinned counts",
+    "atomic per-dataset finalization",
+    "SHA256 manifest"
+  ],
+  "schema_version": 1,
+  "scientific_scope": "confirmatory_count_thinning",
+  "thinning": {
+    "depth_retention_fractions": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "distribution": "C_thin_ig ~ Binomial(C_full_ig, q)",
+    "full_depth_target": "Recompute CP10K/log1p from frozen full raw counts and require exact equality with the frozen historical benchmark target y.",
+    "lost_positive_definition": "(C_full > 0) AND (C_thin == 0) AND available",
+    "normalization": "Recompute library totals over available genes from each thinned count matrix, CP10K, then log1p.",
+    "originally_zero_definition": "(C_full == 0) AND available",
+    "replicates_per_depth": 5,
+    "seed_policy": "45 unique deterministic seeds; no seed reused across datasets.",
+    "unavailable_gene_rule": "Unavailable genes are zero and excluded from the library-size denominator.",
+    "zero_library_cell_rule": "STOP. Do not drop, replace, resample, or special-case a cell."
+  }
+}
