@@ -1,0 +1,282 @@
+{
+  "created_utc": "2026-08-25T11:40:41.540480+00:00",
+  "extension_plan_date": "2026-08-24",
+  "feature_space": {
+    "n_genes": 4096,
+    "ordered_vocabulary_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "ordered_vocabulary_sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2",
+    "selection": "Inherited frozen 4096-gene vocabulary selected from training cells only."
+  },
+  "frozen_sc2": {
+    "checkpoint_step": 4000,
+    "checkpoints": {
+      "20260728": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+        "checkpoint_sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8",
+        "checkpoint_step": 4000,
+        "seed": 20260728,
+        "training_config_path": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260728.yaml",
+        "training_config_sha256": "fbb19b4aa4735602dc8233542a13023c80ea97c20d185028f3401832e58afdef"
+      },
+      "20260729": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+        "checkpoint_sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1",
+        "checkpoint_step": 4000,
+        "seed": 20260729,
+        "training_config_path": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260729.yaml",
+        "training_config_sha256": "803a05304588614e60014e324d9fac403e8c3f8ebdc9b0d957f84f3877cb4336"
+      },
+      "20260730": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+        "checkpoint_sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c",
+        "checkpoint_step": 4000,
+        "seed": 20260730,
+        "training_config_path": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260730.yaml",
+        "training_config_sha256": "a3f56d25f8b9d8be6ed0d0ec211765e71a68b67a652029d64345430a958abb87"
+      }
+    },
+    "model_seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "training_or_finetuning_for_primary_zero_shot_analysis": false
+  },
+  "git": {
+    "base_commit_before_extension": "45191d52a649e25adc81cc452e8e12db125c08a9",
+    "branch": "p2-extension"
+  },
+  "implementation_sha256": {
+    "scripts/data/materialize_count_thinning_panels.py": "808ee5ff53bfac284353771ae05bd83ecd9603b96e95dbe12b17db3e7ee3f184",
+    "slurm/extension_2026/materialize_count_thinning_validation.slurm": "26191e6e43723b7b5bc3fd0a1d32ac5efb5214b66a5bfac2c1ab3fc9d7f40d38",
+    "src/sc2/data/count_thinning.py": "1aba8e273168a6dc86c7745d996f54f55b4a4e9ec2b226e1cd4b11b6f047142f",
+    "tests/test_count_thinning.py": "9484c74e58f7edc32a27280c4e9778f182c51c76f9d03766582976eabcaaff8a"
+  },
+  "primary_endpoints": {
+    "reconstruction": "recovery_index_R",
+    "safety": "originally_zero_fill",
+    "structural": "gene_wise_spearman"
+  },
+  "protocol_id": "sc2-count-thinning-v1",
+  "schema_version": 1,
+  "scientific_question": "Does the frozen SC2 model remain useful when raw molecule counts are thinned before library-size normalization?",
+  "scope": {
+    "current_phase": "internal_validation_panel_materialization",
+    "locked_until_validation_settings_are_frozen": [
+      "internal_test",
+      "baron_pancreas",
+      "zheng68k"
+    ],
+    "materialize_now": [
+      "internal_validation"
+    ],
+    "primary_sc2_analysis": "zero_shot_frozen_model",
+    "thinning_aware_retraining_allowed_now": false
+  },
+  "secondary_endpoints": [
+    "MSE",
+    "MAE",
+    "cell_wise_spearman",
+    "SD_ratio",
+    "AUPRC",
+    "AUROC",
+    "precision",
+    "recall"
+  ],
+  "sources": {
+    "corpus_manifest": {
+      "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/shards.parquet",
+      "sha256": "2e5adfb5558113ad570651e57cabee78362ae70ac27c96db7e353eea51055b85"
+    },
+    "existing_final_raw_count_views_reserved_for_later": {
+      "baron_pancreas": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/baron_pancreas",
+      "internal_test": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/internal_test",
+      "zheng68k": "/home/3159436/sc2/outputs/analysis/p2_scvi_final_count_views_v1/zheng68k"
+    },
+    "validation_masking_panels": [
+      {
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+        "mask_percent": 15,
+        "n_cells": 2500,
+        "n_genes": 4096,
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask15.npz",
+        "sha256": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430"
+      },
+      {
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+        "mask_percent": 30,
+        "n_cells": 2500,
+        "n_genes": 4096,
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask30.npz",
+        "sha256": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e"
+      },
+      {
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+        "mask_percent": 50,
+        "n_cells": 2500,
+        "n_genes": 4096,
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask50.npz",
+        "sha256": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+      }
+    ]
+  },
+  "stopping_rules": [
+    "Stop if any frozen source SHA differs.",
+    "Stop if validation cell identity differs from the frozen identity.",
+    "Stop if the three existing validation panels do not share the same full-depth target.",
+    "Stop if raw-count normalization does not exactly reproduce the frozen validation target.",
+    "Stop if any thinned count exceeds the corresponding full count.",
+    "Stop if any thinned count is non-integer.",
+    "Stop if any zero-library validation cell occurs after thinning.",
+    "Stop if lost-positive labels differ from full>0 and thin==0.",
+    "Stop if unavailable genes enter the library-size denominator.",
+    "Do not materialize internal-test, Baron, or Zheng thinning panels before validation settings are frozen.",
+    "Do not inspect internal-test, Baron, or Zheng thinning outcomes during validation selection."
+  ],
+  "thinning": {
+    "depth_retention_fractions": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "distribution": "C_thin_ig ~ Binomial(C_full_ig, q)",
+    "expected_validation_panel_count": 15,
+    "full_depth_target": "Recompute CP10K/log1p from the frozen full raw counts and require exact equality with the existing frozen validation target y.",
+    "lost_positive_definition": "(C_full > 0) AND (C_thin == 0) AND available",
+    "nominal_count_loss_fractions": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "normalization": "For each thinned count matrix, recompute library totals over available genes, CP10K, then log1p. Never copy normalized values from the original full-depth panel.",
+    "originally_zero_definition": "(C_full == 0) AND available",
+    "panel_specs": [
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 1,
+        "seed": 2026082501
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 2,
+        "seed": 2026082502
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 3,
+        "seed": 2026082503
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 4,
+        "seed": 2026082504
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 5,
+        "seed": 2026082505
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 1,
+        "seed": 2026082511
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 2,
+        "seed": 2026082512
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 3,
+        "seed": 2026082513
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 4,
+        "seed": 2026082514
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 5,
+        "seed": 2026082515
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 1,
+        "seed": 2026082521
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 2,
+        "seed": 2026082522
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 3,
+        "seed": 2026082523
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 4,
+        "seed": 2026082524
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 5,
+        "seed": 2026082525
+      }
+    ],
+    "replicates_per_depth": 5,
+    "unavailable_gene_rule": "Set unavailable genes to zero before computing the library-size denominator.",
+    "zero_library_cell_rule": "STOP. Do not drop, replace, resample, or special-case the cell."
+  },
+  "threshold_analyses": {
+    "existing_threshold_direct_transfer": {
+      "interpretation": "Thresholds selected under the existing 15%, 30%, and 50% positive-entry masking benchmark and transferred unchanged to matching nominal thinning-loss levels.",
+      "q_0.50": 0.46,
+      "q_0.70": 0.51,
+      "q_0.85": 0.545
+    },
+    "thinning_specific_validation_selection": {
+      "allowed": true,
+      "candidate_grid": {
+        "maximum": 1.0,
+        "minimum": 0.0,
+        "n_candidates": 201,
+        "step": 0.005
+      },
+      "eligibility_rule": "Originally-zero fill must be <= 0.02 in every validation run contributing to the threshold decision.",
+      "must_be_committed_before_test_or_external_evaluation": true,
+      "selection_rule": "Among eligible thresholds maximize mean recall; break ties by mean precision, then by the stricter threshold.",
+      "validation_only": true
+    }
+  },
+  "uncertainty": {
+    "algorithmic_unit": "model_seed",
+    "cells_or_entries_are_independent_replicates": false,
+    "corruption_unit": "thinning_replicate"
+  },
+  "validation": {
+    "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+    "n_cells": 2500,
+    "n_genes": 4096,
+    "same_cell_identity_across_existing_mask_rates": true,
+    "same_full_depth_target_across_existing_mask_rates": true
+  }
+}
