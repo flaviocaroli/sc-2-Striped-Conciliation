@@ -1,0 +1,61 @@
+{
+  "aggregation_root": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1",
+  "artifacts": {
+    "A0_five_seed_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/A0_five_seed_summary.csv",
+      "sha256": "a11e659aa42e12bed5c5ae783cf5dc83922e1d369d59d0c25703c6f3ad8dd271"
+    },
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/SHA256SUMS.txt",
+      "sha256": "7f4daf0e473c7764aef19c64e3ea5dec72afaae7640d18fdde4dc30725b7c035"
+    },
+    "headline_ablation.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/headline_ablation.csv",
+      "sha256": "38f44037f6afc33b38b229a564ef9b74831dc4da6eac75677c4adb20a0fa74ff"
+    },
+    "paired_seed_effects.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/paired_seed_effects.csv",
+      "sha256": "b2a322f1f1a9109256e0dc8821f8f029d255259b88587b265c41b08325431161"
+    },
+    "per_seed_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/per_seed_metrics.csv",
+      "sha256": "8dc9981adbfd76d7eb1fd97a6f8bf74fbba1a6be500462650e4ed5c3b363b2f6"
+    },
+    "qc_summary.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/qc_summary.json",
+      "sha256": "e885488bf5bb79d3b440a153780ccb8f287ffbc624f28fc965a098b030a2835e"
+    },
+    "selected_thresholds.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/selected_thresholds.json",
+      "sha256": "47a2bed5ffc43ac4f636cb00a58684cd853415c78f2a87f4373ebe068f43f567"
+    },
+    "threshold_selection.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/threshold_selection.csv",
+      "sha256": "a44b84a5fda141d1d79b7fe0f2094da2f8402c954b1c197f71047926ab52a76c"
+    }
+  },
+  "design": {
+    "checkpoint_step": 4000,
+    "masks": [
+      15,
+      30,
+      50
+    ],
+    "paired_seed_n": 5,
+    "seeds_per_variant": 5,
+    "test_data_used": false,
+    "validation_evaluations": 90,
+    "variants": 6
+  },
+  "schema_version": "sc2-p2-five-seed-ablation-results-v1",
+  "selected_threshold_config": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/ablation_selected_thresholds_v1.json",
+    "sha256": "47a2bed5ffc43ac4f636cb00a58684cd853415c78f2a87f4373ebe068f43f567"
+  },
+  "source_commit": "6248515985e4c4a799cbc430a426228536d4caef",
+  "status": "PASS",
+  "validation_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/ablation_validation_protocol_v1.json",
+    "sha256": "dff05722f9777396c3a52d6131e3aab144ee0bfa6d2070ff0d30b8d8d9df8abc"
+  }
+}
