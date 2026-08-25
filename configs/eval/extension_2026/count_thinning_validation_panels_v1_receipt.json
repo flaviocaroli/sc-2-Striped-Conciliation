@@ -1,0 +1,214 @@
+{
+  "created_utc": "2026-08-25T13:03:54.865974+00:00",
+  "information_barrier": {
+    "baron_thinning_materialized": false,
+    "internal_test_thinning_materialized": false,
+    "model_outcomes_inspected": false,
+    "test_external_locked": true,
+    "zheng68k_thinning_materialized": false
+  },
+  "materializer_repair": {
+    "commit": "2df4fe1464232398bd93f361f2b5fd9a2ce61bbc",
+    "failed_job_artifacts_reused": false,
+    "failed_job_id": 636221,
+    "new_materializer_sha256": "15c909a4149cdbdb69a50d36ddc199b3972e47106fdee7a37f59b8ee19ec24fc",
+    "receipt_path": "/home/3159436/sc2/code/configs/eval/extension_2026/count_thinning_materialization_fix_636221.json",
+    "receipt_sha256": "887cdb3c9cd2130828c9db3ff73b8e3fa1dea9c209f39abd7f66a3ff469981fc",
+    "scientific_protocol_changed": false
+  },
+  "next_allowed_step": "freeze validation inference/evaluation code, run frozen-SC2 validation inference, and select thinning-specific thresholds on validation only",
+  "not_yet_allowed": "internal-test, Baron, or Zheng thinning materialization/evaluation",
+  "output_bundle": {
+    "qc_summary_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_qc_summary.json",
+    "qc_summary_sha256": "f2d908ac76b7cd0cfd6c2d0058c1949025d206922305bb9b555669e9ff62848e",
+    "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation",
+    "sha256sums_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/SHA256SUMS.txt",
+    "sha256sums_sha256": "61b3e3a4fa048aabb34f6b85b53374d92b9dec1a67f6f743d34fa14505a70475",
+    "source_identity_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/source_identity.json",
+    "source_identity_sha256": "998839110e64fb385e0bd26acd9db77356d1b004b4708f46b0df3a23718c2b53"
+  },
+  "panel_design": {
+    "by_depth": {
+      "0.50": {
+        "mean_lost_positive_fraction": 0.3047283186111974,
+        "mean_molecule_retention_ratio": 0.4998694170413865,
+        "n_replicates": 5,
+        "seeds": [
+          2026082521,
+          2026082522,
+          2026082523,
+          2026082524,
+          2026082525
+        ]
+      },
+      "0.70": {
+        "mean_lost_positive_fraction": 0.16390985923313028,
+        "mean_molecule_retention_ratio": 0.7000169853336478,
+        "n_replicates": 5,
+        "seeds": [
+          2026082511,
+          2026082512,
+          2026082513,
+          2026082514,
+          2026082515
+        ]
+      },
+      "0.85": {
+        "mean_lost_positive_fraction": 0.07630091802971495,
+        "mean_molecule_retention_ratio": 0.8499814868218639,
+        "n_replicates": 5,
+        "seeds": [
+          2026082501,
+          2026082502,
+          2026082503,
+          2026082504,
+          2026082505
+        ]
+      }
+    },
+    "depth_retention_fractions": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "n_cells": 2500,
+    "n_genes": 4096,
+    "panel_count": 15,
+    "replicates_per_depth": 5,
+    "validation_identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4"
+  },
+  "panel_files": [
+    {
+      "file": "validation_q085_rep01_seed2026082501.npz",
+      "q": 0.85,
+      "replicate": 1,
+      "seed": 2026082501,
+      "sha256": "f1c3d68e2b5351114642b596b39bc6199120ac5913fe681f05615f1c59a7a048"
+    },
+    {
+      "file": "validation_q085_rep02_seed2026082502.npz",
+      "q": 0.85,
+      "replicate": 2,
+      "seed": 2026082502,
+      "sha256": "7e3dc48159e33d5960f6f04c5adc4840ce19db75b9ba4c135eae5b289d3ec3e3"
+    },
+    {
+      "file": "validation_q085_rep03_seed2026082503.npz",
+      "q": 0.85,
+      "replicate": 3,
+      "seed": 2026082503,
+      "sha256": "6e6624bdf0c406204bda01c32866ec031fc15f6d2304492638501c39d985efeb"
+    },
+    {
+      "file": "validation_q085_rep04_seed2026082504.npz",
+      "q": 0.85,
+      "replicate": 4,
+      "seed": 2026082504,
+      "sha256": "88a91ecfb4cb216b2ac5a42c0203d51890aed9607e6a196c1d6dc61e0240cd48"
+    },
+    {
+      "file": "validation_q085_rep05_seed2026082505.npz",
+      "q": 0.85,
+      "replicate": 5,
+      "seed": 2026082505,
+      "sha256": "6172b3130dd3b19edd7268bf3a4fb0bcee1aa7f7162dc337a6aab8d23a001cd6"
+    },
+    {
+      "file": "validation_q070_rep01_seed2026082511.npz",
+      "q": 0.7,
+      "replicate": 1,
+      "seed": 2026082511,
+      "sha256": "53f5242275306b7df6b104b3a65cfefe863d03eb4bfa1c59b424bd993ca435ec"
+    },
+    {
+      "file": "validation_q070_rep02_seed2026082512.npz",
+      "q": 0.7,
+      "replicate": 2,
+      "seed": 2026082512,
+      "sha256": "4481a993987d16fb3fffc7448477e5376b96b62e9c8ce197ace0aecf7f31278c"
+    },
+    {
+      "file": "validation_q070_rep03_seed2026082513.npz",
+      "q": 0.7,
+      "replicate": 3,
+      "seed": 2026082513,
+      "sha256": "a74167125f571068331548aaa91f875ccfc5ebb8d493b458baad7ae428e4b92e"
+    },
+    {
+      "file": "validation_q070_rep04_seed2026082514.npz",
+      "q": 0.7,
+      "replicate": 4,
+      "seed": 2026082514,
+      "sha256": "1ce6d0157e284db06b537ea5faf936e1ebb42c5f22f48b76bc8eea5ca2050dd7"
+    },
+    {
+      "file": "validation_q070_rep05_seed2026082515.npz",
+      "q": 0.7,
+      "replicate": 5,
+      "seed": 2026082515,
+      "sha256": "27c2a4ffb4c9df1dd2f9d8c3d851971b0b556c9c8e06a52a49173d84388b33ad"
+    },
+    {
+      "file": "validation_q050_rep01_seed2026082521.npz",
+      "q": 0.5,
+      "replicate": 1,
+      "seed": 2026082521,
+      "sha256": "543d24d3ce4f2c20d0683bcb5ef038b294bdff607c26f2a25afb40cc84d8a1a0"
+    },
+    {
+      "file": "validation_q050_rep02_seed2026082522.npz",
+      "q": 0.5,
+      "replicate": 2,
+      "seed": 2026082522,
+      "sha256": "34c038c9a6740f3e6edcd45d59d9026065ade16e825fd8ff1a0173a919236f5b"
+    },
+    {
+      "file": "validation_q050_rep03_seed2026082523.npz",
+      "q": 0.5,
+      "replicate": 3,
+      "seed": 2026082523,
+      "sha256": "d01af5f6d52612a74ae9224d809b1092e7ff7dd40afaa80b2ccdb664fd4d8b57"
+    },
+    {
+      "file": "validation_q050_rep04_seed2026082524.npz",
+      "q": 0.5,
+      "replicate": 4,
+      "seed": 2026082524,
+      "sha256": "5a33d2bcf06c2d66477ab77b2c0efd0d9559b6f77aa6e1d3211e399f4f9813ac"
+    },
+    {
+      "file": "validation_q050_rep05_seed2026082525.npz",
+      "q": 0.5,
+      "replicate": 5,
+      "seed": 2026082525,
+      "sha256": "b9cd828fca0a73a4aa0040fd85dad8d4b845a10af20b2050bc72eb31b8f1ed35"
+    }
+  ],
+  "protocol": {
+    "commit": "647267daf2a3e90f2ac72547990ec9ec7b2ba4f4",
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_protocol_v1.json",
+    "protocol_id": "sc2-count-thinning-v1",
+    "sha256": "e24df2f7a51a263c24100c9ccee67a9cbfba37ed655295e4948d7c11d8781959"
+  },
+  "quality_control": {
+    "all_count_bounds_pass": true,
+    "all_full_target_alignment_exact": true,
+    "all_integer_counts_pass": true,
+    "independent_audit_directory": "/home/3159436/sc2/handoffs/p2_extension_validation_panels_qc_20260825T130245Z",
+    "independent_audit_handoff_sha256": "a9712e12f7b7ef42d3e1a81b8e774341bdeb1177475494e53bf616e6f193eb0a",
+    "independent_post_job_qc_pass": true,
+    "zero_library_cells": 0
+  },
+  "receipt_id": "sc2-count-thinning-validation-panels-v1",
+  "schema_version": 1,
+  "scientific_scope": "internal_validation_count_thinning_panels_only",
+  "successful_materialization_job": {
+    "exit_code": "0:0",
+    "job_id": 636318,
+    "state": "COMPLETED",
+    "stderr_path": "/home/3159436/sc2/logs/paper_extension_2026/sc2-thin-val_636318.err",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_path": "/home/3159436/sc2/logs/paper_extension_2026/sc2-thin-val_636318.out",
+    "stdout_sha256": "4c14dbd735d7dde05dee9f0e2e021c7c6673f40a44b56eeb564c3ef3176eb8a8"
+  }
+}
