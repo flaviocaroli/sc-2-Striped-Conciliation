@@ -1,0 +1,48 @@
+{
+  "checkpoint": {
+    "local_candidates": [],
+    "local_checkpoint_count": 0,
+    "official_model_readme": "/home/3159436/sc2/external/foundation_models/scFoundation/model/README.md",
+    "official_model_readme_sha256": "f62879233ecf5fac407cd516aca2ddb3df20370523cb111c9d057676b4721d5d"
+  },
+  "decoder_feasibility": {
+    "gene_expression_branch_present": true,
+    "gene_expression_marked_not_recommended": true,
+    "get_embedding_path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/get_embedding.py",
+    "get_embedding_sha256": "7e1d7ce2905d5b5b60288e9ac0919eece4becadba909a0eccc7afadb9697e351",
+    "status": "REQUIRES_VALIDATION_ONLY_SMOKE_TEST"
+  },
+  "ensembl_to_symbol_mapping": {
+    "coverage_fraction": 0.97802734375,
+    "mapped_sc2_genes": 4096,
+    "scfoundation_exact_overlap": 4006,
+    "source": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/train_gene_stats.parquet",
+    "source_sha256": "bc8adb35c3a9831d7f2b08e9745294debb3116d86b8fecc82c60384f3917589e",
+    "symbol_column": "feature_name",
+    "unique_mapped_symbols": 4096
+  },
+  "next_action": "install isolated scFoundation environment, obtain official checkpoint if absent, then run validation-only continuous gene-expression decoder smoke test",
+  "official_repository": "https://github.com/biomap-research/scFoundation",
+  "pretraining_overlap": {
+    "can_be_excluded": false,
+    "report_as_limitation": true
+  },
+  "sc2_vocabulary": {
+    "identifier": "ensembl_id",
+    "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "rows": 4096,
+    "sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2"
+  },
+  "scfoundation_vocabulary": {
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation/OS_scRNA_gene_index.19264.tsv",
+    "rows": 19264,
+    "sha256": "bb337ea195d94e7b033543abc02a42e7060d6562eba97deb077f7dcecec62661",
+    "symbol_column": "gene_name"
+  },
+  "schema_version": "sc2-scfoundation-source-pin-v1",
+  "source": {
+    "commit": "397631c495eddf9ad6644fc00c6ea8139e651245",
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation"
+  },
+  "status": "SOURCE_AND_VOCABULARY_PINNED"
+}
