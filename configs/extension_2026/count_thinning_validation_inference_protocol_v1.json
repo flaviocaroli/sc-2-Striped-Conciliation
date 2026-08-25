@@ -1,0 +1,251 @@
+{
+  "additional_metrics": [
+    "masked_mse",
+    "masked_mae",
+    "sample_spearman",
+    "sd_ratio",
+    "gate_auroc",
+    "gate_auprc",
+    "gate_brier",
+    "gate_ece",
+    "precision",
+    "recall"
+  ],
+  "base_commit_before_phase1b_implementation": "12f1a17fc4eb5e0313de14b2dfedbeb6b9851ad5",
+  "common_threshold_selection": {
+    "eligibility_rule": "threshold must have true_zero_fill <= 0.02 in every one of the 15 validation runs for that q",
+    "max_true_zero_fill": 0.02,
+    "must_be_committed_before_test_external": true,
+    "objective_order": [
+      "maximize mean recall",
+      "maximize mean precision",
+      "choose stricter threshold"
+    ],
+    "runs_per_q": 15,
+    "selection_timing": "after all 45 validation evaluations pass QC",
+    "selection_unit": "one common threshold per q",
+    "test_or_external_data_allowed": false
+  },
+  "compute": {
+    "array_tasks": 15,
+    "gpu_request": "gpu:1",
+    "partition": "short_gpuh200",
+    "project_submission_cap": 29
+  },
+  "created_utc": "2026-08-25T13:13:09.738502+00:00",
+  "direct_transfer_thresholds": {
+    "0.50": 0.46,
+    "0.70": 0.51,
+    "0.85": 0.545
+  },
+  "evaluator": {
+    "base_evaluator_modified_for_thinning": false,
+    "base_evaluator_path": "/home/3159436/sc2/code/src/sc2/eval/evaluate_continuous_repair.py",
+    "base_evaluator_sha256": "0ad12e542f46aca0ab13ba193f7ab22847fdf92f294a8f930ee7e83567118128",
+    "base_metrics_path": "/home/3159436/sc2/code/src/sc2/eval/selective_repair_metrics.py",
+    "base_metrics_sha256": "384827dfb1c2161934e58560fe6e6bca1240d5e21f7e61442eddd3032ebf1dbd",
+    "config_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_continuous_official_eval.yaml",
+    "config_sha256": "45cc9075db0f30d8fc38b67ef50df4b88c304f91b754529365b2ada5700022c4",
+    "full_threshold_sweep_saved_per_evaluation": true,
+    "per_panel_automatic_threshold_selection_allowed_for_final_freeze": false,
+    "per_panel_automatic_threshold_selection_exists": true,
+    "threshold_grid": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "n_candidates": 201,
+      "step": 0.005
+    },
+    "zero_threshold": 1e-08
+  },
+  "implementation": {
+    "aggregate_threshold_selector": {
+      "path": "/home/3159436/sc2/code/scripts/eval/select_count_thinning_validation_thresholds.py",
+      "sha256": "0de52206f0d4fc5e568338d3a18ed2213b48405dbec2e12e6f19c2146ad7f84d"
+    },
+    "regression_test": {
+      "path": "/home/3159436/sc2/code/tests/test_count_thinning_threshold_aggregation.py",
+      "sha256": "a84d7077f07bcfcd2b3a58f82a295a5ce59197871292aacbf1a2a4c415481fa4"
+    },
+    "slurm_wrapper": {
+      "path": "/home/3159436/sc2/code/slurm/extension_2026/eval_count_thinning_validation_array.slurm",
+      "sha256": "704478c3a61fe1f86c6d442fcfafb3ee2ba039e70914e31c73834c23c1f9f8b4"
+    },
+    "task_runner": {
+      "path": "/home/3159436/sc2/code/scripts/eval/run_count_thinning_validation_task.py",
+      "sha256": "f82077482c0ce89a38f267cbb328e1493496d1a3c8cdd18b71b0cbdb82b6f033"
+    }
+  },
+  "information_barrier": {
+    "baron_pancreas_locked": true,
+    "internal_test_locked": true,
+    "internal_validation_allowed": true,
+    "zheng68k_locked": true
+  },
+  "models": {
+    "20260728": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8",
+      "checkpoint_step": 4000,
+      "model_seed": 20260728
+    },
+    "20260729": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1",
+      "checkpoint_step": 4000,
+      "model_seed": 20260729
+    },
+    "20260730": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+      "checkpoint_sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c",
+      "checkpoint_step": 4000,
+      "model_seed": 20260730
+    }
+  },
+  "output": {
+    "expected_q_subdirectories_per_task": 3,
+    "expected_task_directories": 15,
+    "one_atomic_directory_per_task": true,
+    "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation_sc2_v1",
+    "task_sha256_manifest_required": true
+  },
+  "panels": {
+    "base_thinning_protocol_path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_protocol_v1.json",
+    "base_thinning_protocol_sha256": "e24df2f7a51a263c24100c9ccee67a9cbfba37ed655295e4948d7c11d8781959",
+    "n_validation_panels": 15,
+    "receipt_path": "/home/3159436/sc2/code/configs/eval/extension_2026/count_thinning_validation_panels_v1_receipt.json",
+    "receipt_sha256": "513e36306d77362cfffaae2603d6340d88da69cf594e0ce62cb6e2640f9eaaa3",
+    "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation"
+  },
+  "primary_validation_metrics": {
+    "gene_wise_spearman": "gene_spearman",
+    "recovery_index": "1 - masked_mse / target_sd^2",
+    "safety": "true_zero_fill"
+  },
+  "protocol_id": "sc2-count-thinning-validation-inference-v1",
+  "run_time_threshold_behavior": {
+    "base_evaluator_invoked_with_threshold_argument": true,
+    "direct_transfer_results_are_distinct_from_thinning_specific_selection": true,
+    "purpose": "Evaluate direct transfer and force base evaluator not to perform per-panel automatic threshold selection.",
+    "threshold_sweep_still_saved": true
+  },
+  "schema_version": 1,
+  "scientific_scope": "internal_validation_only",
+  "stopping_rules": [
+    "Stop if panel receipt or panel SHA differs.",
+    "Stop if a frozen checkpoint SHA differs.",
+    "Stop if evaluator/config/metrics SHA differs.",
+    "Stop if any task output already exists before submission.",
+    "Stop if CUDA is unavailable in an H200 task.",
+    "Stop if any task does not produce all three q evaluations.",
+    "Stop if a threshold sweep does not contain the frozen 201-point grid.",
+    "Stop if the base evaluator reports selected_on_this_validation_set during array inference.",
+    "Stop if any task SHA manifest fails.",
+    "Do not select a common threshold until all 45 validation evaluations pass QC.",
+    "Do not materialize or evaluate internal test, Baron, or Zheng until the three common thinning-specific thresholds are committed."
+  ],
+  "task_layout": {
+    "array_task_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "evaluations_per_task": 3,
+    "n_array_tasks": 15,
+    "q_order": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "tasks": [
+      {
+        "model_seed": 20260728,
+        "replicate": 1,
+        "task_id": 0
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 2,
+        "task_id": 1
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 3,
+        "task_id": 2
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 4,
+        "task_id": 3
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 5,
+        "task_id": 4
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 1,
+        "task_id": 5
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 2,
+        "task_id": 6
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 3,
+        "task_id": 7
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 4,
+        "task_id": 8
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 5,
+        "task_id": 9
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 1,
+        "task_id": 10
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 2,
+        "task_id": 11
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 3,
+        "task_id": 12
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 4,
+        "task_id": 13
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 5,
+        "task_id": 14
+      }
+    ],
+    "total_evaluations": 45,
+    "unit": "one model seed x one thinning replicate index"
+  }
+}
