@@ -1,0 +1,251 @@
+{
+  "aggregation_artifacts": {
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/SHA256SUMS.txt",
+      "sha256": "52941ee5bbd580740245aacaec6cc64d533e1039777e1d19fad6a55dfe19679a"
+    },
+    "crossed_seed_replicate_uncertainty.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/crossed_seed_replicate_uncertainty.csv",
+      "sha256": "a7f5b87a34dac4a023ad11ec0365e0d93f303aa5b57d2113297a9b2be4b81401"
+    },
+    "headline_results.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/headline_results.csv",
+      "sha256": "23ea550003d6d7e52d7f679b781c318718c30bbdb2be29cfe41b9a1e73dc923b"
+    },
+    "old_threshold_transfer_run_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/old_threshold_transfer_run_metrics.csv",
+      "sha256": "1338b3b02987c07a203b03280ddaf691a09db346f070aa9d919a3477d095c725"
+    },
+    "old_threshold_transfer_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/old_threshold_transfer_summary.csv",
+      "sha256": "e4067068eb3a2125ef834f6b06ee492872857cf2e9e7c7de4a8656dd92136605"
+    },
+    "primary_run_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/primary_run_metrics.csv",
+      "sha256": "944e6a10fd2a626eb4c3e6c9ba81227d757d97f7d8a2afa104106d474e70ebf5"
+    },
+    "primary_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/primary_summary.csv",
+      "sha256": "e2ef7a0256a83f2ad6de264363f8a059d395440d603e7227114053750d721d27"
+    },
+    "qc_summary.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/qc_summary.json",
+      "sha256": "d5eb443a6e57cb2b385170bcd9f656e12cce5251627d453c3139a6f282a88cf0"
+    }
+  },
+  "aggregation_handoff": {
+    "path": "/home/3159436/sc2/handoffs/p2_extension_phase1c_confirmatory_aggregation_20260825T152850Z/handoff.txt",
+    "sha256": "18ccf3f0568c225ac79e5df97c004840a07b5ed37c7d9fafaa13c9e769e77aeb"
+  },
+  "aggregation_root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1",
+  "base_commit": "eb595d2e0bd068e625603bf73706a15aa1b51d56",
+  "created_utc": "2026-08-25T15:31:37.755328+00:00",
+  "design": {
+    "cell_pseudoreplication_used": false,
+    "crossed_runs_per_dataset_q": 15,
+    "datasets": [
+      "internal_test",
+      "baron_pancreas",
+      "zheng68k"
+    ],
+    "model_seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "q_values": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "thinning_replicates": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "headline_results": [
+    {
+      "R_ci95_high": 0.5012385154930181,
+      "R_ci95_low": 0.4515239020264671,
+      "dataset": "baron_pancreas",
+      "gene_spearman_mean": 0.91916037816072,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.0019740685477484,
+      "old_transfer_fill_mean": 0.0012848202780516,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.85,
+      "recovery_index_mean": 0.4758928929069441,
+      "threshold_precision_mean": 0.2097688826258982,
+      "threshold_recall_mean": 0.0063733774454972,
+      "threshold_true_zero_fill_max": 0.0009583628929993,
+      "threshold_true_zero_fill_mean": 0.0007118523407702
+    },
+    {
+      "R_ci95_high": 0.2094356952285328,
+      "R_ci95_low": 0.1610730623304606,
+      "dataset": "baron_pancreas",
+      "gene_spearman_mean": 0.872908962323103,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.0041855994524364,
+      "old_transfer_fill_mean": 0.0030702510747545,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.7,
+      "recovery_index_mean": 0.1909479958788162,
+      "threshold_precision_mean": 0.4029400921303094,
+      "threshold_recall_mean": 0.0084349952295769,
+      "threshold_true_zero_fill_max": 0.0010437086230637,
+      "threshold_true_zero_fill_mean": 0.0007917757205211
+    },
+    {
+      "R_ci95_high": -0.5164612476790367,
+      "R_ci95_low": -0.598625138245745,
+      "dataset": "baron_pancreas",
+      "gene_spearman_mean": 0.7296014477675111,
+      "old_transfer_fill_gt_2pct_count": 5,
+      "old_transfer_fill_max": 0.0263822437540188,
+      "old_transfer_fill_mean": 0.0181762060748288,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.5,
+      "recovery_index_mean": -0.5456040259639361,
+      "threshold_precision_mean": 0.6140401861697836,
+      "threshold_recall_mean": 0.0132731945630018,
+      "threshold_true_zero_fill_max": 0.0012022982978909,
+      "threshold_true_zero_fill_mean": 0.000967617475325
+    },
+    {
+      "R_ci95_high": 0.6305712996903936,
+      "R_ci95_low": 0.5834475456143644,
+      "dataset": "internal_test",
+      "gene_spearman_mean": 0.8994848390718483,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.0162101071496443,
+      "old_transfer_fill_mean": 0.0120691219836136,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.85,
+      "recovery_index_mean": 0.6028619433133244,
+      "threshold_precision_mean": 0.1114435824347113,
+      "threshold_recall_mean": 0.0107977494971941,
+      "threshold_true_zero_fill_max": 0.0055922323981405,
+      "threshold_true_zero_fill_mean": 0.0029595204743795
+    },
+    {
+      "R_ci95_high": 0.4552832729095085,
+      "R_ci95_low": 0.3988848984166898,
+      "dataset": "internal_test",
+      "gene_spearman_mean": 0.8455792917651651,
+      "old_transfer_fill_gt_2pct_count": 15,
+      "old_transfer_fill_max": 0.0301591256563396,
+      "old_transfer_fill_mean": 0.0269378656266303,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.7,
+      "recovery_index_mean": 0.4293122063703395,
+      "threshold_precision_mean": 0.225986153406187,
+      "threshold_recall_mean": 0.0132045309135368,
+      "threshold_true_zero_fill_max": 0.0056536891678072,
+      "threshold_true_zero_fill_mean": 0.0032113886890005
+    },
+    {
+      "R_ci95_high": -0.0470946765314236,
+      "R_ci95_low": -0.0953921344690052,
+      "dataset": "internal_test",
+      "gene_spearman_mean": 0.7111719249945333,
+      "old_transfer_fill_gt_2pct_count": 15,
+      "old_transfer_fill_max": 0.0690593257344918,
+      "old_transfer_fill_mean": 0.0580164761973904,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.5,
+      "recovery_index_mean": -0.0712580826144357,
+      "threshold_precision_mean": 0.3933465941808467,
+      "threshold_recall_mean": 0.017835033588798,
+      "threshold_true_zero_fill_max": 0.0053951837110333,
+      "threshold_true_zero_fill_mean": 0.0034448932738579
+    },
+    {
+      "R_ci95_high": -2.882775915121459,
+      "R_ci95_low": -3.717938447939932,
+      "dataset": "zheng68k",
+      "gene_spearman_mean": -0.1305997754862416,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.0032913745982484,
+      "old_transfer_fill_mean": 0.0028523230452011,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.85,
+      "recovery_index_mean": -3.200996556097552,
+      "threshold_precision_mean": 0.1525238922183119,
+      "threshold_recall_mean": 0.035535863936002,
+      "threshold_true_zero_fill_max": 0.002420708943427,
+      "threshold_true_zero_fill_mean": 0.0020605295633922
+    },
+    {
+      "R_ci95_high": -3.5061042680174195,
+      "R_ci95_low": -4.32933885135014,
+      "dataset": "zheng68k",
+      "gene_spearman_mean": -0.3198198050555974,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.0052415337043554,
+      "old_transfer_fill_mean": 0.0048695841636317,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.7,
+      "recovery_index_mean": -3.870186632778706,
+      "threshold_precision_mean": 0.2922645781830887,
+      "threshold_recall_mean": 0.0443211929581449,
+      "threshold_true_zero_fill_max": 0.0027203146998603,
+      "threshold_true_zero_fill_mean": 0.0023424049345088
+    },
+    {
+      "R_ci95_high": -4.247563820061737,
+      "R_ci95_low": -5.07146757806536,
+      "dataset": "zheng68k",
+      "gene_spearman_mean": -0.5235144644934224,
+      "old_transfer_fill_gt_2pct_count": 0,
+      "old_transfer_fill_max": 0.015174050105695,
+      "old_transfer_fill_mean": 0.012741607657327,
+      "primary_fill_gt_2pct_count": 0,
+      "q": 0.5,
+      "recovery_index_mean": -4.689749018319729,
+      "threshold_precision_mean": 0.4396899476497563,
+      "threshold_recall_mean": 0.0659043024518205,
+      "threshold_true_zero_fill_max": 0.0035415500784781,
+      "threshold_true_zero_fill_mean": 0.0032584430742281
+    }
+  ],
+  "inference_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_confirmatory_inference_protocol_v1.json",
+    "sha256": "81c1b9e9150e56ef0823b795329328accb6991a8937e3d59c8e6736670f1d3bd"
+  },
+  "old_direct_transfer_thresholds": {
+    "0.50": 0.46,
+    "0.70": 0.51,
+    "0.85": 0.545
+  },
+  "primary_thresholds": {
+    "0.50": 0.535,
+    "0.70": 0.56,
+    "0.85": 0.575
+  },
+  "recovery_index_definition": "1 - masked_mse / target_sd^2",
+  "remaining_endpoint": {
+    "baron_donor_held_out_macro_f1_computed": false,
+    "status": "requires_separate_frozen_downstream_analysis"
+  },
+  "scheduler": {
+    "total_evaluations": 135,
+    "total_tasks": 45,
+    "wave1_array_job_id": 636536,
+    "wave2_array_job_id": 636580
+  },
+  "schema_version": "sc2-count-thinning-confirmatory-aggregation-receipt-v1",
+  "scientific_qc": {
+    "automatic_threshold_selection_used": false,
+    "observed_nonzero_preservation_exact": true,
+    "old_transfer_derived_from_saved_sweeps": true,
+    "old_transfer_gpu_rerun": false,
+    "primary_all_confirmatory_fill_le_2pct_observed": true,
+    "threshold_retuning_performed": false,
+    "two_pct_external_fill_is_outcome_not_formal_guarantee": true
+  },
+  "status": "frozen_after_complete_45_task_confirmatory_sc2_inference_and_aggregation"
+}
