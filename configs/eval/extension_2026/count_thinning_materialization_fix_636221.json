@@ -1,0 +1,51 @@
+{
+  "base_protocol_commit": "647267daf2a3e90f2ac72547990ec9ec7b2ba4f4",
+  "cells_changed": false,
+  "classification": "non_scientific_implementation_schema_contract_fix",
+  "count_level_qc_seen_in_failed_stdout": true,
+  "created_utc": "2026-08-25T12:56:58.783679+00:00",
+  "failed_job": {
+    "exit_code": "1:0",
+    "failure": "KeyError: expected_validation_panels",
+    "failure_stage": "after generation of the 15 temporary panel records and before final QC summary/manifest acceptance and atomic move",
+    "job_id": 636221,
+    "state": "FAILED",
+    "stderr_path": "/home/3159436/sc2/logs/paper_extension_2026/sc2-thin-val_636221.err",
+    "stderr_sha256": "f0cd32dd6216d4333eda1466967e546ae8e18ea2c69b80ccfdf0404445a12e04",
+    "stdout_path": "/home/3159436/sc2/logs/paper_extension_2026/sc2-thin-val_636221.out",
+    "stdout_sha256": "c756093397b6163786cabb625cb055e9dc73a19f626eea3e2113b7f30c901830"
+  },
+  "failed_job_artifacts_accepted": false,
+  "failed_job_temp_artifacts_reused": false,
+  "genes_changed": false,
+  "metrics_changed": false,
+  "model_checkpoints_changed": false,
+  "model_predictions_seen": false,
+  "protocol_path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_protocol_v1.json",
+  "protocol_sha256_unchanged": "e24df2f7a51a263c24100c9ccee67a9cbfba37ed655295e4948d7c11d8781959",
+  "q_values_changed": false,
+  "receipt_id": "sc2-count-thinning-materialization-fix-636221",
+  "regression_test": {
+    "file": "tests/test_count_thinning_protocol_contract.py",
+    "sha256": "abdc92d7111e4f2d997f8da6826cec53760954b45dd0ce49878bf451291ef025"
+  },
+  "repair": {
+    "file": "scripts/data/materialize_count_thinning_panels.py",
+    "new_field_reference": "expected_validation_panel_count",
+    "new_sha256": "15c909a4149cdbdb69a50d36ddc199b3972e47106fdee7a37f59b8ee19ec24fc",
+    "old_field_reference": "expected_validation_panels",
+    "old_sha256": "808ee5ff53bfac284353771ae05bd83ecd9603b96e95dbe12b17db3e7ee3f184",
+    "semantic_change": "none; align implementation with the already frozen protocol field name"
+  },
+  "rerun_from_scratch_required": true,
+  "schema_version": 1,
+  "scientific_protocol_changed": false,
+  "stopping_rules_changed": false,
+  "test_external_status": {
+    "baron_pancreas_locked": true,
+    "internal_test_locked": true,
+    "zheng68k_locked": true
+  },
+  "thinning_seeds_changed": false,
+  "threshold_rules_changed": false
+}

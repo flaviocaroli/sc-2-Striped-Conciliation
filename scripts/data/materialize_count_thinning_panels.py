@@ -737,7 +737,7 @@ def main() -> None:
         )
 
     expected_panel_count = int(
-        protocol["thinning"]["expected_validation_panels"]
+        protocol["thinning"]["expected_validation_panel_count"]
     )
 
     if len(panel_records) != expected_panel_count:
