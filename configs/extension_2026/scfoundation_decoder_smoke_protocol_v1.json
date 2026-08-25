@@ -1,0 +1,54 @@
+{
+  "base_commit": "73d71385a9216d81b80abf49eea463aae1a28941",
+  "checkpoint": {
+    "bytes": 1432587886,
+    "mirror_revision": "5c4fe072c87d35164bf9c0c646c0fba3e13703b2",
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/models/models.ckpt",
+    "sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9",
+    "source": "genbio-ai/scFoundation public mirror"
+  },
+  "frozen_before_smoke_result": true,
+  "inference": {
+    "checkpoint_key": "gene",
+    "input_type": "singlecell",
+    "official_branch_marked_not_recommended": true,
+    "output_type": "gene_expression",
+    "pre_normalized": "T",
+    "tgthighres": "t4"
+  },
+  "input": {
+    "cells": 4,
+    "dataset": "internal_validation",
+    "mask_percent": 15,
+    "metadata_path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/smoke_input_v1/metadata.json",
+    "metadata_sha256": "818ff3afced0a121421dd5fb22718ab4bee077747ffae1989dbe286748e50f35",
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/smoke_input_v1/validation4_scf19264.npy",
+    "sha256": "b1535e5bc1bac6d535e082d604ca4a746577dd0b114fe3a0dab18b0ed4dab5cd",
+    "target_y_used": false
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/decoder_smoke_v1",
+  "protocol_id": "sc2-scfoundation-decoder-smoke-v1",
+  "runner": {
+    "path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_decoder_smoke.py",
+    "sha256": "338804f9f45e0e89c282039bb721ef7565f0c2b0054abb6d8247ba8fd91cf9f1"
+  },
+  "slurm": {
+    "path": "/home/3159436/sc2/code/slurm/extension_2026/scfoundation_decoder_smoke.slurm",
+    "sha256": "d881ae4812cfe5d483c7dae10cda3bd7fb23e324505ec786c97f8df752d88d16"
+  },
+  "source": {
+    "commit": "397631c495eddf9ad6644fc00c6ea8139e651245",
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation"
+  },
+  "technical_pass_gate": {
+    "all_finite": true,
+    "different_cells_nonidentical": true,
+    "nonconstant": true,
+    "performance_threshold": null,
+    "repeat_max_abs_difference_le": 1e-05,
+    "shape": [
+      4,
+      19264
+    ]
+  }
+}
