@@ -95,7 +95,6 @@ def main():
             "x",
             "y",
             "synthetic_mask",
-            "available_gene_mask",
         }
 
         if not required <= set(d.files):

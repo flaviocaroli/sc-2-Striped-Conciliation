@@ -1,4 +1,28 @@
 {
+  "amendments": [
+    {
+      "affected_tasks": [
+        0,
+        1,
+        2
+      ],
+      "metric_definition_changed": false,
+      "model_inference_changed": false,
+      "original_job": 636783,
+      "reason": "The runner's initial required-key assertion incorrectly required available_gene_mask for internal benchmark NPZs before reaching the already-frozen internal fallback that defines all 4096 internal genes as available.",
+      "retry_policy": "rerun failed internal tasks only",
+      "scientific_semantics_changed": false,
+      "successful_tasks_preserved": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "type": "technical_schema_fix"
+    }
+  ],
   "checkpoint": {
     "path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/models/models.ckpt",
     "sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9"
@@ -8,7 +32,7 @@
   "frozen_before_final_results": true,
   "implementation": {
     "runner_path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_final_task.py",
-    "runner_sha256": "20da3cc5696ab45a48e4f6ca00ad7d37266b90e137aac96dcc8ef871348031a5",
+    "runner_sha256": "d803f69bf0cbd55946946934b72c7804f3ea3651601e74f6cd3217590cbed11b",
     "slurm_path": "/home/3159436/sc2/code/slurm/extension_2026/scfoundation_final_array.slurm",
     "slurm_sha256": "f11759796c7e40e58d0ef8047204ea897be28784b96f1b180f44e3a83a50c8aa"
   },
