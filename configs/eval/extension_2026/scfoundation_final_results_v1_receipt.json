@@ -1,0 +1,62 @@
+{
+  "aggregation_root": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1",
+  "artifacts": {
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/SHA256SUMS.txt",
+      "sha256": "98a3aa0c0bb709ded2250e9c6aa1171e7cdc7e10540220460eee2f1b695c59c1"
+    },
+    "all_results.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/all_results.csv",
+      "sha256": "0152a3427048f7b7e5b9fa4e6cf256685dd942e3384a7822fcaa24640aa2ad14"
+    },
+    "dataset_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/dataset_summary.csv",
+      "sha256": "e52e1f7cefebd6eac85f1c4b33abb0d614de53cf3784d8a2221e3fd8d2b8383f"
+    },
+    "headline_results.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/headline_results.csv",
+      "sha256": "6fd8f66e70150cc9c2380de742916557218b283ae7ab665a80612978b9bd4205"
+    },
+    "qc_summary.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/qc_summary.json",
+      "sha256": "85bb1d9b3caaf6db3dbf349cf8b5499e973f7191e142c3ef20378560c100ed8c"
+    }
+  },
+  "execution": {
+    "original_job": 636783,
+    "preserved_successful_tasks": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "retried_tasks": [
+      0,
+      1,
+      2
+    ],
+    "retry_job": 636852
+  },
+  "feasibility_receipt": {
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/scfoundation_feasibility_v1_receipt.json",
+    "sha256": "4e45447ff70eb37ce39b97646904dba4a39577e1a8707bdb55d6d7a6829c5f9b"
+  },
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/scfoundation_final_protocol_v1.json",
+    "sha256": "8e045ce95e457f0a1df482e5b0712f84e6b6fffb432a529b811b612c19e8e906"
+  },
+  "schema_version": "sc2-scfoundation-final-results-v1",
+  "scientific_contract": {
+    "ad_hoc_threshold": false,
+    "direct_continuous_decoder": true,
+    "mapped_sc2_genes": 4006,
+    "metrics_restricted_to_mapped_and_available_genes": true,
+    "observed_nonzeros_preserved": true,
+    "pretraining_overlap_excluded": false,
+    "selective_gate": false
+  },
+  "source_commit": "53ddd84d2afcba0cf14659903049b2e6e269b2d2",
+  "status": "PASS"
+}
