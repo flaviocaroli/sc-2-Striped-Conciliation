@@ -1,0 +1,82 @@
+{
+  "application_rule": "Apply these thresholds unchanged to confirmatory internal-test and external count-thinning evaluations.",
+  "created_utc": "2026-08-25T13:53:08.549698+00:00",
+  "derived_from": {
+    "dataset": "internal_validation_only",
+    "model_seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "runs_per_q": 15,
+    "thinning_replicates_per_q": 5,
+    "threshold_grid": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "n_candidates": 201,
+      "step": 0.005
+    },
+    "validation_evaluations": 45
+  },
+  "information_barrier": {
+    "baron_used_for_selection": false,
+    "internal_test_used_for_selection": false,
+    "zheng68k_used_for_selection": false
+  },
+  "old_direct_transfer_thresholds": {
+    "0.50": 0.46,
+    "0.70": 0.51,
+    "0.85": 0.545
+  },
+  "schema_version": 1,
+  "scientific_scope": "count_thinning_confirmatory_application",
+  "selection_rule": {
+    "eligibility": "true_zero_fill <= 0.02 in every validation run",
+    "max_true_zero_fill": 0.02,
+    "objective_order": [
+      "maximize mean recall",
+      "maximize mean precision",
+      "choose stricter threshold"
+    ]
+  },
+  "source_artifacts": {
+    "aggregate_threshold_sweep_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation_sc2_v1/threshold_selection_v1/aggregate_threshold_sweep.csv",
+    "aggregate_threshold_sweep_sha256": "870b2d41906f754cfe692dcd6c8630b0baabf12d782c5c714b27cee60c9f5593",
+    "phase1b_protocol_path": "/home/3159436/sc2/code/configs/extension_2026/count_thinning_validation_inference_protocol_v1.json",
+    "phase1b_protocol_sha256": "c928ab28baa57417333f6acdc79ff1eb618b5e18f438b3fcd3c81c2629b1ee79",
+    "selected_thresholds_path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation_sc2_v1/threshold_selection_v1/selected_thresholds.json",
+    "selected_thresholds_sha256": "98f125cb90f11c69b237e8987e5c6d73877ba49711fe0fb436e77d0362582ef5"
+  },
+  "threshold_set_id": "sc2-count-thinning-selected-thresholds-v1",
+  "thresholds": {
+    "0.50": 0.535,
+    "0.70": 0.56,
+    "0.85": 0.5750000000000001
+  },
+  "validation_selection_metrics": {
+    "0.50": {
+      "max_true_zero_fill": 0.0176591011837022,
+      "mean_precision": 0.31047103069768817,
+      "mean_recall": 0.03856373145699051,
+      "mean_true_zero_fill": 0.013480534041724277,
+      "n_validation_runs": 15,
+      "threshold": 0.535
+    },
+    "0.70": {
+      "max_true_zero_fill": 0.0193742441324328,
+      "mean_precision": 0.17057443611422712,
+      "mean_recall": 0.03341952589536975,
+      "mean_true_zero_fill": 0.013913841590899229,
+      "n_validation_runs": 15,
+      "threshold": 0.56
+    },
+    "0.85": {
+      "max_true_zero_fill": 0.0191117824363582,
+      "mean_precision": 0.08089379767368146,
+      "mean_recall": 0.027792237325637566,
+      "mean_true_zero_fill": 0.012756542791627091,
+      "n_validation_runs": 15,
+      "threshold": 0.5750000000000001
+    }
+  }
+}
