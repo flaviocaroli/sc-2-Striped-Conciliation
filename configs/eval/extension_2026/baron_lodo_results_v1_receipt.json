@@ -1,0 +1,98 @@
+{
+  "aggregation_root": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1",
+  "artifacts": {
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/SHA256SUMS.txt",
+      "sha256": "c2e766a4c1c1fd4399ec4df329fc6e942e2ba9f0cc57a387298751d468e842c2"
+    },
+    "all_fold_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/all_fold_metrics.csv",
+      "sha256": "9861a724512e77678ea3e900b59980bbd3e131c83b353ab5c426e8a4e37300a1"
+    },
+    "donor_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/donor_summary.csv",
+      "sha256": "db22b6f368d0ed5d1d6cc25f69bb53dd0cae08b9f9c5cc00468181227f916502"
+    },
+    "headline_results.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/headline_results.csv",
+      "sha256": "927f859cdca6cbba42f27ef627057c7007c92cf1aafbfa58c45ecb03f5e09d89"
+    },
+    "paired_sc2_vs_corrupted.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/paired_sc2_vs_corrupted.csv",
+      "sha256": "d924ef2673d68b96270c19211824d31b11297b089077037341b3e0b7a1e573c8"
+    },
+    "qc_summary.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/qc_summary.json",
+      "sha256": "0fdec50ccd8d13bce8494866ff226696e19e58ece7727210c469d679510a256b"
+    },
+    "seed_replicate_condition_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/seed_replicate_condition_summary.csv",
+      "sha256": "9540d483382eb104e875365cd3958225cd23998197865047a7c47bdcf64fff9a"
+    }
+  },
+  "biological_unit": "donor",
+  "cell_pseudoreplication_used": false,
+  "headline_results": [
+    {
+      "best_donor_delta": 0.012880935828934563,
+      "clean_macro_f1": 0.8218785983500339,
+      "corrupted_macro_f1_mean": 0.8081857594171222,
+      "donors_with_positive_mean_delta": 3,
+      "q": 0.85,
+      "sc2_macro_f1_mean": 0.8065464938724504,
+      "sc2_minus_corrupted_mean": -0.0016392655446717086,
+      "sc2_minus_corrupted_sd_seed_rep": 0.01605549758548587,
+      "worst_donor_delta": -0.026518580889765102
+    },
+    {
+      "best_donor_delta": 0.0011055420010224859,
+      "clean_macro_f1": 0.8218785983500339,
+      "corrupted_macro_f1_mean": 0.8049390639342697,
+      "donors_with_positive_mean_delta": 1,
+      "q": 0.7,
+      "sc2_macro_f1_mean": 0.7910079471160197,
+      "sc2_minus_corrupted_mean": -0.013931116818249958,
+      "sc2_minus_corrupted_sd_seed_rep": 0.009684662528730766,
+      "worst_donor_delta": -0.024819099235518963
+    },
+    {
+      "best_donor_delta": 0.01861952178809938,
+      "clean_macro_f1": 0.8218785983500339,
+      "corrupted_macro_f1_mean": 0.7769268069991284,
+      "donors_with_positive_mean_delta": 2,
+      "q": 0.5,
+      "sc2_macro_f1_mean": 0.7727389277865994,
+      "sc2_minus_corrupted_mean": -0.004187879212529198,
+      "sc2_minus_corrupted_sd_seed_rep": 0.012554118245980484,
+      "worst_donor_delta": -0.04132003078990497
+    }
+  ],
+  "heldout_donors": [
+    "human1",
+    "human2",
+    "human3",
+    "human4"
+  ],
+  "model_seeds": [
+    20260728,
+    20260729,
+    20260730
+  ],
+  "outcome_tuning_performed": false,
+  "primary_endpoint": "leave-one-donor-out macro-F1",
+  "q_values": [
+    0.85,
+    0.7,
+    0.5
+  ],
+  "schema_version": "sc2-baron-lodo-results-v1",
+  "source_commit": "6852dc4903c424f2947ae26f382c9374c4d907c5",
+  "status": "PASS",
+  "thinning_replicates": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}
