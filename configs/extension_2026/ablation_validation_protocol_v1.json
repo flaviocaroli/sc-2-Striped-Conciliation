@@ -1,0 +1,392 @@
+{
+  "checkpoint_step": 4000,
+  "comparison": {
+    "paired_seed_design": true,
+    "test_selection_allowed": false
+  },
+  "evaluator": {
+    "config_path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p1_continuous_official_eval.yaml",
+    "config_sha256": "45cc9075db0f30d8fc38b67ef50df4b88c304f91b754529365b2ada5700022c4",
+    "path": "/home/3159436/sc2/code/src/sc2/eval/evaluate_continuous_repair.py",
+    "sha256": "0ad12e542f46aca0ab13ba193f7ab22847fdf92f294a8f930ee7e83567118128",
+    "threshold_argument_supplied": false
+  },
+  "expected_evaluations": 90,
+  "expected_model_runs": 30,
+  "expected_tasks": 27,
+  "freeze_base_commit": "b101bf70364a3014b8ea2d9e0275bcd3ef52154e",
+  "frozen_before_ablation_validation_results": true,
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/validation_eval_v1",
+  "protocol_id": "sc2-p2-ablation-validation-v1",
+  "runner": {
+    "path": "/home/3159436/sc2/code/scripts/eval/run_ablation_validation_task.py",
+    "sha256": "30b68c4035c58b2209599924f4c666ffde98fa6d195edcf29b13a555d152e0c1"
+  },
+  "seeds": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "slurm": {
+    "path": "/home/3159436/sc2/code/slurm/extension_2026/eval_ablation_validation_array.slurm",
+    "sha256": "baf85b476e649a3648c6700cb2973244b8085a39be7813d86dbbec5213324a52"
+  },
+  "source_training_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/ablation_five_seed_protocol_v1.json",
+    "sha256": "2960e1e5d1544c677f6efc0cab1765a4d7cab9e4a676ec10c6dee7d08a330100"
+  },
+  "tasks": [
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A0_full_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1e3e23d075a7443cd7199bc654ce5b79723bc88b90fb5df1991fd9518c48f699",
+          "seed": 20260731,
+          "variant": "A0_full"
+        },
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "6910ab6b9a9b6bd7388c542a93bd6ba5f6ba25666c8fafdc1f7cf559d56125a8",
+          "seed": 20260728,
+          "variant": "A0_full"
+        }
+      ],
+      "task_id": 0
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A0_full_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "8f9b9e3f7567169e60d3b25719e12a5a6c5181301dfb895d94e6ecdec7230b8e",
+          "seed": 20260801,
+          "variant": "A0_full"
+        },
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1ba26e1635297dc065010f53788de55df30c07bed0e636e535e762cba0719fc1",
+          "seed": 20260729,
+          "variant": "A0_full"
+        }
+      ],
+      "task_id": 1
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A1_no_routed_attention_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1d252f9a7289331eaf5fd4564ece9da0ecb987d302ed04009a4fffed86a1660e",
+          "seed": 20260728,
+          "variant": "A1_no_routed_attention"
+        },
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p1_core_official_5k_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "262ef45bd6f3137cc7d60a7c72e289ab10ccf047620b9a8b5d8b2f8c66c0a35c",
+          "seed": 20260730,
+          "variant": "A0_full"
+        }
+      ],
+      "task_id": 2
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A1_no_routed_attention_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "8d0a86f0f3947f4dfdaa39ee7138e464edb6fe3d05aa366d6eebe26c740b0c73",
+          "seed": 20260729,
+          "variant": "A1_no_routed_attention"
+        }
+      ],
+      "task_id": 3
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A1_no_routed_attention_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1eb9cebe295e634f908945388f36de5c43495cfe1d95f06cc13e2417176e87d2",
+          "seed": 20260730,
+          "variant": "A1_no_routed_attention"
+        }
+      ],
+      "task_id": 4
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A1_no_routed_attention_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "0f2ba5ab1aa0b630acecfe9acade4c05767c3f0b042b6fc46b36764dc4b18ac8",
+          "seed": 20260731,
+          "variant": "A1_no_routed_attention"
+        }
+      ],
+      "task_id": 5
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A1_no_routed_attention_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1b581f4f02e02fb4226e2e2fd96e00804f0a566decd3110716583a0f7e466323",
+          "seed": 20260801,
+          "variant": "A1_no_routed_attention"
+        }
+      ],
+      "task_id": 6
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A2_unidirectional_mamba_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "42d0dd9a417995706bb204cbf8c93dbc54b96cda786062db1345b19a603dc0d5",
+          "seed": 20260728,
+          "variant": "A2_unidirectional_mamba"
+        }
+      ],
+      "task_id": 7
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A2_unidirectional_mamba_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "f5cb5b336f5056a2cf92e925c5dde179ec81571fa6f998a35f4177da5af89d51",
+          "seed": 20260729,
+          "variant": "A2_unidirectional_mamba"
+        }
+      ],
+      "task_id": 8
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A2_unidirectional_mamba_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "386ec37fc9290aa68f6cb1b27ec57937accf70eedbeb7afa06dba841409b2c6c",
+          "seed": 20260730,
+          "variant": "A2_unidirectional_mamba"
+        }
+      ],
+      "task_id": 9
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A2_unidirectional_mamba_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "1e2ab17662c8e7bc8c3f103fd68c04102a8960c8420133e52bf4157c4845247e",
+          "seed": 20260731,
+          "variant": "A2_unidirectional_mamba"
+        }
+      ],
+      "task_id": 10
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A2_unidirectional_mamba_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "e5a1ac0dc2afc7c257f0e8d5facf049597b28627af0a0b5e73a801a79eb53aa2",
+          "seed": 20260801,
+          "variant": "A2_unidirectional_mamba"
+        }
+      ],
+      "task_id": 11
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A3_no_expected_zero_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "8cea46ec48ccb44097751a4a78755466cd3155594477c98ad9df8f5f673373a4",
+          "seed": 20260728,
+          "variant": "A3_no_expected_zero"
+        }
+      ],
+      "task_id": 12
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A3_no_expected_zero_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "7a5e9009aeb40695d3c158821676cac420849d240339d3caa9f51e95f827aef5",
+          "seed": 20260729,
+          "variant": "A3_no_expected_zero"
+        }
+      ],
+      "task_id": 13
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A3_no_expected_zero_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "8bd224fe3743d02cdf7b0f75521a2b350088353a77875b9dac38ae5df548cc2f",
+          "seed": 20260730,
+          "variant": "A3_no_expected_zero"
+        }
+      ],
+      "task_id": 14
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A3_no_expected_zero_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "98544c303f18bb530ff4532176e61d37578540dc154379812734017ebcd5ba19",
+          "seed": 20260731,
+          "variant": "A3_no_expected_zero"
+        }
+      ],
+      "task_id": 15
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A3_no_expected_zero_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "86d0bcfafcebeb43bb1b1f79922957acb8ac90f33189dbd83ac82c595aa60f57",
+          "seed": 20260801,
+          "variant": "A3_no_expected_zero"
+        }
+      ],
+      "task_id": 16
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A4_no_gate_loss_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "436c29d00fe8c7721a5d95621e6c08cdfc45bec7fbbc1b080b7f976603c54450",
+          "seed": 20260728,
+          "variant": "A4_no_gate_loss"
+        }
+      ],
+      "task_id": 17
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A4_no_gate_loss_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "e016b060a72d2a44c75fb605064647dd5c73748008d5f4696138170297d466e7",
+          "seed": 20260729,
+          "variant": "A4_no_gate_loss"
+        }
+      ],
+      "task_id": 18
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A4_no_gate_loss_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "67c511f316d370f88218c2f86e2c817b96b8f6853607f0d4d127c17e3a494bb8",
+          "seed": 20260730,
+          "variant": "A4_no_gate_loss"
+        }
+      ],
+      "task_id": 19
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A4_no_gate_loss_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "7748376909c309fbb660a6479e8e00bc12ce3b499a768af0b90e8b748020f0d7",
+          "seed": 20260731,
+          "variant": "A4_no_gate_loss"
+        }
+      ],
+      "task_id": 20
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A4_no_gate_loss_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "8abc8f45971d8eef73cd0473e27952ef741a5bb171c83b167babe3e16eaa8c29",
+          "seed": 20260801,
+          "variant": "A4_no_gate_loss"
+        }
+      ],
+      "task_id": 21
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A5_cell_structure_s20260728/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "0eb8a40fc588263b85df852a1bac20273984da8e9d2939d97f450ef87594d53a",
+          "seed": 20260728,
+          "variant": "A5_cell_structure"
+        }
+      ],
+      "task_id": 22
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A5_cell_structure_s20260729/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "d775e6f604afe7e1f7deb5a7b427f9dbf29537d9e1ede5315e11242901bc0acf",
+          "seed": 20260729,
+          "variant": "A5_cell_structure"
+        }
+      ],
+      "task_id": 23
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A5_cell_structure_s20260730/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "ab2ac100b9ed9efa198d770c9536b00dac19ef0a9e949f90f788787f986e2212",
+          "seed": 20260730,
+          "variant": "A5_cell_structure"
+        }
+      ],
+      "task_id": 24
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A5_cell_structure_s20260731/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "f1a0e9e14a5c171fe1836b236702f5bc024d91f6526e7fcebc0d18052be4f119",
+          "seed": 20260731,
+          "variant": "A5_cell_structure"
+        }
+      ],
+      "task_id": 25
+    },
+    {
+      "model_runs": [
+        {
+          "checkpoint": "/home/3159436/sc2/outputs/sc2_p2_ext_ablation_A5_cell_structure_s20260801/checkpoints/step_004000.pt",
+          "checkpoint_sha256": "95e09987c71a8095a661251552020d8fffdc886086aaa7ef3bedfdd9c790123b",
+          "seed": 20260801,
+          "variant": "A5_cell_structure"
+        }
+      ],
+      "task_id": 26
+    }
+  ],
+  "threshold_selection_after_evaluation": {
+    "eligibility": "true_zero_fill <= 0.02 in every one of the five seeds",
+    "grid": "evaluator saved 201-point threshold sweep",
+    "objective": "maximize mean recall across five seeds",
+    "test_data_used": false,
+    "tie_break_1": "maximize mean precision",
+    "tie_break_2": "choose stricter threshold",
+    "unit": "one shared threshold per variant and mask"
+  },
+  "training_task_manifest": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/ablation_train_tasks_v1.tsv",
+    "sha256": "0b3446ba7b263b491a7fdde4ec65ac281ce9bb1e03343f27ef36664e6a3deb00"
+  },
+  "validation_panels": {
+    "15": {
+      "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask15.npz",
+      "sha256": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430"
+    },
+    "30": {
+      "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask30.npz",
+      "sha256": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e"
+    },
+    "50": {
+      "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask50.npz",
+      "sha256": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+    }
+  },
+  "variants": [
+    "A0_full",
+    "A1_no_routed_attention",
+    "A2_unidirectional_mamba",
+    "A3_no_expected_zero",
+    "A4_no_gate_loss",
+    "A5_cell_structure"
+  ]
+}
