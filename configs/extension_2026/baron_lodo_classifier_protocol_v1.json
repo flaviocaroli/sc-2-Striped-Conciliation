@@ -1,0 +1,108 @@
+{
+  "base_commit_before_classifier_freeze": "edc3881dbfa9813acbd76dddf7526b84296e62ef",
+  "classifier": {
+    "C": 1.0,
+    "all_preprocessing_fit_on_training_donors_only": true,
+    "class_weight": "balanced",
+    "family": "logistic_regression",
+    "max_iter": 2000,
+    "pca_components": 50,
+    "pca_solver": "randomized",
+    "random_state": 20260825,
+    "solver": "lbfgs",
+    "standard_scaler": true
+  },
+  "evaluation_contract": {
+    "biological_unit": "donor",
+    "classifier_fit": "fit only on the three training donors",
+    "folds": [
+      {
+        "heldout_donor": "human1",
+        "train_donors": [
+          "human2",
+          "human3",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human2",
+        "train_donors": [
+          "human1",
+          "human3",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human3",
+        "train_donors": [
+          "human1",
+          "human2",
+          "human4"
+        ]
+      },
+      {
+        "heldout_donor": "human4",
+        "train_donors": [
+          "human1",
+          "human2",
+          "human3"
+        ]
+      }
+    ],
+    "macro_f1_label_policy": "classes_present_in_heldout_donor",
+    "outcome_tuning": false,
+    "preprocessing": "StandardScaler then PCA50, both fit only on the three training donors",
+    "primary_metric": "macro_f1",
+    "training_testing": "fit and test separately within each representation condition"
+  },
+  "expected_fold_evaluations": {
+    "clean": 4,
+    "corrupted": 60,
+    "sc2_repaired": 180,
+    "total": 244
+  },
+  "implementation": {
+    "runner_path": "/home/3159436/sc2/code/scripts/analysis/run_baron_lodo_classifier_task.py",
+    "runner_sha256": "8ef30cc286e8186616b5364fccfe00ab6a2bfa7f039f63078ffa3ee9d4e95db9"
+  },
+  "manifest": {
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/baron_lodo_manifest_v1.csv",
+    "sha256": "36278675afab723a6a04a1e1eb83cad8bb8168795d436a3d96e841b3eff516c6"
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/classification_v1",
+  "protocol_id": "sc2-baron-lodo-classifier-v1",
+  "representations": {
+    "clean": 1,
+    "corrupted": 15,
+    "sc2_repaired": 45,
+    "total": 61
+  },
+  "source_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/baron_lodo_protocol_v1.json",
+    "sha256": "b43f8c0e6f6c53d83fb992985f3deee8201af6b8aba554f787a6f42f884d7bb7"
+  },
+  "tasks": [
+    {
+      "kind": "sc2",
+      "model_seed": 20260728,
+      "source_export_task_id": 0,
+      "task_id": 0
+    },
+    {
+      "kind": "sc2",
+      "model_seed": 20260729,
+      "source_export_task_id": 1,
+      "task_id": 1
+    },
+    {
+      "kind": "sc2",
+      "model_seed": 20260730,
+      "source_export_task_id": 2,
+      "task_id": 2
+    },
+    {
+      "kind": "baseline",
+      "task_id": 3
+    }
+  ]
+}
