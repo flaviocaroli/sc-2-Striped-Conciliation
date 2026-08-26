@@ -1,0 +1,92 @@
+{
+  "analysis_commit": "522ab01af5874386f184510c3e6cd288ca1d56ac",
+  "artifacts": {
+    "ablation_paired_seed_tests.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/ablation_paired_seed_tests.csv",
+      "sha256": "a7083eb6e7320f24c01c1597499f03bc54fc3281826eaa69c7bf35b23ad6a495"
+    },
+    "baron_donor_tests.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/baron_donor_tests.csv",
+      "sha256": "1afe1a5c0e9b7d26dc3f46839bb111b9a356ca19ff2e5691f9f33fd95bf6f6f1"
+    },
+    "foundation_model_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/foundation_model_summary.csv",
+      "sha256": "6c2664c85215bb9862b1c283749721c620c17c0037b7322849dd7bf0668cfd43"
+    },
+    "sc2_thinning_variance_components.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/sc2_thinning_variance_components.csv",
+      "sha256": "2f15efbd29ba7fea65fa93b746bb1fbe97734b6f510cf617dd7c432644fdf168"
+    },
+    "thinning_best_comparator_candidate_recovery.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/thinning_best_comparator_candidate_recovery.csv",
+      "sha256": "3e8f147cd2994bdd191188a678de3baff609688607789c49e5e104ec5818cf57"
+    },
+    "thinning_deployment_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/thinning_deployment_metrics.csv",
+      "sha256": "609acf1b24e190f9730fc1f3881870c4fdde3594ad121a3add1a8906438e67a6"
+    },
+    "thinning_direct_recovery_paired_effects.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/thinning_direct_recovery_paired_effects.csv",
+      "sha256": "75f33b437abaca6a552f5476e54c6b152cef90907ed2918228d4363a9cb0fa66"
+    },
+    "thinning_structural_metric_alignment.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/thinning_structural_metric_alignment.csv",
+      "sha256": "c1960ff495e9db81fa145c3e79cd5e5a71cc1ce1ff4998c8d12633bc30d8f440"
+    }
+  },
+  "headline": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/phase7_headline.json",
+    "sha256": "938c3185a23b90967ab4fb94cd1725ac3e199a02e331ecae8f1f990235af3678"
+  },
+  "manifest": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1/SHA256SUMS.txt",
+    "sha256": "9e0220e47853f0a76e03d03c450008859465763550abde89469120227ce02ed2"
+  },
+  "metric_alignment": {
+    "comparator_deployment_recovery": "recovery_index",
+    "comparator_direct_recovery": "candidate_value_recovery_index",
+    "direct_comparator_gene_spearman_inference": false,
+    "model_inference_rerun": false,
+    "sc2_direct_recovery": "recovery_index from expected_repair",
+    "scientific_output_rerun": false
+  },
+  "multiplicity": {
+    "ablation": "Holm across 30 paired-seed tests",
+    "baron": "Holm across three donor-level q tests"
+  },
+  "next_step": "Phase 8 manuscript, figure and table integration",
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/statistical_integration_protocol_v1.json",
+    "sha256": "4424afdf9884e0832c9f4b4ca9fd3517d10805f1a3c1aabc2cd0d4e1f9ad7bd1"
+  },
+  "schema_version": "sc2-statistical-integration-results-v1",
+  "source_receipts": {
+    "ablation": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/ablation_five_seed_results_v1_receipt.json",
+      "sha256": "1ece3c3082dfde40b96adf6a522849a57d336cfc80c9e1249c91ebee07d1905b"
+    },
+    "baron_lodo": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/baron_lodo_results_v1_receipt.json",
+      "sha256": "c99b50905392ce7a6ff1eea2c427625b83f3d5e60a6ab51852303373e58f4525"
+    },
+    "sc2_thinning": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/count_thinning_confirmatory_aggregation_v1_receipt.json",
+      "sha256": "9e81f75053cdf18a393c431d868b1fa6d34b9b440ad70902c903d6104e896516"
+    },
+    "scfoundation": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/scfoundation_final_results_v1_receipt.json",
+      "sha256": "3434aec6060f655334989820e7004d7db9cba82f441285d1ae13402034cf7bd0"
+    },
+    "thinning_comparators": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/thinning_comparator_confirmatory_results_v1.json",
+      "sha256": "0341f7a1db199f5cc7b585723eba438848978a78bf41e4fb4d6bb8cead5e0236"
+    }
+  },
+  "statistical_units": {
+    "ablation": "predeclared model seed",
+    "baron": "held-out donor",
+    "foundation": "descriptive only",
+    "thinning": "technical thinning replicate; effect sizes/CIs only"
+  },
+  "status": "PASS"
+}
