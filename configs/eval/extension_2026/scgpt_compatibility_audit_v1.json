@@ -1,0 +1,19 @@
+{
+  "args_sha256": "c18e075e018140cb8b2d9029387b9de26607a5ce6a8ccabd6ead70cd76b95d60",
+  "audit_summary": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scgpt/audit_v1/audit_summary.json",
+    "sha256": "9c9e678b58122e3b8ee5258428edf972ddb638c7c503146569cbc2a849f2dcba"
+  },
+  "checkpoint_sha256": "6cb5d451ab5c4b33eb673adbe4fddc61d2389df1b89b7651a9fe2e557572b922",
+  "compatibility_decision": "EXCLUDE_FROM_DIRECT_RECONSTRUCTION",
+  "coverage_fraction": 0.994140625,
+  "exact_symbol_overlap": 4072,
+  "phase6_direct_reconstruction_eligible": false,
+  "reason": "The pinned whole-human checkpoint was trained on a 51-bin per-cell quantile expression representation. The official expression decoder returns predictions on that model target, while the audited scGPT Python package contains no reproducible inverse transform using the per-cell bin edges to recover the continuous SC2 expression scale. Creating such an inverse would be an ad-hoc decoder and is excluded by the frozen protocol.",
+  "schema_version": "sc2-scgpt-compatibility-audit-receipt-v1",
+  "source_commit": "cebd6fae655b9c585a4807daa3ac31bb764f06b4",
+  "status": "PASS",
+  "unique_exact_symbol_overlap": 4072,
+  "validation_smoke_required": false,
+  "vocab_sha256": "acca93d114ca62c3f0f50debbd23e8c87f0714f4737764454f6b2b13f2e8580f"
+}
