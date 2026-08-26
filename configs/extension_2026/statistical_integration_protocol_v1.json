@@ -1,0 +1,98 @@
+{
+  "base_commit": "fbe09e19f08612cbb341d8ba567de2a563903016",
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/statistical_integration_v1",
+  "receipts": {
+    "ablation": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/ablation_five_seed_results_v1_receipt.json",
+      "sha256": "1ece3c3082dfde40b96adf6a522849a57d336cfc80c9e1249c91ebee07d1905b"
+    },
+    "baron_lodo": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/baron_lodo_results_v1_receipt.json",
+      "sha256": "c99b50905392ce7a6ff1eea2c427625b83f3d5e60a6ab51852303373e58f4525"
+    },
+    "sc2_thinning": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/count_thinning_confirmatory_aggregation_v1_receipt.json",
+      "sha256": "9e81f75053cdf18a393c431d868b1fa6d34b9b440ad70902c903d6104e896516"
+    },
+    "scfoundation": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/scfoundation_final_results_v1_receipt.json",
+      "sha256": "3434aec6060f655334989820e7004d7db9cba82f441285d1ae13402034cf7bd0"
+    },
+    "thinning_comparators": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/thinning_comparator_confirmatory_results_v1.json",
+      "sha256": "0341f7a1db199f5cc7b585723eba438848978a78bf41e4fb4d6bb8cead5e0236"
+    }
+  },
+  "schema_version": "sc2-statistical-integration-protocol-v1",
+  "sources": {
+    "ablation_paired_seed_effects": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/ablation5_v1/aggregation_v1/paired_seed_effects.csv",
+      "sha256": "b2a322f1f1a9109256e0dc8821f8f029d255259b88587b265c41b08325431161"
+    },
+    "baron_donor_summary": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/baron_lodo_v1/aggregation_v1/donor_summary.csv",
+      "sha256": "db22b6f368d0ed5d1d6cc25f69bb53dd0cae08b9f9c5cc00468181227f916502"
+    },
+    "comparator_replicate_results": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/replicate_level_results.csv",
+      "sha256": "05af7af9d4ba5a06a0dc7cc53593230f5e3c7811a128df51667881b1f42f919c"
+    },
+    "sc2_thinning_runs": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/confirmatory_aggregation_v1/primary_run_metrics.csv",
+      "sha256": "944e6a10fd2a626eb4c3e6c9ba81227d757d97f7d8a2afa104106d474e70ebf5"
+    },
+    "scfoundation_headline": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/foundation_models/scfoundation/final_aggregation_v1/headline_results.csv",
+      "sha256": "6fd8f66e70150cc9c2380de742916557218b283ae7ab665a80612978b9bd4205"
+    },
+    "scgpt_audit": {
+      "path": "/home/3159436/sc2/code/configs/eval/extension_2026/scgpt_compatibility_audit_v1.json",
+      "sha256": "1f6d5001eeaf3e6fc7194c0f5fcfcb2c7dbe5435efe89d2c6a2f7f4d381fd91d"
+    }
+  },
+  "statistical_contract": {
+    "ablation": {
+      "multiplicity": "one Holm family over all 30 tests (5 variants x 3 masks x 2 metrics)",
+      "n_per_variant_mask": 5,
+      "test": "two-sided paired-seed one-sample t test of variant-minus-A0 differences",
+      "tests": [
+        "delta_recovery_index versus zero",
+        "delta_gene_spearman versus zero"
+      ],
+      "unit": "predeclared model seed"
+    },
+    "baron_lodo": {
+      "endpoint": "SC2 minus corrupted macro-F1",
+      "interpretation": "low-resolution donor evidence; effect sizes remain primary",
+      "interval": "95% Student-t interval across four donor effects",
+      "multiplicity": "Holm correction across q=0.85,0.70,0.50",
+      "n": 4,
+      "test": "exact two-sided sign-flip test over all 2^4 donor sign assignments",
+      "unit": "held-out donor"
+    },
+    "count_thinning": {
+      "comparator_metric": "candidate_value_recovery_index on all lost-positive entries",
+      "deployment_metrics": "retain comparator thresholded recovery, gene_spearman and fill descriptively",
+      "effect_unit": "five matched thinning replicates",
+      "inference": "report paired mean differences and 95% t intervals; do not attach population-significance p-values because thinning replicates are technical corruption realizations, not independent biological replicates",
+      "model_seed_handling": "average the three SC2 model seeds within each thinning replicate",
+      "primary_direct_value_metric": "recovery_index",
+      "reason_for_alignment": "Comparator recovery_index is thresholded deployment recovery and is not the same estimand as SC2 masked-value recovery.",
+      "sc2_metric": "SC2 recovery_index from expected_repair on all lost-positive entries",
+      "scvi_seed_handling": "already averaged within thinning replicate in comparator replicate-level artifact",
+      "structural_metric_policy": "Do not perform direct SC2-versus-comparator gene-Spearman significance tests. Stored comparator gene_spearman refers to thresholded deployed reconstruction, whereas SC2 gene_spearman is a candidate-value masked metric.",
+      "variance_decomposition": "SC2 crossed 3 model seeds x 5 thinning replicates, separately for each dataset, q and metric; method-of-moments two-way random-effects decomposition with negative components truncated at zero"
+    },
+    "foundation_models": {
+      "cross_model_significance_tests": false,
+      "scfoundation": "descriptive only; direct decoder result with pretraining-overlap limitation",
+      "scgpt": "excluded from direct reconstruction according to frozen compatibility audit"
+    },
+    "general": {
+      "cells_or_entries_as_independent_replicates": false,
+      "ci_level": 0.95,
+      "two_sided_alpha": 0.05
+    }
+  },
+  "status": "FROZEN_BEFORE_PHASE7_TEST_STATISTICS"
+}
