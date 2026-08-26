@@ -1,0 +1,257 @@
+{
+  "alra": {
+    "r_library": "/home/3159436/sc2/tools/p2-alra/Rlib",
+    "r_script": "/home/3159436/sc2/code/scripts/analysis/run_p2_alra.R",
+    "r_script_sha256": "4352b9366b8cf583683668789b54cc23d2a57fab8fdffc0a55a43a406512a41a",
+    "rscript": "/usr/bin/Rscript",
+    "source": "/home/3159436/sc2/tools/p2-alra/src/ALRA",
+    "source_commit": "f34d46570b1221179047d9f99c235ed880cc3bae"
+  },
+  "base_commit": "42dd5111c112f8afc255c194d0d3a6f2d6be34f3",
+  "expected_execution": {
+    "deterministic_cpu_tasks": 5,
+    "deterministic_evaluations": 75,
+    "scvi_evaluations": 45,
+    "scvi_gpu_tasks": 15,
+    "total_submitted_elements": 20,
+    "total_validation_evaluations": 120
+  },
+  "frozen_before_validation_results": true,
+  "hyperparameter_policy": {
+    "reason": "Reuse the already validation-selected P2 comparator architectural/hyperparameter settings; only the selective operating threshold is recalibrated for the new corruption mechanism.",
+    "retune_on_thinning": false
+  },
+  "implementation": {
+    "deterministic_adapter": {
+      "path": "/home/3159436/sc2/code/scripts/analysis/evaluate_thinning_comparator_validation.py",
+      "sha256": "b6f90815a1ea4c40496e1284bb860cdf32fc538749573db803ff5d4f7e92161a"
+    },
+    "deterministic_slurm": {
+      "path": "/home/3159436/sc2/code/slurm/extension_2026/thinning_comparator_validation_cpu.slurm",
+      "sha256": "94004bc9b5b49c831f551d5c6ac0b98c9c319aef5c936b50dfb8d2ec52922a15"
+    },
+    "old_remaining_evaluator": {
+      "path": "/home/3159436/sc2/code/scripts/analysis/evaluate_p2_remaining_final.py",
+      "sha256": "c624b0864973231848c4f604c91ba5631cbfc1a8c5546979232de6d174fd1558"
+    },
+    "scvi_adapter": {
+      "path": "/home/3159436/sc2/code/scripts/analysis/evaluate_thinning_scvi_validation.py",
+      "sha256": "65e20d1380d40a33630aacdab09745c614eaedebca3821975ea382ab7c1fb86b"
+    },
+    "scvi_slurm": {
+      "path": "/home/3159436/sc2/code/slurm/extension_2026/thinning_scvi_validation_gpu.slurm",
+      "sha256": "cc063a32d98a98b187e3bda3c7b3901e437b645154fbcdc3ddbd392d74d87706"
+    }
+  },
+  "inputs": {
+    "old_protocol": {
+      "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_comparator_protocol.json",
+      "sha256": "3f079aa5e756821dc5c75d88e95b0b377cfdbdf29afe0484e1360cd9e5f7f2b9"
+    },
+    "selection_receipts": {
+      "alra": {
+        "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_alra_validation_receipt.json",
+        "sha256": "44797fe64604603ab3bd7d0df06ad14ce490d4ef6b43275c56a3c17be502c896"
+      },
+      "baseline": {
+        "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_baseline_validation_receipt.json",
+        "sha256": "4e60ec90d4fdfebd2f0a4af1d68fa97380dd92f6a2ac9c73a2a83ef9a24a8e20"
+      },
+      "knn": {
+        "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_knn_validation_receipt.json",
+        "sha256": "4a37cab3864edd2153f0a6ee23f56cffd11cd91437add15153535d48a43658bf"
+      },
+      "low_rank": {
+        "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_low_rank_validation_receipt.json",
+        "sha256": "ee9c25820cbe390ac3ed448896cf07ed811b4fd167411de6d95b527ac95cd397"
+      },
+      "scvi": {
+        "path": "/home/3159436/sc2/code/configs/eval/striped/sc2_p2_scvi_validation_selection_receipt.json",
+        "sha256": "a0eb3bcd218b13ce544c2eda9cbc92f2592eb2e3b7d20db2e5417adb1ae13a68"
+      }
+    },
+    "train_stats": {
+      "path": "/home/3159436/sc2/outputs/analysis/p2_train_positive_stats_v1/positive_train_statistics.npz",
+      "sha256": "75d713e31ff63269b9885f5076d1d3223bc357a620cea0bc4b1e829181d638c0"
+    }
+  },
+  "methods": {
+    "alra": {
+      "rank_policy": "automatic choose_k separately per thinned cohort",
+      "source_commit": "f34d46570b1221179047d9f99c235ed880cc3bae"
+    },
+    "knn": {
+      "implementation": "frozen P2 knn_predict",
+      "k": 50,
+      "metric": "cosine"
+    },
+    "positive_train_mean": {
+      "hyperparameter": null,
+      "implementation": "frozen P2 train_stat_predict"
+    },
+    "positive_train_median": {
+      "hyperparameter": null,
+      "implementation": "frozen P2 train_stat_predict"
+    },
+    "scvi": {
+      "confirmatory_seeds": [
+        20260728,
+        20260729,
+        20260730
+      ],
+      "dispersion": "gene",
+      "gene_likelihood": "zinb",
+      "input": "thinned_counts from each count-thinning panel",
+      "max_epochs": 400,
+      "n_hidden": 128,
+      "n_latent": 10,
+      "n_layers": 1,
+      "prediction": "log1p(get_normalized_expression(library_size=10000))",
+      "use_observed_lib_size": true
+    },
+    "truncated_low_rank": {
+      "implementation": "frozen P2 low_rank_predict",
+      "random_state": 20260728,
+      "rank": 16
+    }
+  },
+  "old_masking_threshold_transfer": {
+    "alra": {
+      "050": 1.9688705205917358,
+      "070": 1.9339152574539185,
+      "085": 1.896252989768982
+    },
+    "knn": {
+      "050": 0.5,
+      "070": 0.699999988079071,
+      "085": 0.8399999737739563
+    },
+    "positive_train_mean": {
+      "050": 0.5788050293922424,
+      "070": 0.5788050293922424,
+      "085": 0.5788050293922424
+    },
+    "positive_train_median": {
+      "050": 0.5788050293922424,
+      "070": 0.5788050293922424,
+      "085": 0.5788050293922424
+    },
+    "scvi": {
+      "050": 1.8164048194885252,
+      "070": 1.6823054552078247,
+      "085": 1.599393606185913
+    },
+    "truncated_low_rank": {
+      "050": 0.5340583324432373,
+      "070": 0.7398899793624878,
+      "085": 0.891780436038971
+    }
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparators_validation_v1",
+  "phase": "P2 extension Phase 2 comparator closeout",
+  "protocol_id": "sc2-count-thinning-comparator-validation-v1",
+  "threshold_selection": {
+    "budget": 0.02,
+    "deterministic_runs_per_q": 5,
+    "eligibility": "true_zero_fill <= 0.02 in every validation run for that method and q",
+    "objective": "maximize mean recall",
+    "scvi_runs_per_q": 15,
+    "test_or_external_used": false,
+    "tie_break_1": "maximize mean precision",
+    "tie_break_2": "choose stricter/higher threshold",
+    "unit": "one common threshold per method and q"
+  },
+  "validation_only": true,
+  "validation_panels": {
+    "q050_rep01": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q050_rep01_seed2026082521.npz",
+      "q": 0.5,
+      "replicate": 1,
+      "sha256": "543d24d3ce4f2c20d0683bcb5ef038b294bdff607c26f2a25afb40cc84d8a1a0"
+    },
+    "q050_rep02": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q050_rep02_seed2026082522.npz",
+      "q": 0.5,
+      "replicate": 2,
+      "sha256": "34c038c9a6740f3e6edcd45d59d9026065ade16e825fd8ff1a0173a919236f5b"
+    },
+    "q050_rep03": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q050_rep03_seed2026082523.npz",
+      "q": 0.5,
+      "replicate": 3,
+      "sha256": "d01af5f6d52612a74ae9224d809b1092e7ff7dd40afaa80b2ccdb664fd4d8b57"
+    },
+    "q050_rep04": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q050_rep04_seed2026082524.npz",
+      "q": 0.5,
+      "replicate": 4,
+      "sha256": "5a33d2bcf06c2d66477ab77b2c0efd0d9559b6f77aa6e1d3211e399f4f9813ac"
+    },
+    "q050_rep05": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q050_rep05_seed2026082525.npz",
+      "q": 0.5,
+      "replicate": 5,
+      "sha256": "b9cd828fca0a73a4aa0040fd85dad8d4b845a10af20b2050bc72eb31b8f1ed35"
+    },
+    "q070_rep01": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q070_rep01_seed2026082511.npz",
+      "q": 0.7,
+      "replicate": 1,
+      "sha256": "53f5242275306b7df6b104b3a65cfefe863d03eb4bfa1c59b424bd993ca435ec"
+    },
+    "q070_rep02": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q070_rep02_seed2026082512.npz",
+      "q": 0.7,
+      "replicate": 2,
+      "sha256": "4481a993987d16fb3fffc7448477e5376b96b62e9c8ce197ace0aecf7f31278c"
+    },
+    "q070_rep03": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q070_rep03_seed2026082513.npz",
+      "q": 0.7,
+      "replicate": 3,
+      "sha256": "a74167125f571068331548aaa91f875ccfc5ebb8d493b458baad7ae428e4b92e"
+    },
+    "q070_rep04": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q070_rep04_seed2026082514.npz",
+      "q": 0.7,
+      "replicate": 4,
+      "sha256": "1ce6d0157e284db06b537ea5faf936e1ebb42c5f22f48b76bc8eea5ca2050dd7"
+    },
+    "q070_rep05": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q070_rep05_seed2026082515.npz",
+      "q": 0.7,
+      "replicate": 5,
+      "sha256": "27c2a4ffb4c9df1dd2f9d8c3d851971b0b556c9c8e06a52a49173d84388b33ad"
+    },
+    "q085_rep01": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q085_rep01_seed2026082501.npz",
+      "q": 0.85,
+      "replicate": 1,
+      "sha256": "f1c3d68e2b5351114642b596b39bc6199120ac5913fe681f05615f1c59a7a048"
+    },
+    "q085_rep02": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q085_rep02_seed2026082502.npz",
+      "q": 0.85,
+      "replicate": 2,
+      "sha256": "7e3dc48159e33d5960f6f04c5adc4840ce19db75b9ba4c135eae5b289d3ec3e3"
+    },
+    "q085_rep03": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q085_rep03_seed2026082503.npz",
+      "q": 0.85,
+      "replicate": 3,
+      "sha256": "6e6624bdf0c406204bda01c32866ec031fc15f6d2304492638501c39d985efeb"
+    },
+    "q085_rep04": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q085_rep04_seed2026082504.npz",
+      "q": 0.85,
+      "replicate": 4,
+      "sha256": "88a91ecfb4cb216b2ac5a42c0203d51890aed9607e6a196c1d6dc61e0240cd48"
+    },
+    "q085_rep05": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/validation/validation_q085_rep05_seed2026082505.npz",
+      "q": 0.85,
+      "replicate": 5,
+      "sha256": "6172b3130dd3b19edd7268bf3a4fb0bcee1aa7f7162dc337a6aab8d23a001cd6"
+    }
+  }
+}
