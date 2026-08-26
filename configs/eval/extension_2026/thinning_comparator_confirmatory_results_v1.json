@@ -1,0 +1,92 @@
+{
+  "aggregation": {
+    "all_results_raw_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/all_results_raw.csv",
+      "sha256": "a76be2e66dae6f532e4ea305e198292f008d083dcd531993cfded048cf063570"
+    },
+    "best_by_gene_spearman_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/best_by_gene_spearman.csv",
+      "sha256": "e7c719c77d27b4c4b82ac21443179750ecdeba06471d41fee2dc1814f02c5c14"
+    },
+    "best_by_recovery_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/best_by_recovery.csv",
+      "sha256": "7322daaea7b92e2ac029124dd9173999096c8a3ba7927f79e3c75a2c75c4b25c"
+    },
+    "comparator_summary_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/comparator_summary.csv",
+      "sha256": "7b4c024f57ffd9ec82502108d2386a17f5e887e23b6b6ab880db1a271a23c0f6"
+    },
+    "comparison_ready_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/comparison_ready.csv",
+      "sha256": "95e6ae298eb8cb1fd361faf2ebd31618bae97bd3b4f33e7e773f2825bfe1a130"
+    },
+    "qc_summary_json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/qc_summary.json",
+      "sha256": "b197f620ccd4430d25972d82fb33eac85d61709147ab2a6868acc3ba260227e7"
+    },
+    "replicate_level_results_csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1/replicate_level_results.csv",
+      "sha256": "05af7af9d4ba5a06a0dc7cc53593230f5e3c7811a128df51667881b1f42f919c"
+    },
+    "root": "/home/3159436/sc2/outputs/paper_extension_2026/count_thinning_v1/comparator_aggregation_v1"
+  },
+  "counts": {
+    "deterministic_rows": 225,
+    "raw_rows": 360,
+    "replicate_level_rows": 270,
+    "scvi_rows": 135,
+    "summary_rows": 54
+  },
+  "jobs": {
+    "deterministic_cpu": {
+      "completed_exit0": 5,
+      "job_id": 637435,
+      "pass_markers": 5,
+      "tasks": 5
+    },
+    "scvi_gpu": {
+      "completed_exit0": 15,
+      "job_id": 637436,
+      "pass_markers": 15,
+      "tasks": 15
+    }
+  },
+  "manifest_path_amendment": {
+    "all_hash_checks_passed": true,
+    "reason": "Manifest absolute paths reference the temporary pre-rename task directory.",
+    "resolution": "Reconstruct final task-relative paths and require equality to manifest-recorded SHA256 values.",
+    "scientific_change": false
+  },
+  "next_step": "Phase 7 statistical integration",
+  "phase": "P2 extension Phase 2 comparator closeout",
+  "phase2_comparator_arm_complete": true,
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026/thinning_comparator_confirmatory_protocol_v1.json",
+    "sha256": "4af8f734ff8e0029a454f9e0201f964803cad1b5baec4ece7b47f726a2ef77ac"
+  },
+  "schema_version": "sc2-count-thinning-comparator-confirmatory-results-v1",
+  "scientific_contract": {
+    "external_fill_budget_is_not_guaranteed": true,
+    "observed_nonzero_values_preserved": true,
+    "target_used_during_comparator_fit": false,
+    "thresholds_frozen_from_validation_only": true,
+    "thresholds_reselected_on_confirmatory_data": false
+  },
+  "source_commit": "5d3b53657fc026cb04d3da865d21edb29d88c654",
+  "status": "PASS",
+  "threshold_receipt": {
+    "path": "/home/3159436/sc2/code/configs/eval/extension_2026/thinning_comparator_thresholds_v1.json",
+    "sha256": "74dc9ca494ea5d0a21d5eaf688dde338d62954dfda3cbec04c981958954bdf39"
+  },
+  "uncertainty_policy": {
+    "ci": "95% Student-t CI across five thinning replicates",
+    "n_replicates": 5,
+    "primary_unit": "thinning replicate",
+    "scvi_algorithmic_seeds": [
+      20260728,
+      20260729,
+      20260730
+    ],
+    "scvi_seed_handling": "average within thinning replicate before across-replicate summaries"
+  }
+}
