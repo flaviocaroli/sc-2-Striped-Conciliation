@@ -1,0 +1,36 @@
+{
+  "artifacts": {
+    "config": "/home/3159436/sc2/code/configs/data/census_curated_pretrain_pilot250k_p3_g16384.yaml",
+    "p2_vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/gene_vocabulary.parquet",
+    "p3_vocabulary": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "training_gene_stats": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/train_gene_stats.parquet"
+  },
+  "description": "Expanded 16,384-gene vocabulary derived exclusively from the frozen P2 training-cell gene statistics.",
+  "external_data_used_for_feature_selection": false,
+  "hashing": {
+    "p2_semantic_sha256": "220093512a48251f9b4f2d45e8bf9134725473ce5bab89c93e2440bea1f74d01",
+    "p2_vocabulary_file_sha256": "2b955a4eb84e7c1d9fe2b74808bdc0bdd7bbe20932eb5440409131a2c1fbe2d2",
+    "p3_semantic_sha256": "4697c8de54f42f6e6352a94ea22c820e6309221aa808d6053377e23371564a9e",
+    "p3_vocabulary_file_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+    "semantic_hash_rule": "newline_no_trailing",
+    "training_gene_stats_sha256": "bc8adb35c3a9831d7f2b08e9745294debb3116d86b8fecc82c60384f3917589e"
+  },
+  "heldout_feature_selection": false,
+  "phase": "P3-2",
+  "schema_version": 1,
+  "selection": {
+    "detection_column": "detected_cells",
+    "eligible_gene_count": 30715,
+    "gene_id_column": "ensembl_id",
+    "minimum_detected_training_cells": 100,
+    "p2_exact_prefix_in_p3": true,
+    "p2_exact_reproduction": true,
+    "primary_ranking": "variance_log1p descending",
+    "resolved_sort_rule": "variance_desc_stable",
+    "variance_column": "variance_log1p"
+  },
+  "target_gene_count": 16384,
+  "test_used_for_feature_selection": false,
+  "validation_used_for_feature_selection": false,
+  "vocabulary_source": "train_split_only"
+}

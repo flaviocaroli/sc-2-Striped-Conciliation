@@ -1,0 +1,46 @@
+name: census_curated_pretrain_pilot250k
+census_release: '2025-01-30'
+species: Homo sapiens
+primary_data_only: true
+target_cells: 250000
+cells_per_shard: 25000
+target_gene_count: 16384
+vocabulary_source: train_split_only
+planning:
+  candidate_multiplier: 1.3
+required_metadata:
+- dataset_id
+- donor_id
+- tissue
+- cell_type
+- assay
+quality_control:
+  min_detected_genes: 200
+  max_mito_fraction: 0.2
+  min_cells_per_dataset: 100
+sampling_caps:
+  per_dataset: 50000
+  per_donor: 10000
+  per_tissue: 50000
+  per_tissue_cell_type: 10000
+splits:
+  unit_priority:
+  - dataset_id
+  - donor_id
+  fractions:
+    train: 0.8
+    validation: 0.1
+    test: 0.1
+  seed: 20260728
+leakage:
+  benchmark_registry: configs/benchmarks/official_benchmark_registry.yaml
+  fail_on_overlap: true
+normalization:
+  counts: raw_integer_counts
+  log1p: log1p_cp10k
+outputs:
+  plan_dir: /scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/plan
+  selected_cells: /scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/selected_cells.parquet
+  materialized_dir: /scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards
+  manifest: /scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards.parquet
+  gene_vocabulary: /scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet
