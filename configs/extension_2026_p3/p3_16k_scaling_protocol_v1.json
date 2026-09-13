@@ -1,0 +1,310 @@
+{
+  "candidate_models": {
+    "P3_16K_Large": {
+      "bidirectional_mamba": true,
+      "d_conv": 4,
+      "d_model": 192,
+      "d_state": 4,
+      "dropout": 0.1,
+      "exact_parameter_count": "measure_before_training",
+      "expand": 1,
+      "intended_stripe_contract": "[5_bidirectional_Mamba_then_1_routed_sparse_attention]x5",
+      "mamba_backend": "official",
+      "mamba_merge_mode": "gate",
+      "n_attention_checkpoints": 5,
+      "n_depth_bins": 8,
+      "n_genes": 16384,
+      "n_heads": 4,
+      "n_mamba_blocks": 25,
+      "n_modalities": 3,
+      "n_rank_bins": 32,
+      "positive_activation": "softplus",
+      "reconstruction_mode": "preserve_observed",
+      "top_k": 256,
+      "use_depth_token": true,
+      "use_modality_token": true,
+      "use_rank_bins": true
+    },
+    "P3_16K_Small": {
+      "bidirectional_mamba": true,
+      "d_conv": 4,
+      "d_model": 128,
+      "d_state": 4,
+      "dropout": 0.1,
+      "exact_parameter_count": "measure_before_training",
+      "expand": 1,
+      "mamba_backend": "official",
+      "mamba_merge_mode": "gate",
+      "n_attention_checkpoints": 4,
+      "n_depth_bins": 8,
+      "n_genes": 16384,
+      "n_heads": 4,
+      "n_mamba_blocks": 20,
+      "n_modalities": 3,
+      "n_rank_bins": 32,
+      "positive_activation": "softplus",
+      "reconstruction_mode": "preserve_observed",
+      "top_k": 256,
+      "use_depth_token": true,
+      "use_modality_token": true,
+      "use_rank_bins": true
+    }
+  },
+  "comparator_contract": {
+    "direct_value_comparison_uses_aligned_candidate_value_estimand": true,
+    "families": [
+      "positive_train_mean",
+      "positive_train_median",
+      "truncated_low_rank",
+      "knn",
+      "ALRA",
+      "scVI"
+    ],
+    "same_16K_feature_space_required": true,
+    "test_or_external_tuning_forbidden": true
+  },
+  "confirmatory_masking_contract": {
+    "datasets": [
+      "internal_test",
+      "baron_pancreas",
+      "zheng68k"
+    ],
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "model_seeds": 5,
+    "no_confirmatory_retuning": true,
+    "thresholds": "frozen_from_internal_validation_before_confirmatory_inference"
+  },
+  "count_thinning_contract": {
+    "corruption": "binomial_thinning_on_integer_counts_before_normalization",
+    "datasets": [
+      "internal_test",
+      "baron_pancreas",
+      "zheng68k"
+    ],
+    "independent_thinning_replicates": 5,
+    "model_seeds": 5,
+    "normalization": "recompute_16K_projected_library_total_after_thinning_then_CP10K_log1p",
+    "q_values": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "storage_policy": "prefer_scratch_streaming_or_sparse_intermediates_and_retain_permanent_manifests_plus_aggregate_results",
+    "validation_thresholds_must_be_recalibrated": true
+  },
+  "data_contract": {
+    "cell_population": "same_frozen_250000_cells_as_P2",
+    "gene_order": "freeze_after_training_only_vocabulary_selection",
+    "held_out_feature_selection": false,
+    "important_consequence": "P3_16K_values_are_a_new_feature_space_and_are_not_numerically_identical_to_P2_4K_values",
+    "normalization": {
+      "external_data": "map_to_frozen_P3_vocabulary_then_recompute_projected_library_total_then_CP10K_log1p",
+      "library_total": "sum_counts_over_frozen_16384_gene_vocabulary",
+      "projection_first": true,
+      "scale": 10000,
+      "transform": "log1p"
+    },
+    "split_policy": "reuse_exact_P2_cell_and_donor_study_split_assignments",
+    "target_gene_count": 16384,
+    "test_cells": 25000,
+    "train_cells": 200000,
+    "validation_cells": 25000,
+    "vocabulary_selection_rule": "reuse_P2_selection_implementation_unchanged_except_target_gene_count_16384",
+    "vocabulary_source": "train_split_only"
+  },
+  "downstream_contract": {
+    "dataset": "baron_pancreas",
+    "design": "four_fold_leave_one_donor_out",
+    "preprocessing_fit_on_training_donors_only": true,
+    "primary_endpoint": "macro_F1",
+    "unit": "donor"
+  },
+  "foundation_model_workstream": {
+    "audit_candidates": [
+      "scFoundation",
+      "scGPT",
+      "Geneformer",
+      "scPRINT_or_successor",
+      "GeneMamba",
+      "MambaCell",
+      "scLong",
+      "RegFormer"
+    ],
+    "direct_reconstruction_entry_rule": "only_models_with_a_reproducible_supported_continuous_expression_output_on_a_valid_scale_advance_to_direct_reconstruction",
+    "mandatory_audit_fields": [
+      "exact_source_commit",
+      "environment_versions",
+      "checkpoint_identity",
+      "checkpoint_sha256",
+      "pretraining_corpus",
+      "possible_evaluation_data_overlap",
+      "model_vocabulary",
+      "P3_16K_overlap",
+      "input_scale",
+      "output_scale",
+      "official_continuous_decoder_availability",
+      "official_inverse_transform_if_required",
+      "determinism_or_seed_policy"
+    ],
+    "principle": "do_not_force_encoder_only_or_incompatible_models_into_continuous_reconstruction_tables",
+    "representation_only_models": "evaluate_in_downstream_or_embedding_tasks_instead_of_MSE_tables"
+  },
+  "hpc_contract": {
+    "array_percent_throttling_does_not_override_submission_count_limit": true,
+    "gpu_platform": "NVIDIA_H200",
+    "maximum_submitted_job_elements_at_one_time": 29,
+    "submission_rule": "audit_then_prepare_then_test_then_submit_then_sacct_logs_then_scientific_QC"
+  },
+  "paper_contract": {
+    "P2_results_remain_frozen": true,
+    "P3_positioning": "expanded_feature_space_and_capacity_scaling_extension",
+    "forbidden_claim": "raw_P2_4K_and_P3_16K_metric_differences_are_not_interpreted_as_a_pure_vocabulary_effect_because_normalization_changes",
+    "main_paper_requires_exact_measured_parameter_counts": true,
+    "supplement_requires_full_configs_seeds_job_ids_environment_receipts_and_SHA256": true
+  },
+  "protocol_name": "SC2 P3 16K vocabulary and capacity scaling",
+  "protocol_version": "v1",
+  "provenance": {
+    "p2_base_branch": "p2-extension",
+    "p2_base_commit": "84033e9f74603cc62b6e0c0a5fe6beebf8b34cb5",
+    "p3_branch": "p3-16k-scaling",
+    "phase0b_audit_directory": "/scratch/3159436/sc2_p3/handoffs/p3_phase0b_contract_20260913T203530Z",
+    "phase0b_hash_manifest_sha256": "b0fba812c578202c4294440f510233c1748a413a78c87321205896e5170993e8",
+    "source_data_config": {
+      "path": "/home/3159436/sc2/code/configs/data/census_curated_pretrain_pilot250k.yaml",
+      "sha256": "0e4538677d39c12abbc2b8067373b37fb97401a0fa03eb18015329feffa365a5"
+    },
+    "source_training_config": {
+      "path": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260728.yaml",
+      "sha256": "fbb19b4aa4735602dc8233542a13023c80ea97c20d185028f3401832e58afdef"
+    }
+  },
+  "statistical_contract": {
+    "architecture_scaling_n": 5,
+    "architecture_scaling_unit": "paired_model_seed",
+    "baron_n": 4,
+    "baron_unit": "donor",
+    "cells_are_not_independent_replicates": true,
+    "genes_are_not_independent_replicates": true,
+    "thinning_n": 5,
+    "thinning_unit": "independent_thinning_realization_after_averaging_model_seeds"
+  },
+  "status": "frozen_before_p3_scientific_execution",
+  "storage": {
+    "p2_corpus_read_only": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k",
+    "p2_output_root_read_only": "/home/3159436/sc2/outputs/paper_extension_2026",
+    "p3_data_root": "/scratch/3159436/sc2_p3/data",
+    "p3_durable_summary_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3",
+    "p3_output_root": "/scratch/3159436/sc2_p3/outputs",
+    "p3_scratch_root": "/scratch/3159436/sc2_p3",
+    "policy": [
+      "P2 corpus and outputs are immutable.",
+      "Large P3 working artifacts are written to scratch.",
+      "Scratch is not the sole permanent reproducibility copy.",
+      "Selected checkpoints, manifests, receipts, aggregate results and paper artifacts must be copied to durable storage before final freeze."
+    ]
+  },
+  "training_contract": {
+    "amp": true,
+    "amp_dtype": "bfloat16",
+    "batch_benchmark_candidates": [
+      {
+        "grad_accum_steps": 2,
+        "physical_batch": 16
+      },
+      {
+        "grad_accum_steps": 4,
+        "physical_batch": 8
+      },
+      {
+        "grad_accum_steps": 8,
+        "physical_batch": 4
+      },
+      {
+        "grad_accum_steps": 16,
+        "physical_batch": 2
+      }
+    ],
+    "batch_selection_rule": "choose_highest_throughput_stable_layout_with_effective_batch_32_and_safe_HBM_headroom_before_scientific_training",
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "checkpoint_policy": "fixed_step_5000_for_P3_architecture_selection",
+    "effective_batch_size": 32,
+    "grad_clip_norm": 1.0,
+    "learning_rate": 0.0001,
+    "loss_weights": {
+      "cell_structure": 0.0,
+      "expected_positive": 1.0,
+      "expected_zero": 0.05,
+      "gene_centered_residual": 0.0,
+      "masked_count_nb": 0.0,
+      "repair_gate": 0.25,
+      "variance": 0.0,
+      "within_cell_rank": 0.0
+    },
+    "lr_end_ratio": 0.1,
+    "optimizer_policy": "reuse_frozen_P2_optimizer_and_scheduler_unless_a_pretraining_protocol_amendment_is_committed_before_scientific_runs",
+    "physical_batch_not_predeclared": true,
+    "scientific_checkpoint_step": 5000,
+    "seeds": [
+      20260728,
+      20260729,
+      20260730,
+      20260731,
+      20260801
+    ],
+    "total_steps": 5000,
+    "training_mask_rate": 0.15,
+    "warmup_fraction": 0.05,
+    "weight_decay": 0.0001
+  },
+  "validation_contract": {
+    "architecture_selection_rule": {
+      "eligibility": "candidate_must_satisfy_threshold_safety_rule_at_all_three_mask_rates",
+      "external_results_must_not_influence_selection": true,
+      "paired_unit": "model_seed",
+      "primary_score": "mean_validation_recovery_index_R_across_15_30_50_percent_masking_and_five_seeds",
+      "rule": [
+        "Select candidate with higher primary_score.",
+        "If absolute primary_score difference is less than 0.005, select candidate with higher secondary_score.",
+        "If both primary and secondary differences are less than 0.005, select P3_16K_Small."
+      ],
+      "secondary_score": "mean_validation_gene_wise_spearman_across_15_30_50_percent_masking_and_five_seeds"
+    },
+    "architecture_selection_uses": "internal_validation_only",
+    "baron_locked_until_model_and_threshold_freeze": true,
+    "internal_test_locked_until_model_and_threshold_freeze": true,
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "primary_endpoints": [
+      "recovery_index_R",
+      "gene_wise_spearman",
+      "originally_zero_fill"
+    ],
+    "repair_threshold_rule": {
+      "eligibility": "originally_zero_fill_le_0.02_in_every_validation_seed",
+      "primary_choice": "maximize_mean_recall",
+      "selection_unit": "one_common_threshold_per_candidate_model_per_mask_rate",
+      "tie_break_1": "maximize_mean_precision",
+      "tie_break_2": "choose_higher_more_conservative_threshold"
+    },
+    "secondary_endpoints": [
+      "masked_mse",
+      "masked_mae",
+      "cell_wise_spearman",
+      "prediction_to_target_sd_ratio",
+      "gate_auprc",
+      "gate_auroc",
+      "precision",
+      "recall"
+    ],
+    "zheng68k_locked_until_model_and_threshold_freeze": true
+  }
+}

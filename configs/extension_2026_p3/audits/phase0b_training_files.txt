@@ -1,0 +1,15 @@
+scripts/config/make_continuous_smoke_config.py
+src/sc2/train/schedules.py
+src/sc2/train/train_archs4_autoencoder.py
+src/sc2/train/train_archs4_denoising_autoencoder.py
+src/sc2/train/train_census_autoencoder.py
+src/sc2/train/train_mixed_bulk_sc_autoencoder.py
+src/sc2/train/train_sc2lite_bridge_v2.py
+src/sc2/train/train_sc2lite_bridge_with_pseudobulk.py
+src/sc2/train/train_sc2lite_mixed_denoiser.py
+src/sc2/train/train_sc2lite_sc_only_denoiser.py
+src/sc2/train/train_sc2_mamba_bridge.py
+src/sc2/train/train_sc2_striped_full_continuous.py
+src/sc2/train/train_sc2_striped_full.py
+src/sc2/train/train_sc2_striped_medium.py
+src/sc2/train/train_sc2_striped_medium_v2.py
