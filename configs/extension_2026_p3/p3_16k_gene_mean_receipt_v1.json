@@ -1,0 +1,48 @@
+{
+  "branch": "p3-16k-scaling",
+  "derivation": {
+    "genes": 16384,
+    "modality": "sc",
+    "split": "train_only",
+    "statistic": "mean log1p(CP10K) over all 200,000 training cells",
+    "train_rows": 200000,
+    "train_shards": 8
+  },
+  "locks": {
+    "baron_locked": true,
+    "internal_test_model_selection_locked": true,
+    "zheng68k_locked": true
+  },
+  "output": {
+    "dtype": "float32",
+    "finite": true,
+    "maximum": 4.202977180480957,
+    "mean": 0.17495527863502502,
+    "minimum": 0.004795824643224478,
+    "nonnegative": true,
+    "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_mean_log1p.npy",
+    "sha256": "bf603703a1ca05366ffc842e84ab9213645aa1a8ed86ed0e9ea9b9e283694fac",
+    "shape": [
+      16384
+    ],
+    "std": 0.26307663321495056
+  },
+  "phase": "P3-5B.1",
+  "receipt_id": "sc2-p3-16k-gene-mean-v1",
+  "sha256": {
+    "builder": "360b7353e17f43ee688ea759c7b4a60b59c7bac7dd46dcfba726b86cda824ed2",
+    "manifest": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "protocol": "6cfd3d25c4738660a2c3bf516ea1692f20cae93cf9d4aba40aee2c13a69adb92",
+    "slurm_wrapper": "73809c9189774ae5fc43807f7cdeb9543663604214d985fcd52a2eff8f6724d5",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "b3ba941c96ed9fd48062efcb314bbd270fb4119b12fb5a54ab09af64eb254729"
+  },
+  "slurm": {
+    "elapsed": "00:00:48",
+    "exit_code": "0:0",
+    "job_id": 658552,
+    "state": "COMPLETED"
+  },
+  "source_git_head": "501c356751e9f1aa8565bd5d26dda9ca4603d586",
+  "status": "PASS"
+}
