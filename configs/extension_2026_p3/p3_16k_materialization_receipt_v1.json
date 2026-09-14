@@ -1,0 +1,67 @@
+{
+  "branch": "p3-16k-scaling",
+  "dimensions": {
+    "cells": 250000,
+    "cells_per_shard": 25000,
+    "genes": 16384,
+    "shards": 10,
+    "split_rows": {
+      "test": 25000,
+      "train": 200000,
+      "validation": 25000
+    },
+    "total_sparse_nnz": 616954359
+  },
+  "immutability": {
+    "p2_cell_splits_byte_identical": true,
+    "p2_selected_cells_byte_identical": true,
+    "p2_train_gene_stats_byte_identical": true,
+    "p2_vocabulary_unchanged": true
+  },
+  "locks": {
+    "baron_locked": true,
+    "internal_test_model_selection_locked": true,
+    "validation_use_allowed": true,
+    "zheng68k_locked": true
+  },
+  "materialization_source_git_head": "6428bc0d12623e28608d1eca573f9adce54a488c",
+  "phase": "P3-3",
+  "qc": {
+    "counts_log1p_indptr_exact": true,
+    "counts_log1p_raw_index_order_equal": false,
+    "counts_log1p_support_exact_all_rows": true,
+    "cp10k_log1p_numeric_sample_rows_checked": 50,
+    "cp10k_log1p_numeric_samples_pass": true,
+    "manifest_schema_exact": true,
+    "p2_4096_genes_exact_p3_prefix": true,
+    "rows_with_raw_index_order_difference": 250000,
+    "rows_with_support_difference": 0,
+    "selected_cell_membership_exact": true
+  },
+  "receipt_id": "sc2-p3-16k-materialization-v1",
+  "scientific_outcomes_inspected": {
+    "baron": false,
+    "internal_test": false,
+    "zheng68k": false
+  },
+  "sha256": {
+    "cell_splits": "da12c82e660578ca8cb3308fb3e22add30639d15b9cb87a54e3bdc67f9f73ec1",
+    "config": "1fa4bc4e07b547b0ae541dac897d625246f433622b38b00b4f4889d7d7edce14",
+    "manifest": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "manifest_alias": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "materialization_summary": "9795c8f3da570f685c845edf8471d1e5e381548eeca34f8daa23390b8da0ede8",
+    "materializer": "a0610d5936a14e0e5d3b28ee838919e3b95559df216efb1818796ed09e6bcac7",
+    "selected_cells": "f078af083f4f46a2da58086ff94820ed79020ed9af235dc303264c3cac4696c9",
+    "slurm_wrapper": "706afad352e40e4648be782e998ec17335833347a2321f266c24573d979f737d",
+    "train_gene_stats": "bc8adb35c3a9831d7f2b08e9745294debb3116d86b8fecc82c60384f3917589e",
+    "vocabulary_file": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+    "vocabulary_semantic": "4697c8de54f42f6e6352a94ea22c820e6309221aa808d6053377e23371564a9e"
+  },
+  "slurm": {
+    "elapsed": "09:19:36",
+    "exit_code": "0:0",
+    "job_id": 657463,
+    "state": "COMPLETED"
+  },
+  "status": "PASS"
+}
