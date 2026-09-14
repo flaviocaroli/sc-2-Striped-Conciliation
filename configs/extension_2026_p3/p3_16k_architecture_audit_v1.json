@@ -1,0 +1,136 @@
+{
+  "architectures": {
+    "P3-16K-Large": {
+      "config": "/home/3159436/sc2/code/configs/train/extension_2026_p3/architecture_audit/sc2_p3_16k_large_archaudit_s20260728.yaml",
+      "config_sha256": "44e88855a53e9c554fd4b486dad46ad14b1af345ea0d58824e8f8771ac6f4c40",
+      "d_conv": 4,
+      "d_model": 192,
+      "d_state": 4,
+      "genes": 16384,
+      "module_class_counts": {
+        "Conv1d": 25,
+        "Dropout": 84,
+        "DropoutHead": 1,
+        "Embedding": 4,
+        "FeedForward": 25,
+        "GELU": 33,
+        "LayerNorm": 20,
+        "Linear": 195,
+        "Mamba": 25,
+        "ModuleDict": 1,
+        "ModuleList": 1,
+        "MultiheadAttention": 5,
+        "NativeStripedMambaBlock": 25,
+        "NonDynamicallyQuantizableLinear": 5,
+        "OfficialStripedMambaBlock": 25,
+        "RMSNorm": 50,
+        "RankBinDepthEmbedding": 1,
+        "RoutedTopKAttentionCheckpoint": 5,
+        "SC2StripedFull": 1,
+        "Sequential": 38,
+        "SiLU": 25
+      },
+      "n_attention_checkpoints": 5,
+      "n_heads": 4,
+      "n_mamba_blocks": 25,
+      "top_k": 256,
+      "total_parameters": 12799692,
+      "trainable_parameters": 12799692
+    },
+    "P3-16K-Small": {
+      "config": "/home/3159436/sc2/code/configs/train/extension_2026_p3/architecture_audit/sc2_p3_16k_small_archaudit_s20260728.yaml",
+      "config_sha256": "dff3a11a3274e9221d6e4e82e83fd1e01c92ad860b08fda150bc939f4826fe32",
+      "d_conv": 4,
+      "d_model": 128,
+      "d_state": 4,
+      "genes": 16384,
+      "module_class_counts": {
+        "Conv1d": 20,
+        "Dropout": 68,
+        "DropoutHead": 1,
+        "Embedding": 4,
+        "FeedForward": 20,
+        "GELU": 27,
+        "LayerNorm": 17,
+        "Linear": 157,
+        "Mamba": 20,
+        "ModuleDict": 1,
+        "ModuleList": 1,
+        "MultiheadAttention": 4,
+        "NativeStripedMambaBlock": 20,
+        "NonDynamicallyQuantizableLinear": 4,
+        "OfficialStripedMambaBlock": 20,
+        "RMSNorm": 40,
+        "RankBinDepthEmbedding": 1,
+        "RoutedTopKAttentionCheckpoint": 4,
+        "SC2StripedFull": 1,
+        "Sequential": 31,
+        "SiLU": 20
+      },
+      "n_attention_checkpoints": 4,
+      "n_heads": 4,
+      "n_mamba_blocks": 20,
+      "top_k": 256,
+      "total_parameters": 5564042,
+      "trainable_parameters": 5564042
+    }
+  },
+  "canonical_p2_reproduction": {
+    "config": "/home/3159436/sc2/code/configs/train/striped/sc2_p1_core_official_5k_s20260728.yaml",
+    "config_sha256": "fbb19b4aa4735602dc8233542a13023c80ea97c20d185028f3401832e58afdef",
+    "exact": true,
+    "expected_trainable_parameters": 3991178,
+    "genes": 4096,
+    "trainable_parameters": 3991178
+  },
+  "controlled_comparison": {
+    "bidirectional_mamba_fixed": true,
+    "capacity_fields_changed_small_vs_large": [
+      "d_model",
+      "n_mamba_blocks",
+      "n_attention_checkpoints"
+    ],
+    "d_conv_fixed": 4,
+    "d_state_fixed": 4,
+    "dropout_fixed": 0.1,
+    "mamba_backend_fixed": "official",
+    "n_heads_fixed": 4,
+    "top_k_fixed": 256,
+    "training_objective_inherited_from_p2": true
+  },
+  "corpus_manifest": {
+    "genes": 16384,
+    "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards.parquet",
+    "sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8"
+  },
+  "gene_mean_log1p": {
+    "exists": false,
+    "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_mean_log1p.npy"
+  },
+  "gpu_forward_backward_smoke_completed": false,
+  "implementation": {
+    "class": "sc2.models.striped.sc2_striped_full.SC2StripedFull",
+    "constructor_signature": "(self, n_genes: 'int' = 4096, d_model: 'int' = 128, n_mamba_blocks: 'int' = 20, n_attention_checkpoints: 'int' = 4, d_state: 'int' = 4, d_conv: 'int' = 5, expand: 'int' = 1, dropout: 'float' = 0.1, top_k: 'int' = 256, n_heads: 'int' = 4, routed_learned_fraction: 'float' = 0.5, expression_score_weight: 'float' = 0.25, nonzero_bonus: 'float' = 0.05, marker_prior_weight: 'float' = 0.0, use_rank_bins: 'bool' = True, n_rank_bins: 'int' = 32, use_depth_token: 'bool' = True, n_depth_bins: 'int' = 8, use_modality_token: 'bool' = True, n_modalities: 'int' = 3, dropout_head: 'bool' = True, bidirectional_mamba: 'bool' = True, mamba_merge_mode: 'str' = 'gate', mamba_backend: 'str' = 'reference', zero_threshold: 'float' = 1e-08, marker_prior: 'Optional[torch.Tensor]' = None, gradient_checkpointing: 'bool' = True, positive_activation: 'str' = 'softplus', softplus_beta: 'float' = 1.0, positive_output_bias_init: 'Optional[float]' = -2.0, reconstruction_mode: 'str' = 'preserve_observed') -> 'None'",
+    "forward_signature": "(self, x: 'torch.Tensor', modality: 'ModalityLike' = 'sc', *, return_dict: 'bool' = False, return_dropout: 'bool' = False, marker_prior: 'Optional[torch.Tensor]' = None, reconstruction_mode: 'Optional[str]' = None) -> 'Union[torch.Tensor, Tuple[torch.Tensor, Optional[torch.Tensor]], Dict[str, torch.Tensor]]'",
+    "gene_count_argument": "n_genes",
+    "mamba_backend": "official"
+  },
+  "locks": {
+    "baron_locked": true,
+    "internal_test_selection_locked": true,
+    "zheng68k_locked": true
+  },
+  "parent_commit": "4c5d179bc6177e5b79e65e4f9a87c42db6a3b34d",
+  "phase": "P3-5B",
+  "production_training_submitted": false,
+  "receipt_id": "sc2-p3-16k-architecture-audit-v1",
+  "status": "PASS",
+  "training_schedule": {
+    "architecture_audit_configs_inherit_p2_batch": 16,
+    "architecture_audit_configs_inherit_p2_grad_accum": 2,
+    "freeze_phase": "P3-6",
+    "physical_batch_and_grad_accum_final": false,
+    "scientific_checkpoint_step": 5000,
+    "total_steps": 5000
+  }
+}
