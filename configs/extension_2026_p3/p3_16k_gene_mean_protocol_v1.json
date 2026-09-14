@@ -1,0 +1,37 @@
+{
+  "branch": "p3-16k-scaling",
+  "implementation": {
+    "builder": "/home/3159436/sc2/code/scripts/data/compute_gene_mean_from_shards.py",
+    "builder_sha256": "360b7353e17f43ee688ea759c7b4a60b59c7bac7dd46dcfba726b86cda824ed2",
+    "environment_policy": "clean sc2-data environment; no Mamba overlay",
+    "python": "/home/3159436/.conda/envs/sc2-data/bin/python",
+    "slurm_wrapper": "/home/3159436/sc2/code/slurm/extension_2026_p3/compute_p3_16k_gene_mean.slurm",
+    "slurm_wrapper_sha256": "73809c9189774ae5fc43807f7cdeb9543663604214d985fcd52a2eff8f6724d5"
+  },
+  "input": {
+    "allowed_split": "train",
+    "expected_genes": 16384,
+    "expected_train_rows": 200000,
+    "expected_train_shards": 8,
+    "manifest": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards.parquet",
+    "manifest_sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "modality": "sc"
+  },
+  "locks": {
+    "baron_locked": true,
+    "internal_test_model_selection_locked": true,
+    "zheng68k_locked": true
+  },
+  "output": {
+    "expected_dtype": "float32",
+    "expected_shape": [
+      16384
+    ],
+    "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_mean_log1p.npy"
+  },
+  "parent_git_head": "a66c1f54305504558bfa99cb772a8790ba83c3a5",
+  "phase": "P3-5B.1",
+  "protocol_id": "sc2-p3-16k-gene-mean-v1",
+  "purpose": "Compute train-only mean log1p expression over the frozen 16,384-gene P3 corpus.",
+  "status": "frozen_before_submission"
+}
