@@ -1,0 +1,90 @@
+{
+  "branch": "p3-16k-scaling",
+  "dimensions": {
+    "cells": 2500,
+    "genes": 16384,
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ]
+  },
+  "locks": {
+    "baron_locked": true,
+    "external_threshold_retuning_forbidden": true,
+    "internal_test_selection_locked": true,
+    "zheng68k_locked": true
+  },
+  "panels": {
+    "15": {
+      "identity_exact": true,
+      "mask_rate": 0.15,
+      "n_cells": 2500,
+      "n_genes": 16384,
+      "n_masked": 920811,
+      "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask15.npz",
+      "seed": 20260728,
+      "sha256": "285fd6d68216902385c3ecfadc138d9d30ae095cc740ad2fcb58d9c2418730be",
+      "target_exact_across_conditions": true,
+      "x_equals_y_outside_mask": true,
+      "x_zero_on_mask": true,
+      "y_positive_on_mask": true
+    },
+    "30": {
+      "identity_exact": true,
+      "mask_rate": 0.3,
+      "n_cells": 2500,
+      "n_genes": 16384,
+      "n_masked": 1841641,
+      "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask30.npz",
+      "seed": 20260728,
+      "sha256": "c17b8ed48050dbc805816d0eb4e090c4b6777a2ac034d66a1b0f2c5048e842a4",
+      "target_exact_across_conditions": true,
+      "x_equals_y_outside_mask": true,
+      "x_zero_on_mask": true,
+      "y_positive_on_mask": true
+    },
+    "50": {
+      "identity_exact": true,
+      "mask_rate": 0.5,
+      "n_cells": 2500,
+      "n_genes": 16384,
+      "n_masked": 3069413,
+      "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask50.npz",
+      "seed": 20260728,
+      "sha256": "0fecceb37296fadd361f8cc293f2d0fd5ad7c65668b19a9d455615cdc0d41f51",
+      "target_exact_across_conditions": true,
+      "x_equals_y_outside_mask": true,
+      "x_zero_on_mask": true,
+      "y_positive_on_mask": true
+    }
+  },
+  "phase": "P3-4D",
+  "qc": {
+    "all_identity_exact": true,
+    "all_mask_counts_exact": true,
+    "all_masks_positive_only": true,
+    "all_shapes_exact": true,
+    "all_targets_identical_across_mask_rates": true,
+    "all_unmasked_values_preserved": true,
+    "all_values_finite": true
+  },
+  "receipt_id": "sc2-p3-16k-validation-panels-v1",
+  "sha256": {
+    "corpus_manifest": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "identity": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+    "materializer": "11dd77026f23a503669ec01d9d8b09399c34689589e493a7784968bfb0cf0b2b",
+    "materializer_receipt": "12b50a1b78a966a02e265e76bd1276f535b78fceebb7f0dac68191680e4a9606",
+    "panel_manifest": "e205a2ae3a0a78597b0482d3e1246894afb6cbef3822d467d14e15e84ce12546",
+    "protocol": "60f67518cafd4be7b47732eec7a4779a8e617cb402f89109afabe29ea2b2f785",
+    "slurm_wrapper": "76a6b1f7663129856b992683887c7f046b5a87647dec428481c5cdb250d8101c"
+  },
+  "slurm": {
+    "elapsed": "00:01:00",
+    "exit_code": "0:0",
+    "job_id": 658502,
+    "state": "COMPLETED"
+  },
+  "source_git_head": "91ba6d8c83fbd91f46cbad0e823e935491919ee1",
+  "status": "PASS"
+}
