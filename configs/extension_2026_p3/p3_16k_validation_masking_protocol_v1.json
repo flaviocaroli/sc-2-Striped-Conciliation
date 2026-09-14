@@ -1,0 +1,103 @@
+{
+  "capacity_comparison": {
+    "model_selection_data": "validation_only",
+    "models": [
+      "P3-16K-Small",
+      "P3-16K-Large"
+    ],
+    "paired_seeds": [
+      20260728,
+      20260729,
+      20260730,
+      20260731,
+      20260801
+    ],
+    "scientific_checkpoint_step": 5000
+  },
+  "corpus": {
+    "genes": 16384,
+    "manifest_path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards.parquet",
+    "manifest_sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "vocabulary_file_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+    "vocabulary_path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "vocabulary_semantic_sha256": "4697c8de54f42f6e6352a94ea22c820e6309221aa808d6053377e23371564a9e"
+  },
+  "locks": {
+    "baron_locked": true,
+    "internal_test_selection_locked": true,
+    "test_or_external_threshold_retuning_forbidden": true,
+    "zheng68k_locked": true
+  },
+  "normalized_masking": {
+    "mask_only_positive_entries": true,
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "masked_input_value": 0.0,
+    "normalization_scope": "P3 CP10K denominator is computed after projection onto the 16,384-gene vocabulary.",
+    "p2_p3_raw_metric_warning": "P2 4K and P3 16K normalized values are not treated as directly interchangeable because the projected library denominator changes.",
+    "panel_seeds": {
+      "15": 20260728,
+      "30": 20260728,
+      "50": 20260728
+    },
+    "per_cell_mask_count_rule": "max(1, round(mask_rate * n_positive))",
+    "sampling_without_replacement": true,
+    "target_is_uncorrupted_p3_16k_log1p_cp10k": true,
+    "training_mask_rate": 0.15
+  },
+  "outputs": {
+    "external_panels_created": false,
+    "test_panels_created": false,
+    "validation_panel_root": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1"
+  },
+  "p2_validation_sources": {
+    "15": {
+      "mask_rate": 0.15000000596046448,
+      "masked_entries": 518696,
+      "seed": 20260728,
+      "source_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask15.npz",
+      "source_sha256": "24de301e406200e6b23b457cac2ef8a3081e9cd627ae1f3823c08ac3aef6b430"
+    },
+    "30": {
+      "mask_rate": 0.30000001192092896,
+      "masked_entries": 1037431,
+      "seed": 20260728,
+      "source_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask30.npz",
+      "source_sha256": "7709e275fc1f87ea64763e83380b47a1cfb4e8292bc594db85181a4483fb2f6e"
+    },
+    "50": {
+      "mask_rate": 0.5,
+      "masked_entries": 1729023,
+      "seed": 20260728,
+      "source_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/validation_mask50.npz",
+      "source_sha256": "ca6b46fa5d262d99595a21c5c279a31241a2af395c54f7a7adcf4436ae2c3fb6"
+    }
+  },
+  "p3_3_freeze_commit": "cecdc9c0471ea41ab85e88bcd3af9fe0ee9c5bfd",
+  "phase": "P3-4",
+  "protocol_id": "sc2-p3-16k-validation-masking-v1",
+  "status": "frozen_before_16k_validation_panel_materialization",
+  "threshold_selection": {
+    "eligibility": "Originally-zero fill must be <= 0.02 in every validation seed.",
+    "originally_zero_fill_budget": 0.02,
+    "primary_choice": "maximize mean recall",
+    "tie_break_1": "maximize mean precision",
+    "tie_break_2": "choose stricter higher threshold"
+  },
+  "validation_identity": {
+    "identity_tsv": "/home/3159436/sc2/outputs/paper_extension_2026_p3/validation_masking_v1/identity/validation_identity_v1.tsv",
+    "identity_tsv_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+    "ordered_cell_id_sha256": "4d22dd79c5f884a2600c3d9cbcc77ff1194078dcaa79d97c0339bcd88f3de2a3",
+    "p2_p3_validation_obs_order_exact": true,
+    "policy": "Reuse the exact ordered 2500 validation cells used by the frozen P2 normalized-masking panels.",
+    "selected_validation_cells": 2500,
+    "source_shard": "sc_validation_00000",
+    "source_shard_shape": [
+      25000,
+      16384
+    ]
+  }
+}
