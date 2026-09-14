@@ -1,0 +1,39 @@
+{
+  "historical_p2_random_coordinates_required": false,
+  "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+  "job_submitted": false,
+  "locks": {
+    "baron_locked": true,
+    "internal_test_selection_locked": true,
+    "zheng68k_locked": true
+  },
+  "manifest_sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+  "mask_count_rule": "max(1, numpy.rint(mask_rate * n_positive))",
+  "mask_rates": [
+    0.15,
+    0.3,
+    0.5
+  ],
+  "p2_mask_count_rule_exactly_verified": true,
+  "p3_16k_smoke_passed": true,
+  "parent_commit": "bd512140f908febd2960ac446b9b554747d57de7",
+  "phase": "P3-4B",
+  "protocol_sha256": "60f67518cafd4be7b47732eec7a4779a8e617cb402f89109afabe29ea2b2f785",
+  "receipt_id": "sc2-p3-16k-validation-materializer-v1",
+  "rng": {
+    "bit_generator": "numpy.random.PCG64",
+    "numpy_version": "2.4.6",
+    "sampling": "independent uniform random priority per positive gene; select k smallest priorities",
+    "without_replacement": true
+  },
+  "rounding_semantics": "nearest-even",
+  "script": {
+    "path": "/home/3159436/sc2/code/scripts/data/materialize_p3_16k_validation_masking.py",
+    "sha256": "11dd77026f23a503669ec01d9d8b09399c34689589e493a7784968bfb0cf0b2b"
+  },
+  "slurm_wrapper": {
+    "path": "/home/3159436/sc2/code/slurm/extension_2026_p3/materialize_p3_16k_validation_masking.slurm",
+    "sha256": "76a6b1f7663129856b992683887c7f046b5a87647dec428481c5cdb250d8101c"
+  },
+  "status": "PASS"
+}
