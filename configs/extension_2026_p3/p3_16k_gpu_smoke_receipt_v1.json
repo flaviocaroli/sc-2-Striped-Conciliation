@@ -1,0 +1,89 @@
+{
+  "created_utc": "2026-09-15T08:01:27.606053+00:00",
+  "git_commit_tested": "ab169296cef6add2b049e2fe89f90d76c3c152f9",
+  "notes": [
+    "No P3 architecture or scientific configuration was changed to obtain the successful run.",
+    "The successful rerun added the existing CUDA NVRTC library directory to LD_LIBRARY_PATH.",
+    "The cuDNN SDPA backward stride warning was non-fatal; both variants completed forward, backward, gradient clipping and optimizer step.",
+    "This is a synthetic smoke test only and is not scientific training or validation."
+  ],
+  "preceding_failed_attempt": {
+    "array_job_id": 658652,
+    "diagnosis": "CUDA NVRTC runtime library was not visible in LD_LIBRARY_PATH; both variants failed at routed-attention SDPA before successful rerun.",
+    "error": "libnvrtc.so.12 unavailable, followed by cuDNN frontend no-execution-plan error",
+    "status": "FAILED"
+  },
+  "purpose": "Synthetic H200 forward/backward/optimizer smoke for frozen P3 16K Small and Large architectures.",
+  "runtime": {
+    "causal_conv1d": "1.4.0",
+    "gpu": "NVIDIA H200 NVL",
+    "mamba_ssm": "2.2.4",
+    "nvrtc_dir": "/home/3159436/.conda/envs/sc2_mamba/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib",
+    "nvrtc_dlopen": "PASS",
+    "torch": "2.5.0+cu124",
+    "torch_cuda": "12.4"
+  },
+  "schema": "sc2-p3-16k-gpu-smoke-receipt-v1",
+  "scientific_status": "PASS",
+  "successful_jobs": {
+    "large": {
+      "cudnn_sdpa_stride_warning": true,
+      "exit_code": "0:0",
+      "job_id": 658946,
+      "smoke": {
+        "attention_positions": [
+          3,
+          7,
+          12,
+          16,
+          20
+        ],
+        "backward_optimizer_seconds": 1.3390039440710098,
+        "batch_size": 1,
+        "config": "/home/3159436/sc2/code/configs/train/extension_2026_p3/architecture_audit/sc2_p3_16k_large_archaudit_s20260728.yaml",
+        "config_sha256": "44e88855a53e9c554fd4b486dad46ad14b1af345ea0d58824e8f8771ac6f4c40",
+        "forward_seconds": 1.6271967869251966,
+        "genes": 16384,
+        "grad_norm": 4.477654933929443,
+        "loss": 5.257107734680176,
+        "parameters": 12799692,
+        "peak_allocated_gib": 4.707683563232422,
+        "peak_reserved_gib": 4.810546875,
+        "total_seconds": 2.9662021768745035,
+        "variant": "large"
+      },
+      "state": "COMPLETED",
+      "stderr_sha256": "2e2a6d4132b6e55c5c6d74e067c033aa6cad9f1219c5b2d9926fc12d507874b8",
+      "stdout_sha256": "aace470a030300a91d9add65e171fc6acb770e4b801d81b8f11d27add5541f26"
+    },
+    "small": {
+      "cudnn_sdpa_stride_warning": true,
+      "exit_code": "0:0",
+      "job_id": 658945,
+      "smoke": {
+        "attention_positions": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "backward_optimizer_seconds": 1.17296999500104,
+        "batch_size": 1,
+        "config": "/home/3159436/sc2/code/configs/train/extension_2026_p3/architecture_audit/sc2_p3_16k_small_archaudit_s20260728.yaml",
+        "config_sha256": "dff3a11a3274e9221d6e4e82e83fd1e01c92ad860b08fda150bc939f4826fe32",
+        "forward_seconds": 1.1927041829985683,
+        "genes": 16384,
+        "grad_norm": 8.545516014099121,
+        "loss": 4.827212333679199,
+        "parameters": 5564042,
+        "peak_allocated_gib": 2.5587644577026367,
+        "peak_reserved_gib": 2.5859375,
+        "total_seconds": 2.3656770570014487,
+        "variant": "small"
+      },
+      "state": "COMPLETED",
+      "stderr_sha256": "2e2a6d4132b6e55c5c6d74e067c033aa6cad9f1219c5b2d9926fc12d507874b8",
+      "stdout_sha256": "baebcc950c80427336f63cb37b03f5df0993f87a6f8f1b17a04d17b5e82c6019"
+    }
+  }
+}
