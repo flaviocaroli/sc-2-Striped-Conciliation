@@ -1,0 +1,65 @@
+{
+  "created_utc": "2026-09-17T21:56:09.745344+00:00",
+  "final_candidate_freeze_commit": "1e3375160461ae429246508450d4d27f2e027f38",
+  "final_candidate_receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_final_candidate_receipt_v1.json",
+  "final_candidate_receipt_sha256": "b94d112d84eaa5f05a2c6d14ecfd84f0d3ebe1051566a957d0cf76d5caee562c",
+  "frozen_thresholds": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_final_thresholds_v1.json",
+  "frozen_thresholds_sha256": "4cf4deef8321e1a381f1ad16d869b32417711c50d2b224ca43137d0bf08c2f5a",
+  "masking": {
+    "mask_only_positive_entries": true,
+    "mask_rates": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "masked_input_value": 0.0,
+    "panel_seeds": {
+      "15": 20260729,
+      "30": 20260729,
+      "50": 20260729
+    },
+    "per_cell_mask_count_rule": "max(1, int(np.rint(mask_rate * n_positive)))",
+    "rng": "numpy.random.Generator(numpy.random.PCG64(seed))",
+    "sampling_without_replacement": true,
+    "target": "uncorrupted P3 16K log1p(CP10K) expression"
+  },
+  "p3_corpus": {
+    "gene_vocabulary_semantic_sha256": "4697c8de54f42f6e6352a94ea22c820e6309221aa808d6053377e23371564a9e",
+    "genes": 16384,
+    "original_frozen_manifest_sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8",
+    "runtime_manifest": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/shards.parquet",
+    "runtime_manifest_sha256": "9f0d33c35d839590be69d990fb8c7eb4ed09ab491ea5c6c3e3edbed40bc11471",
+    "test_shard_id": "sc_test_00000",
+    "test_shard_sha256": "e90f07b9b92e409a1fdd5111030d6d6ebd4ecf07775e4a5992ab949ead0740db"
+  },
+  "schema": "sc2-p3-16k-internal-test-masking-protocol-v1",
+  "selection_boundary": {
+    "architecture_already_frozen": true,
+    "baron_used": false,
+    "checkpoint_rule_already_frozen": true,
+    "normalized_mask_thresholds_already_frozen": true,
+    "test_data_may_not_be_used_for_retuning": true,
+    "zheng68k_used": false
+  },
+  "status": "FROZEN_BEFORE_INTERNAL_TEST_PANEL_MATERIALIZATION",
+  "test_source": {
+    "cells": 5000,
+    "p2_test_panels": {
+      "mask15": {
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask15.npz",
+        "sha256": "eb9d3d63f42bc30fb5233f0f39271f792b43535a6be4f46b690cc188ed99c3d7"
+      },
+      "mask30": {
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask30.npz",
+        "sha256": "ca59d9407830484360c476865c1b339b0ed62b8c4e0a75e8ca5f07acbc1d7ecf"
+      },
+      "mask50": {
+        "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k/benchmarks/test_mask50.npz",
+        "sha256": "e1a75d8b27eda99ccf0ba08857fad385708ca0dd5cbdc0166ded9f1607b7a4d2"
+      }
+    },
+    "panel_seed": 20260729,
+    "source_shard_id": "sc_test_00000",
+    "source_split": "test"
+  }
+}
