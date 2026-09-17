@@ -1,0 +1,43 @@
+{
+  "baron_used": false,
+  "created_utc": "2026-09-17T21:45:02.914778+00:00",
+  "internal_test_used": false,
+  "max_true_zero_fill_in_every_seed": 0.02,
+  "schema": "sc2-p3-16k-final-thresholds-v1",
+  "scientific_checkpoint_step": 5000,
+  "selected_model_family": "P3-16K-Small",
+  "selection_data": "validation_only",
+  "selection_rule": {
+    "primary": "maximize_mean_recall",
+    "tie_break_1": "maximize_mean_precision",
+    "tie_break_2": "higher_threshold"
+  },
+  "status": "FROZEN",
+  "thresholds": {
+    "mask15": {
+      "mask_rate": 0.15,
+      "max_true_zero_fill": 0.0191734842162935,
+      "mean_precision": 0.2324117972537695,
+      "mean_recall": 0.1684662759241581,
+      "mean_true_zero_fill": 0.0150269999605411,
+      "threshold": 0.6
+    },
+    "mask30": {
+      "mask_rate": 0.3,
+      "max_true_zero_fill": 0.0183574000201371,
+      "mean_precision": 0.380841457574553,
+      "mean_recall": 0.1643505981893322,
+      "mean_true_zero_fill": 0.0144606547018734,
+      "threshold": 0.5700000000000001
+    },
+    "mask50": {
+      "mask_rate": 0.5,
+      "max_true_zero_fill": 0.0175920608278379,
+      "mean_precision": 0.5097082826056075,
+      "mean_recall": 0.1573756936586897,
+      "mean_true_zero_fill": 0.0137329018485941,
+      "threshold": 0.52
+    }
+  },
+  "zheng68k_used": false
+}
