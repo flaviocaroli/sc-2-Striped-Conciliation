@@ -1,0 +1,45 @@
+{
+  "baron_used": false,
+  "batch_accum": [
+    [
+      1,
+      32
+    ],
+    [
+      2,
+      16
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      16,
+      2
+    ]
+  ],
+  "beegfs_used": false,
+  "created_utc": "2026-09-17T12:36:53.014766+00:00",
+  "effective_batch": 32,
+  "internal_test_outcomes_used": false,
+  "models": [
+    "P3-16K-Small",
+    "P3-16K-Large"
+  ],
+  "preflight_job": 661470,
+  "preflight_status": "PASS",
+  "runtime_wrapper_sha256": "4c8632b540c51b1159569fb1e9f3eec7af383093944b69c2aa6c102886f167bc",
+  "schema": "sc2-p3-16k-perf-sweep-preparation-v1",
+  "seed": 20260728,
+  "selection_use": "hardware stability, throughput, and memory only",
+  "status": "prepared",
+  "total_steps": 5,
+  "train_only_manifest": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/train_shards.parquet",
+  "train_only_manifest_sha256": "c2425f76f913e307147bfb5492a71ac19d47fefbc29c358370e5907f958b1983",
+  "validation_outcomes_used": false,
+  "zheng68k_used": false
+}
