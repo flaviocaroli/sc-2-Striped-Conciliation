@@ -1,0 +1,139 @@
+{
+  "all_candidates": [
+    {
+      "batch_size": 16,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 2,
+      "job_id": 661472,
+      "peak_gpu_memory_gb": 73.33135557174683,
+      "run_name": "sc2_p3_16k_large_perf_b16a2_s20260728",
+      "steady_mean_samples_per_second": 8.570261903575025
+    },
+    {
+      "batch_size": 1,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 32,
+      "job_id": 661473,
+      "peak_gpu_memory_gb": 4.8503289222717285,
+      "run_name": "sc2_p3_16k_large_perf_b1a32_s20260728",
+      "steady_mean_samples_per_second": 12.715335357036253
+    },
+    {
+      "batch_size": 2,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 16,
+      "job_id": 661474,
+      "peak_gpu_memory_gb": 9.441212177276611,
+      "run_name": "sc2_p3_16k_large_perf_b2a16_s20260728",
+      "steady_mean_samples_per_second": 20.70356368658007
+    },
+    {
+      "batch_size": 4,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 8,
+      "job_id": 661475,
+      "peak_gpu_memory_gb": 18.542880535125732,
+      "run_name": "sc2_p3_16k_large_perf_b4a8_s20260728",
+      "steady_mean_samples_per_second": 25.110963376802655
+    },
+    {
+      "batch_size": 8,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 4,
+      "job_id": 661476,
+      "peak_gpu_memory_gb": 36.798625469207764,
+      "run_name": "sc2_p3_16k_large_perf_b8a4_s20260728",
+      "steady_mean_samples_per_second": 30.317698165307316
+    },
+    {
+      "batch_size": 16,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 2,
+      "job_id": 661477,
+      "peak_gpu_memory_gb": 39.521782875061035,
+      "run_name": "sc2_p3_16k_small_perf_b16a2_s20260728",
+      "steady_mean_samples_per_second": 55.761852727729824
+    },
+    {
+      "batch_size": 1,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 32,
+      "job_id": 661478,
+      "peak_gpu_memory_gb": 2.6205945014953613,
+      "run_name": "sc2_p3_16k_small_perf_b1a32_s20260728",
+      "steady_mean_samples_per_second": 15.860028545928746
+    },
+    {
+      "batch_size": 2,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 16,
+      "job_id": 661479,
+      "peak_gpu_memory_gb": 5.088711261749268,
+      "run_name": "sc2_p3_16k_small_perf_b2a16_s20260728",
+      "steady_mean_samples_per_second": 30.15899104081465
+    },
+    {
+      "batch_size": 4,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 8,
+      "job_id": 661480,
+      "peak_gpu_memory_gb": 10.02494478225708,
+      "run_name": "sc2_p3_16k_small_perf_b4a8_s20260728",
+      "steady_mean_samples_per_second": 40.159396587039254
+    },
+    {
+      "batch_size": 8,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 4,
+      "job_id": 661481,
+      "peak_gpu_memory_gb": 19.837151527404785,
+      "run_name": "sc2_p3_16k_small_perf_b8a4_s20260728",
+      "steady_mean_samples_per_second": 49.04995300484896
+    }
+  ],
+  "baron_used": false,
+  "created_utc": "2026-09-17T12:46:12.362579+00:00",
+  "effective_batch": 32,
+  "internal_test_used": false,
+  "schema": "sc2-p3-6-hardware-selection-v1",
+  "scientific_loss_used_for_selection": false,
+  "selected": {
+    "large": {
+      "batch_size": 8,
+      "effective_batch": 32,
+      "family": "large",
+      "grad_accum_steps": 4,
+      "job_id": 661476,
+      "peak_gpu_memory_gb": 36.798625469207764,
+      "run_name": "sc2_p3_16k_large_perf_b8a4_s20260728",
+      "steady_mean_samples_per_second": 30.317698165307316
+    },
+    "small": {
+      "batch_size": 16,
+      "effective_batch": 32,
+      "family": "small",
+      "grad_accum_steps": 2,
+      "job_id": 661477,
+      "peak_gpu_memory_gb": 39.521782875061035,
+      "run_name": "sc2_p3_16k_small_perf_b16a2_s20260728",
+      "steady_mean_samples_per_second": 55.761852727729824
+    }
+  },
+  "selection_metric": "highest mean samples_per_second over optimizer steps 2-5",
+  "selection_scope": "hardware_only",
+  "source_git_head": "c42840868177909e3fbb8751e10fb5c839210da4",
+  "status": "PASS",
+  "tie_break": "lower peak GPU memory",
+  "validation_used": false,
+  "zheng68k_used": false
+}
