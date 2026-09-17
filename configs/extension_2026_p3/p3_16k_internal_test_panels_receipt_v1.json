@@ -1,0 +1,27 @@
+{
+  "baron_used": false,
+  "cells": 5000,
+  "created_utc": "2026-09-17T22:01:32.645309+00:00",
+  "genes": 16384,
+  "mask_rates": [
+    0.15,
+    0.3,
+    0.5
+  ],
+  "materialization_git_head": "ed5ba92ed9c53728f359676c3895569e75a4fcdb",
+  "materialization_job_id": 661894,
+  "model_inference_performed_during_materialization": false,
+  "panel_root": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/benchmarks/test_masking_v1",
+  "panel_seed": 20260729,
+  "panel_sha256": {
+    "test_mask15.npz": "84a5bf413c0bcdf192fb18f43326871ff3fb4c9f700c31a9ce0e321f9c8eb33c",
+    "test_mask30.npz": "fc804ea6496660c950bd3ada3930e8879df8a96c59883adba06312cb63e60533",
+    "test_mask50.npz": "5392e7fc9b24cb5a1a017ab5e537dd9017d6ee36b6ec5a0ae9011b5d38c47628",
+    "test_panels_manifest.json": "413cb486238facf159b5476c632895338bb2c0d94eaedc90a7f7c304a915f8c9"
+  },
+  "schema": "sc2-p3-16k-internal-test-panels-receipt-v1",
+  "scientific_qc": "PASS",
+  "status": "FROZEN",
+  "threshold_retuning_performed": false,
+  "zheng68k_used": false
+}
