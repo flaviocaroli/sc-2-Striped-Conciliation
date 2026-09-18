@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-09-18T09:56:12.933222+00:00",
+  "direct_reconstruction_rule": "Only an official/released continuous-expression inference path may enter the P3 16K reconstruction benchmark.",
+  "geneformer": "Representation/downstream comparator unless an official continuous reconstruction decoder is independently verified.",
+  "hard_rules": {
+    "all_new_p3_foundation_results_use_16k_p3_feature_space": true,
+    "foundation_native_vocab_is_not_resized": true,
+    "missing_foundation_genes_require_explicit_availability_mask": true,
+    "no_ad_hoc_continuous_inverse": true,
+    "no_custom_decoder": true,
+    "p2_4096_panels_may_not_be_used_as_p3_results": true,
+    "p2_4096_results_are_provenance_only": true,
+    "p3_16k_to_foundation_vocab_overlap_must_be_frozen": true
+  },
+  "p3_feature_space_genes": 16384,
+  "p3_vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+  "p3_vocabulary_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+  "readiness_audit": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_readiness_v1/foundation_readiness_audit_v1.json",
+  "readiness_audit_sha256": "f939d60ec98ccfd203b37a7079ed04b94437c4b0f6ab2bb5a5b2cbaef75cd009",
+  "readiness_job_id": 662225,
+  "scfoundation": "Priority direct reconstruction model because P2 established an official continuous decoder; repeat mapping and inference against the P3 16K feature space.",
+  "scgpt": "Compatibility audit unless an official reproducible continuous-expression inverse exists.",
+  "schema": "sc2-p3-foundation-16k-readiness-receipt-v1",
+  "source_git_head": "bb63f9a4d3138f4250205b4039d971f31836234b",
+  "status": "READY_FOR_EXACT_16K_MODEL_MAPPING_AUDIT"
+}
