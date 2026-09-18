@@ -1,0 +1,93 @@
+{
+  "array_headers": {
+    "available_gene_mask": {
+      "dtype": "bool",
+      "fortran_order": false,
+      "shape": [
+        16384
+      ]
+    },
+    "cell_id": {
+      "dtype": "<U160",
+      "fortran_order": false,
+      "shape": [
+        5000
+      ]
+    },
+    "cell_type": {
+      "dtype": "<U64",
+      "fortran_order": false,
+      "shape": [
+        5000
+      ]
+    },
+    "counts": {
+      "dtype": "uint32",
+      "fortran_order": false,
+      "shape": [
+        5000,
+        16384
+      ]
+    },
+    "donor": {
+      "dtype": "<U6",
+      "fortran_order": false,
+      "shape": [
+        5000
+      ]
+    },
+    "ensembl_id": {
+      "dtype": "<U32",
+      "fortran_order": false,
+      "shape": [
+        16384
+      ]
+    },
+    "feature_name": {
+      "dtype": "<U64",
+      "fortran_order": false,
+      "shape": [
+        16384
+      ]
+    },
+    "source_row": {
+      "dtype": "int64",
+      "fortran_order": false,
+      "shape": [
+        5000
+      ]
+    }
+  },
+  "available_genes": 13762,
+  "bundle": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/baron5000_raw_counts_g16384.npz",
+  "bundle_sha256": "7316ccc0efe849ff06a09148f09adc0b2ae7cf0e13ce10a2ec29d095bb472c0d",
+  "cells": 5000,
+  "dataset": "baron_pancreas",
+  "donor_counts": {
+    "human1": 1152,
+    "human2": 970,
+    "human3": 2119,
+    "human4": 759
+  },
+  "genes": 16384,
+  "job_id": 662815,
+  "next": "Use the same frozen 5000-cell raw-count bundle for Geneformer and GeneMamba embedding extraction before donor-held-out classification.",
+  "purpose": "Frozen shared raw-count source for foundation-model representation evaluation.",
+  "qc": {
+    "all_arrays_non_object": true,
+    "availability_exact": true,
+    "bundle_sha_matches": true,
+    "cell_ids_exact": true,
+    "cell_types_exact": true,
+    "cp10k_log1p_target_exact": true,
+    "selected_rows_exact": true,
+    "target_max_abs_error": 0.0
+  },
+  "schema": "sc2-p3-foundation-baron-raw16k-freeze-v1",
+  "scientific_result": false,
+  "source_git_head": "b7463264287421434785b87f60bf155531ab4bc5",
+  "source_receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/baron5000_raw_counts_receipt.json",
+  "source_receipt_sha256": "4f465a89542c28966904cc04f5baf554b2113c1193f5f66b667e79da9db67140",
+  "status": "PASS",
+  "unavailable_genes": 2622
+}
