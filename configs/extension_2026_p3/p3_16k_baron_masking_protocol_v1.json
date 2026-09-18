@@ -1,0 +1,58 @@
+{
+  "builder_change": "P3-specific copy of the frozen external benchmark builder; only the explicit vocabulary-size guard/message is changed from 4096 to 16384.",
+  "cells": 5000,
+  "created_utc": "2026-09-18T07:36:51.583087+00:00",
+  "external_dataset": "baron_pancreas",
+  "final_candidate": "P3-16K-Small",
+  "frozen_thresholds": {
+    "mask15": 0.6,
+    "mask30": 0.57,
+    "mask50": 0.52
+  },
+  "genes": 16384,
+  "mapping": "exact_unique_gene_symbol",
+  "mask_rates": [
+    0.15,
+    0.3,
+    0.5
+  ],
+  "model_seeds": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+  "p2_identity_anchor": {
+    "mask15_sha256": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+    "mask30_sha256": "edc1422a764c1aa40a9028401df6629c771fc7f3809ff5e9a7443be6fabd1e3e",
+    "mask50_sha256": "7654fcc78719327f73fcbe46bf69beaf866e32b9331134f2aec1bc4964b2d792",
+    "selected_cells": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_v1/selected_cells.csv",
+    "selected_cells_sha256": "42730645e6b075f7ee09d7b486cc2a0843994acae64a15cc70e643a8eac39c0d"
+  },
+  "p3_16k_builder": "/home/3159436/sc2/code/scripts/data/prepare_external_repair_benchmarks_p3_16k.py",
+  "p3_16k_builder_sha256": "5cc236b90079362d0e766c68977afff5dd590ee4888dd45fd67327daa5e719d4",
+  "panel_seed": 20260729,
+  "raw_archive": "/home/3159436/sc2/data/external_raw/baron_pancreas/GSE84133_RAW.tar",
+  "raw_archive_sha256": "6b257a03bcf61fa58c08ef9ca1de6957cb9072cfdd19bf78ce0c5743de031a63",
+  "raw_root": "/home/3159436/sc2/data/external_raw/baron_pancreas",
+  "rules": {
+    "architecture_retuning": false,
+    "checkpoint_retuning": false,
+    "freeze_unavailable_gene_mask": true,
+    "rebuild_mapping_for_16k_vocabulary": true,
+    "recompute_cp10k_after_16k_projection": true,
+    "reuse_same_external_cell_selection": true,
+    "threshold_retuning": false
+  },
+  "schema": "sc2-p3-16k-baron-normalized-masking-protocol-v1",
+  "scientific_checkpoint_step": 5000,
+  "source_builder": "/home/3159436/sc2/code/scripts/data/prepare_external_repair_benchmarks.py",
+  "source_builder_sha256": "3b6c4567d302a82a57e59b5d1f247df34125e1111a8f5f3234bdc7edc14ba053",
+  "status": "FROZEN_BEFORE_BARON_16K_MATERIALIZATION",
+  "train_gene_stats": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/train_gene_stats.parquet",
+  "train_gene_stats_sha256": "bc8adb35c3a9831d7f2b08e9745294debb3116d86b8fecc82c60384f3917589e",
+  "vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+  "vocabulary_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa"
+}
