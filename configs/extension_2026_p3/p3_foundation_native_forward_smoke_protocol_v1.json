@@ -2,7 +2,13 @@
   "cells": 16,
   "dataset": "internal_validation",
   "input_bundle": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_native_smokes_v1/native_forward_input_v1/validation_first16_raw_counts.npz",
-  "input_bundle_sha256": "13e31e1d528dbee0b5fea7b1cf767e8b6373faec511cc91d1a74e5d7becc9932",
+  "input_bundle_serialization": {
+    "ensembl_id_dtype": "fixed_width_unicode",
+    "npz_allow_pickle_required": false,
+    "object_arrays": false,
+    "technical_repair": "replace accidental NumPy object-string arrays"
+  },
+  "input_bundle_sha256": "a68b9ce5074b9b7380ac009f8323a0ed525168a8b9f3807a21bca8bf810efc18",
   "model_selection": false,
   "models": {
     "GeneMamba": {
