@@ -1,0 +1,25 @@
+{
+  "Geneformer": {
+    "enabled": true,
+    "native_context": 4096,
+    "role": "representation_smoke"
+  },
+  "cells": 16,
+  "dataset": "internal_validation",
+  "input_bundle": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_native_smokes_v1/native_forward_input_v1/validation_first16_raw_counts.npz",
+  "input_bundle_sha256": "a68b9ce5074b9b7380ac009f8323a0ed525168a8b9f3807a21bca8bf810efc18",
+  "model_selection": false,
+  "scPRINT": {
+    "enabled": false,
+    "final_canary_log": "/home/3159436/sc2/logs/p3_foundation_native_smokes_v1/scprint_final_canary_20260918T144932Z.log",
+    "final_local_canary_pass": false,
+    "gene_selection": "most expr",
+    "genelist": [],
+    "max_len": 2000,
+    "official_preprocessor": true,
+    "role": "excluded_after_final_local_canary_failure"
+  },
+  "schema": "sc2-p3-foundation-final-native-smoke-protocol-v1",
+  "scientific_result": false,
+  "source_feature_space": 16384
+}
