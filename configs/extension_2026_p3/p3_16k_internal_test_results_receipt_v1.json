@@ -1,0 +1,60 @@
+{
+  "aggregate_files": {
+    "seed_metrics": "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/aggregate_v1/internal_test_seed_metrics.csv",
+    "summary": "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/aggregate_v1/internal_test_summary.csv",
+    "summary_wide": "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/aggregate_v1/internal_test_summary_wide.csv"
+  },
+  "aggregate_sha256": {
+    "seed_metrics": "8f85a648c384a822e787d911a8277f18be320ea26186ecc343350a20f36a082b",
+    "summary": "e613dc94eeec4c13616058b79da2da5275980b7fde0d476e02d55db7123df7cf",
+    "summary_wide": "c88e37656a9bb16acc6ca4537a645d7173862c3d50d79b5dba24ce453ecc187e"
+  },
+  "architecture_retuning": false,
+  "baron_used": false,
+  "checkpoint_retuning": false,
+  "checkpoint_step": 5000,
+  "created_utc": "2026-09-18T07:23:28.850577+00:00",
+  "evaluations": 15,
+  "final_candidate_receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_final_candidate_receipt_v1.json",
+  "final_candidate_receipt_sha256": "b94d112d84eaa5f05a2c6d14ecfd84f0d3ebe1051566a957d0cf76d5caee562c",
+  "git_head_before_results_freeze": "841c24a99b1f267d8c25c954eb507482937d799c",
+  "input_summary_sha256": {
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260728/mask15/summary.json": "823685c296901eadc113ad151a7aa3675556700a17cd61b06856eae70c931f51",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260728/mask30/summary.json": "025eacf0f92301b5569167c696a65cb567fb59984afca8312ebcb18e927cce72",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260728/mask50/summary.json": "c762397bccaae143c84637afd3390af49e7f3f7663ec640557edc543a76a7a52",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260729/mask15/summary.json": "428d6c24db383904e7f286d507022baca75e895eebd58a7206ed70cac0f2c580",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260729/mask30/summary.json": "520d377676b3bbcb9dc71aa0ac7e378670ad1f086d162d28fb70d3ff0a2fbb0d",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260729/mask50/summary.json": "cfad4cf92096c1da983b78c633127065b075c8e3f525e3a6c4785e88b943fc27",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260730/mask15/summary.json": "153517b2c727d0e5262eaae87d4f30eeaa845ce54bb7200db8a7aa52b7047955",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260730/mask30/summary.json": "32b10771563731e0115b50268d8bebfdaa2a4d158a8146874c0992b32fd5515b",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260730/mask50/summary.json": "dafbdd67e00519ce2d031d97234a2476e773b86cf5eed53658108ca8c2f558d8",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260731/mask15/summary.json": "d6240480fd411d2ac656581ff400241aec89ae13b5c0cbae8d277c0de894a3ad",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260731/mask30/summary.json": "8b5775fd46f3276f8f2a6b9baeb9c6fd35980032b22903bb1ad3c51f200b3c58",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260731/mask50/summary.json": "1c6b207e65e38cae4e47a18fb5f06759a1ff09ecbadfe99098bb3631e853c8ff",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260801/mask15/summary.json": "464f9072ab54ad676629b5d207684f30aaad22c3bd61d66ca86aa895afa3eb09",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260801/mask30/summary.json": "7a933943dde8878e643937543b5b77c4fcc8997e053d4284420ef7aea3e659ec",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_9_internal_test_v1/s20260801/mask50/summary.json": "d50c7fa3f8b5b4454aaf4eb466a198166b3367935531f000b19999b5eb312e75"
+  },
+  "model": "P3-16K-Small",
+  "next": "Baron normalized masking with frozen P3-16K-Small candidate and frozen normalized-mask thresholds",
+  "schema": "sc2-p3-16k-internal-test-results-receipt-v1",
+  "seeds": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "status": "PASS",
+  "threshold_file": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_final_thresholds_v1.json",
+  "threshold_file_sha256": "4cf4deef8321e1a381f1ad16d869b32417711c50d2b224ca43137d0bf08c2f5a",
+  "threshold_retuning": false,
+  "threshold_source": "frozen_validation_thresholds",
+  "thresholds": {
+    "mask15": 0.6,
+    "mask30": 0.57,
+    "mask50": 0.52
+  },
+  "trainable_parameters": 5564042,
+  "zheng68k_used": false
+}
