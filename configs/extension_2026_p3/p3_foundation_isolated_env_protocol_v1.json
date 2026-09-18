@@ -1,0 +1,33 @@
+{
+  "base_environment": "/home/3159436/.conda/envs/sc2_mamba",
+  "created_utc": "2026-09-18T10:51:37.169297+00:00",
+  "models": {
+    "GeneMamba": {
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/GeneMamba",
+      "environment": "/home/3159436/.conda/envs/sc2-p3-genemamba",
+      "source": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/GeneMamba"
+    },
+    "Geneformer": {
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/Geneformer-V2-104M",
+      "environment": "/home/3159436/.conda/envs/sc2-p3-geneformer",
+      "source": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/Geneformer"
+    },
+    "scPRINT": {
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/scPRINT/medium-v1.5.ckpt",
+      "environment": "/home/3159436/.conda/envs/sc2-p3-scprint",
+      "source": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/scPRINT"
+    }
+  },
+  "rules": {
+    "install_external_dependencies": true,
+    "isolated_environment_per_model": true,
+    "pip_cache_disabled": true,
+    "scientific_inference_during_env_build": false,
+    "verify_SC2_import": true,
+    "verify_external_model_import_or_config": true
+  },
+  "schema": "sc2-p3-foundation-isolated-env-protocol-v1",
+  "source_feature_space_genes": 16384,
+  "source_git_head": "bb5856de83a1550b344470fbd6edb1dbf37eeb30",
+  "status": "FROZEN_BEFORE_CREATION"
+}
