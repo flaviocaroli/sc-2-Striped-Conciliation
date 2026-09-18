@@ -1,0 +1,50 @@
+{
+  "architecture_retuning": false,
+  "builder": "/home/3159436/sc2/code/scripts/data/prepare_external_repair_benchmarks_p3_16k.py",
+  "builder_sha256": "5cc236b90079362d0e766c68977afff5dd590ee4888dd45fd67327daa5e719d4",
+  "cells": 5000,
+  "checkpoint_retuning": false,
+  "checkpoint_step": 5000,
+  "created_utc": "2026-09-18T09:11:00.644203+00:00",
+  "dataset": "zheng68k",
+  "frozen_thresholds": {
+    "mask15": 0.6,
+    "mask30": 0.57,
+    "mask50": 0.52
+  },
+  "genes": 16384,
+  "mapping": "exact_ensembl_id",
+  "mask_rates": [
+    0.15,
+    0.3,
+    0.5
+  ],
+  "model": "P3-16K-Small",
+  "model_seeds": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "normalization": "log1p(CP10K_after_frozen_vocabulary_projection)",
+  "p2_identity_anchor": {
+    "mask15_sha256": "35490be0d1a83b46517d2d5792a2c0a1bc9c5b3f800f29aeb90447d11d8a6ecc",
+    "mask30_sha256": "ba6b8e6d2698048faac52e6b384a795bd429ec3d58bb385b1fc769ad50da7871",
+    "mask50_sha256": "2313651071d4c2d69053a51e21ba477d3f2c3c146172dc187ac809af4590f040",
+    "selected_cells_sha256": "6dcfd9844c01b5576e6ff065c399e0c559bcdf7acc7a2f488962038aa2e1b19f"
+  },
+  "panel_seed": 20260729,
+  "raw_archive": "/home/3159436/sc2/data/external_raw/zheng68k/fresh_68k_pbmc_donor_a_filtered_gene_bc_matrices.tar.gz",
+  "raw_archive_sha256": "3f35f37ff344bc9b32f97cd003ac986ebb9b5d7f31006c53dff4cb38da267931",
+  "raw_root": "/home/3159436/sc2/data/external_raw/zheng68k",
+  "schema": "sc2-p3-16k-zheng-normalized-masking-protocol-v1",
+  "source_git_head": "fb1f108aa7217f8540dc3fd5b7b6d6f60d45f9e5",
+  "source_matrix_dir": "/home/3159436/sc2/data/external_raw/zheng68k/extracted/filtered_matrices_mex/hg19",
+  "status": "FROZEN_BEFORE_ZHENG_16K_MATERIALIZATION",
+  "threshold_retuning": false,
+  "train_gene_stats": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/train_gene_stats.parquet",
+  "train_gene_stats_sha256": "bc8adb35c3a9831d7f2b08e9745294debb3116d86b8fecc82c60384f3917589e",
+  "vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+  "vocabulary_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa"
+}
