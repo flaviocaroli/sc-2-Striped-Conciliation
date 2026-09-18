@@ -1,0 +1,70 @@
+{
+  "created_utc": "2026-09-18T10:41:27.542435+00:00",
+  "models": {
+    "GeneMamba": {
+      "checkpoint": "model.safetensors",
+      "checkpoint_bytes": 262998656,
+      "hf_repo": "mineself2016/GeneMamba",
+      "hf_revision": "dac10b05b4834fdb7a2fddbf47eec6acf6e9aee4",
+      "role": "representation_downstream",
+      "source_commit": "22f571a8d48256894de05e9d87ea9ec6caa338c0",
+      "source_url": "https://github.com/MineSelf2016/GeneMamba.git"
+    },
+    "Geneformer": {
+      "checkpoint": "Geneformer-V2-104M/model.safetensors",
+      "checkpoint_bytes": 417571156,
+      "role": "representation_downstream",
+      "source_revision": "1f7fbae4e469a5f4f1af8c111a529cfe1b3829f5",
+      "source_url": "https://huggingface.co/ctheodoris/Geneformer"
+    },
+    "RegFormer": {
+      "checkpoint_download": "deferred_until_repository_registry_audit",
+      "role": "compatibility_then_representation_or_direct_if_supported",
+      "source_commit": "26de67939de93a9157b3ee99cc346fb532e92ba5",
+      "source_url": "https://github.com/BGIResearch/RegFormer.git"
+    },
+    "scGPT_current_source_audit": {
+      "checkpoint": "reuse_existing_P2_pin_for_scientific_compatibility",
+      "role": "compatibility_only_without_official_continuous_inverse",
+      "source_commit": "cebd6fae655b9c585a4807daa3ac31bb764f06b4",
+      "source_url": "https://github.com/bowang-lab/scGPT.git"
+    },
+    "scLong": {
+      "checkpoint": "gocont_4096_48m_pretrain_1b_mix_2024-02-05_16-23-37.pth",
+      "checkpoint_download": "deferred_until_exact_size_and_url_audit",
+      "role": "representation_downstream",
+      "source_commit": "41b72021540918e4386c4f2264351d7a6cbeed99",
+      "source_url": "https://github.com/BaiDing1234/scLong.git"
+    },
+    "scPRINT": {
+      "checkpoint": "medium-v1.5.ckpt",
+      "checkpoint_bytes": 221742980,
+      "hf_repo": "jkobject/scPRINT",
+      "hf_revision": "8e1ad1a1bc40c1fc2f4f1700fe27923eea9a2bed",
+      "role": "direct_denoising_candidate",
+      "source_commit": "e7c60766cbff58bb7280a1c8fe4b7461b1af1911",
+      "source_url": "https://github.com/cantinilab/scPRINT.git"
+    },
+    "scPRINT-2": {
+      "role": "compatibility_audit",
+      "source_commit": "9dbc57acb66ec45cf0a8676740473e0328887188",
+      "source_url": "https://github.com/cantinilab/scPRINT-2.git"
+    }
+  },
+  "p3_source_feature_space_genes": 16384,
+  "rules": {
+    "auto_download_regformer_checkpoint": false,
+    "auto_download_sclong_checkpoint": false,
+    "download_geneformer_316m": false,
+    "download_scprint_medium_v1": false,
+    "download_scprint_small_v2": false,
+    "geneformer_selected_checkpoint": "Geneformer-V2-104M",
+    "native_sequence_limits_respected": true,
+    "new_p3_results_start_from_16k_source_space": true,
+    "no_ad_hoc_decoder": true,
+    "scprint_selected_checkpoint": "medium-v1.5.ckpt"
+  },
+  "schema": "sc2-p3-foundation-source-materialization-v1",
+  "source_git_head": "d010e28c899e26dc3cfe75dcf08ef6b4188403b1",
+  "status": "FROZEN_BEFORE_MATERIALIZATION"
+}

@@ -1,0 +1,371 @@
+{
+  "created_utc": "2026-09-18T10:41:27.346194+00:00",
+  "p2_protocol": {
+    "first_task_keys": [
+      "availability_source",
+      "dataset",
+      "mask_percent",
+      "panel",
+      "panel_sha256",
+      "task_id"
+    ],
+    "mapping_keys": [
+      "collision_rule",
+      "evaluation_rule",
+      "exact_overlap",
+      "external_availability",
+      "gene_stats",
+      "internal_availability",
+      "sc2_vocabulary",
+      "scfoundation_vocabulary"
+    ],
+    "path": "/home/3159436/sc2/code/configs/extension_2026/scfoundation_final_protocol_v1.json",
+    "sha256": "8e045ce95e457f0a1df482e5b0712f84e6b6fffb432a529b811b612c19e8e906",
+    "task_count": 9,
+    "top_level_keys": [
+      "amendments",
+      "checkpoint",
+      "expected_tasks",
+      "freeze_base_commit",
+      "frozen_before_final_results",
+      "implementation",
+      "inference",
+      "mapping",
+      "output_root",
+      "phase",
+      "pretraining_overlap",
+      "primary_metrics",
+      "protocol_id",
+      "secondary_metrics",
+      "source",
+      "tasks"
+    ]
+  },
+  "p3_requirement": {
+    "known_scfoundation_mapped_genes": 14382,
+    "official_decoder_only": true,
+    "p2_4096_results_reused": false,
+    "source_feature_space_genes": 16384
+  },
+  "runner": {
+    "argparse_arguments": [
+      [
+        "--protocol"
+      ],
+      [
+        "--task-id"
+      ]
+    ],
+    "functions": [
+      "sha",
+      "safe_spearman",
+      "main"
+    ],
+    "path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_final_task.py",
+    "sensitive_lines": [
+      {
+        "line": 78,
+        "text": "    panel = Path(task[\"panel\"])"
+      },
+      {
+        "line": 80,
+        "text": "    if sha(panel) != task[\"panel_sha256\"]:"
+      },
+      {
+        "line": 83,
+        "text": "    ckpt = Path(p[\"checkpoint\"][\"path\"])"
+      },
+      {
+        "line": 85,
+        "text": "    if sha(ckpt) != p[\"checkpoint\"][\"sha256\"]:"
+      },
+      {
+        "line": 86,
+        "text": "        raise RuntimeError(\"checkpoint SHA mismatch\")"
+      },
+      {
+        "line": 93,
+        "text": "    with np.load(panel, allow_pickle=False) as d:"
+      },
+      {
+        "line": 102,
+        "text": "                f\"panel keys missing: {required-set(d.files)}\""
+      },
+      {
+        "line": 125,
+        "text": "            availability_source = \"panel_available_gene_mask\""
+      },
+      {
+        "line": 127,
+        "text": "            # Internal corpus uses the complete frozen 4096-gene"
+      },
+      {
+        "line": 128,
+        "text": "            # vocabulary; no separate availability mask is needed."
+      },
+      {
+        "line": 130,
+        "text": "                4096,"
+      },
+      {
+        "line": 133,
+        "text": "            availability_source = \"implicit_all_4096_internal\""
+      },
+      {
+        "line": 136,
+        "text": "                \"external panel lacks available_gene_mask\""
+      },
+      {
+        "line": 139,
+        "text": "    if x.shape != (5000, 4096):"
+      },
+      {
+        "line": 150,
+        "text": "    if available.shape != (4096,):"
+      },
+      {
+        "line": 151,
+        "text": "        raise RuntimeError(\"availability shape mismatch\")"
+      },
+      {
+        "line": 164,
+        "text": "        p[\"mapping\"][\"sc2_vocabulary\"]"
+      },
+      {
+        "line": 168,
+        "text": "        p[\"mapping\"][\"gene_stats\"]"
+      },
+      {
+        "line": 172,
+        "text": "        p[\"mapping\"][\"scfoundation_vocabulary\"],"
+      },
+      {
+        "line": 176,
+        "text": "    mapping = ("
+      },
+      {
+        "line": 202,
+        "text": "    mapping[\"feature_name\"] = ("
+      },
+      {
+        "line": 203,
+        "text": "        mapping[\"feature_name\"].astype(str)"
+      },
+      {
+        "line": 206,
+        "text": "    mapping = mapping["
+      },
+      {
+        "line": 207,
+        "text": "        mapping[\"feature_name\"].isin(sf_index)"
+      },
+      {
+        "line": 211,
+        "text": "    mapping = mapping.drop_duplicates("
+      },
+      {
+        "line": 216,
+        "text": "    if len(mapping) != 4006:"
+      },
+      {
+        "line": 218,
+        "text": "            f\"mapping changed: {len(mapping)}\""
+      },
+      {
+        "line": 221,
+        "text": "    sc2_idx = mapping["
+      },
+      {
+        "line": 228,
+        "text": "            for g in mapping[\"feature_name\"]"
+      },
+      {
+        "line": 234,
+        "text": "        4096,"
+      },
+      {
+        "line": 283,
+        "text": "    # Full 4096 positions, NaN where scFoundation"
+      },
+      {
+        "line": 299,
+        "text": "            (b, 19264),"
+      },
+      {
+        "line": 380,
+        "text": "            out[:, :19264]"
+      },
+      {
+        "line": 388,
+        "text": "        if out.shape != (b, 19264):"
+      },
+      {
+        "line": 497,
+        "text": "    # zero inputs on mapped genes get official decoder output."
+      },
+      {
+        "line": 551,
+        "text": "        4096,"
+      },
+      {
+        "line": 600,
+        "text": "        Path(p[\"output_root\"])"
+      },
+      {
+        "line": 609,
+        "text": "        Path(p[\"output_root\"])"
+      },
+      {
+        "line": 619,
+        "text": "            \"output collision\""
+      },
+      {
+        "line": 663,
+        "text": "            4096,"
+      },
+      {
+        "line": 666,
+        "text": "            4006,"
+      },
+      {
+        "line": 671,
+        "text": "        \"availability_source\":"
+      },
+      {
+        "line": 672,
+        "text": "            availability_source,"
+      },
+      {
+        "line": 678,
+        "text": "            n_eval_genes / 4096.0,"
+      },
+      {
+        "line": 743,
+        "text": "        \"panel\":"
+      },
+      {
+        "line": 744,
+        "text": "            str(panel),"
+      },
+      {
+        "line": 746,
+        "text": "        \"panel_sha256\":"
+      },
+      {
+        "line": 747,
+        "text": "            task[\"panel_sha256\"],"
+      },
+      {
+        "line": 749,
+        "text": "        \"checkpoint_sha256\":"
+      },
+      {
+        "line": 750,
+        "text": "            p[\"checkpoint\"][\"sha256\"],"
+      }
+    ],
+    "sha256": "d803f69bf0cbd55946946934b72c7804f3ea3651601e74f6cd3217590cbed11b"
+  },
+  "schema": "sc2-p3-scfoundation-16k-runner-audit-v1",
+  "smoke": {
+    "argparse_arguments": [
+      [
+        "--protocol"
+      ]
+    ],
+    "functions": [
+      "sha",
+      "main"
+    ],
+    "path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_decoder_smoke.py",
+    "sensitive_lines": [
+      {
+        "line": 42,
+        "text": "    ckpt = Path(p[\"checkpoint\"][\"path\"])"
+      },
+      {
+        "line": 44,
+        "text": "    outroot = Path(p[\"output_root\"])"
+      },
+      {
+        "line": 46,
+        "text": "    if sha(ckpt) != p[\"checkpoint\"][\"sha256\"]:"
+      },
+      {
+        "line": 47,
+        "text": "        raise RuntimeError(\"checkpoint SHA mismatch\")"
+      },
+      {
+        "line": 53,
+        "text": "        raise RuntimeError(\"output collision\")"
+      },
+      {
+        "line": 81,
+        "text": "    if X.shape != (4, 19264):"
+      },
+      {
+        "line": 101,
+        "text": "            f\"checkpoint missing config keys: {missing}\""
+      },
+      {
+        "line": 165,
+        "text": "            out[:, :19264]"
+      },
+      {
+        "line": 173,
+        "text": "        if out.shape != (1, 19264):"
+      },
+      {
+        "line": 175,
+        "text": "                f\"decoder output shape: {out.shape}\""
+      },
+      {
+        "line": 187,
+        "text": "                f\"nonfinite output for cell {i}\""
+      },
+      {
+        "line": 225,
+        "text": "            \"decoder output is constant\""
+      },
+      {
+        "line": 235,
+        "text": "            \"different cells have identical output\""
+      },
+      {
+        "line": 259,
+        "text": "        \"genes\": 19264,"
+      },
+      {
+        "line": 262,
+        "text": "        \"output_min\": float(Y.min()),"
+      },
+      {
+        "line": 263,
+        "text": "        \"output_max\": float(Y.max()),"
+      },
+      {
+        "line": 264,
+        "text": "        \"output_mean\": float(Y.mean()),"
+      },
+      {
+        "line": 265,
+        "text": "        \"output_sd\": float(Y.std()),"
+      },
+      {
+        "line": 270,
+        "text": "        \"checkpoint_sha256\":"
+      },
+      {
+        "line": 275,
+        "text": "        \"output_type\":"
+      },
+      {
+        "line": 293,
+        "text": "    print(\"OUTPUT_SHAPE=4x19264\")"
+      }
+    ],
+    "sha256": "338804f9f45e0e89c282039bb721ef7565f0c2b0054abb6d8247ba8fd91cf9f1"
+  },
+  "source_git_head": "d010e28c899e26dc3cfe75dcf08ef6b4188403b1",
+  "status": "PASS"
+}
