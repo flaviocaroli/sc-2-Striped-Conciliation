@@ -1,0 +1,125 @@
+{
+  "amendments": [
+    {
+      "affected_tasks": [
+        0,
+        1,
+        2
+      ],
+      "metric_definition_changed": false,
+      "model_inference_changed": false,
+      "original_job": 636783,
+      "reason": "The runner's initial required-key assertion incorrectly required available_gene_mask for internal benchmark NPZs before reaching the already-frozen internal fallback that defines all 4096 internal genes as available.",
+      "retry_policy": "rerun failed internal tasks only",
+      "scientific_semantics_changed": false,
+      "successful_tasks_preserved": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "type": "technical_schema_fix"
+    }
+  ],
+  "checkpoint": {
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/models/models.ckpt",
+    "sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9"
+  },
+  "expected_tasks": 3,
+  "freeze_base_commit": "513f1ccde732df40407bc4b6ade90fb8b73dfa7d",
+  "frozen_before_final_results": true,
+  "implementation": {
+    "runner_path": "/home/3159436/sc2/code/scripts/eval/run_scfoundation_p3_16k_validation_v1.py",
+    "runner_sha256": "e1b8a2bbb61a2e83d829c1be571dffd5035ff0dbac8ca8aa1fb1497ae2fbb106"
+  },
+  "inference": {
+    "batch_size": 1,
+    "deterministic": true,
+    "input_type": "singlecell",
+    "observed_nonzero_policy": "copy observed nonzero input exactly",
+    "output_type": "gene_expression",
+    "pre_normalized": "T",
+    "target_high_resolution": "t4",
+    "threshold": null,
+    "threshold_policy": "No threshold: direct decoder has no official selective gate and no ad-hoc gate is introduced.",
+    "zero_input_policy": "use official decoder output"
+  },
+  "mapping": {
+    "collision_rule": "retain lowest SC2 gene_index for duplicated symbol",
+    "evaluation_rule": "metrics restricted to exact scFoundation-mapped and dataset-available SC2 genes",
+    "exact_overlap": 4006,
+    "external_availability": "use frozen available_gene_mask stored in each panel",
+    "gene_stats": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/train_gene_stats.parquet",
+    "internal_availability": "all 4096 frozen internal genes are available; internal benchmark NPZs therefore require no available_gene_mask",
+    "sc2_vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "scfoundation_vocabulary": "/home/3159436/sc2/external/foundation_models/scFoundation/OS_scRNA_gene_index.19264.tsv"
+  },
+  "output_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/validation_v1",
+  "p3_16k_validation_metadata": {
+    "ad_hoc_inverse": false,
+    "cells_per_task": 2500,
+    "custom_decoder": false,
+    "dataset": "internal_validation",
+    "mask_percents": [
+      15,
+      30,
+      50
+    ],
+    "official_decoder_only": true,
+    "p2_4096_result_reuse": false,
+    "scfoundation_mapped_genes": 14382,
+    "scientific_result": true,
+    "source_feature_space_genes": 16384
+  },
+  "phase": "P3 16K scFoundation full internal validation",
+  "pretraining_overlap": {
+    "can_be_excluded": false,
+    "report_as_limitation": true
+  },
+  "primary_metrics": [
+    "recovery_index",
+    "gene_spearman",
+    "true_zero_changed_fraction"
+  ],
+  "protocol_id": "sc2-scfoundation-p3-16k-validation-v1",
+  "secondary_metrics": [
+    "masked_mse",
+    "masked_mae",
+    "sample_spearman",
+    "sd_ratio",
+    "true_zero_positive_fill_fraction",
+    "true_zero_negative_fraction"
+  ],
+  "source": {
+    "commit": "397631c495eddf9ad6644fc00c6ea8139e651245",
+    "path": "/home/3159436/sc2/external/foundation_models/scFoundation"
+  },
+  "tasks": [
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_validation",
+      "mask_percent": 15,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask15.npz",
+      "panel_sha256": "285fd6d68216902385c3ecfadc138d9d30ae095cc740ad2fcb58d9c2418730be",
+      "task_id": 0
+    },
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_validation",
+      "mask_percent": 30,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask30.npz",
+      "panel_sha256": "c17b8ed48050dbc805816d0eb4e090c4b6777a2ac034d66a1b0f2c5048e842a4",
+      "task_id": 1
+    },
+    {
+      "availability_source": "implicit_all_4096_internal",
+      "dataset": "internal_validation",
+      "mask_percent": 50,
+      "panel": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask50.npz",
+      "panel_sha256": "0fecceb37296fadd361f8cc293f2d0fd5ad7c65668b19a9d455615cdc0d41f51",
+      "task_id": 2
+    }
+  ]
+}
