@@ -1,0 +1,199 @@
+{
+  "created_utc": "2026-09-18T10:12:12.115019+00:00",
+  "local_hf_load_probe_tasks": [],
+  "models": {
+    "GeneMamba": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "representation_downstream",
+      "weights": []
+    },
+    "Geneformer": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "representation_downstream",
+      "weights": []
+    },
+    "MambaCell": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "compatibility_audit",
+      "weights": []
+    },
+    "RegFormer": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "compatibility_then_representation",
+      "weights": []
+    },
+    "scFoundation": {
+      "hf_loadable_roots": [],
+      "local_roots": [
+        "/home/3159436/sc2/external/foundation_models/scFoundation",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/hooks",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/info",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/logs",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/logs/refs",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/logs/refs/heads",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/logs/refs/remotes",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/objects",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/objects/info",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/objects/pack",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/refs",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/refs/heads",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/refs/remotes",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/refs/remotes/origin",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/.git/refs/tags",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/data",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/data/CCLE",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/data/GDSC",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/data/GDSC/drug_graph_feat",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/prog",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/prog/layers",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/DeepCDR/published",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/GEARS",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/GEARS/data",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/GEARS/gears",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/GEARS/modules",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/GEARS/run_sh",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data/original",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data/original_norm",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data/processing",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data/response",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/data/split_norm",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/model",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/results",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/results/Etoposide",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/results/NVP-TAE684",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/results/PLX4720_451Lu",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/SCAD/results/Sorafenib",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/ablation",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/annotation",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/apiexample",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/apiexample/data",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/enhancement",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/genemodule",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/mapping",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/model",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/model/__pycache__",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/model/models",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/model/pretrainmodels",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/model/pretrainmodels/__pycache__",
+        "/home/3159436/sc2/external/foundation_models/scFoundation/preprocessing"
+      ],
+      "role": "direct_reconstruction_candidate",
+      "weights": [
+        {
+          "path": "/home/3159436/sc2/external/foundation_models/scFoundation/model/models/models.ckpt",
+          "size_bytes": 1432587886,
+          "size_gib": 1.3342014383524656
+        }
+      ]
+    },
+    "scGPT": {
+      "hf_loadable_roots": [],
+      "local_roots": [
+        "/home/3159436/sc2/external/foundation_models/scGPT",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/hooks",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/info",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/logs",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/logs/refs",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/logs/refs/heads",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/logs/refs/remotes",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/objects",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/objects/info",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/objects/pack",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/refs",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/refs/heads",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/refs/remotes",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/refs/remotes/origin",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.git/refs/tags",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.github",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.github/workflows",
+        "/home/3159436/sc2/external/foundation_models/scGPT/.vscode",
+        "/home/3159436/sc2/external/foundation_models/scGPT/data",
+        "/home/3159436/sc2/external/foundation_models/scGPT/data/cellxgene",
+        "/home/3159436/sc2/external/foundation_models/scGPT/docs",
+        "/home/3159436/sc2/external/foundation_models/scGPT/examples",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt/model",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt/scbank",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt/tasks",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt/tokenizer",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scgpt/utils",
+        "/home/3159436/sc2/external/foundation_models/scGPT/scripts",
+        "/home/3159436/sc2/external/foundation_models/scGPT/tests",
+        "/home/3159436/sc2/external/foundation_models/scGPT/tutorials",
+        "/home/3159436/sc2/external/foundation_models/scGPT/tutorials/zero-shot",
+        "/home/3159436/sc2/external/foundation_models/scGPT_human"
+      ],
+      "role": "compatibility_only_without_official_continuous_inverse",
+      "weights": [
+        {
+          "path": "/home/3159436/sc2/external/foundation_models/scGPT_human/best_model.pt",
+          "size_bytes": 205385258,
+          "size_gib": 0.1912799272686243
+        }
+      ]
+    },
+    "scLong": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "representation_downstream",
+      "weights": []
+    },
+    "scPRINT": {
+      "hf_loadable_roots": [],
+      "local_roots": [],
+      "role": "direct_denoising_candidate_after_raw_count_input_audit",
+      "weights": []
+    }
+  },
+  "p3_source_feature_space_genes": 16384,
+  "p3_vocabulary": {
+    "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa"
+  },
+  "remote_candidates_to_size_before_download": {
+    "GeneMamba": {
+      "repo": "mineself2016/GeneMamba",
+      "subfolder": ""
+    },
+    "Geneformer_V2_104M": {
+      "repo": "ctheodoris/Geneformer",
+      "subfolder": "Geneformer-V2-104M"
+    },
+    "Geneformer_V2_316M": {
+      "repo": "ctheodoris/Geneformer",
+      "subfolder": "Geneformer-V2-316M"
+    },
+    "scPRINT": {
+      "repo": "jkobject/scPRINT",
+      "subfolder": ""
+    }
+  },
+  "rules": {
+    "all_new_inputs_derive_from_p3_16k_source": true,
+    "explicit_overlap_or_tokenization_required": true,
+    "full_inference_memory_smoke_before_final_run": true,
+    "isolated_environment_before_scientific_use": true,
+    "native_model_sequence_limit_respected": true,
+    "native_model_vocabulary_respected": true,
+    "no_ad_hoc_continuous_inverse": true,
+    "no_custom_reconstruction_decoder": true,
+    "p2_4096_results_reused": false
+  },
+  "scfoundation_mapping_audit": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_16k_resource_preflight_v1/scfoundation_16k_mapping_audit_v1.json",
+    "sha256": "586012179e7f4a1c756f7f1f03c8a3a212b93efb71ea46d37895c3b88749a796"
+  },
+  "schema": "sc2-p3-foundation-16k-resource-preflight-v1",
+  "source_git_head": "1109100a4411997c4dca0c9d57982c2ca809e897",
+  "status": "READY_FOR_HARDWARE_AND_REMOTE_SIZE_AUDITS",
+  "verified_generic_hf_probe_environments": []
+}
