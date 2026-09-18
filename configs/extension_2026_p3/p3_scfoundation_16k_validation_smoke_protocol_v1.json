@@ -61,6 +61,7 @@
   "output_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_native_smokes_v1/scfoundation/run",
   "p3_16k_smoke_metadata": {
     "ad_hoc_inverse": false,
+    "benchmark_sha256": "fdcfbdcbf5a4d8b9a2a58abaa3e2449861a6a6c2eecaae13b51f16749fab9662",
     "cells": 16,
     "created_utc": "2026-09-18T10:51:36.969939+00:00",
     "custom_decoder": false,
@@ -104,7 +105,7 @@
       "dataset": "baron_pancreas",
       "mask_percent": 15,
       "panel": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_native_smokes_v1/scfoundation/input/validation_mask15_first16.npz",
-      "panel_sha256": "20dd3ef3454c91fad9ef121518827df4b64ced1adb5d1b405e38ab0f6acc498b",
+      "panel_sha256": "fdcfbdcbf5a4d8b9a2a58abaa3e2449861a6a6c2eecaae13b51f16749fab9662",
       "task_id": 0
     }
   ]
