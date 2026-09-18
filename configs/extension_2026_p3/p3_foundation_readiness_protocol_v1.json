@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-09-18T09:18:41.202606+00:00",
+  "p3_vocabulary_size": 16384,
+  "phase": "foundation_model_compatibility_and_runtime_readiness",
+  "rules": {
+    "compatibility_before_benchmark": true,
+    "no_ad_hoc_inverse_transform": true,
+    "no_custom_decoder": true,
+    "no_foundation_model_scientific_inference_in_this_job": true
+  },
+  "schema": "sc2-p3-foundation-readiness-protocol-v1",
+  "source_git_head": "5a3ded90b04a953313e22370bf0a1f12b8048861",
+  "status": "FROZEN_BEFORE_READINESS_AUDIT",
+  "tracks": {
+    "Geneformer": {
+      "intended_role": "downstream representation comparator",
+      "required_action": "source/checkpoint/vocabulary/environment audit"
+    },
+    "additional_candidates": [
+      "scPRINT",
+      "GeneMamba",
+      "MambaCell",
+      "scLong",
+      "RegFormer"
+    ],
+    "scFoundation": {
+      "required_action": "repeat vocabulary overlap, environment, source, checkpoint, and 16K input/output compatibility audit before P3 inference",
+      "starting_point": "reuse pinned P2 official-decoder workflow"
+    },
+    "scGPT": {
+      "required_action": "confirm whether any official continuous inverse has appeared before allowing direct reconstruction",
+      "starting_point": "reuse P2 compatibility audit"
+    }
+  }
+}

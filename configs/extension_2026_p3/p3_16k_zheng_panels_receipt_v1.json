@@ -1,0 +1,22 @@
+{
+  "available_genes": 15683,
+  "cells": 5000,
+  "created_utc": "2026-09-18T09:18:40.849866+00:00",
+  "dataset": "zheng68k",
+  "genes": 16384,
+  "materialization_git_head": "5a3ded90b04a953313e22370bf0a1f12b8048861",
+  "materialization_job_id": 662198,
+  "model_inference_performed": false,
+  "panel_sha256": {
+    "mask15": "338c70ea2a755d00cafdfa3e0dc9dd012fbc5c207835f55c8c43948a4473c076",
+    "mask30": "619ec7bcafd39daa7a1c51bba0aa22744c736d0fde6e3694a05a0286e5d30c8a",
+    "mask50": "71657d901729bf05367cebb36135e3fd4e69ee456f1abf36db84684cacade154",
+    "metadata": "822b58f45cc335d48d4eea6e4e38c6a6a857cbcf25d31fe45ad6259b48b5dd27",
+    "selected_cells": "6dcfd9844c01b5576e6ff065c399e0c559bcdf7acc7a2f488962038aa2e1b19f",
+    "sha_manifest": "9f26804cddb795cbc1d0f058025baf8b8dbd94343759bb685a04f8561fd26f3a"
+  },
+  "schema": "sc2-p3-16k-zheng-panels-receipt-v1",
+  "scientific_qc": "PASS",
+  "status": "FROZEN",
+  "threshold_retuning": false
+}
