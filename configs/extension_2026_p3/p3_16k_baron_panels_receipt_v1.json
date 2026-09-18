@@ -1,0 +1,23 @@
+{
+  "available_genes": 13762,
+  "cells": 5000,
+  "created_utc": "2026-09-18T07:58:04.344954+00:00",
+  "dataset": "baron_pancreas",
+  "genes": 16384,
+  "materialization_git_head": "cdbcaae16a244411897f22a3d4d0ac5b9da8429e",
+  "materialization_job_id": 662078,
+  "model_inference_performed": false,
+  "panel_sha256": {
+    "mask15": "8c90c598f5732e081cf87a69ccdbd5763ad2fb7bb207509b614d4a2da8655199",
+    "mask30": "26c3959a2a557ad8e19aa56a6f0217998c8fa892f234e43429e42254c9a4e7f0",
+    "mask50": "96a33461cece231780d62bc0967c293eb50286df68aefcea4112394fe80031da",
+    "metadata": "46a9ef980d1d24fe5ecc3e1923d8222943de72c59bdc86ef2d84c3ae5bf2b3cb",
+    "selected_cells": "42730645e6b075f7ee09d7b486cc2a0843994acae64a15cc70e643a8eac39c0d",
+    "sha_manifest": "02c5af9852e5e995e84b837816480528d82872576863ffe4a10d56da7d6727d9"
+  },
+  "same_cells_as_p2_external_benchmark": true,
+  "schema": "sc2-p3-16k-baron-panels-receipt-v1",
+  "scientific_qc": "PASS",
+  "status": "FROZEN",
+  "threshold_retuning": false
+}
