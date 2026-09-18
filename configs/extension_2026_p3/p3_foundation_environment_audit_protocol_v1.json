@@ -1,0 +1,45 @@
+{
+  "audit_targets": [
+    "python_version_requirements",
+    "dependency_files",
+    "package_imports",
+    "official_model_load_entrypoint",
+    "official_preprocessing",
+    "native_vocabulary",
+    "native_sequence_limit",
+    "checkpoint_loading",
+    "decoder_or_denoiser_interface",
+    "embedding_interface",
+    "continuous_output_support",
+    "checkpoint_download_references",
+    "estimated_weight_memory",
+    "SC2_evaluation_dependency_compatibility"
+  ],
+  "created_utc": "2026-09-18T10:44:48.318347+00:00",
+  "materialization_receipt": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_materialization_v1/foundation_materialization_receipt_v1.json",
+    "sha256": "e8f382e1ea4a7f5a6450de7e90660682933ec60ca2a3ffc4a93d84b584cc4285"
+  },
+  "models": [
+    "scFoundation",
+    "Geneformer",
+    "GeneMamba",
+    "scPRINT",
+    "scPRINT-2",
+    "scLong",
+    "RegFormer",
+    "scGPT"
+  ],
+  "rules": {
+    "all_P3_inputs_originate_from_16384_gene_space": true,
+    "external_and_SC2_dependencies_verified_before_GPU_use": true,
+    "native_sequence_limits_are_respected": true,
+    "new_scientific_environments_are_isolated": true,
+    "no_ad_hoc_inverse": true,
+    "no_custom_decoder": true
+  },
+  "schema": "sc2-p3-foundation-environment-audit-protocol-v1",
+  "source_feature_space_genes": 16384,
+  "source_git_head": "46de5a36a58048322cc9dfee6af2f5b702c68156",
+  "status": "FROZEN_BEFORE_ENVIRONMENT_AUDIT"
+}
