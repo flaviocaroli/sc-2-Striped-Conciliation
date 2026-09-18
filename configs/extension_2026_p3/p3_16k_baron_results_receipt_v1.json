@@ -1,0 +1,51 @@
+{
+  "aggregate_sha256": {
+    "seed_metrics": "f4efa02d20ae07a5f346050e93edd5bb3a85d429a8e1c0421f9a71f90350dd91",
+    "summary": "bd807005295860d1380d4fe9ac22f5b6973d4b31bad098d81008abe6f2fdb438",
+    "summary_wide": "ba504c5a4e38020e2a64bab9910d0b5cc8b0ae0ceb4e1324171def55f5ae8039"
+  },
+  "architecture_retuning": false,
+  "available_genes": 13762,
+  "cells": 5000,
+  "checkpoint_retuning": false,
+  "checkpoint_step": 5000,
+  "created_utc": "2026-09-18T09:04:50.864754+00:00",
+  "dataset": "baron_pancreas",
+  "evaluations": 15,
+  "genes": 16384,
+  "model": "P3-16K-Small",
+  "next": "Zheng68K normalized masking",
+  "schema": "sc2-p3-16k-baron-results-receipt-v1",
+  "seeds": [
+    20260728,
+    20260729,
+    20260730,
+    20260731,
+    20260801
+  ],
+  "source_git_head": "5dcd5cb99721656ec26a04e64d57d41a3127bd60",
+  "source_summary_sha256": {
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260728/mask15/summary.json": "ff2960078e29a52e46e63997ab651bf16200045ef9a9afc6737e919e10763870",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260728/mask30/summary.json": "16f7b5b14d0089dc714d20e628d2b455f5bb8cebd5c89bef8207481a02bb8d9d",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260728/mask50/summary.json": "37084b0294cd65c8c6a7d6df89dcde967ccf6a1f5581b6f5f322534acb3c9b63",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260729/mask15/summary.json": "a4c62d62203d361f0ec0c27afb6cc5bb4e937cae2a647174c3910f76affa0cb1",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260729/mask30/summary.json": "ccf71d68db3de0a4a1defea0fd68eadc9f160edfa486a6d53d5c296d39b1b3fa",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260729/mask50/summary.json": "3d0af4142a9bfcf333a32560747fb955a76dfb50721282e698330d11683ef4a0",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260730/mask15/summary.json": "c0f60ebd2b7867994c9fb0dc794391ac09f6168e94ccded5fe783b151e54bf97",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260730/mask30/summary.json": "571bb973b10d3e22fab33747c1d01d804c9f307f836c6e1b70a5a27747a4c085",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260730/mask50/summary.json": "412afae5909d1dc4b6f921f0a401c4a6f70b9508ce099630dbbcfff418a83406",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260731/mask15/summary.json": "9124bda8396f1f6952f979b0f8bc9faa10ce5ec5d2e12607d6c2114f0205aff9",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260731/mask30/summary.json": "f40d015c151c4aca5f358aeb5ce36a8fddc5e75d58e71065a6c800137e1d20c4",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260731/mask50/summary.json": "64396cfc6933c67280ab83ec7b89ed3e0b328d5e3beb78247f909ca7ddef9197",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260801/mask15/summary.json": "e238ce0f031d277345266871f226aa88e6c8f5f4a54c502953ea642f64f67e93",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260801/mask30/summary.json": "f8cd2cf9ef7f2615a06d33e42c05c39172fc2b9ca78faaa587c6f040c4159ae0",
+    "/home/3159436/sc2/outputs/paper_extension_2026_p3/p3_10_baron_normalized_v1/s20260801/mask50/summary.json": "3e9db346a8650838c18a082c6391d6ba4a66d340400e96cbb69094a07857b8e4"
+  },
+  "status": "PASS",
+  "threshold_retuning": false,
+  "thresholds": {
+    "mask15": 0.6,
+    "mask30": 0.57,
+    "mask50": 0.52
+  }
+}
