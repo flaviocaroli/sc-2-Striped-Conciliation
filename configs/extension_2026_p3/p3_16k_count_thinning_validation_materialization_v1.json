@@ -1,4 +1,20 @@
 {
+  "amendments": [
+    {
+      "amendment_id": "identity-semantic-hash-correction-v1",
+      "failed_job_id": 664390,
+      "field": "validation.identity_sha256",
+      "final_output_created": false,
+      "identity_tsv_sha256_retained_separately": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+      "model_or_threshold_changed": false,
+      "new_value": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+      "old_value": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+      "p2_p3_validation_obs_order_exact": true,
+      "reason": "The previous value was the SHA256 of the validation identity TSV file. The inherited count-thinning materializer contract requires the semantic SHA256 of the ordered (shard_id,row) arrays.",
+      "scientific_inference_performed": false,
+      "scientific_policy_changed": false
+    }
+  ],
   "base_commit": "5b77dd40615240119af26d2bfb6d42ee4583bc38",
   "feature_space": {
     "n_genes": 16384,
@@ -96,7 +112,7 @@
     },
     "validation_masking_panels": [
       {
-        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
         "mask_percent": 15,
         "n_cells": 2500,
         "n_genes": 16384,
@@ -104,7 +120,7 @@
         "sha256": "285fd6d68216902385c3ecfadc138d9d30ae095cc740ad2fcb58d9c2418730be"
       },
       {
-        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
         "mask_percent": 30,
         "n_cells": 2500,
         "n_genes": 16384,
@@ -112,7 +128,7 @@
         "sha256": "c17b8ed48050dbc805816d0eb4e090c4b6777a2ac034d66a1b0f2c5048e842a4"
       },
       {
-        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
         "mask_percent": 50,
         "n_cells": 2500,
         "n_genes": 16384,
@@ -245,7 +261,10 @@
     "tie_break_2": "choose stricter threshold"
   },
   "validation": {
-    "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+    "identity_semantics": "SHA256 of ordered (shard_id,row) validation identity computed by sc2.data.count_thinning.identity_sha256",
+    "identity_sha256": "72c31838f5c66de9f6542807b67dcea475f169a04ba35eb77da4b2354fcd78e4",
+    "identity_tsv": "/home/3159436/sc2/outputs/paper_extension_2026_p3/validation_masking_v1/identity/validation_identity_v1.tsv",
+    "identity_tsv_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
     "n_cells": 2500,
     "n_genes": 16384,
     "same_cell_identity_across_existing_mask_rates": true,
