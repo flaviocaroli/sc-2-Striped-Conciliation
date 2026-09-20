@@ -136,9 +136,19 @@ def main():
                 "external panel lacks available_gene_mask"
             )
 
-    if x.shape != (2500, 16384):
+    if x.ndim != 2 or x.shape[1] != 16384:
         raise RuntimeError(
             f"unexpected x shape {x.shape}"
+        )
+
+    expected_cells = task.get("expected_cells")
+    if (
+        expected_cells is not None
+        and x.shape[0] != int(expected_cells)
+    ):
+        raise RuntimeError(
+            f"unexpected cell count {x.shape[0]} "
+            f"(expected {expected_cells})"
         )
 
     if y.shape != x.shape:
@@ -657,7 +667,7 @@ def main():
             task["mask_percent"],
 
         "cells":
-            2500,
+            int(n),
 
         "sc2_genes":
             16384,
