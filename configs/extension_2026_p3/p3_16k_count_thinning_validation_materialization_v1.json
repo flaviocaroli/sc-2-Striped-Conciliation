@@ -1,0 +1,254 @@
+{
+  "base_commit": "5b77dd40615240119af26d2bfb6d42ee4583bc38",
+  "feature_space": {
+    "n_genes": 16384,
+    "ordered_vocabulary_path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "ordered_vocabulary_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+    "selection": "Frozen P3 16K training-only vocabulary."
+  },
+  "frozen_sc2": {
+    "candidate": "P3-16K-Small",
+    "checkpoint_step": 5000,
+    "model_seeds": [
+      20260728,
+      20260729,
+      20260730,
+      20260731,
+      20260801
+    ],
+    "models": {
+      "20260728": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260728/checkpoints/step_005000.pt",
+        "checkpoint_sha256": "f9bb3a569af178bc9f19de040322283be390824bc8778b2d889f38fdb61846f3",
+        "checkpoint_step": 5000,
+        "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260728.yaml",
+        "config_sha256": "9afd6bc8e1aa9cb1b2d128554330cb6ebee3dee1cad9a9c8b048c581c6db00c9",
+        "model_seed": 20260728
+      },
+      "20260729": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260729/checkpoints/step_005000.pt",
+        "checkpoint_sha256": "fa15dd0442a38bdc2ac92c353bc75110be3e2656fff17ea3d108408eeb598442",
+        "checkpoint_step": 5000,
+        "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260729.yaml",
+        "config_sha256": "29acad190ad5486584a9485dbec8375f8911880b1dafedce3f5db90ee9ce31ff",
+        "model_seed": 20260729
+      },
+      "20260730": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260730/checkpoints/step_005000.pt",
+        "checkpoint_sha256": "c597a1be8d7cda5ca9c7520ed4f9746b5392f6526ebc7a11942ea011478360d2",
+        "checkpoint_step": 5000,
+        "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260730.yaml",
+        "config_sha256": "503d7a85ad5f7fe7779c6ae059c85074109c834abcfd41a57f82d38efe8ff319",
+        "model_seed": 20260730
+      },
+      "20260731": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260731/checkpoints/step_005000.pt",
+        "checkpoint_sha256": "ccfce20042d24c19af7715a6de37cdc2d667dca17701e37e3e59dbafadf777f1",
+        "checkpoint_step": 5000,
+        "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260731.yaml",
+        "config_sha256": "bf47931c721fe9f6c93874bb8bf321512ace7248f28232b7caa002d805c7da6d",
+        "model_seed": 20260731
+      },
+      "20260801": {
+        "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260801/checkpoints/step_005000.pt",
+        "checkpoint_sha256": "fe32d731853924bd03bfbd02f00d8a3f33285ed1945d95881165ef4d012245e0",
+        "checkpoint_step": 5000,
+        "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260801.yaml",
+        "config_sha256": "501e6142fe84ce5886540273b0188d7b63c9c7d2ff3555f09c0bf1fec4ca1a4a",
+        "model_seed": 20260801
+      }
+    }
+  },
+  "implementation": {
+    "materializer_path": "/home/3159436/sc2/code/scripts/data/materialize_count_thinning_panels_p3_16k.py",
+    "materializer_sha256": "0ebe36b847bea7b048d161b945d2cc6e74a7f4262fa829cbc75c43abf13d5c64"
+  },
+  "information_barrier": {
+    "baron_pancreas_locked": true,
+    "internal_test_locked": true,
+    "internal_validation_allowed": true,
+    "zheng68k_locked": true
+  },
+  "output": {
+    "root": "/scratch/3159436/sc2_p3/outputs/count_thinning_v1/validation_panels_v1"
+  },
+  "phase": "P3 16K count-thinning internal-validation materialization",
+  "protocol_id": "sc2-p3-16k-count-thinning-validation-materialization-v1",
+  "schema_version": 1,
+  "scientific_question": "Does frozen P3-16K-Small remain useful when raw molecules are thinned before 16K CP10K+log1p normalization?",
+  "scope": {
+    "current_phase": "internal_validation_panel_materialization",
+    "locked_until_validation_settings_are_frozen": [
+      "internal_test",
+      "baron_pancreas",
+      "zheng68k"
+    ],
+    "materialize_now": [
+      "internal_validation"
+    ],
+    "primary_sc2_analysis": "zero_shot_frozen_model",
+    "thinning_aware_retraining_allowed_now": false
+  },
+  "sources": {
+    "corpus_manifest": {
+      "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/shards.parquet",
+      "sha256": "a73839f78c26684bdc1d1f2a01543816a1549c0082af3d47955104dd94e8dcf8"
+    },
+    "validation_masking_panels": [
+      {
+        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "mask_percent": 15,
+        "n_cells": 2500,
+        "n_genes": 16384,
+        "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask15.npz",
+        "sha256": "285fd6d68216902385c3ecfadc138d9d30ae095cc740ad2fcb58d9c2418730be"
+      },
+      {
+        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "mask_percent": 30,
+        "n_cells": 2500,
+        "n_genes": 16384,
+        "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask30.npz",
+        "sha256": "c17b8ed48050dbc805816d0eb4e090c4b6777a2ac034d66a1b0f2c5048e842a4"
+      },
+      {
+        "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+        "mask_percent": 50,
+        "n_cells": 2500,
+        "n_genes": 16384,
+        "path": "/scratch/3159436/sc2_p3/data/census_curated_pretrain_pilot250k_g16384/benchmarks/validation_masking_v1/validation_mask50.npz",
+        "sha256": "0fecceb37296fadd361f8cc293f2d0fd5ad7c65668b19a9d455615cdc0d41f51"
+      }
+    ]
+  },
+  "thinning": {
+    "depth_retention_fractions": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "distribution": "C_thin_ig ~ Binomial(C_full_ig, q)",
+    "expected_validation_panel_count": 15,
+    "full_depth_target": "Recompute CP10K/log1p from frozen raw counts and require exact equality with frozen P3 validation y.",
+    "lost_positive_definition": "(C_full > 0) AND (C_thin == 0) AND available",
+    "nominal_count_loss_fractions": [
+      0.15,
+      0.3,
+      0.5
+    ],
+    "normalization": "Recompute library totals over the frozen 16384-gene vocabulary after thinning, then CP10K and log1p.",
+    "originally_zero_definition": "(C_full == 0) AND available",
+    "panel_specs": [
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 1,
+        "seed": 2026082501
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 2,
+        "seed": 2026082502
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 3,
+        "seed": 2026082503
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 4,
+        "seed": 2026082504
+      },
+      {
+        "nominal_count_loss": 0.15000000000000002,
+        "q": 0.85,
+        "replicate": 5,
+        "seed": 2026082505
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 1,
+        "seed": 2026082511
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 2,
+        "seed": 2026082512
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 3,
+        "seed": 2026082513
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 4,
+        "seed": 2026082514
+      },
+      {
+        "nominal_count_loss": 0.30000000000000004,
+        "q": 0.7,
+        "replicate": 5,
+        "seed": 2026082515
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 1,
+        "seed": 2026082521
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 2,
+        "seed": 2026082522
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 3,
+        "seed": 2026082523
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 4,
+        "seed": 2026082524
+      },
+      {
+        "nominal_count_loss": 0.5,
+        "q": 0.5,
+        "replicate": 5,
+        "seed": 2026082525
+      }
+    ],
+    "replicates_per_depth": 5,
+    "unavailable_gene_rule": "Set unavailable genes to zero before library-size denominator.",
+    "zero_library_cell_rule": "STOP"
+  },
+  "threshold_selection_rule": {
+    "P2_thinning_thresholds_forbidden": true,
+    "eligibility": "true_zero_fill <= 0.02 in every P3 validation run",
+    "must_use_internal_validation_only": true,
+    "normalized_mask_thresholds_forbidden": true,
+    "one_common_threshold_per_q": true,
+    "primary": "maximize mean recall",
+    "tie_break_1": "maximize mean precision",
+    "tie_break_2": "choose stricter threshold"
+  },
+  "validation": {
+    "identity_sha256": "53d415b17cd45e6fb9b61f0f2069ded13df44ccbd1b810b2322a869341c1c38e",
+    "n_cells": 2500,
+    "n_genes": 16384,
+    "same_cell_identity_across_existing_mask_rates": true,
+    "same_full_depth_target_across_existing_mask_rates": true
+  }
+}
