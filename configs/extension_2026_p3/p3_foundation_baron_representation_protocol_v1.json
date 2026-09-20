@@ -1,0 +1,95 @@
+{
+  "cells": 5000,
+  "classifier": {
+    "C": 1.0,
+    "all_preprocessing_fit_on_training_donors_only": true,
+    "class_weight": "balanced",
+    "family": "logistic_regression",
+    "max_iter": 2000,
+    "pca_components": 50,
+    "pca_solver": "randomized",
+    "primary_metric": "macro_f1",
+    "random_state": 20260825,
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "log_loss",
+      "per_class_f1"
+    ],
+    "solver": "lbfgs",
+    "standard_scaler": true
+  },
+  "dataset": "baron_pancreas",
+  "embedding_output_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings",
+  "freeze_base_commit": "61d55fcf9283ecc965dfe57b0c328d0c3da2f615",
+  "implementation": {
+    "embedding_runner": "/home/3159436/sc2/code/scripts/extension_2026_p3/run_foundation_baron_embeddings_v1.py",
+    "embedding_runner_sha256": "c9596224497db67aa57df298a467676423085b5399292e8e433f4bc1a25efa48"
+  },
+  "input_bundle": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/baron5000_raw_counts_g16384.npz",
+    "receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_raw16k_receipt_v1.json",
+    "receipt_sha256": "556f46777f92f1b803d0f5258e23f455c1113133f2b4fe74e5a23fd766bfbe13",
+    "sha256": "7316ccc0efe849ff06a09148f09adc0b2ae7cf0e13ce10a2ec29d095bb472c0d"
+  },
+  "lodo_output_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/lodo_v1",
+  "lodo_tasks": [
+    {
+      "model": "Geneformer",
+      "task_id": 0
+    },
+    {
+      "model": "GeneMamba",
+      "task_id": 1
+    }
+  ],
+  "model_selection": false,
+  "models": {
+    "GeneMamba": {
+      "ad_hoc_inverse": false,
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/GeneMamba",
+      "checkpoint_file": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/GeneMamba/model.safetensors",
+      "checkpoint_sha256": "ccb1fcb0ee4b3ea2013099b9b187455e160d3b66b76c606715231b70b13c2784",
+      "custom_decoder": false,
+      "embedding_dim": 512,
+      "exact_p3_vocab_overlap": 14576,
+      "native_context_limit": 2048,
+      "output_dir": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/GeneMamba",
+      "pooling": "mean_last_hidden_state",
+      "role": "representation_downstream",
+      "source": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/GeneMamba",
+      "source_commit": "22f571a8d48256894de05e9d87ea9ec6caa338c0"
+    },
+    "Geneformer": {
+      "ad_hoc_inverse": false,
+      "auxiliary": {
+        "gene_mapping": {
+          "path": "/home/3159436/sc2/external/foundation_models/p3_16k/geneformer_aux_v1/geneformer/ensembl_mapping_dict_gc104M.pkl",
+          "sha256": "0819bcbd869cfa14279449b037eb9ed1d09a91310e77bd1a19d927465030e95c"
+        },
+        "gene_median": {
+          "path": "/home/3159436/sc2/external/foundation_models/p3_16k/geneformer_aux_v1/geneformer/gene_median_dictionary_gc104M.pkl",
+          "sha256": "a51c53f6a771d64508dfaf61529df70e394c53bd20856926117ae5d641a24bf5"
+        },
+        "token_dictionary": {
+          "path": "/home/3159436/sc2/external/foundation_models/p3_16k/geneformer_aux_v1/geneformer/token_dictionary_gc104M.pkl",
+          "sha256": "67c445f4385127adfc48dcc072320cd65d6822829bf27dd38070e6e787bc597f"
+        }
+      },
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/Geneformer-V2-104M",
+      "checkpoint_file": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/Geneformer-V2-104M/model.safetensors",
+      "checkpoint_sha256": "fff5cba29ddd8792991fa77b4872246fbe548a178cebda3775cdc72b67780e7f",
+      "custom_decoder": false,
+      "embedding_dim": 768,
+      "native_context_limit": 4096,
+      "output_dir": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/Geneformer",
+      "pooling": "mean_last_hidden_state",
+      "role": "representation_downstream",
+      "source": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/Geneformer",
+      "source_commit": "1f7fbae4e469a5f4f1af8c111a529cfe1b3829f5"
+    }
+  },
+  "schema": "sc2-p3-foundation-baron-representation-v1",
+  "scientific_result": true,
+  "source_feature_space_genes": 16384,
+  "status": "FROZEN_BEFORE_FULL_EMBEDDING_INFERENCE"
+}
