@@ -1,0 +1,67 @@
+{
+  "ad_hoc_inverse": false,
+  "cells_per_task": 5000,
+  "custom_decoder": false,
+  "dataset": "zheng68k",
+  "dataset_available_genes": 15683,
+  "evaluated_genes": 14203,
+  "job_id": 664361,
+  "mask_conditions": [
+    15,
+    30,
+    50
+  ],
+  "metrics": {
+    "mask15": {
+      "gene_spearman": 0.2074966859608267,
+      "masked_mae": 2.0244531631469727,
+      "masked_mse": 4.430435657501221,
+      "n_masked": 396540,
+      "recovery_index": -6.058771944676022,
+      "sample_spearman": 0.31483027528038127,
+      "sd_ratio": 1.1762528308209395,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/zheng_v1/task_00_zheng68k_mask15/summary.json",
+      "summary_sha256": "f21bd933876fe441deb6e50f6797ae2b555b4a7d19f72485497081bf4300860e"
+    },
+    "mask30": {
+      "gene_spearman": 0.17443689200061457,
+      "masked_mae": 1.9737582206726074,
+      "masked_mse": 4.261185646057129,
+      "n_masked": 792959,
+      "recovery_index": -5.789348037317176,
+      "sample_spearman": 0.30537939199164255,
+      "sd_ratio": 1.2846064274139142,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/zheng_v1/task_01_zheng68k_mask30/summary.json",
+      "summary_sha256": "876862053781e6540471b72bd9c5d2c8f0dee59825a40191fde7347732b39a2a"
+    },
+    "mask50": {
+      "gene_spearman": 0.12685069660886203,
+      "masked_mae": 1.862291693687439,
+      "masked_mse": 3.9073946475982666,
+      "n_masked": 1322121,
+      "recovery_index": -5.2239088180525535,
+      "sample_spearman": 0.29283267398424334,
+      "sd_ratio": 1.4843959046052841,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/zheng_v1/task_02_zheng68k_mask50/summary.json",
+      "summary_sha256": "d04e086be670287f61da3b621eccb0eef91945e8cdb2df8f8b8cb65a529332ac"
+    }
+  },
+  "model": "scFoundation",
+  "official_decoder_only": true,
+  "qc": {
+    "all_5000_cells": true,
+    "all_metrics_finite": true,
+    "all_status_pass": true,
+    "observed_nonzero_preserved_exactly": true,
+    "sha256_manifests_verified": true,
+    "slurm_completed_zero_exit": true,
+    "three_tasks_present": true
+  },
+  "scfoundation_mapped_genes": 14382,
+  "schema": "sc2-p3-scfoundation-16k-zheng-results-v1",
+  "scientific_result": true,
+  "source_genes": 16384,
+  "source_git_head": "34fedfb492ff2b5bc3625459c7d062ad638c7768",
+  "status": "PASS",
+  "threshold": null
+}

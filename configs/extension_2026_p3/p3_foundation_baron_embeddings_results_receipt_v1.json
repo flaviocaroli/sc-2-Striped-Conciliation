@@ -1,0 +1,47 @@
+{
+  "cells": 5000,
+  "dataset": "baron_pancreas",
+  "models": {
+    "GeneMamba": {
+      "checkpoint_sha256": "ccb1fcb0ee4b3ea2013099b9b187455e160d3b66b76c606715231b70b13c2784",
+      "embedding_dim": 512,
+      "embedding_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/GeneMamba/embedding.npz",
+      "embedding_sha256": "63d27903aaa15832a5b36418b8f9db821e683109288bfed4abb68bcbab7df1dc",
+      "job_id": 664363,
+      "peak_gpu_memory_mib": 521.9423828125,
+      "receipt_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/GeneMamba/receipt.json",
+      "receipt_sha256": "4f85a578c2de0a22b15f8024dfd02b89382a3973b328f53679f358539e152f68",
+      "sequence_length_max": 2048,
+      "sequence_length_min": 710,
+      "source_commit": "22f571a8d48256894de05e9d87ea9ec6caa338c0"
+    },
+    "Geneformer": {
+      "checkpoint_sha256": "fff5cba29ddd8792991fa77b4872246fbe548a178cebda3775cdc72b67780e7f",
+      "embedding_dim": 768,
+      "embedding_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/Geneformer/embedding.npz",
+      "embedding_sha256": "0c8a038d01d70d88832dd8495560bc09e2c5e9b8dff11c6821d2825ebaf78d12",
+      "job_id": 664362,
+      "peak_gpu_memory_mib": 574.8466796875,
+      "receipt_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/embeddings/Geneformer/receipt.json",
+      "receipt_sha256": "cb59ffd6603d46e01eda72e7109642d83df122381073543a4ecd2b8e09ff9c26",
+      "sequence_length_max": 4096,
+      "sequence_length_min": 714,
+      "source_commit": "1f7fbae4e469a5f4f1af8c111a529cfe1b3829f5"
+    }
+  },
+  "qc": {
+    "all_embeddings_finite": true,
+    "all_expected_shapes": true,
+    "cell_id_exact": true,
+    "cell_type_exact": true,
+    "donor_exact": true,
+    "sha256_manifests_verified": true,
+    "slurm_completed_zero_exit": true,
+    "source_row_exact": true
+  },
+  "schema": "sc2-p3-foundation-baron-embeddings-results-v1",
+  "scientific_result": true,
+  "source_feature_space_genes": 16384,
+  "source_git_head": "34fedfb492ff2b5bc3625459c7d062ad638c7768",
+  "status": "PASS"
+}

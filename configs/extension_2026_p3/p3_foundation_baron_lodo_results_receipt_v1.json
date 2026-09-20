@@ -1,0 +1,61 @@
+{
+  "classifier": {
+    "class_weight": "balanced",
+    "logistic_regression": true,
+    "pca_components": 50,
+    "standard_scaler": true,
+    "training_only_preprocessing": true
+  },
+  "dataset": "baron_pancreas",
+  "design": "four_fold_leave_one_donor_out",
+  "job_id": 664364,
+  "models": {
+    "GeneMamba": {
+      "balanced_accuracy_mean": 0.2269579878233595,
+      "embedding_dim": 512,
+      "embedding_sha256": "63d27903aaa15832a5b36418b8f9db821e683109288bfed4abb68bcbab7df1dc",
+      "fold_metrics_sha256": "a8723afde76f4249804d2aacb60e92bd6f3355f6886ecf91b55c1fb86ace8faf",
+      "log_loss_mean": 2.2124709486961365,
+      "macro_f1_by_donor": {
+        "human1": 0.1980291892689394,
+        "human2": 0.1735575287811369,
+        "human3": 0.1472033191473946,
+        "human4": 0.1677536467995277
+      },
+      "macro_f1_mean": 0.17163592099924968,
+      "macro_f1_min": 0.1472033191473946,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/lodo_v1/task_01_GeneMamba/summary.json",
+      "summary_sha256": "3eb4a9a10b9e8b9e4390e98107f96ee6fa25f4e0fbc62213cac0c9f1e276cab8"
+    },
+    "Geneformer": {
+      "balanced_accuracy_mean": 0.8491747436117235,
+      "embedding_dim": 768,
+      "embedding_sha256": "0c8a038d01d70d88832dd8495560bc09e2c5e9b8dff11c6821d2825ebaf78d12",
+      "fold_metrics_sha256": "c524e55885c7d3e7a0db95a270bd43fdf2667ae9fdf5a57a2aa200f1055427a3",
+      "log_loss_mean": 0.39613695442676544,
+      "macro_f1_by_donor": {
+        "human1": 0.8779308076033524,
+        "human2": 0.8217809284334011,
+        "human3": 0.7387596570791097,
+        "human4": 0.8086728810784026
+      },
+      "macro_f1_mean": 0.8117860685485665,
+      "macro_f1_min": 0.7387596570791097,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/lodo_v1/task_00_Geneformer/summary.json",
+      "summary_sha256": "be0560ee0166dcf0727470b25d05ea6002a75a2f02fa4f005752b116aa493344"
+    }
+  },
+  "primary_metric": "donor_heldout_macro_f1",
+  "qc": {
+    "all_status_pass": true,
+    "exact_embedding_alignment": true,
+    "four_donors_each_model": true,
+    "sha256_manifests_verified": true,
+    "slurm_completed_zero_exit": true,
+    "training_only_preprocessing": true
+  },
+  "schema": "sc2-p3-foundation-baron-lodo-results-v1",
+  "scientific_result": true,
+  "source_git_head": "34fedfb492ff2b5bc3625459c7d062ad638c7768",
+  "status": "PASS"
+}
