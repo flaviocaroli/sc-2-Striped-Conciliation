@@ -1,0 +1,71 @@
+{
+  "candidate": "P3-16K-Small",
+  "checkpoint_step": 5000,
+  "information_barrier": {
+    "P2_thresholds_used": false,
+    "baron_used": false,
+    "internal_test_used": false,
+    "normalized_mask_thresholds_used": false,
+    "zheng68k_used": false
+  },
+  "model_seeds": 5,
+  "next_allowed_action": "Confirmatory P3-16K count-thinning evaluation on Internal Test, Baron pancreas and Zheng68K using these thresholds unchanged.",
+  "q_values": [
+    0.85,
+    0.7,
+    0.5
+  ],
+  "runs_per_q": 25,
+  "schema": "sc2-p3-16k-count-thinning-selected-thresholds-v1",
+  "selected_thresholds_output": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/validation_threshold_selection_v1/selected_thresholds.json",
+    "sha256": "eda93cd6df82a06911d34ae2578f7f0e2ab6262e62b0d30e5cb45d824ca474c9"
+  },
+  "selection_data": "internal_validation_only",
+  "selection_rule": {
+    "eligibility": "true_zero_fill <= 0.02 in every one of 25 validation runs",
+    "primary": "maximize mean recall",
+    "tie_break_1": "maximize mean precision",
+    "tie_break_2": "higher/stricter threshold"
+  },
+  "selection_sha_manifest": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/validation_threshold_selection_v1/SHA256SUMS.txt",
+    "sha256": "e4f0e17136690ce7ab9d08fe16580f5e610c7bde693ec34038306d535f197e3c"
+  },
+  "selector_job": 664396,
+  "source_git_head": "7dcba1e1db4430e9391c58e850c767c84aa6f757",
+  "status": "FROZEN",
+  "thinning_replicates": 5,
+  "thresholds": {
+    "0.50": {
+      "max_true_zero_fill": 0.0188180107257764,
+      "mean_precision": 0.24604242180342542,
+      "mean_recall": 0.07756282796358058,
+      "mean_true_zero_fill": 0.015000777975186423,
+      "n_runs": 25,
+      "threshold": 0.5750000000000001
+    },
+    "0.70": {
+      "max_true_zero_fill": 0.0197946294842199,
+      "mean_precision": 0.13837567356439362,
+      "mean_recall": 0.07340736806271692,
+      "mean_true_zero_fill": 0.016001488979603785,
+      "n_runs": 25,
+      "threshold": 0.6
+    },
+    "0.85": {
+      "max_true_zero_fill": 0.0199297771854942,
+      "mean_precision": 0.06583383611980163,
+      "mean_recall": 0.06627534957044451,
+      "mean_true_zero_fill": 0.015614078588187218,
+      "n_runs": 25,
+      "threshold": 0.615
+    }
+  },
+  "validation_array_job": 664395,
+  "validation_evaluations": 75,
+  "validation_inference_protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_validation_inference_v1.json",
+    "sha256": "21d51378ad983e9df66744a53fdcf9acb3192ff97f94c9d7c4cd349d0de49cc8"
+  }
+}
