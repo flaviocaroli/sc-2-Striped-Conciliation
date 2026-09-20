@@ -1,0 +1,82 @@
+{
+  "ad_hoc_inverse": false,
+  "cells_per_task": 5000,
+  "custom_decoder": false,
+  "dataset": "internal_test",
+  "job_id": 664087,
+  "mask_conditions": [
+    15,
+    30,
+    50
+  ],
+  "metrics": {
+    "mask15": {
+      "gene_spearman": 0.43791085081109915,
+      "masked_mae": 1.034887671470642,
+      "masked_mse": 1.3842209577560425,
+      "n_masked": 1329451,
+      "recovery_index": -1.317236766337388,
+      "sample_spearman": 0.5147703904214793,
+      "sd_ratio": 0.896561385314049,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/internal_test_v1/task_00_internal_test_mask15/summary.json",
+      "summary_sha256": "55b0c42d41630f32dbb0f2eeb1e6d69202b39cf9ace7974509f7b03971c787ad",
+      "true_zero_changed_fraction": 0.9999991593656383,
+      "true_zero_negative_fraction": 0.33189264464759777,
+      "true_zero_positive_fill_fraction": 0.6681065147180405
+    },
+    "mask30": {
+      "gene_spearman": 0.39841034792288443,
+      "masked_mae": 1.0476572513580322,
+      "masked_mse": 1.406685709953308,
+      "n_masked": 2658267,
+      "recovery_index": -1.3568817764076266,
+      "sample_spearman": 0.48901530362997236,
+      "sd_ratio": 0.9152275974169007,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/internal_test_v1/task_01_internal_test_mask30/summary.json",
+      "summary_sha256": "3808d27cbed3b3a593fde832cf3e823e65bd98f5504bc42e8d39721340edde52",
+      "true_zero_changed_fraction": 0.9999993972810237,
+      "true_zero_negative_fraction": 0.3530820867558453,
+      "true_zero_positive_fill_fraction": 0.6469173105251784
+    },
+    "mask50": {
+      "gene_spearman": 0.3457093660176437,
+      "masked_mae": 1.0689752101898193,
+      "masked_mse": 1.4422122240066528,
+      "n_masked": 4431414,
+      "recovery_index": -1.4145676541270293,
+      "sample_spearman": 0.45330430414739786,
+      "sd_ratio": 0.9453288850711177,
+      "summary_path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_models/scfoundation/internal_test_v1/task_02_internal_test_mask50/summary.json",
+      "summary_sha256": "c5c52ef317179358ad1d865f93bfa5555c038cf4695b1e4b8a2f1f0bcce255bb",
+      "true_zero_changed_fraction": 0.9999991910876896,
+      "true_zero_negative_fraction": 0.3936036924467813,
+      "true_zero_positive_fill_fraction": 0.6063954986409084
+    }
+  },
+  "model": "scFoundation",
+  "next": "Proceed to frozen Baron scFoundation evaluation with identical model/mapping/inference semantics; no retuning.",
+  "observed_nonzero_policy": "copy observed nonzero input exactly",
+  "official_decoder_only": true,
+  "pretraining_overlap_excluded": false,
+  "protocol": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scfoundation_16k_internal_test_protocol_v1.json",
+  "protocol_sha256": "24902c0041b34c3e38ae56459e2f883934b99dc23034d854acc202a8ed1b32f0",
+  "qc": {
+    "all_14382_mapped_genes": true,
+    "all_5000_cells": true,
+    "all_metrics_finite": true,
+    "all_status_pass": true,
+    "observed_nonzero_changed_fraction_zero": true,
+    "panel_hashes_match_protocol": true,
+    "sha256_manifests_verified": true,
+    "slurm_completed_zero_exit": true,
+    "three_tasks_present": true
+  },
+  "scfoundation_mapped_genes": 14382,
+  "schema": "sc2-p3-scfoundation-16k-internal-test-results-v1",
+  "scientific_result": true,
+  "source_genes": 16384,
+  "source_git_head": "65b087e2d87f2664f2b13e70f11ea4837a43338b",
+  "status": "PASS",
+  "threshold": null,
+  "threshold_policy": "No selective threshold: official scFoundation continuous decoder evaluated directly."
+}
