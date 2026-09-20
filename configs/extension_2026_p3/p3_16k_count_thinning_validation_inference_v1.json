@@ -1,0 +1,298 @@
+{
+  "candidate": "P3-16K-Small",
+  "checkpoint_step": 5000,
+  "common_threshold_selection": {
+    "eligibility": "true_zero_fill <= 0.02 in every validation run",
+    "max_true_zero_fill": 0.02,
+    "objective_order": [
+      "maximize mean recall",
+      "maximize mean precision",
+      "choose stricter higher threshold"
+    ],
+    "runs_per_q": 25,
+    "selection_timing": "after all 75 validation evaluations pass QC",
+    "selection_unit": "one common threshold per q",
+    "test_or_external_data_allowed": false
+  },
+  "freeze_base_commit": "7c9b66f6bea83386c8e870a0f451036809902ef6",
+  "implementation": {
+    "base_evaluator": {
+      "path": "/home/3159436/sc2/code/src/sc2/eval/evaluate_continuous_repair.py",
+      "sha256": "0ad12e542f46aca0ab13ba193f7ab22847fdf92f294a8f930ee7e83567118128"
+    },
+    "task_runner": {
+      "path": "/home/3159436/sc2/code/scripts/eval/run_p3_16k_count_thinning_validation_task_v1.py",
+      "sha256": "7905e1dcbeda2ce372facc7b528bc43fb52f93365c5abda7527e3b2022ed5207"
+    },
+    "threshold_selector": {
+      "path": "/home/3159436/sc2/code/scripts/eval/select_p3_16k_count_thinning_thresholds_v1.py",
+      "sha256": "ae97168c59cbca13267fcd42f49193e045b6d30192ec0f2ff6742cc490bb0104"
+    }
+  },
+  "information_barrier": {
+    "P2_thinning_thresholds_used": false,
+    "baron_accessed": false,
+    "internal_test_accessed": false,
+    "internal_validation_allowed": true,
+    "normalized_mask_thresholds_used": false,
+    "zheng68k_accessed": false
+  },
+  "models": {
+    "20260728": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260728/checkpoints/step_005000.pt",
+      "checkpoint_sha256": "f9bb3a569af178bc9f19de040322283be390824bc8778b2d889f38fdb61846f3",
+      "checkpoint_step": 5000,
+      "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260728.yaml",
+      "config_sha256": "9afd6bc8e1aa9cb1b2d128554330cb6ebee3dee1cad9a9c8b048c581c6db00c9",
+      "model_seed": 20260728
+    },
+    "20260729": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260729/checkpoints/step_005000.pt",
+      "checkpoint_sha256": "fa15dd0442a38bdc2ac92c353bc75110be3e2656fff17ea3d108408eeb598442",
+      "checkpoint_step": 5000,
+      "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260729.yaml",
+      "config_sha256": "29acad190ad5486584a9485dbec8375f8911880b1dafedce3f5db90ee9ce31ff",
+      "model_seed": 20260729
+    },
+    "20260730": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260730/checkpoints/step_005000.pt",
+      "checkpoint_sha256": "c597a1be8d7cda5ca9c7520ed4f9746b5392f6526ebc7a11942ea011478360d2",
+      "checkpoint_step": 5000,
+      "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260730.yaml",
+      "config_sha256": "503d7a85ad5f7fe7779c6ae059c85074109c834abcfd41a57f82d38efe8ff319",
+      "model_seed": 20260730
+    },
+    "20260731": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260731/checkpoints/step_005000.pt",
+      "checkpoint_sha256": "ccfce20042d24c19af7715a6de37cdc2d667dca17701e37e3e59dbafadf777f1",
+      "checkpoint_step": 5000,
+      "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260731.yaml",
+      "config_sha256": "bf47931c721fe9f6c93874bb8bf321512ace7248f28232b7caa002d805c7da6d",
+      "model_seed": 20260731
+    },
+    "20260801": {
+      "checkpoint_path": "/home/3159436/sc2/outputs/sc2_p3_16k_small_5k_s20260801/checkpoints/step_005000.pt",
+      "checkpoint_sha256": "fe32d731853924bd03bfbd02f00d8a3f33285ed1945d95881165ef4d012245e0",
+      "checkpoint_step": 5000,
+      "config_path": "/home/3159436/sc2/code/configs/train/extension_2026_p3/production/sc2_p3_16k_small_5k_s20260801.yaml",
+      "config_sha256": "501e6142fe84ce5886540273b0188d7b63c9c7d2ff3555f09c0bf1fec4ca1a4a",
+      "model_seed": 20260801
+    }
+  },
+  "output": {
+    "expected_q_subdirectories_per_task": 3,
+    "expected_task_directories": 25,
+    "root": "/scratch/3159436/sc2_p3/outputs/count_thinning_v1/validation_inference_v1",
+    "selection_output": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/validation_threshold_selection_v1"
+  },
+  "panels": {
+    "cells_per_panel": 2500,
+    "genes": 16384,
+    "n_panels": 15,
+    "receipt_path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_validation_panels_receipt_v1.json",
+    "receipt_sha256": "ded2bcfe012422c2a4bc8ce88d9e6c8dcc6da3275efde616307939fcce955196",
+    "root": "/scratch/3159436/sc2_p3/outputs/count_thinning_v1/validation_panels_v1"
+  },
+  "protocol_id": "sc2-p3-16k-count-thinning-validation-inference-v1",
+  "runtime_control": {
+    "must_not_be_reported_as_selected_threshold": true,
+    "placeholder_threshold": 1.0,
+    "purpose": "Suppress per-panel automatic threshold selection while retaining the complete 201-point validation threshold sweep.",
+    "scientific_threshold": false
+  },
+  "schema": "sc2-p3-16k-count-thinning-validation-inference-v1",
+  "scientific_contract": {
+    "architecture_retuning": false,
+    "checkpoint_retuning": false,
+    "external_data_used_for_selection": false,
+    "thinning_aware_retraining": false,
+    "threshold_selection": "P3 internal validation only"
+  },
+  "scientific_scope": "internal_validation_only",
+  "source_feature_space_genes": 16384,
+  "status": "FROZEN_BEFORE_VALIDATION_INFERENCE",
+  "task_layout": {
+    "array_task_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "evaluations_per_task": 3,
+    "model_seeds": [
+      20260728,
+      20260729,
+      20260730,
+      20260731,
+      20260801
+    ],
+    "n_array_tasks": 25,
+    "q_order": [
+      0.85,
+      0.7,
+      0.5
+    ],
+    "replicates": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tasks": [
+      {
+        "model_seed": 20260728,
+        "replicate": 1,
+        "task_id": 0
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 2,
+        "task_id": 1
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 3,
+        "task_id": 2
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 4,
+        "task_id": 3
+      },
+      {
+        "model_seed": 20260728,
+        "replicate": 5,
+        "task_id": 4
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 1,
+        "task_id": 5
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 2,
+        "task_id": 6
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 3,
+        "task_id": 7
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 4,
+        "task_id": 8
+      },
+      {
+        "model_seed": 20260729,
+        "replicate": 5,
+        "task_id": 9
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 1,
+        "task_id": 10
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 2,
+        "task_id": 11
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 3,
+        "task_id": 12
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 4,
+        "task_id": 13
+      },
+      {
+        "model_seed": 20260730,
+        "replicate": 5,
+        "task_id": 14
+      },
+      {
+        "model_seed": 20260731,
+        "replicate": 1,
+        "task_id": 15
+      },
+      {
+        "model_seed": 20260731,
+        "replicate": 2,
+        "task_id": 16
+      },
+      {
+        "model_seed": 20260731,
+        "replicate": 3,
+        "task_id": 17
+      },
+      {
+        "model_seed": 20260731,
+        "replicate": 4,
+        "task_id": 18
+      },
+      {
+        "model_seed": 20260731,
+        "replicate": 5,
+        "task_id": 19
+      },
+      {
+        "model_seed": 20260801,
+        "replicate": 1,
+        "task_id": 20
+      },
+      {
+        "model_seed": 20260801,
+        "replicate": 2,
+        "task_id": 21
+      },
+      {
+        "model_seed": 20260801,
+        "replicate": 3,
+        "task_id": 22
+      },
+      {
+        "model_seed": 20260801,
+        "replicate": 4,
+        "task_id": 23
+      },
+      {
+        "model_seed": 20260801,
+        "replicate": 5,
+        "task_id": 24
+      }
+    ],
+    "total_evaluations": 75
+  },
+  "threshold_grid": {
+    "maximum": 1.0,
+    "minimum": 0.0,
+    "n_candidates": 201,
+    "step": 0.005
+  }
+}
