@@ -1,0 +1,687 @@
+{
+  "aggregate_output": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1",
+  "available_genes": 13762,
+  "baron_panels": {
+    "15": {
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask15.npz",
+      "sha256": "8c90c598f5732e081cf87a69ccdbd5763ad2fb7bb207509b614d4a2da8655199",
+      "threshold": 0.6
+    },
+    "30": {
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask30.npz",
+      "sha256": "26c3959a2a557ad8e19aa56a6f0217998c8fa892f234e43429e42254c9a4e7f0",
+      "threshold": 0.5700000000000001
+    },
+    "50": {
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask50.npz",
+      "sha256": "96a33461cece231780d62bc0967c293eb50286df68aefcea4112394fe80031da",
+      "threshold": 0.52
+    }
+  },
+  "biological_unit": "donor",
+  "cells": 5000,
+  "classifier": {
+    "C": 1.0,
+    "all_preprocessing_fit_on_training_donors_only": true,
+    "class_weight": "balanced",
+    "family": "logistic_regression",
+    "max_iter": 2000,
+    "pca_components": 50,
+    "pca_solver": "randomized",
+    "primary_metric": "macro_f1",
+    "random_state": 20260825,
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "log_loss",
+      "per_class_f1"
+    ],
+    "solver": "lbfgs",
+    "standard_scaler": true
+  },
+  "comparison_contract": {
+    "donor_interpretation": "biological unit",
+    "expression_and_foundation_embeddings_separate": true,
+    "model_seed_interpretation": "optimization variability, not biological replication",
+    "primary_metric": "donor_heldout_macro_f1",
+    "repair_gain_reference": "same-mask corrupted expression",
+    "secondary_metrics": [
+      "balanced_accuracy",
+      "log_loss",
+      "per_class_f1"
+    ],
+    "single_cross_representation_leaderboard": false
+  },
+  "dataset": "baron_pancreas",
+  "donor_counts": {
+    "human1": 1152,
+    "human2": 970,
+    "human3": 2119,
+    "human4": 759
+  },
+  "expression_experiment": {
+    "clean_definition": "Frozen full-depth CP10K/log1p Baron expression target.",
+    "corrupted_definition": "Frozen normalized positive-masking Baron observation x at mask15/30/50.",
+    "fold_evaluations": 136,
+    "gated_definition": "Saved SC2-Selective reconstruction using frozen validation-selected mask-specific threshold.",
+    "mask_rates": [
+      15,
+      30,
+      50
+    ],
+    "representations": 34,
+    "ungated_definition": "Saved SC2 expected_repair reconstruction with no hard threshold."
+  },
+  "genes": 16384,
+  "heldout_donors": [
+    "human1",
+    "human2",
+    "human3",
+    "human4"
+  ],
+  "parent_git_head": "703efdd97b8a2b0b87664a9f18a19b14d8e1f50e",
+  "protocol_id": "sc2-p3-baron-final-expression-lodo-v1",
+  "raw_alignment_bundle": {
+    "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_baron_representation_v1/baron5000_raw_counts_g16384.npz",
+    "receipt_path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_raw16k_receipt_v1.json",
+    "receipt_sha256": "556f46777f92f1b803d0f5258e23f455c1113133f2b4fe74e5a23fd766bfbe13",
+    "sha256": "7316ccc0efe849ff06a09148f09adc0b2ae7cf0e13ce10a2ec29d095bb472c0d"
+  },
+  "representation_experiment": {
+    "do_not_rerun": true,
+    "models": [
+      "Geneformer",
+      "GeneMamba"
+    ],
+    "results_receipt": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_lodo_results_receipt_v1.json",
+      "sha256": "537831c7bfbed2d0c130f0de8eacccc85888a7709fccdf70e89511434dbc4cf2"
+    },
+    "status": "ALREADY_COMPLETE"
+  },
+  "representations": [
+    {
+      "array_key": "y",
+      "format": "npz",
+      "kind": "clean",
+      "mask_rate": null,
+      "mode": null,
+      "model_seed": null,
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask15.npz",
+      "representation_id": "clean_expression",
+      "sha256": "8c90c598f5732e081cf87a69ccdbd5763ad2fb7bb207509b614d4a2da8655199"
+    },
+    {
+      "array_key": "x",
+      "format": "npz",
+      "kind": "corrupted",
+      "mask_rate": 15,
+      "mode": null,
+      "model_seed": null,
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask15.npz",
+      "representation_id": "corrupted_mask15",
+      "sha256": "8c90c598f5732e081cf87a69ccdbd5763ad2fb7bb207509b614d4a2da8655199"
+    },
+    {
+      "array_key": "x",
+      "format": "npz",
+      "kind": "corrupted",
+      "mask_rate": 30,
+      "mode": null,
+      "model_seed": null,
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask30.npz",
+      "representation_id": "corrupted_mask30",
+      "sha256": "26c3959a2a557ad8e19aa56a6f0217998c8fa892f234e43429e42254c9a4e7f0"
+    },
+    {
+      "array_key": "x",
+      "format": "npz",
+      "kind": "corrupted",
+      "mask_rate": 50,
+      "mode": null,
+      "model_seed": null,
+      "path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask50.npz",
+      "representation_id": "corrupted_mask50",
+      "sha256": "96a33461cece231780d62bc0967c293eb50286df68aefcea4112394fe80031da"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "gated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask15/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260728_mask15",
+      "sha256": "5f6c48bd05bb5ce62221457781bb7e51879d00bf00381d53e420268c0faff242",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "gated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask30/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260728_mask30",
+      "sha256": "e50eb17686e1c8ea238d5b2192ca47a6cf8eefd2858c33823fae5012f5935ef6",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "gated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask50/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260728_mask50",
+      "sha256": "decc3b17c718d0010703e9b68f1a01a4806549f1824985ada8eb92f4e7c7c18f",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "gated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask15/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260729_mask15",
+      "sha256": "b6ec56d2275d66f996eeb797378c88a4c30c72f65ab0cdf3af4440b141ad21d9",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "gated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask30/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260729_mask30",
+      "sha256": "9b757cd30fda99b4ed2ece8052d6647a7f9210959af9f732324a0e8c21f13ea0",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "gated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask50/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260729_mask50",
+      "sha256": "266c534fab1fe94fc83b9cb2d30222204a6ae01bd257e46c51e3a73cfd9c7cd7",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "gated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask15/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260730_mask15",
+      "sha256": "bd36c247bb98c613f191b2d82aa9abbbfdf3d096de2eb5bac28269674b6143d7",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "gated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask30/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260730_mask30",
+      "sha256": "d3c1b1f74dd1ed436f97ecbfe2ed635d34cd04856a487c06e9fbef21b8e1bd77",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "gated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask50/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260730_mask50",
+      "sha256": "7cd3b4f94ddd3c7e437e54a53a0032bbb04ec8a364429539ba7a4fbf71aebb61",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "gated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask15/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260731_mask15",
+      "sha256": "b8d29192d928b7ca45a2b82ae1a07f5850a13831b696ad44e1344b2778a83be9",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "gated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask30/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260731_mask30",
+      "sha256": "6085889290e94afe5ae021f57a5b5159d5ee5b846befee06ab14923d250d6815",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "gated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask50/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260731_mask50",
+      "sha256": "6569ca8dcf941f877f0540b2101c94e9f36272ab04d0925b1b8d6867d5452243",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "gated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask15/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260801_mask15",
+      "sha256": "edc61020c978d7909951f04fcc0d592e5fcfad34481a1d945bc985e05982908b",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "gated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask30/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260801_mask30",
+      "sha256": "23cb634cf27c3ba19d6b2c02e981636a36136737cb947886ee1599795cbc58b9",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "gated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask50/gated_reconstruction.npy",
+      "representation_id": "sc2_gated_s20260801_mask50",
+      "sha256": "8d9833c4c30e0bd912b36aa8aec76a677cd6f5bf38b7dc547ec44baf30ef4b3e",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "ungated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask15/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260728_mask15",
+      "sha256": "eb77a6cd0564979e5082d82dc852e9436a461ddce8a3144f633408a7b02542f7",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "ungated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask30/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260728_mask30",
+      "sha256": "4dfd35a13fd7e06329000e8485d9dfac4dd8234545cf9a6935a50377f31dd628",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "ungated",
+      "model_seed": 20260728,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/baron_pancreas/mask50/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260728_mask50",
+      "sha256": "40c57ee47c824aa71228e842f24f80efd1daca4479dc876291cc09d4833ae8bf",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_00_s20260728/task_manifest.json",
+      "source_task_manifest_sha256": "d57dd80a37781aa264ee423934da578db0cb0704fc2a32a541e7bb534a54d441"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "ungated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask15/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260729_mask15",
+      "sha256": "d620e4a14ce97430a8deabe6db7271c99d41153a579507567d04c1bd377e1aa0",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "ungated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask30/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260729_mask30",
+      "sha256": "ef8234c7c2d0972f43412ac52c4f7c87d0a5f41c9de79e1846ca7f78133e62e6",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "ungated",
+      "model_seed": 20260729,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/baron_pancreas/mask50/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260729_mask50",
+      "sha256": "f505e6b944f6012fbec80b565c388b4d034a1e885662e9278c99339d71722ec7",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_01_s20260729/task_manifest.json",
+      "source_task_manifest_sha256": "89d7a3775f621613b3196299059b93391c2a5066f9b78a3c9852a84fbd8a143d"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "ungated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask15/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260730_mask15",
+      "sha256": "aecba27c722089fa2f20aa31099280518924a0c146493f2380d8786da1141255",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "ungated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask30/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260730_mask30",
+      "sha256": "6b1151e21ba40358e8b8f88c9fa0998c75147e649235c4dfa412921321d926cd",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "ungated",
+      "model_seed": 20260730,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/baron_pancreas/mask50/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260730_mask50",
+      "sha256": "5ae61371cbf13fedf38acb1538e034571cdd2d095b62e93557e5c880ba27faf6",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_02_s20260730/task_manifest.json",
+      "source_task_manifest_sha256": "62ee4939098b4b694e79a732d7c5316bed392683c0a0a41fa76f425b539859ba"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "ungated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask15/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260731_mask15",
+      "sha256": "5dcae1e5f427f7c86519447877963e9bae1b801a0417fe24d41127d7999dd829",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "ungated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask30/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260731_mask30",
+      "sha256": "4e877072a64f8ec7c1f492ef7afee28a956ae0ae8b397060bb883d07f1858d05",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "ungated",
+      "model_seed": 20260731,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/baron_pancreas/mask50/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260731_mask50",
+      "sha256": "cc04972106e877df5eed223ddeb6b0a0d77edb0a60db65e8832f3760d29d2316",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_03_s20260731/task_manifest.json",
+      "source_task_manifest_sha256": "df455b4cc661b3ffae6fa498f33541bd41504ce828a54f7f21349e0efdf36c01"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 15,
+      "mode": "ungated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask15/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260801_mask15",
+      "sha256": "569be06903ed266e7a2e62780513a9f0459f5723a282a231cbedfa0051b35131",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 30,
+      "mode": "ungated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask30/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260801_mask30",
+      "sha256": "e96b8fa20f32246c0bffbbceaa5f737e0e631e242e80cd7a0b4132b9d763a2f2",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    },
+    {
+      "array_key": null,
+      "format": "npy",
+      "kind": "sc2_repaired",
+      "mask_rate": 50,
+      "mode": "ungated",
+      "model_seed": 20260801,
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/baron_pancreas/mask50/ungated_reconstruction.npy",
+      "representation_id": "sc2_ungated_s20260801_mask50",
+      "sha256": "ebd842a2f13b45af1b8070548f6a14d5f4879c4e198408d79729e922aae9d939",
+      "source_task_manifest": "/home/3159436/sc2/outputs/paper_extension_2026_p3/sc2_gated_vs_ungated_v1/normalized_v1/task_04_s20260801/task_manifest.json",
+      "source_task_manifest_sha256": "8e58581243608e7c876804a45265b4fdddbfab2b1e04c6d1439a235f4368c077"
+    }
+  ],
+  "scheduler": {
+    "cpu_array": "0-10",
+    "cpu_elements": 11,
+    "dependent_aggregator": 1,
+    "hard_project_cap": 29,
+    "total_elements": 12
+  },
+  "schema": "sc2-p3-baron-final-expression-lodo-protocol-v1",
+  "source_receipts": {
+    "foundation_lodo_results": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_lodo_results_receipt_v1.json",
+      "sha256": "537831c7bfbed2d0c130f0de8eacccc85888a7709fccdf70e89511434dbc4cf2"
+    },
+    "foundation_protocol": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_representation_protocol_v1.json",
+      "sha256": "e5327639a3374c56837d608fcf711641f7ac4a31883803ac210b133a65c9ada2"
+    },
+    "normalized_protocol": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_normalized_gated_vs_ungated_protocol_v1.json",
+      "sha256": "c5179a4d6917aa1dba11a08eab06398e336b2cb0567dbe0ca96559bd021a1ecb"
+    },
+    "normalized_results": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_normalized_gated_vs_ungated_results_receipt_v1.json",
+      "sha256": "2375c84891b84e4e1f3c439fde6eb614788d536ad17902ef129803c2ccdb88aa"
+    }
+  },
+  "status": "FROZEN_BEFORE_LODO",
+  "task_output_root": "/scratch/3159436/sc2_p3/outputs/baron_lodo_final_v1/expression_tasks_v1",
+  "tasks": [
+    {
+      "kind": "baseline",
+      "representation_ids": [
+        "clean_expression",
+        "corrupted_mask15",
+        "corrupted_mask30",
+        "corrupted_mask50"
+      ],
+      "task_id": 0
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "gated",
+      "model_seed": 20260728,
+      "representation_ids": [
+        "sc2_gated_s20260728_mask15",
+        "sc2_gated_s20260728_mask30",
+        "sc2_gated_s20260728_mask50"
+      ],
+      "task_id": 1
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "gated",
+      "model_seed": 20260729,
+      "representation_ids": [
+        "sc2_gated_s20260729_mask15",
+        "sc2_gated_s20260729_mask30",
+        "sc2_gated_s20260729_mask50"
+      ],
+      "task_id": 2
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "gated",
+      "model_seed": 20260730,
+      "representation_ids": [
+        "sc2_gated_s20260730_mask15",
+        "sc2_gated_s20260730_mask30",
+        "sc2_gated_s20260730_mask50"
+      ],
+      "task_id": 3
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "gated",
+      "model_seed": 20260731,
+      "representation_ids": [
+        "sc2_gated_s20260731_mask15",
+        "sc2_gated_s20260731_mask30",
+        "sc2_gated_s20260731_mask50"
+      ],
+      "task_id": 4
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "gated",
+      "model_seed": 20260801,
+      "representation_ids": [
+        "sc2_gated_s20260801_mask15",
+        "sc2_gated_s20260801_mask30",
+        "sc2_gated_s20260801_mask50"
+      ],
+      "task_id": 5
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "ungated",
+      "model_seed": 20260728,
+      "representation_ids": [
+        "sc2_ungated_s20260728_mask15",
+        "sc2_ungated_s20260728_mask30",
+        "sc2_ungated_s20260728_mask50"
+      ],
+      "task_id": 6
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "ungated",
+      "model_seed": 20260729,
+      "representation_ids": [
+        "sc2_ungated_s20260729_mask15",
+        "sc2_ungated_s20260729_mask30",
+        "sc2_ungated_s20260729_mask50"
+      ],
+      "task_id": 7
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "ungated",
+      "model_seed": 20260730,
+      "representation_ids": [
+        "sc2_ungated_s20260730_mask15",
+        "sc2_ungated_s20260730_mask30",
+        "sc2_ungated_s20260730_mask50"
+      ],
+      "task_id": 8
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "ungated",
+      "model_seed": 20260731,
+      "representation_ids": [
+        "sc2_ungated_s20260731_mask15",
+        "sc2_ungated_s20260731_mask30",
+        "sc2_ungated_s20260731_mask50"
+      ],
+      "task_id": 9
+    },
+    {
+      "kind": "sc2_repaired",
+      "mode": "ungated",
+      "model_seed": 20260801,
+      "representation_ids": [
+        "sc2_ungated_s20260801_mask15",
+        "sc2_ungated_s20260801_mask30",
+        "sc2_ungated_s20260801_mask50"
+      ],
+      "task_id": 10
+    }
+  ]
+}
