@@ -1,0 +1,243 @@
+{
+  "aggregate_artifacts": {
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/SHA256SUMS.txt",
+      "sha256": "068efdd8b2d3db0baaa634dd05dbcda763700c63f96d7218d8c782354eb30b1f"
+    },
+    "expression_condition_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_condition_summary.csv",
+      "sha256": "9c42896884e76cbbdb467f3b9741afaa441d2c39ec1ca9fae1791294d39b1bfe"
+    },
+    "expression_confusion_long.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_confusion_long.csv",
+      "sha256": "0b87a4bf387ecd4f44b33367edcc646ee6af96748a391d614ab1b0e25367e8b5"
+    },
+    "expression_fold_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_fold_metrics.csv",
+      "sha256": "7f56341c5aab9df931e229d8ec5671e75a13c52ee0d4b705d0ccf57676a9a711"
+    },
+    "expression_gated_vs_ungated_lodo.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_gated_vs_ungated_lodo.csv",
+      "sha256": "f81b2f8c71b308b8d75fd3796cb58a2aa299868167db7ecd32e454cefa0da8e4"
+    },
+    "expression_per_class_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_per_class_metrics.csv",
+      "sha256": "22801cb338a016c6476e68d15ec843bda7d45306bee5e7f259e2cf9a3ea627e3"
+    },
+    "expression_repair_gain_vs_corrupted.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_repair_gain_vs_corrupted.csv",
+      "sha256": "b7545965dc3c47fa2b6b47807e4b7cfad8d22b3ad9db7f7435c3b176b0e43d16"
+    },
+    "expression_repaired_donor_means.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_repaired_donor_means.csv",
+      "sha256": "c117724a5fc984ca38ac7d4e911aea5078e2d4ee292c6379626dd6f00d607d87"
+    },
+    "expression_representation_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/expression_representation_summary.csv",
+      "sha256": "56c98a562ebbf0b72e3ba88c0c7948bb7442cd426dc9b318367c48ae84579c76"
+    },
+    "final_lodo_receipt.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/final_lodo_receipt.json",
+      "sha256": "e5b5b28e56822af0d6acf84d15db822977777915957f8805fb88933973d73977"
+    },
+    "foundation_representation_lodo_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1/foundation_representation_lodo_summary.csv",
+      "sha256": "f90ead780ba41bd6fd3dab9b25f819dcb988ed74f11852cf6b31b68170c6279b"
+    }
+  },
+  "aggregate_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/baron_lodo_final_v1",
+  "biological_unit": "donor",
+  "dataset": "baron_pancreas",
+  "expression_track": {
+    "cells": 5000,
+    "classifier": "training-only StandardScaler -> PCA50 -> class-balanced logistic regression",
+    "condition_metrics": {
+      "clean": {
+        "macro_f1_mean": 0.871942000626378,
+        "macro_f1_min": 0.7838957009456576,
+        "macro_f1_sd_across_donors": 0.0821113311050409,
+        "n_biological_units": 4,
+        "n_model_seeds": 0
+      },
+      "corrupted_mask15": {
+        "macro_f1_mean": 0.8158191278658764,
+        "macro_f1_min": 0.7708343654063877,
+        "macro_f1_sd_across_donors": 0.0527563459622909,
+        "n_biological_units": 4,
+        "n_model_seeds": 0
+      },
+      "corrupted_mask30": {
+        "macro_f1_mean": 0.8010541806650586,
+        "macro_f1_min": 0.7320357464151509,
+        "macro_f1_sd_across_donors": 0.0580671258216246,
+        "n_biological_units": 4,
+        "n_model_seeds": 0
+      },
+      "corrupted_mask50": {
+        "macro_f1_mean": 0.7344223595161774,
+        "macro_f1_min": 0.7009218604395432,
+        "macro_f1_sd_across_donors": 0.030386029226934,
+        "n_biological_units": 4,
+        "n_model_seeds": 0
+      },
+      "sc2_gated_mask15": {
+        "macro_f1_mean": 0.7908492598386305,
+        "macro_f1_min": 0.7175115423167426,
+        "macro_f1_sd_across_donors": 0.0701968808514892,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      },
+      "sc2_gated_mask30": {
+        "macro_f1_mean": 0.8133449894972254,
+        "macro_f1_min": 0.7770736531993409,
+        "macro_f1_sd_across_donors": 0.0250032392470283,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      },
+      "sc2_gated_mask50": {
+        "macro_f1_mean": 0.7262419296854346,
+        "macro_f1_min": 0.6986612907200763,
+        "macro_f1_sd_across_donors": 0.0263532877741729,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      },
+      "sc2_ungated_mask15": {
+        "macro_f1_mean": 0.7469869391170473,
+        "macro_f1_min": 0.7237146485640693,
+        "macro_f1_sd_across_donors": 0.0264328421944064,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      },
+      "sc2_ungated_mask30": {
+        "macro_f1_mean": 0.7340016974779567,
+        "macro_f1_min": 0.7309303325775373,
+        "macro_f1_sd_across_donors": 0.0029243407337852,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      },
+      "sc2_ungated_mask50": {
+        "macro_f1_mean": 0.6676953882635909,
+        "macro_f1_min": 0.6223326488703723,
+        "macro_f1_sd_across_donors": 0.034571630305192,
+        "n_biological_units": 4,
+        "n_model_seeds": 5
+      }
+    },
+    "core_result": {
+      "clean_macro_f1": 0.871942000626378,
+      "downstream_policy_result": "SC2-Gated has higher donor-held-out macro-F1 than SC2-Ungated at mask15, mask30 and mask50.",
+      "repair_vs_corruption": "Only Gated mask30 has positive mean macro-F1 gain over its same-mask corrupted baseline. Gated mask15 and mask50 and all Ungated conditions have negative mean repair gain."
+    },
+    "fold_evaluations": 136,
+    "gated_vs_ungated": {
+      "mask15": {
+        "macro_f1_gated_minus_ungated": 0.0438623207215833,
+        "numerically_better_policy": "gated"
+      },
+      "mask30": {
+        "macro_f1_gated_minus_ungated": 0.0793432920192685,
+        "numerically_better_policy": "gated"
+      },
+      "mask50": {
+        "macro_f1_gated_minus_ungated": 0.0585465414218437,
+        "numerically_better_policy": "gated"
+      }
+    },
+    "genes": 16384,
+    "primary_metric": "donor-held-out macro-F1",
+    "repair_gain": {
+      "gated_mask15": {
+        "macro_f1_gain_vs_corrupted": -0.0249698680272457,
+        "positive_means_improvement": true
+      },
+      "gated_mask30": {
+        "macro_f1_gain_vs_corrupted": 0.0122908088321666,
+        "positive_means_improvement": true
+      },
+      "gated_mask50": {
+        "macro_f1_gain_vs_corrupted": -0.0081804298307428,
+        "positive_means_improvement": true
+      },
+      "ungated_mask15": {
+        "macro_f1_gain_vs_corrupted": -0.068832188748829,
+        "positive_means_improvement": true
+      },
+      "ungated_mask30": {
+        "macro_f1_gain_vs_corrupted": -0.0670524831871018,
+        "positive_means_improvement": true
+      },
+      "ungated_mask50": {
+        "macro_f1_gain_vs_corrupted": -0.0667269712525865,
+        "positive_means_improvement": true
+      }
+    },
+    "representations": 34,
+    "status": "FROZEN_COMPLETE"
+  },
+  "foundation_representation_track": {
+    "models": {
+      "GeneMamba": {
+        "balanced_accuracy_mean": 0.2269579878233595,
+        "log_loss_mean": 2.2124709486961365,
+        "macro_f1_mean": 0.1716359209992496,
+        "macro_f1_min": 0.1472033191473946
+      },
+      "Geneformer": {
+        "balanced_accuracy_mean": 0.8491747436117235,
+        "log_loss_mean": 0.3961369544267654,
+        "macro_f1_mean": 0.8117860685485665,
+        "macro_f1_min": 0.7387596570791097
+      }
+    },
+    "separate_from_expression_track": true,
+    "status": "REUSED_FROZEN_COMPLETE"
+  },
+  "heldout_donors": [
+    "human1",
+    "human2",
+    "human3",
+    "human4"
+  ],
+  "interpretation_contract": {
+    "do_not_collapse_expression_and_embedding_tracks": true,
+    "donors_are_biological_units": true,
+    "model_seeds_are_biological_replicates": false,
+    "model_seeds_interpretation": "optimization/training variability",
+    "single_cross_track_leaderboard": false
+  },
+  "project_state": "P3-16K confirmatory normalized masking, count-thinning stress testing, Gated-versus-Ungated comparisons, foundation representation evaluation, and final Baron donor-held-out evaluation are complete.",
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_baron_final_expression_lodo_protocol_v1.json",
+    "sha256": "9734773a3694d1a91f92e661486f6f90d7f44b63cec9a3abe8779d6518890a54"
+  },
+  "recovery_provenance": {
+    "baseline_retry_job": 665382,
+    "failure_class": "metadata_deserialization_only",
+    "final_aggregate_job": 665383,
+    "original_cancelled_aggregator": 665360,
+    "original_failed_task": 0,
+    "original_lodo_array_job": 665359,
+    "original_successful_tasks_preserved": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "repair_receipt": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_baron_final_lodo_task0_repair_v1.json",
+      "sha256": "1fe5d54d246d5c5c8c7f114d067675579744e1b6f3851861a48bd2441eebd894"
+    },
+    "scientific_inputs_changed_by_repair": false,
+    "successful_sc2_tasks_rerun": false
+  },
+  "schema": "sc2-p3-baron-final-lodo-results-receipt-v1",
+  "scientific_stage": "final_downstream_donor_heldout_evaluation",
+  "source_git_head": "63aae81a4a24879465f0c8704ffbce20cd25e3d0",
+  "status": "FROZEN_COMPLETE"
+}
