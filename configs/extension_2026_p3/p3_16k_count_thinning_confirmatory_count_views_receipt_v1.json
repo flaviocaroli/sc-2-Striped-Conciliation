@@ -1,0 +1,82 @@
+{
+  "classification": "protocol-neutral frozen P3-16K raw-count views for count-thinning confirmatory evaluation",
+  "datasets": {
+    "baron_pancreas": {
+      "available_file_sha256": "6283038370b9a8bc5e202c95f67ea8f0afbfd6dcd2f191708765a675b73735a4",
+      "available_gene_mask_sha256": "cccb14562f5495f820927abf46f08e693a4f135a345456b097a2ec94e20287de",
+      "available_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/baron_pancreas/available_gene_mask.npy",
+      "bundle_manifest_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/baron_pancreas/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "8e80875b852e6ef2b3a0423bb015e145cb594b69c3557cc31879bac6d4d08a40",
+      "counts_file_sha256": "8ad23e669aed076fbde83e8d0a1a4a73c3cfc76d35ae36831d0b32fcf39663d4",
+      "counts_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/baron_pancreas/counts_uint32.npy",
+      "counts_uint32_sha256": "2579427895885da08784eb24c9f3b509420438740d44f71f35ca20fb1d1623d8",
+      "full_target_alignment_exact": true,
+      "metadata_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/baron_pancreas/metadata.json",
+      "metadata_sha256": "95b45c63613f116aa6a575be78b5f3a5a72eb2d9050ddfa65b26e4e2c9a8886c",
+      "n_available_genes": 13762,
+      "n_cells": 5000,
+      "n_genes": 16384,
+      "reference_target_path": "/home/3159436/sc2/data/external_benchmarks/baron_pancreas_g16384_v1/mask15.npz",
+      "reference_target_sha256": "8c90c598f5732e081cf87a69ccdbd5763ad2fb7bb207509b614d4a2da8655199"
+    },
+    "internal_test": {
+      "available_file_sha256": "8aeef3d17229aa91619c16c33faaf08ee9aecfc70620bedf8a2587bed5c820b0",
+      "available_gene_mask_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+      "available_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/internal_test/available_gene_mask.npy",
+      "bundle_manifest_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/internal_test/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "7946d1ffbad806a2e0990dff127bc51d0ba5c7a57fc58372961a3b839ffd03fe",
+      "counts_file_sha256": "89ef1b4cdfb6ea7bc28b803fdfbcb9f23de88f590869aea09023b847e9054d9c",
+      "counts_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/internal_test/counts_uint32.npy",
+      "counts_uint32_sha256": "060cd3d08bad109f297d01d64d6210f13595729da9423326abea9db0229a1939",
+      "full_target_alignment_exact": true,
+      "metadata_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/internal_test/metadata.json",
+      "metadata_sha256": "85fc6f36924f8b44a2b3100215570f75f78c8ec437ce63ed93fb8e504de7afe9",
+      "n_available_genes": 16384,
+      "n_cells": 5000,
+      "n_genes": 16384,
+      "reference_target_path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/benchmarks/test_masking_v1/test_mask15.npz",
+      "reference_target_sha256": "84a5bf413c0bcdf192fb18f43326871ff3fb4c9f700c31a9ce0e321f9c8eb33c"
+    },
+    "zheng68k": {
+      "available_file_sha256": "ce93bbf4875e2a89010f4a5491ef3bef480f5449a9edca11e7893d3bf8b658c4",
+      "available_gene_mask_sha256": "637bc01e376ba0d6824c4778402bb9c15f2249180b91e9944fb0d2c304541dc7",
+      "available_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/zheng68k/available_gene_mask.npy",
+      "bundle_manifest_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/zheng68k/SHA256SUMS.txt",
+      "bundle_manifest_sha256": "1e8fae1e0300b8c4fd6470bfdbb3c311ad1cf4e9a2fdc5f7ab9001563637bdbc",
+      "counts_file_sha256": "0942514bed3af131adcf3f7bc6f9ad68eff1c37369e4eb809d049f7755728b4d",
+      "counts_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/zheng68k/counts_uint32.npy",
+      "counts_uint32_sha256": "9ee5a367fac9a675ecbea38f5dc49f0c135ddcd50eed71cfb4191efc3d2d930f",
+      "full_target_alignment_exact": true,
+      "metadata_path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/zheng68k/metadata.json",
+      "metadata_sha256": "e55acf32c38dac8bf5ea0ffe5047c88725b9b431c9ee10143fe7a502afbe775a",
+      "n_available_genes": 15683,
+      "n_cells": 5000,
+      "n_genes": 16384,
+      "reference_target_path": "/home/3159436/sc2/data/external_benchmarks/zheng68k_g16384_v1/mask15.npz",
+      "reference_target_sha256": "338c70ea2a755d00cafdfa3e0dc9dd012fbc5c207835f55c8c43948a4473c076"
+    }
+  },
+  "job_id": 664768,
+  "n_cells_per_dataset": 5000,
+  "n_genes": 16384,
+  "next": "Freeze count-thinning confirmatory panel materialization protocol before generating Internal Test, Baron and Zheng panels.",
+  "output_root": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1",
+  "qc": {
+    "all_root_manifest_files_verified": true,
+    "full_target_alignment_exact_all_datasets": true,
+    "integer_full_counts": true,
+    "slurm_completed_zero_exit": true,
+    "zero_library_cells_full_depth": 0
+  },
+  "root_sha256_manifest": {
+    "path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/SHA256SUMS.txt",
+    "sha256": "6b9fb347117d1e58f371fb325171833613eab5af87a2840e91b27fbfbc67756e"
+  },
+  "schema": "sc2-p3-16k-count-thinning-confirmatory-count-views-receipt-v1",
+  "source_git_head": "846aeaec80726bdee921053069a98acf750334f1",
+  "source_summary": {
+    "path": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/count_thinning_v1/confirmatory_count_views_v1/count_views_receipt.json",
+    "sha256": "752eb35fa83f69b3495e0a0bd7ec548f13eb26a75845710e261f9df4e3ca3b25"
+  },
+  "status": "FROZEN_COMPLETE"
+}
