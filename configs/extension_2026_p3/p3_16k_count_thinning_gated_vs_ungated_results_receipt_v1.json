@@ -1,0 +1,636 @@
+{
+  "aggregate_artifacts": {
+    "SHA256SUMS.txt": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/SHA256SUMS.txt",
+      "sha256": "ca8ed67d2ed959d009dd54d3164804cc93dc1338cb5389ddf7490eef7cafc0e0"
+    },
+    "aggregate_receipt.json": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/aggregate_receipt.json",
+      "sha256": "d3cfed59dca8d75ffe86a6ffbff760515d31512626cecfc10d77754569656a6e"
+    },
+    "condition_mode_summary.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/condition_mode_summary.csv",
+      "sha256": "a8332036b391cc5b1d59e9efafdc6e3af9a44475349e5f58ba32106f32c73f95"
+    },
+    "paired_metric_comparison.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/paired_metric_comparison.csv",
+      "sha256": "44a627ed9cccec8bdc56d2ce1f14c2e1bb74f8b54551f2523b6d7841ff63f0de"
+    },
+    "run_level_gate_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/run_level_gate_metrics.csv",
+      "sha256": "caff48ff90632d974f31bcb7fdb727c76b04d6514cb00beec84c7bc63762a5e0"
+    },
+    "run_level_mode_metrics.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/run_level_mode_metrics.csv",
+      "sha256": "44e8b08ce9442a990371fe1dedd2e6d4d4828afcbc613f50ac354c5b2ce83807"
+    },
+    "winner_counts.csv": {
+      "path": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1/winner_counts.csv",
+      "sha256": "5f6694e7ac630f8681f0bb47974390c2d8d1cddd7a8cda1d112d988c106d855a"
+    }
+  },
+  "aggregate_root": "/home/3159436/sc2/outputs/paper_extension_2026_p3/count_thinning_v1/confirmatory_gated_vs_ungated_aggregate_v1",
+  "aggregation_job": 664808,
+  "candidate": "P3-16K-Small",
+  "checkpoint_step": 5000,
+  "condition_core_metrics": {
+    "baron_pancreas": {
+      "q50": {
+        "full_available_mae": {
+          "gated_mean": 0.0980699005722999,
+          "numerically_better": "gated",
+          "ungated_mean": 1.5775809288024902
+        },
+        "full_available_mse": {
+          "gated_mean": 0.121230337023735,
+          "numerically_better": "gated",
+          "ungated_mean": 3.001546869277954
+        },
+        "gene_spearman": {
+          "gated_mean": -0.1194039961296125,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.6417755743937741
+        },
+        "masked_mae": {
+          "gated_mean": 1.2718215799331665,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.6323584914207458
+        },
+        "masked_mse": {
+          "gated_mean": 1.781268744468689,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.4770043540000915
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0036919822764082,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -9.71142367300777,
+          "numerically_better": "ungated",
+          "ungated_mean": -1.8684034193149648
+        },
+        "sample_spearman": {
+          "gated_mean": 0.1130189304677766,
+          "numerically_better": "gated",
+          "ungated_mean": 0.110093176988311
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.1636559991689169,
+          "numerically_better": "gated",
+          "ungated_mean": 0.2240801848198683
+        },
+        "selection_precision": {
+          "gated_mean": 0.1809060649665732,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0505103107144878
+        },
+        "selection_recall": {
+          "gated_mean": 0.0152009822022888,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q70": {
+        "full_available_mae": {
+          "gated_mean": 0.0633638417720794,
+          "numerically_better": "gated",
+          "ungated_mean": 1.403646674156189
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0675199607014656,
+          "numerically_better": "gated",
+          "ungated_mean": 2.388932466506958
+        },
+        "gene_spearman": {
+          "gated_mean": -0.1494808277077124,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.8073333679092843
+        },
+        "masked_mae": {
+          "gated_mean": 1.236706414222717,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.4041013920307159
+        },
+        "masked_mse": {
+          "gated_mean": 1.6700717401504517,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.2090250700712204
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0028882216500606,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -10.873633194739003,
+          "numerically_better": "ungated",
+          "ungated_mean": -0.4860955737514933
+        },
+        "sample_spearman": {
+          "gated_mean": 0.0702526310091303,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.0842009757989146
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.2890215406117937,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.2519929204249615
+        },
+        "selection_precision": {
+          "gated_mean": 0.0934825432998137,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0287165402594838
+        },
+        "selection_recall": {
+          "gated_mean": 0.0100014573717114,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q85": {
+        "full_available_mae": {
+          "gated_mean": 0.0360983975231647,
+          "numerically_better": "gated",
+          "ungated_mean": 1.2820791912078855
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0372014741599559,
+          "numerically_better": "gated",
+          "ungated_mean": 2.02852511882782
+        },
+        "gene_spearman": {
+          "gated_mean": -0.1837005502968283,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.8832243391870004
+        },
+        "masked_mae": {
+          "gated_mean": 1.2134474802017212,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.271164333820343
+        },
+        "masked_mse": {
+          "gated_mean": 1.599147171974182,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.1128113338351249
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0023985236787473,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -11.693722741845331,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.104524566833922
+        },
+        "sample_spearman": {
+          "gated_mean": 0.053145637143374,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.0599477585043331
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.3582246906424375,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.2653742129137876
+        },
+        "selection_precision": {
+          "gated_mean": 0.0414011217591425,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0138670288879335
+        },
+        "selection_recall": {
+          "gated_mean": 0.0073309799408283,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      }
+    },
+    "internal_test": {
+      "q50": {
+        "full_available_mae": {
+          "gated_mean": 0.0837625163793563,
+          "numerically_better": "gated",
+          "ungated_mean": 1.2657427740097047
+        },
+        "full_available_mse": {
+          "gated_mean": 0.1028184020519256,
+          "numerically_better": "gated",
+          "ungated_mean": 2.1993890476226805
+        },
+        "gene_spearman": {
+          "gated_mean": -0.2652353697321267,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.6220922546205642
+        },
+        "masked_mae": {
+          "gated_mean": 1.0987891483306884,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.5466209697723389
+        },
+        "masked_mse": {
+          "gated_mean": 1.451414041519165,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.391699001789093
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0075134599700801,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -4.805435537087149,
+          "numerically_better": "ungated",
+          "ungated_mean": -0.5667364346147621
+        },
+        "sample_spearman": {
+          "gated_mean": 0.171953006103729,
+          "numerically_better": "gated",
+          "ungated_mean": 0.1646119005621081
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.1440309262040406,
+          "numerically_better": "gated",
+          "ungated_mean": 0.2477636946184624
+        },
+        "selection_precision": {
+          "gated_mean": 0.2155064883938988,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0447264992631386
+        },
+        "selection_recall": {
+          "gated_mean": 0.0441277716695035,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q70": {
+        "full_available_mae": {
+          "gated_mean": 0.0569346205890178,
+          "numerically_better": "gated",
+          "ungated_mean": 1.1694630098342895
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0634224590659141,
+          "numerically_better": "gated",
+          "ungated_mean": 1.8763675260543824
+        },
+        "gene_spearman": {
+          "gated_mean": -0.3149855201789932,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.784054815427693
+        },
+        "masked_mae": {
+          "gated_mean": 1.07588933467865,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.3375620245933532
+        },
+        "masked_mse": {
+          "gated_mean": 1.3913150787353517,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.1768740314245224
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0076107865366583,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -4.973604540819206,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.2405921045521706
+        },
+        "sample_spearman": {
+          "gated_mean": 0.114079833620348,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.1274735051174648
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.2569124339428384,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.222283734480653
+        },
+        "selection_precision": {
+          "gated_mean": 0.1208663970561967,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0255745843777942
+        },
+        "selection_recall": {
+          "gated_mean": 0.0399823133707355,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q85": {
+        "full_available_mae": {
+          "gated_mean": 0.0351664564013481,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0962688779830934
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0402218274772167,
+          "numerically_better": "gated",
+          "ungated_mean": 1.673417434692383
+        },
+        "gene_spearman": {
+          "gated_mean": -0.3480709548218756,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.8570554355757547
+        },
+        "masked_mae": {
+          "gated_mean": 1.062399773597717,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.2164100551605224
+        },
+        "masked_mse": {
+          "gated_mean": 1.3554103803634645,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.104213453233242
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0072767101335608,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -5.05164038859645,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.5347069665835721
+        },
+        "sample_spearman": {
+          "gated_mean": 0.0796095394302001,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.0919804898919774
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.3261305176663948,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.1926334647530497
+        },
+        "selection_precision": {
+          "gated_mean": 0.057472082180727,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0123902233487175
+        },
+        "selection_recall": {
+          "gated_mean": 0.0355282725284605,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      }
+    },
+    "zheng68k": {
+      "q50": {
+        "full_available_mae": {
+          "gated_mean": 0.0478626377880573,
+          "numerically_better": "gated",
+          "ungated_mean": 1.147664465904236
+        },
+        "full_available_mse": {
+          "gated_mean": 0.1053182479739189,
+          "numerically_better": "gated",
+          "ungated_mean": 2.373391561508179
+        },
+        "gene_spearman": {
+          "gated_mean": 0.1346934602141195,
+          "numerically_better": "gated",
+          "ungated_mean": -0.4546236364492166
+        },
+        "masked_mae": {
+          "gated_mean": 2.095661745071411,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.85232102394104
+        },
+        "masked_mse": {
+          "gated_mean": 4.601174716949463,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.9943364143371582
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0030105474755534,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -25.64705494235147,
+          "numerically_better": "ungated",
+          "ungated_mean": -4.758549564854546
+        },
+        "sample_spearman": {
+          "gated_mean": 0.2816025369570475,
+          "numerically_better": "gated",
+          "ungated_mean": 0.2475890799209698
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 1.2625283695157,
+          "numerically_better": "gated",
+          "ungated_mean": 1.2824023206548445
+        },
+        "selection_precision": {
+          "gated_mean": 0.2203750468930271,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0132516992837713
+        },
+        "selection_recall": {
+          "gated_mean": 0.0627708482185139,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q70": {
+        "full_available_mae": {
+          "gated_mean": 0.0313928548246622,
+          "numerically_better": "gated",
+          "ungated_mean": 1.2921332693099976
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0658480356633663,
+          "numerically_better": "gated",
+          "ungated_mean": 2.700345888137817
+        },
+        "gene_spearman": {
+          "gated_mean": 0.1959179302322758,
+          "numerically_better": "gated",
+          "ungated_mean": -0.2141844788367448
+        },
+        "masked_mae": {
+          "gated_mean": 2.097549304962158,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.6826869535446167
+        },
+        "masked_mse": {
+          "gated_mean": 4.5625004196167,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.6913238096237183
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.002264332513559,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -31.53211462601139,
+          "numerically_better": "ungated",
+          "ungated_mean": -3.929369728998343
+        },
+        "sample_spearman": {
+          "gated_mean": 0.1791349637297877,
+          "numerically_better": "gated",
+          "ungated_mean": 0.1624386795748588
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 1.0442560762037891,
+          "numerically_better": "gated",
+          "ungated_mean": 1.1085530318328016
+        },
+        "selection_precision": {
+          "gated_mean": 0.1230807295774099,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0075836451923441
+        },
+        "selection_recall": {
+          "gated_mean": 0.0414870880178661,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      },
+      "q85": {
+        "full_available_mae": {
+          "gated_mean": 0.0190621629357337,
+          "numerically_better": "gated",
+          "ungated_mean": 1.3541272974014282
+        },
+        "full_available_mse": {
+          "gated_mean": 0.0420057336986064,
+          "numerically_better": "gated",
+          "ungated_mean": 2.802323694229126
+        },
+        "gene_spearman": {
+          "gated_mean": 0.2615441947969522,
+          "numerically_better": "gated",
+          "ungated_mean": -0.0012057945290307
+        },
+        "masked_mae": {
+          "gated_mean": 2.091739854812622,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.5628651535511017
+        },
+        "masked_mse": {
+          "gated_mean": 4.513790302276611,
+          "numerically_better": "ungated",
+          "ungated_mean": 0.5253108191490173
+        },
+        "policy_true_zero_fill": {
+          "gated_mean": 0.0019008717611153,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0
+        },
+        "recovery_index": {
+          "gated_mean": -35.5504290962663,
+          "numerically_better": "ungated",
+          "ungated_mean": -3.2537526640659085
+        },
+        "sample_spearman": {
+          "gated_mean": 0.1387320693452616,
+          "numerically_better": "gated",
+          "ungated_mean": 0.1144243814793136
+        },
+        "sd_ratio_abs_error": {
+          "gated_mean": 0.9269069377491664,
+          "numerically_better": "gated",
+          "ungated_mean": 1.0137245459299282
+        },
+        "selection_precision": {
+          "gated_mean": 0.058876563397237,
+          "numerically_better": "gated",
+          "ungated_mean": 0.0036763274938911
+        },
+        "selection_recall": {
+          "gated_mean": 0.0321474483042212,
+          "numerically_better": "ungated",
+          "ungated_mean": 1.0
+        }
+      }
+    }
+  },
+  "core_result": {
+    "gene_spearman": "Ungated better in 6/9 conditions; Gated better in 3/9, corresponding to the three Zheng q conditions.",
+    "interpretation": "Ungated is the stronger continuous imputation policy for genuinely lost positive expression. Gated is the conservative selective-repair policy with substantially lower false filling of biological zeros. Both policies are retained for downstream Baron LODO.",
+    "lost_positive_reconstruction": "SC2-Ungated is numerically better for masked MSE, masked MAE and recovery index in all 9 dataset-by-q confirmatory conditions.",
+    "sample_spearman": "Gated better in 5/9 conditions; Ungated better in 4/9.",
+    "sd_calibration": "Gated closer to target SD in 5/9 conditions; Ungated in 4/9.",
+    "selective_repair_safety": "SC2-Gated is numerically better for true-zero fill/error, selection precision, observed-zero error and full-available error in all 9 confirmatory conditions."
+  },
+  "datasets": [
+    "internal_test",
+    "baron_pancreas",
+    "zheng68k"
+  ],
+  "forward_evaluations": 225,
+  "gpu_job": 664807,
+  "model_seeds": 5,
+  "next": "Run final Baron donor-held-out evaluation with clean/raw expression, corrupted expression, SC2-Gated repaired expression, SC2-Ungated repaired expression, plus separate Geneformer and GeneMamba representation LODO comparison.",
+  "paired_mode_rows": 450,
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_gated_vs_ungated_confirmatory_v1.json",
+    "sha256": "b5a6ccb082873d1e4a09770fac3c96dd04420651caff82c562347a8daf732074"
+  },
+  "q_values": [
+    0.85,
+    0.7,
+    0.5
+  ],
+  "schema": "sc2-p3-16k-count-thinning-gated-vs-ungated-results-receipt-v1",
+  "scientific_scope": "confirmatory_count_thinning",
+  "source_git_head": "11e865bc6caecbfbcccdefdbcccd6f0407d65471",
+  "status": "FROZEN_COMPLETE",
+  "technical_thinning_replicates": 5,
+  "uncertainty_interpretation": "Five SC2 model seeds represent optimization/training variability. Five thinning replicates represent technical corruption variability. Neither dimension constitutes biological replication.",
+  "winner_counts": {
+    "full_available_mae": {
+      "gated": 9,
+      "ungated": 0
+    },
+    "full_available_mse": {
+      "gated": 9,
+      "ungated": 0
+    },
+    "gene_spearman": {
+      "gated": 3,
+      "ungated": 6
+    },
+    "masked_mae": {
+      "gated": 0,
+      "ungated": 9
+    },
+    "masked_mse": {
+      "gated": 0,
+      "ungated": 9
+    },
+    "policy_true_zero_fill": {
+      "gated": 9,
+      "ungated": 0
+    },
+    "recovery_index": {
+      "gated": 0,
+      "ungated": 9
+    },
+    "sample_spearman": {
+      "gated": 5,
+      "ungated": 4
+    },
+    "sd_ratio_abs_error": {
+      "gated": 5,
+      "ungated": 4
+    },
+    "selection_precision": {
+      "gated": 9,
+      "ungated": 0
+    },
+    "selection_recall": {
+      "gated": 0,
+      "ungated": 9
+    }
+  }
+}
