@@ -267,41 +267,25 @@ def main():
                     dtype=np.int64,
                 )
 
-                cells = np.asarray(
-                    d["cell_id"]
-                ).astype(str)
-
-                types = np.asarray(
-                    d["cell_type"]
-                ).astype(str)
-
                 target = np.asarray(
                     d["y"],
                     dtype=np.float32,
                 )
 
+            #
+            # Frozen legacy Baron panel metadata contains
+            # object-typed cell_id/cell_type arrays. Do not
+            # enable pickle merely to deserialize redundant
+            # metadata. source_row is the canonical ordering
+            # key and labels/donors come from the SHA-frozen
+            # raw Baron bundle.
+            #
             if not np.array_equal(
                 rows,
                 raw_rows,
             ):
                 raise RuntimeError(
                     "panel/raw source_row mismatch"
-                )
-
-            if not np.array_equal(
-                cells,
-                raw_cells,
-            ):
-                raise RuntimeError(
-                    "panel/raw cell_id mismatch"
-                )
-
-            if not np.array_equal(
-                types,
-                labels,
-            ):
-                raise RuntimeError(
-                    "panel/raw cell_type mismatch"
                 )
 
             if clean_reference is None:
@@ -394,36 +378,17 @@ def main():
                         dtype=np.int64,
                     )
 
-                    cells = np.asarray(
-                        d["cell_id"]
-                    ).astype(str)
-
-                    types = np.asarray(
-                        d["cell_type"]
-                    ).astype(str)
-
+                #
+                # As above, source_row is sufficient to prove
+                # exact frozen cell ordering. Avoid loading
+                # object arrays with pickle.
+                #
                 if not np.array_equal(
                     rows,
                     raw_rows,
                 ):
                     raise RuntimeError(
                         "npz source-row mismatch"
-                    )
-
-                if not np.array_equal(
-                    cells,
-                    raw_cells,
-                ):
-                    raise RuntimeError(
-                        "npz cell alignment mismatch"
-                    )
-
-                if not np.array_equal(
-                    types,
-                    labels,
-                ):
-                    raise RuntimeError(
-                        "npz cell-type alignment mismatch"
                     )
 
             elif r["format"] == "npy":

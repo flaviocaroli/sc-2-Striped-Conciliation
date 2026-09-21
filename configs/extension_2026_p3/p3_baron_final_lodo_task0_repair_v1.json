@@ -1,0 +1,46 @@
+{
+  "cancelled_dependent_aggregator": 665360,
+  "classifier_changed": false,
+  "donor_split_changed": false,
+  "expression_matrices_changed": false,
+  "failed_array_job": 665359,
+  "failed_git_head": "84ecd1952166e082b551ea0d1d94e1bbe7d2dc23",
+  "failed_task_id": 0,
+  "failure": "Frozen Baron normalized panel cell_id/cell_type metadata are NumPy object arrays and cannot be loaded under allow_pickle=False.",
+  "failure_class": "metadata_deserialization_only",
+  "masking_changed": false,
+  "next": "Retry only baseline task 0, then aggregate task 0 with preserved PASS tasks 1 through 10.",
+  "pca_or_scaler_changed": false,
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_baron_final_expression_lodo_protocol_v1.json",
+    "sha256": "9734773a3694d1a91f92e661486f6f90d7f44b63cec9a3abe8779d6518890a54"
+  },
+  "protocol_changed": false,
+  "repair": "Do not deserialize redundant object metadata. Keep allow_pickle=False and verify exact panel ordering with integer source_row against the SHA-frozen Baron raw alignment bundle.",
+  "runner": {
+    "old_sha256": "2951c036fba45c130f32f3cb28bc320459195fc07e41571053e823648bd7522b",
+    "path": "/home/3159436/sc2/code/scripts/analysis/run_p3_baron_final_expression_lodo_task_v1.py",
+    "repaired_sha256": "297d05e20149422511c7001deb32b05707c9b530cc38b60a2d30ca4e617d8e13"
+  },
+  "schema": "sc2-p3-baron-final-lodo-task0-repair-v1",
+  "scientific_inputs_changed": false,
+  "security_contract": {
+    "allow_pickle_remains_false": true,
+    "object_metadata_deserialized": false
+  },
+  "status": "FROZEN_CODE_REPAIR_BEFORE_RETRY",
+  "successful_tasks_preserved": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "successful_tasks_rerun": false,
+  "task_to_retry": 0
+}
