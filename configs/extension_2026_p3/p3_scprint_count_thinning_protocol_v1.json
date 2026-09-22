@@ -1,0 +1,323 @@
+{
+  "count_views": {
+    "receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_confirmatory_count_views_receipt_v1.json",
+    "receipt_sha256": "e003a56f61bb4e919d6c54e42dacffd4218568903ce0197dfa8fc613aebc6f7b"
+  },
+  "datasets": [
+    "internal_test",
+    "baron_pancreas",
+    "zheng68k"
+  ],
+  "evaluation_scale": {
+    "cross_model_caveat": "Absolute MSE values are coverage-specific and must be reported with evaluated gene count; do not silently treat them as full-16K metrics.",
+    "rule": "Within each fixed model/dataset gene intersection, full raw counts, thinned raw counts and native scprint_mu counts are independently normalized to library size 10000 then log1p."
+  },
+  "gene_policy": {
+    "denoiser_how": "some",
+    "hvg_selection": false,
+    "max_len": 16384,
+    "rule": "fixed model-supported P3 genes intersected with frozen dataset available_gene_mask"
+  },
+  "information_barrier": {
+    "baron_used_for_tuning": false,
+    "internal_test_used_for_tuning": false,
+    "threshold_tuning": false,
+    "zheng_used_for_tuning": false
+  },
+  "models": {
+    "scprint1": {
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_16k/checkpoints/scPRINT/medium-v1.5.ckpt",
+      "checkpoint_sha256": "96ff7c5d9e1ad5076e818bde3c38f498c95cd354cc42029d90691b5ba2964ff8",
+      "environment_lamin": "/home/3159436/.conda/envs/sc2-p3-scprint/bin/lamin",
+      "environment_python": "/home/3159436/.conda/envs/sc2-p3-scprint/bin/python",
+      "label": "scPRINT-1",
+      "lamin_instance": "anonymous/sc2p3scprintv1",
+      "qualification_receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v4/scPRINT1/receipt.json",
+      "qualification_receipt_sha256": "6bf367b6260bad45228ff8db78a1241123d72dabf31720bac4adbe3ecbc27be9",
+      "qualified_p3_overlap": 14526,
+      "source_commit": "e7c60766cbff58bb7280a1c8fe4b7461b1af1911",
+      "source_path": "/home/3159436/sc2/external/foundation_models/p3_16k/sources/scPRINT"
+    },
+    "scprint2": {
+      "checkpoint": "/home/3159436/sc2/external/foundation_models/p3_reconstruction_qualification_v1/small-v2.ckpt",
+      "checkpoint_sha256": "2b586c144cf9a1f638b4b3e803554ebf6ce389f81c5f34179288a970addfd822",
+      "environment_lamin": "/home/3159436/.conda/envs/sc2-p3-scprint2/bin/lamin",
+      "environment_python": "/home/3159436/.conda/envs/sc2-p3-scprint2/bin/python",
+      "label": "scPRINT-2",
+      "lamin_instance": "anonymous/lamin_storage",
+      "qualification_receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v3/scPRINT2/receipt.json",
+      "qualification_receipt_sha256": "51429fd19f22e313d373f8527f3b58df48597ef7a61aa6c01e4c405d3bb582b9",
+      "qualified_p3_overlap": 14279,
+      "source_commit": "9dbc57acb66ec45cf0a8676740473e0328887188",
+      "source_path": "/home/3159436/sc2/external/foundation_models/p3_reconstruction_qualification_v1/scPRINT-2"
+    }
+  },
+  "native_output": {
+    "apply_zero_pred": false,
+    "layer": "scprint_mu",
+    "predict_depth_mult": 1
+  },
+  "output_root": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v1",
+  "p3_vocabulary": {
+    "n_genes": 16384,
+    "path": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa"
+  },
+  "panels": {
+    "receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_confirmatory_panels_receipt_v1.json",
+    "receipt_sha256": "e4acbea66991609148f8cdbca6c2a417ca3220ed63ee01fc5395fc1e35e25e79",
+    "total_panel_count": 45
+  },
+  "parent_git_head": "8dee91701c417ad8a03f92c69c80e01e622b66e0",
+  "project_active_element_cap": 29,
+  "protocol_id": "sc2-p3-scprint-count-thinning-v1",
+  "q_values": [
+    0.85,
+    0.7,
+    0.5
+  ],
+  "replicates_per_condition": 5,
+  "schema": "sc2-p3-scprint-count-thinning-protocol-v1",
+  "scientific_scope": "confirmatory_count_thinning_external_comparator",
+  "status": "FROZEN_BEFORE_INFERENCE",
+  "task_layout": {
+    "elements": 18,
+    "tasks": [
+      {
+        "dataset": "internal_test",
+        "model": "scprint1",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 0
+      },
+      {
+        "dataset": "internal_test",
+        "model": "scprint1",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 1
+      },
+      {
+        "dataset": "internal_test",
+        "model": "scprint1",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 2
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint1",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 3
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint1",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 4
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint1",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 5
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint1",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 6
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint1",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 7
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint1",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 8
+      },
+      {
+        "dataset": "internal_test",
+        "model": "scprint2",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 9
+      },
+      {
+        "dataset": "internal_test",
+        "model": "scprint2",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 10
+      },
+      {
+        "dataset": "internal_test",
+        "model": "scprint2",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 11
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint2",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 12
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint2",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 13
+      },
+      {
+        "dataset": "baron_pancreas",
+        "model": "scprint2",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 14
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint2",
+        "q": 0.85,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 15
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint2",
+        "q": 0.7,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 16
+      },
+      {
+        "dataset": "zheng68k",
+        "model": "scprint2",
+        "q": 0.5,
+        "replicates": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task_id": 17
+      }
+    ]
+  },
+  "technical_replicate_interpretation": "technical count-thinning corruption replicates; not biological replicates"
+}

@@ -1,0 +1,17 @@
+{
+  "classification": "Native-forward qualified; excluded from continuous-expression direct-reconstruction Track A.",
+  "evidence": {
+    "official_continuous_inverse_found": false,
+    "released_checkpoint_forward": "PASS",
+    "released_repository_output_semantics": "binned",
+    "scalar_decoder_present": true
+  },
+  "native_forward_qualified": true,
+  "parent_git_head": "8dee91701c417ad8a03f92c69c80e01e622b66e0",
+  "reason": "Released pretraining/qualification evidence documents binned output semantics. A finite scalar MLM forward does not establish continuous-expression scale. No undocumented bin-to-expression inverse is introduced.",
+  "regformer_forward_receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v4/RegFormer/regformer_native_forward_final_receipt.json",
+  "regformer_forward_receipt_sha256": "6f07f77dc43e8e99ffd53db5e8deab3d0f39e2ebeeac8a930ac63417d134514c",
+  "schema": "sc2-p3-regformer-track-decision-v1",
+  "status": "FROZEN",
+  "track_a_continuous_reconstruction_eligible": false
+}
