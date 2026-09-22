@@ -233,6 +233,25 @@ def main():
         rows
     )
 
+    #
+    # Undefined Spearman correlations are stored as JSON null.
+    # Convert all non-identifier columns to numeric so pandas
+    # represents those values as NaN and mean/SD use available
+    # finite correlations only.
+    #
+    for column in frame.columns:
+
+        if column in {
+            "model",
+            "dataset",
+        }:
+            continue
+
+        frame[column] = pd.to_numeric(
+            frame[column],
+            errors="raise",
+        )
+
     sizes = frame.groupby(
         [
             "model",

@@ -87,75 +87,180 @@ def masked_metrics(
         - target[mask]
     )
 
+    masked_prediction = prediction[
+        mask
+    ]
+
+    masked_target = target[
+        mask
+    ]
+
     prediction_sd = float(
         np.std(
-            prediction[mask]
+            masked_prediction
         )
     )
 
     target_sd = float(
         np.std(
-            target[mask]
+            masked_target
         )
     )
 
-    if target_sd <= 0.0:
+    if (
+        not np.isfinite(
+            prediction_sd
+        )
+        or not np.isfinite(
+            target_sd
+        )
+        or target_sd <= 0.0
+    ):
         raise RuntimeError(
-            "zero target SD"
+            "invalid masked SD"
         )
 
-    sample_spearman = finite_mean(
-        spearman(
-            prediction[
-                i,
-                mask[i],
-            ],
-            target[
-                i,
-                mask[i],
-            ],
-        )
-        for i in range(
-            prediction.shape[0]
+    masked_mse = float(
+        np.mean(
+            error ** 2
         )
     )
 
-    gene_spearman = finite_mean(
-        spearman(
-            prediction[
-                mask[:, j],
-                j,
-            ],
-            target[
-                mask[:, j],
-                j,
-            ],
-        )
-        for j in range(
-            prediction.shape[1]
+    masked_mae = float(
+        np.mean(
+            np.abs(
+                error
+            )
         )
     )
 
-    result = {
+    if (
+        not np.isfinite(
+            masked_mse
+        )
+        or not np.isfinite(
+            masked_mae
+        )
+    ):
+        raise RuntimeError(
+            "nonfinite masked error metric"
+        )
+
+    sample_values = np.asarray(
+        [
+            spearman(
+                prediction[
+                    row,
+                    mask[row],
+                ],
+                target[
+                    row,
+                    mask[row],
+                ],
+            )
+            for row
+            in range(
+                prediction.shape[0]
+            )
+        ],
+        dtype=np.float64,
+    )
+
+    gene_values = np.asarray(
+        [
+            spearman(
+                prediction[
+                    mask[:, column],
+                    column,
+                ],
+                target[
+                    mask[:, column],
+                    column,
+                ],
+            )
+            for column
+            in range(
+                prediction.shape[1]
+            )
+        ],
+        dtype=np.float64,
+    )
+
+    sample_valid = np.isfinite(
+        sample_values
+    )
+
+    gene_valid = np.isfinite(
+        gene_values
+    )
+
+    sample_spearman = (
+        float(
+            sample_values[
+                sample_valid
+            ].mean()
+        )
+        if sample_valid.any()
+        else None
+    )
+
+    gene_spearman = (
+        float(
+            gene_values[
+                gene_valid
+            ].mean()
+        )
+        if gene_valid.any()
+        else None
+    )
+
+    sd_ratio = float(
+        prediction_sd
+        / target_sd
+    )
+
+    recovery_index = float(
+        1.0
+        - masked_mse
+        / (
+            target_sd ** 2
+        )
+    )
+
+    if (
+        not np.isfinite(
+            sd_ratio
+        )
+        or not np.isfinite(
+            recovery_index
+        )
+    ):
+        raise RuntimeError(
+            "nonfinite SD/recovery metric"
+        )
+
+    return {
         "masked_mse":
-            float(
-                np.mean(
-                    error ** 2
-                )
-            ),
+            masked_mse,
 
         "masked_mae":
-            float(
-                np.mean(
-                    np.abs(error)
-                )
-            ),
+            masked_mae,
 
         "sample_spearman":
             sample_spearman,
 
+        "n_sample_spearman_valid":
+            int(
+                sample_valid.sum()
+            ),
+
         "gene_spearman":
             gene_spearman,
+
+        "n_gene_spearman_valid":
+            int(
+                gene_valid.sum()
+            ),
 
         "prediction_sd":
             prediction_sd,
@@ -164,37 +269,22 @@ def masked_metrics(
             target_sd,
 
         "sd_ratio":
-            prediction_sd
-            / target_sd,
+            sd_ratio,
+
+        "sd_ratio_abs_error":
+            abs(
+                sd_ratio
+                - 1.0
+            ),
+
+        "recovery_index":
+            recovery_index,
 
         "n_masked":
             int(
                 mask.sum()
             ),
     }
-
-    result[
-        "recovery_index"
-    ] = float(
-        1.0
-        - result[
-            "masked_mse"
-        ]
-        / (
-            target_sd ** 2
-        )
-    )
-
-    result[
-        "sd_ratio_abs_error"
-    ] = abs(
-        result[
-            "sd_ratio"
-        ]
-        - 1.0
-    )
-
-    return result
 
 
 def cp10k_log1p(values):
