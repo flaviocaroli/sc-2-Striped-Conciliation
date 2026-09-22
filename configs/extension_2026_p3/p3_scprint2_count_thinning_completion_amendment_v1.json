@@ -1,0 +1,50 @@
+{
+  "base_protocol": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scprint_count_thinning_protocol_v2.json",
+  "base_protocol_sha256": "fa751b5168aa22f4173996e6c0461c4b6d99a731fa159c720301a5ee1dd954ec",
+  "base_qualification_receipt": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_reconstruction_qualification_v4_receipt.json",
+  "base_qualification_receipt_sha256": "fedf53a56a6be22b130282e07ddd4770369824f9179f2789cdf15286b4875799",
+  "cell_evaluation_policy": {
+    "evaluation_rule": "Capture source_row from the native preprocessed AnnData before denoising. Score prediction, target, corrupted baseline, lost-positive mask and true-zero mask on exactly those returned source rows and in the native processed order.",
+    "identity_field": "source_row",
+    "input_cells": 5000,
+    "native_qc_filtering_allowed": true,
+    "no_positional_truncation": true,
+    "no_row_imputation": true,
+    "outcome_based_selection": false,
+    "report_dropped_cells": true,
+    "report_evaluated_cells": true
+  },
+  "gene_evaluation_policy": {
+    "coverage_note": "Native output availability is a model-interface property. Absolute reconstruction metrics are coverage-specific and evaluated gene counts must be reported.",
+    "no_missing_gene_zero_fill": true,
+    "no_prediction_imputation": true,
+    "outcome_based_performance_selection": false,
+    "per_replicate_evaluated_gene_set": "native returned genes intersected with the potential gene set",
+    "potential_gene_set": "model-supported P3 genes intersected with the frozen dataset available_gene_mask",
+    "report_evaluated_genes": true,
+    "report_native_returned_genes": true
+  },
+  "model": "scprint2",
+  "output_root": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1",
+  "parent_git_head": "fdede6a381156faf9fc005222d7d22129e1c0c7f",
+  "schema": "sc2-p3-scprint2-count-thinning-completion-amendment-v1",
+  "scientific_change": false,
+  "status": "FROZEN_BEFORE_INFERENCE",
+  "task_ids": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "technical_change_only": "Correct distinction between model-supported genes and genes actually materialized by native scPRINT-2 prediction output.",
+  "vocabulary_semantics": {
+    "interpretation": "The first value is checkpoint/model support after native registry filtering. The second is the P3 coverage actually returned by one qualification canary and is input-dependent.",
+    "model_supported_p3_overlap": 14521,
+    "qualification_native_returned_p3_overlap": 14279
+  }
+}
