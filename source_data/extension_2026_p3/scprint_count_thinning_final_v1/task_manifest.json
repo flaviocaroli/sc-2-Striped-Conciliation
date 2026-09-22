@@ -1,0 +1,170 @@
+{
+  "replicate_result_count": 90,
+  "schema": "sc2-p3-scprint-final-task-manifest-v1",
+  "status": "COMPLETE",
+  "task_count": 18,
+  "tasks": [
+    {
+      "dataset": "internal_test",
+      "model": "scprint1",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 0,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_00_scprint1_internal_test_q085/task_summary.json",
+      "task_summary_sha256": "cf96c4b86444e6b0dba0daa61a6630076aad838287c2aa1a8872a2901bb38b08"
+    },
+    {
+      "dataset": "internal_test",
+      "model": "scprint1",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 1,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_01_scprint1_internal_test_q070/task_summary.json",
+      "task_summary_sha256": "e09d6b5ad60be1598e6ba14939119ffb93f43163003607e4a6af9c69045342d4"
+    },
+    {
+      "dataset": "internal_test",
+      "model": "scprint1",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 2,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_02_scprint1_internal_test_q050/task_summary.json",
+      "task_summary_sha256": "b79b61d65d86522cd30bab56f5e2f2f8d8f6ef6a74717b7d2b00bed66dd88ec9"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint1",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 3,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_03_scprint1_baron_pancreas_q085/task_summary.json",
+      "task_summary_sha256": "6a5e42dc4a6f90def1cd8ca46dc1c4431f55704e9184314cea4a3bcdc21fb6f6"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint1",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 4,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_04_scprint1_baron_pancreas_q070/task_summary.json",
+      "task_summary_sha256": "b29480c733f23a323de000f83f302bc81682a0a68d75fb3319ce99b6d4f025c2"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint1",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 5,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_05_scprint1_baron_pancreas_q050/task_summary.json",
+      "task_summary_sha256": "045051ce6e7ba5278bc9faa50cc20326cae2b8e05097d4307829f1bd162457c1"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint1",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 6,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_06_scprint1_zheng68k_q085/task_summary.json",
+      "task_summary_sha256": "d35d736def069d856c062f3140d079b365c34141757343edbb850ed28b7c0b87"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint1",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 7,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_07_scprint1_zheng68k_q070/task_summary.json",
+      "task_summary_sha256": "87bfcc0d3f100d19e8aedb2053b29f625e69d56d061358265f1676c847c47094"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint1",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 8,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint_count_thinning_v2/task_08_scprint1_zheng68k_q050/task_summary.json",
+      "task_summary_sha256": "6bf923f00510b25874c554e31788e26a7491ef9006d2e7aa6c8c29a95969409a"
+    },
+    {
+      "dataset": "internal_test",
+      "model": "scprint2",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 9,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_09_scprint2_internal_test_q085/task_summary.json",
+      "task_summary_sha256": "ea8a10049e4d3cec7ab6c605d259f10acdfd18906478d72ed2dec3e942a2812d"
+    },
+    {
+      "dataset": "internal_test",
+      "model": "scprint2",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 10,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_10_scprint2_internal_test_q070/task_summary.json",
+      "task_summary_sha256": "94f87a96d0aff859a30c29c3408d5ab4fbac1f5328a7289f41607af39c6ac3ee"
+    },
+    {
+      "dataset": "internal_test",
+      "model": "scprint2",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 11,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_11_scprint2_internal_test_q050/task_summary.json",
+      "task_summary_sha256": "5247a88af6f96519bb053a01a36a690b422fc3f4f69a2da31596ee4b2519bee2"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint2",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 12,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_12_scprint2_baron_pancreas_q085/task_summary.json",
+      "task_summary_sha256": "7e0f35a6832f2c74a6ce5c60eb4ff9cf25383ff3873725de4c352078a8a0bce3"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint2",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 13,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_13_scprint2_baron_pancreas_q070/task_summary.json",
+      "task_summary_sha256": "7c706ac620f3c424a766697442f369e80ca4f80cd44c3961dc6d8a29a21f0b92"
+    },
+    {
+      "dataset": "baron_pancreas",
+      "model": "scprint2",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 14,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_14_scprint2_baron_pancreas_q050/task_summary.json",
+      "task_summary_sha256": "6825c384d918602ccee6126daa2872770a3606e9e69df7b5ea67289f41a41aec"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint2",
+      "q": 0.85,
+      "replicate_count": 5,
+      "task_id": 15,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_15_scprint2_zheng68k_q085/task_summary.json",
+      "task_summary_sha256": "2298d3ec16e362477ff6a24c4c448164f083c23f21a79edfad1a323f4884d370"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint2",
+      "q": 0.7,
+      "replicate_count": 5,
+      "task_id": 16,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_16_scprint2_zheng68k_q070/task_summary.json",
+      "task_summary_sha256": "7e00d4afd7563185fb43ae1936d69bff7ebf8a275aee7ca5b3e01f41407a9d26"
+    },
+    {
+      "dataset": "zheng68k",
+      "model": "scprint2",
+      "q": 0.5,
+      "replicate_count": 5,
+      "task_id": 17,
+      "task_summary": "/mnt/beegfsnew/scratch/3159436/sc2_p3/outputs/foundation_scprint2_count_thinning_completion_v1/task_17_scprint2_zheng68k_q050/task_summary.json",
+      "task_summary_sha256": "b52778da969be3cd4f271b57a694406e03cb24eae460c64455fb484e2b18dec6"
+    }
+  ]
+}

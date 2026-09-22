@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "baron_final_lodo": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_baron_final_lodo_results_receipt_v1.json",
+      "sha256": "5648d3e85fe49241e67344444370176376bf6e2acc3e5c6c53842aa7682f86f3"
+    },
+    "count_thinning_gated_vs_ungated": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_count_thinning_gated_vs_ungated_results_receipt_v1.json",
+      "sha256": "cbaaf22a360311f13d90733c761bf57511e8f6448d79184a4e96bb923620204b"
+    },
+    "foundation_baron_lodo": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_baron_lodo_results_receipt_v1.json",
+      "sha256": "537831c7bfbed2d0c130f0de8eacccc85888a7709fccdf70e89511434dbc4cf2"
+    },
+    "foundation_qualification": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_foundation_reconstruction_qualification_v4_receipt.json",
+      "sha256": "fedf53a56a6be22b130282e07ddd4770369824f9179f2789cdf15286b4875799"
+    },
+    "normalized_gated_vs_ungated": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_normalized_gated_vs_ungated_results_receipt_v1.json",
+      "sha256": "2375c84891b84e4e1f3c439fde6eb614788d536ad17902ef129803c2ccdb88aa"
+    },
+    "p3_final_candidate": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_16k_final_candidate_receipt_v1.json",
+      "sha256": "b94d112d84eaa5f05a2c6d14ecfd84f0d3ebe1051566a957d0cf76d5caee562c"
+    },
+    "regformer_track_decision": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_regformer_track_decision_v1.json",
+      "sha256": "84de2a7f7c79dbaac157f7f14404ed7ecfcd1e192c2685accafda78d07c60c83"
+    },
+    "scfoundation_baron": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scfoundation_16k_baron_results_receipt_v1.json",
+      "sha256": "4386d03e29c52242014477b16dc1430ff04b09fa0be5e5a40f3871bb3e4af794"
+    },
+    "scfoundation_internal": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scfoundation_16k_internal_test_results_receipt_v1.json",
+      "sha256": "4d3cc2f8db5ee3327bfdd626b5d5a2ec18439c2dceeccd1af7c54a61bed7ba7c"
+    },
+    "scfoundation_zheng": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scfoundation_16k_zheng_results_receipt_v1.json",
+      "sha256": "125066ed11fca405a7eaa57bb9e6da4dae1b33650a3cc8cfe873d24254c8c85f"
+    },
+    "scprint_final": {
+      "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scprint_count_thinning_results_receipt_v1.json",
+      "sha256": "2d611b258f63cae399d109ea82ad773cb693586732163839dfecd72a9143d3ef"
+    }
+  },
+  "interpretation_rules": {
+    "4K_vs_16K": "descriptive scaling comparison; not a pure gene-count ablation",
+    "Baron_donors": "biological units",
+    "SC2_five_model_seeds": "optimization variability; not biological replicates",
+    "count_thinning_five_replicates": "technical corruption replicates; not biological replicates",
+    "gated_vs_ungated": "separate operating policies; no overall winner claim",
+    "scPRINT_cell_coverage": "native preprocessing coverage; report evaluated/dropped cells",
+    "scPRINT_gene_coverage": "native output coverage; report evaluated genes with absolute metrics"
+  },
+  "parent_git_head": "d61376c24248e9b67bcfc0239f1a5bc7c683e42a",
+  "schema": "sc2-p3-final-scientific-freeze-v1",
+  "scientific_compute_complete": true,
+  "status": "FROZEN_COMPLETE",
+  "tracks": {
+    "Baron_final_LODO": "COMPLETE",
+    "GeneMamba_representation": "COMPLETE",
+    "Geneformer_representation": "COMPLETE",
+    "RegFormer": "native-forward qualified; excluded from continuous reconstruction because released semantics are binned and no official continuous inverse was identified",
+    "SC2_count_thinning": "COMPLETE",
+    "SC2_gated_ungated": "COMPLETE",
+    "SC2_normalized_masking": "COMPLETE",
+    "scFoundation": "COMPLETE",
+    "scPRINT_1": "COMPLETE",
+    "scPRINT_2": "COMPLETE"
+  }
+}

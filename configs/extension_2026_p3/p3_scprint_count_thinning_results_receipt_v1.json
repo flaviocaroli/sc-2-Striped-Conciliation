@@ -1,0 +1,56 @@
+{
+  "cell_policy": "Native scPRINT preprocessing may exclude cells. Predictions, full targets, corrupted baselines and masks are paired using immutable source_row. No missing-cell imputation.",
+  "condition_count": 18,
+  "datasets": [
+    "Internal Test",
+    "Baron pancreas",
+    "Zheng68K"
+  ],
+  "evaluation_scale": "Independent CP10K+log1p transformation of full counts, corrupted counts and native scprint_mu values on the same evaluated gene set.",
+  "gene_policy": "Evaluation uses native returned P3 genes intersected with frozen dataset availability. No missing-prediction imputation.",
+  "models": [
+    "scPRINT-1",
+    "scPRINT-2"
+  ],
+  "parent_git_head": "d61376c24248e9b67bcfc0239f1a5bc7c683e42a",
+  "protocol": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scprint_count_thinning_protocol_v2.json",
+    "sha256": "fa751b5168aa22f4173996e6c0461c4b6d99a731fa159c720301a5ee1dd954ec"
+  },
+  "retained_count_fractions": [
+    0.85,
+    0.7,
+    0.5
+  ],
+  "schema": "sc2-p3-scprint-count-thinning-results-receipt-v1",
+  "scientific_result_count": 90,
+  "scprint2_completion_amendment": {
+    "path": "/home/3159436/sc2/code/configs/extension_2026_p3/p3_scprint2_count_thinning_completion_amendment_v1.json",
+    "sha256": "0b1274ca93d6448e0690f7b3e93ac4135184b425cf0819845f19b937f6184dd0"
+  },
+  "source_data": {
+    "aggregate_receipt": {
+      "path": "/home/3159436/sc2/code/source_data/extension_2026_p3/scprint_count_thinning_final_v1/aggregate_receipt.json",
+      "sha256": "e2f8698bd034b03e83b49a483be67914777e27733ee5bbeeff1030614e48fa1a"
+    },
+    "per_replicate_metrics": {
+      "path": "/home/3159436/sc2/code/source_data/extension_2026_p3/scprint_count_thinning_final_v1/per_replicate_metrics.csv",
+      "sha256": "50c6e3c578cf7582d9909cb26c34ad692b16fd87209474efc9f682947d02d879"
+    },
+    "publication_table": {
+      "path": "/home/3159436/sc2/code/source_data/extension_2026_p3/scprint_count_thinning_final_v1/publication_table.csv",
+      "sha256": "43870fa88304ed9b25560868f4e991815c7c9b3c282e5d47783b502ff9bd3492"
+    },
+    "summary_mean_sd": {
+      "path": "/home/3159436/sc2/code/source_data/extension_2026_p3/scprint_count_thinning_final_v1/summary_mean_sd.csv",
+      "sha256": "56cecb8ae9ce1eb3731aaaeb35f66a00f63217e9d4daf91830c9f1a20fae8ce5"
+    },
+    "task_manifest": {
+      "path": "/home/3159436/sc2/code/source_data/extension_2026_p3/scprint_count_thinning_final_v1/task_manifest.json",
+      "sha256": "752cec93c04fcb4b0c9f6e401555fca9065a92e6a72c367541c2eee2e3ac2878"
+    }
+  },
+  "status": "FROZEN_COMPLETE",
+  "technical_replicates_are_biological_replicates": false,
+  "technical_replicates_per_condition": 5
+}
