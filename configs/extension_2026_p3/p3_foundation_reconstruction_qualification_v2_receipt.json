@@ -1,0 +1,55 @@
+{
+  "information_barrier": {
+    "baron_used": false,
+    "internal_test_used": false,
+    "zheng68k_used": false
+  },
+  "input": {
+    "p3_vocabulary": "/home/3159436/sc2/data/census_curated_pretrain_pilot250k_g16384/gene_vocabulary.parquet",
+    "p3_vocabulary_sha256": "0f1ecc3f50484bcd817dd26c5275b9a9ccd68072d774db5c297d4f405e5db0fa",
+    "panel": "/scratch/3159436/sc2_p3/outputs/count_thinning_v1/validation_panels_v1/validation_q085_rep01_seed2026082501.npz",
+    "panel_sha256": "e49501235704f3e8ed5e7a0004dcf6acec30947e7f4f5e5b026636b3f9e054dd"
+  },
+  "next": [
+    "scPRINT-1 official-dependency retry",
+    "scPRINT-1/scPRINT-2 high-coverage P3 canaries",
+    "safe RegFormer checkpoint introspection"
+  ],
+  "regformer": {
+    "continuous_reconstruction": "PENDING_CHECKPOINT_CONFIGURATION",
+    "job_id": 665501,
+    "note": "Released training code uses masked MSE when bin_cls=False; actual released checkpoint configuration still needs verification.",
+    "receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v2/RegFormer/release_semantics_receipt.json",
+    "receipt_sha256": "d41882783ae2b06a64ce6c01ecf4938c68f8f615d05dc6065e8985b753924c37",
+    "source_has_expr_decoder": true,
+    "source_has_mlm_output": true,
+    "state": "RELEASE_SEMANTICS_AUDIT_PASS"
+  },
+  "schema": "sc2-p3-foundation-reconstruction-qualification-v2",
+  "scientific_result": false,
+  "scprint1": {
+    "failure": "No action for key \"data.gene_embeddings\"",
+    "failure_class": "dependency_api_mismatch",
+    "job_id": 665499,
+    "next": "Pin official scPRINT-2.3.8 lockfile dependency scDataLoader==2.1.1 and retry without source-code modification.",
+    "scientific_failure": false,
+    "state": "FAILED_BEFORE_INFERENCE"
+  },
+  "scprint2": {
+    "ad_hoc_inverse": false,
+    "cells": 2500,
+    "custom_decoder": false,
+    "job_id": 665500,
+    "note": "Qualification used max_len=5000. A high-coverage P3 canary is required before final 16K comparison.",
+    "prediction": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v2/scPRINT2/prediction_denoised.h5ad",
+    "prediction_layer": "scprint_mu",
+    "prediction_sha256": "b3c3ffc4e9b51a9be51172a9c1666a99fa4325f3b2b040d73b55de7d5e249695",
+    "receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v2/scPRINT2/receipt.json",
+    "receipt_sha256": "574f1c81d745f74ff6fce8f35d805c035b0d9e850873767464a7677c43d26bc7",
+    "returned_genes": 4438,
+    "state": "PASS"
+  },
+  "source_git_head": "d6d8f093dae7f03fa8c7cb9e6474c6d07f37bc9c",
+  "status": "PASS_WITH_PARTIAL_QUALIFICATION",
+  "validation_only": true
+}
