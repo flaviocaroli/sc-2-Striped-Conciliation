@@ -1,0 +1,47 @@
+{
+  "information_barrier": {
+    "baron_used": false,
+    "internal_test_used": false,
+    "zheng_used": false
+  },
+  "next": [
+    "scPRINT-1 direct official task API forward",
+    "RegFormer released checkpoint native forward semantics"
+  ],
+  "regformer": {
+    "bundle_A_sha256": "cdc199c388260b0207d4906756e6d925773800736e9b524a544d95d18a3d7ab2",
+    "bundle_B_sha256": "8e8e751a0b05caa4e6e4d6b5c0f8ee847ae607757f0431b4bee90cd9ef26a434",
+    "continuous_value_encoder_evidence": true,
+    "job": 665721,
+    "native_forward": "PENDING",
+    "receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v3/RegFormer/checkpoint_introspection_retry_v2.json",
+    "receipt_sha256": "ea4708e852277532f7cc0c02d24ef43eff10459a50e1ec6283543b48581f638f",
+    "scalar_expression_decoder_evidence": true,
+    "status": "SAFE_CHECKPOINT_INTROSPECTION_PASS"
+  },
+  "schema": "sc2-p3-foundation-reconstruction-qualification-v3",
+  "scientific_result": false,
+  "scprint1": {
+    "detail": "Official scDataLoader 2.1.1 installation succeeded. Wrapper incorrectly asserted gene_embeddings must be an explicit DataModule signature argument; DataModule accepts **kwargs. No model forward occurred.",
+    "failure_class": "wrapper_assertion",
+    "previous_job": 665714,
+    "scientific_failure": false,
+    "status": "FAILED_BEFORE_MODEL_INFERENCE"
+  },
+  "scprint2": {
+    "ad_hoc_inverse": false,
+    "cells": 2500,
+    "custom_decoder": false,
+    "job": 665715,
+    "p3_overlap_fraction": 0.87152099609375,
+    "p3_overlap_genes": 14279,
+    "prediction_layer": "scprint_mu",
+    "receipt": "/home/3159436/sc2/outputs/paper_extension_2026_p3/foundation_reconstruction_qualification_v3/scPRINT2/receipt.json",
+    "receipt_sha256": "51429fd19f22e313d373f8527f3b58df48597ef7a61aa6c01e4c405d3bb582b9",
+    "returned_genes": 14656,
+    "status": "HIGH_COVERAGE_NATIVE_PASS"
+  },
+  "source_git_head": "3b1e95a6b548508af610985ab1fef9038cb5f12d",
+  "status": "FROZEN",
+  "validation_only": true
+}
